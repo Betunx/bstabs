@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { Song, SongStatus } from './entities/song.entity';
 import { CreateSongDto } from './dto/create-song.dto';
 import { UpdateSongDto } from './dto/update-song.dto';
+import { Sanitizer } from '../utils/sanitizer';
 
 @Injectable()
 export class SongsService {
@@ -13,7 +14,17 @@ export class SongsService {
   ) {}
 
   async create(createSongDto: CreateSongDto): Promise<Song> {
-    const song = this.songRepository.create(createSongDto);
+    // Sanitize inputs to prevent XSS
+    const sanitizedDto = {
+      ...createSongDto,
+      title: Sanitizer.sanitizeHtml(createSongDto.title),
+      artist: Sanitizer.sanitizeHtml(createSongDto.artist),
+      content: Sanitizer.sanitizeHtml(createSongDto.content),
+      notes: createSongDto.notes ? Sanitizer.sanitizeHtml(createSongDto.notes) : undefined,
+      genre: createSongDto.genre ? Sanitizer.sanitizeHtml(createSongDto.genre) : undefined,
+    };
+
+    const song = this.songRepository.create(sanitizedDto);
     return await this.songRepository.save(song);
   }
 
@@ -93,10 +104,13 @@ export class SongsService {
   }
 
   async searchByTitle(query: string): Promise<Song[]> {
+    // Sanitize search query to prevent SQL injection
+    const sanitizedQuery = Sanitizer.sanitizeSql(query);
+
     return await this.songRepository
       .createQueryBuilder('song')
-      .where('LOWER(song.title) LIKE LOWER(:query)', { query: `%${query}%` })
-      .orWhere('LOWER(song.artist) LIKE LOWER(:query)', { query: `%${query}%` })
+      .where('LOWER(song.title) LIKE LOWER(:query)', { query: `%${sanitizedQuery}%` })
+      .orWhere('LOWER(song.artist) LIKE LOWER(:query)', { query: `%${sanitizedQuery}%` })
       .andWhere('song.status = :status', { status: SongStatus.PUBLISHED })
       .orderBy('song.views', 'DESC')
       .getMany();
