@@ -1,14 +1,5 @@
 {
-  "version": 2,
-  "buildCommand": "cd frontend/black-sheep-app && npm install && npm run build",
+  "buildCommand": "cd frontend/black-sheep-app && npm run build",
   "outputDirectory": "frontend/black-sheep-app/dist/black-sheep-app/browser",
-  "devCommand": "cd frontend/black-sheep-app && npm run start",
-  "installCommand": "cd frontend/black-sheep-app && npm install",
-  "framework": null,
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
-  ]
+  "installCommand": "cd frontend/black-sheep-app && npm install"
 }
