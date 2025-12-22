@@ -1,0 +1,56 @@
+/* Black Sheep - Global Styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Inter:wght@400;600;700;800&display=swap');
+
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Theme Classes */
+.theme-light {
+  --bg-primary: #FAF9F6;
+  --bg-header: #0A0A0A;
+  --text-primary: #1A1A1A;
+  --accent: #D4AF37;
+}
+
+.theme-dark {
+  --bg-primary: #1A1A1A;
+  --bg-header: #000000;
+  --text-primary: #E5E5E5;
+  --accent: #D4AF37;
+}
+
+.theme-night {
+  --bg-primary: #2D1B1B;
+  --bg-header: #1A0F0F;
+  --text-primary: #E8D4C4;
+  --accent: #C9A86A;
+}
+
+.theme-oled {
+  --bg-primary: #000000;
+  --bg-header: #000000;
+  --text-primary: #CCCCCC;
+  --accent: #FFD700;
+}
+
+/* Tablature Monospace Text */
+.tab-content {
+  font-family: 'Courier Prime', 'Courier New', monospace;
+  line-height: 1.5;
+  letter-spacing: 0.05em;
+}
