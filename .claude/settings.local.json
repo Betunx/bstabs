@@ -17,7 +17,8 @@
       "Bash(git branch:*)",
       "Bash(git push:*)",
       "Bash(node --version:*)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(Tabs\"\n- Add FREE-HOSTING-OPTIONS.md guide\n  - Compare Render, Fly.io, Supabase, Railway\n  - Recommend Render + Supabase stack (100% free)\n  - Setup instructions for each platform\n- Add admin button visible only in dev/preview\n  - Detects hostname to hide on bstabs.com\n  - Red badge in header for easy access\n  - Mobile navigation also includes admin link\n\nAdmin panel now accessible only in development/preview\nenvironments, hidden from production users.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n)\")"
     ]
   }
 }
