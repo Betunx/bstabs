@@ -13,6 +13,13 @@
       <a routerLink="/tutorials" routerLinkActive="text-bs-gold" class="hover:text-bs-gold transition">Tutoriales</a>
       <a routerLink="/request-song" routerLinkActive="text-bs-gold" class="hover:text-bs-gold transition">Pedir Canción</a>
       <a routerLink="/contact" routerLinkActive="text-bs-gold" class="hover:text-bs-gold transition">Contacto</a>
+
+      <!-- Admin link - only visible in dev/preview -->
+      @if (isDevMode()) {
+        <a routerLink="/admin" routerLinkActive="text-bs-gold" class="hover:text-bs-gold transition bg-red-600 px-3 py-1 rounded">
+          Admin
+        </a>
+      }
     </nav>
 
     <!-- Theme Selector & Donate Button -->

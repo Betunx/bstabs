@@ -14,6 +14,9 @@ export class Header {
   themeService = inject(ThemeService);
   isThemeDropdownOpen = signal(false);
 
+  // Admin access only in development/preview (not in production bstabs.com)
+  isDevMode = signal(!window.location.hostname.includes('bstabs.com'));
+
   getThemeKeys(): ThemeType[] {
     return Object.keys(this.themeService.themes) as ThemeType[];
   }
