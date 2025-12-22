@@ -49,6 +49,7 @@ class TabScraper {
     const patterns = {
       cifraclub: /<pre class="[^"]*cifra[^"]*"[^>]*>(.*?)<\/pre>/gs,
       ultimateGuitar: /<pre[^>]*class="[^"]*js-tab-content[^"]*"[^>]*>(.*?)<\/pre>/gs,
+      acordesweb: /<pre[^>]*>(.*?)<\/pre>/gs,
       generic: /<pre[^>]*>(.*?)<\/pre>/gs
     };
 
@@ -103,6 +104,15 @@ class TabScraper {
     // Elimina atributos style
     clean = clean.replace(/\s*style="[^"]*"/g, '');
 
+    // Elimina atributos rel
+    clean = clean.replace(/\s*rel="[^"]*"/g, '');
+
+    // Convierte tags <a> a solo su contenido (para acordes)
+    clean = clean.replace(/<a[^>]*>([^<]+)<\/a>/g, '$1');
+
+    // Elimina divs pero mantiene contenido
+    clean = clean.replace(/<\/?div[^>]*>/g, '');
+
     // Elimina clases (opcional, puedes comentar si necesitas las clases)
     clean = clean.replace(/\s*class="[^"]*"/g, '');
 
@@ -112,10 +122,17 @@ class TabScraper {
     // Elimina comentarios HTML
     clean = clean.replace(/<!--.*?-->/gs, '');
 
-    // Normaliza espacios
-    clean = clean.replace(/\s+/g, ' ').trim();
+    // Elimina líneas de crédito (AcordesWeb, etc)
+    clean = clean.replace(/Primero en #[^\n<]+/g, '');
 
-    return clean;
+    // Limpia múltiples <br/> seguidos
+    clean = clean.replace(/(<br\s*\/?>[\s]*){3,}/g, '<br/><br/>');
+
+    // Normaliza espacios pero mantiene saltos de línea
+    clean = clean.replace(/[ \t]+/g, ' ');
+    clean = clean.replace(/^\s+|\s+$/gm, '');
+
+    return clean.trim();
   }
 
   /**
@@ -143,16 +160,48 @@ class TabScraper {
     // Intenta extraer título
     const titleMatch = html.match(/<title[^>]*>(.*?)<\/title>/i);
     if (titleMatch) {
-      metadata.title = titleMatch[1].replace(/\s*-\s*.*$/, '').trim();
+      let title = titleMatch[1];
+
+      // Limpiar formato de AcordesWeb: "▷ TITULO: (Artista) Acordes..."
+      const acordesWebMatch = title.match(/▷\s*([^:]+):\s*\(([^)]+)\)/);
+      if (acordesWebMatch) {
+        metadata.title = acordesWebMatch[1].trim();
+        metadata.artist = acordesWebMatch[2].trim();
+      } else {
+        // Formato genérico
+        metadata.title = title.replace(/\s*-\s*.*$/, '').trim();
+      }
     }
 
-    // Intenta extraer meta tags
-    const artistMatch = html.match(/<meta[^>]*name="artist"[^>]*content="([^"]*)"[^>]*>/i);
-    if (artistMatch) {
-      metadata.artist = artistMatch[1];
+    // Intenta extraer meta tags si no encontró artista
+    if (!metadata.artist) {
+      const artistMatch = html.match(/<meta[^>]*name="artist"[^>]*content="([^"]*)"[^>]*>/i);
+      if (artistMatch) {
+        metadata.artist = artistMatch[1];
+      }
     }
+
+    // Limpia caracteres HTML entities
+    metadata.title = this.decodeHTMLEntities(metadata.title);
+    metadata.artist = this.decodeHTMLEntities(metadata.artist);
 
     return metadata;
+  }
+
+  /**
+   * Decodifica HTML entities
+   */
+  decodeHTMLEntities(text) {
+    const entities = {
+      '&amp;': '&',
+      '&lt;': '<',
+      '&gt;': '>',
+      '&quot;': '"',
+      '&#39;': "'",
+      '&apos;': "'"
+    };
+
+    return text.replace(/&[^;]+;/g, match => entities[match] || match);
   }
 
   /**

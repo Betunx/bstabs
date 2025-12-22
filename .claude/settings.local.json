@@ -16,7 +16,8 @@
       "Bash(git remote add:*)",
       "Bash(git branch:*)",
       "Bash(git push:*)",
-      "Bash(node --version:*)"
+      "Bash(node --version:*)",
+      "Bash(node:*)"
     ]
   }
 }
