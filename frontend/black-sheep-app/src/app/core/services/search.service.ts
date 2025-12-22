@@ -109,25 +109,28 @@ export class SearchService {
       return null;
     }
 
-    let bestMatch: { text: string; score: number } | null = null;
+    let bestMatchText = '';
+    let bestMatchScore = 0;
 
     this.mockSongs.forEach(song => {
       // Check song title similarity
       const titleScore = this.similarity(query, song.title);
-      if (titleScore > 0.6 && (!bestMatch || titleScore > bestMatch.score)) {
-        bestMatch = { text: song.title, score: titleScore };
+      if (titleScore > 0.6 && titleScore > bestMatchScore) {
+        bestMatchText = song.title;
+        bestMatchScore = titleScore;
       }
 
       // Check artist similarity
       const artistScore = this.similarity(query, song.artist);
-      if (artistScore > 0.6 && (!bestMatch || artistScore > bestMatch.score)) {
-        bestMatch = { text: song.artist, score: artistScore };
+      if (artistScore > 0.6 && artistScore > bestMatchScore) {
+        bestMatchText = song.artist;
+        bestMatchScore = artistScore;
       }
     });
 
     // Only suggest if query doesn't already match exactly
-    if (bestMatch && query.toLowerCase() !== bestMatch.text.toLowerCase()) {
-      return bestMatch.text;
+    if (bestMatchText && query.toLowerCase() !== bestMatchText.toLowerCase()) {
+      return bestMatchText;
     }
 
     return null;
