@@ -1,239 +1,162 @@
-# 🎸 Black Sheep (BS)
+# 🎸 Black Sheep Tabs
 
 > **"Knowing for love, fun and free!"**
 
-Black Sheep es una plataforma moderna de tablaturas musicales, creada con amor por músicos, para músicos. Sin anuncios, sin distracciones, solo música pura.
-
-## 🌟 Filosofía
-
-La música es un arte noble. El aprendizaje debe ser accesible, gratuito y sin barreras. Black Sheep está diseñado para ofrecer la mejor experiencia de lectura de tablaturas, respetando tu tiempo y concentración.
+Plataforma moderna de tablaturas musicales. Sin anuncios, sin distracciones, solo música pura.
 
 ## ✨ Características
 
 - 📱 **Mobile-First PWA** - Instálalo como app nativa
 - 🎨 **4 Modos de Visualización** - Light, Dark, Night Red, OLED
-- 🎵 **Formato Profesional** - Tablaturas con toda la información que necesitas
-- 💛 **Libre de Anuncios** - Financiado por donaciones voluntarias
+- 🎵 **Formato Profesional** - Acordes, letra, metadata completa
+- 📄 **Export a PDF** - Descarga tablaturas limpias
+- 🎧 **Enlaces Musicales** - Botones a Spotify y YouTube
+- 💛 **Libre de Anuncios** - Financiado por donaciones
 - ⚡ **Ultra Rápido** - Optimizado para performance
-- 🔍 **Búsqueda Avanzada** - Por artista, tono, dificultad, tags
+- 🔍 **Búsqueda Avanzada** - Por artista, tono, dificultad
 
 ## 🏗️ Stack Tecnológico
 
-### Frontend
-- **Angular 18** - Framework moderno y robusto
-- **Tailwind CSS** - Diseño utility-first personalizado
-- **PWA** - Progressive Web App capabilities
-- **TypeScript** - Type-safe development
-
-### Backend
-- **NestJS** - Framework Node.js escalable
-- **PostgreSQL** - Base de datos relacional
-- **TypeORM** - ORM type-safe
-- **Redis** - Cache de alto rendimiento
-- **Elasticsearch** - Búsqueda full-text
-
-### DevOps & Cloud
-- **Docker** - Containerización
-- **AWS** - Cloud hosting
-  - EC2 - Backend hosting
-  - RDS - PostgreSQL managed
-  - Amplify - Frontend hosting
-  - S3 - Assets storage
-- **GitHub Actions** - CI/CD pipeline
-- **Cloudflare** - CDN & DNS
+- **Frontend**: Angular 20.3 + Tailwind CSS + PWA
+- **Backend**: NestJS 11 + TypeORM + PostgreSQL
+- **Seguridad**: Helmet, Rate Limiting, CSRF, Input Sanitization
+- **PDF**: pdfkit para generación de documentos
+- **Deploy**: Vercel (frontend) + Railway/Render (backend)
+- **Domain**: Cloudflare DNS/CDN
 
 ## 📁 Estructura del Proyecto
 
 ```
 blackSheep/
-├── frontend/              # Angular 18 PWA
-│   └── black-sheep-app/
-│       ├── src/
-│       │   ├── app/
-│       │   │   ├── core/       # Servicios singleton
-│       │   │   ├── shared/     # Componentes compartidos
-│       │   │   ├── features/   # Módulos de features
-│       │   │   │   ├── tabs/   # Visor de tablaturas
-│       │   │   │   ├── donate/ # Página de donaciones
-│       │   │   │   └── search/ # Búsqueda de canciones
-│       │   │   └── layout/     # Header, Footer
-│       │   └── styles.scss     # Estilos globales + Tailwind
-│       └── tailwind.config.js  # Configuración BS custom
-│
-├── backend/               # NestJS API
-│   └── black-sheep-api/
-│       └── src/
-│           ├── modules/
-│           │   ├── tabs/       # CRUD tablaturas
-│           │   ├── songs/      # Metadata canciones
-│           │   ├── users/      # Autenticación
-│           │   └── search/     # Elasticsearch integration
-│           ├── common/         # Guards, interceptors
-│           └── config/         # Configuración
-│
-├── docker/                # Configuraciones Docker
-├── .github/workflows/     # CI/CD pipelines
-└── docs/                  # Documentación
-
+├── frontend/black-sheep-app/  # Angular PWA
+├── backend/black-sheep-api/   # NestJS API
+├── docs/                      # Documentación técnica
+├── scripts/                   # Scraper y utilidades
+└── ROADMAP.md                 # Plan de desarrollo
 ```
 
-## 🎨 Paleta de Colores
-
-```scss
-// Light Mode
---bg-primary: #FAF9F6     // Warm White
---bg-header: #0A0A0A      // Carbon Black
---text-primary: #1A1A1A   // Typewriter Black
---accent: #D4AF37         // Golden Amber
-
-// Dark Mode
---bg-primary: #1A1A1A     // Carbon
---text-primary: #E5E5E5   // Light Gray
-
-// Night Red Mode
---bg-primary: #2D1B1B     // Deep Red-Black
---text-primary: #E8D4C4   // Warm Beige
-
-// OLED Mode
---bg-primary: #000000     // True Black
---text-primary: #CCCCCC   // Gray
---accent: #FFD700         // Bright Gold
-```
+**Documentación completa**: Ver [docs/REFERENCE.md](docs/REFERENCE.md)
 
 ## 🚀 Inicio Rápido
 
 ### Prerrequisitos
-
 - Node.js 18+
 - npm 10+
-- Docker (opcional para desarrollo local)
+- PostgreSQL (o Docker)
 
-### Instalación
+### Instalación Local
 
 ```bash
 # Clonar repositorio
-git clone https://github.com/betunx/black-sheep.git
-cd black-sheep
+git clone https://github.com/Betunx/bstabs.git
+cd bstabs
 
 # Frontend
 cd frontend/black-sheep-app
 npm install
 npm start
-# Abre http://localhost:4200
+# → http://localhost:4200
 
 # Backend
-cd ../../backend/black-sheep-api
+cd backend/black-sheep-api
 npm install
 npm run start:dev
-# API corriendo en http://localhost:3000
+# → http://localhost:3000
 ```
 
 ### Con Docker
 
 ```bash
-# Levantar toda la infraestructura
 docker-compose up -d
-
 # Frontend: http://localhost:4200
 # Backend: http://localhost:3000
-# PostgreSQL: localhost:5432
 ```
 
-## 🗄️ Estructura de Tablaturas
+## 🗄️ Formato de Tablaturas
 
-Las tablaturas en BS utilizan un formato JSON estructurado:
+Las tablaturas usan JSON estructurado:
 
 ```json
 {
-  "title": "Emma",
-  "artist": "Betunx",
-  "key": "Bm",
-  "tempo": 78,
-  "timeSignature": "4/4",
-  "tuning": "Standard (EADGBE)",
+  "title": "Viejo Lobo",
+  "artist": "Natanael Cano ft Luis R Conriquez",
+  "key": "Am",
+  "tempo": 90,
   "difficulty": "intermediate",
   "sections": [
     {
-      "name": "Intro",
-      "bars": [
+      "name": "Verso 1",
+      "lines": [
         {
-          "chords": ["Bm", "F#m"],
-          "tab": {
-            "e": "---2---2---2---2---|",
-            "B": "---3---3---3---3---|",
-            "G": "---4---4---4---4---|",
-            "D": "---4---4---4---4---|",
-            "A": "---2---2---2---2---|",
-            "E": "-------------------|"
-          }
+          "chords": [
+            { "chord": "Am", "position": 0 },
+            { "chord": "G", "position": 15 }
+          ],
+          "lyrics": "En la sierra nací..."
         }
       ]
     }
-  ]
+  ],
+  "spotifyUrl": "https://open.spotify.com/track/...",
+  "youtubeUrl": "https://youtube.com/watch?v=..."
 }
 ```
 
+Ver [docs/REFERENCE.md](docs/REFERENCE.md) para especificación completa.
+
+## 📝 Próximos Pasos
+
+Ver [ROADMAP.md](ROADMAP.md) para el plan detallado de desarrollo.
+
+**Prioridades actuales**:
+1. Sistema de generación de PDFs
+2. Enlaces a Spotify/YouTube (híbrido)
+3. Agregar primera canción de ejemplo
+4. Deploy a producción
+
 ## 💛 Apoya el Proyecto
 
-Black Sheep es completamente gratuito y sin anuncios. Si te resulta útil, considera hacer una donación voluntaria:
+Black Sheep es gratuito y sin anuncios. Si te resulta útil, considera donar:
 
 - **PayPal**: [paypal.me/betunx](https://paypal.me/betunx)
-- **Contacto**: bstabscontact@gmail.com
+- **Email**: bstabscontact@gmail.com
 
-## 🌐 Dominio
+## 🌐 Enlaces
 
 - **Producción**: [bstabs.com](https://bstabs.com)
-- **CDN & DNS**: Cloudflare
+- **Repositorio**: [github.com/Betunx/bstabs](https://github.com/Betunx/bstabs)
 
-## 📝 Roadmap
+## 📚 Documentación
 
-### Fase 1 - MVP (Actual)
-- [x] Setup proyecto Angular + NestJS
-- [x] Configuración Tailwind con paleta BS
-- [ ] Visor de tablaturas básico
-- [ ] Sistema de 4 temas
-- [ ] Página de donaciones
-- [ ] Deploy inicial a AWS
-
-### Fase 2 - Core Features
-- [ ] Editor de tablaturas
-- [ ] Sistema de importación
-- [ ] Búsqueda con Elasticsearch
-- [ ] Sistema de moderación
-- [ ] Autenticación de usuarios
-
-### Fase 3 - Features Avanzadas
-- [ ] Transposición de tonos
-- [ ] Scroll automático
-- [ ] Audio sincronizado
-- [ ] Modo colaborativo
-- [ ] Export a PDF
+- [ROADMAP.md](ROADMAP.md) - Plan de desarrollo y tareas
+- [docs/REFERENCE.md](docs/REFERENCE.md) - Referencia técnica completa
+- [docs/DEPLOY.md](docs/DEPLOY.md) - Guía de deployment
+- [docs/SCRAPING-GUIDE.md](docs/SCRAPING-GUIDE.md) - Uso del web scraper
+- [docs/RAILWAY-GUIDE.md](docs/RAILWAY-GUIDE.md) - Deploy en Railway
+- [docs/CLOUDFLARE-SETUP.md](docs/CLOUDFLARE-SETUP.md) - Configuración de dominio
 
 ## 🤝 Contribuir
 
-Black Sheep es un proyecto de código abierto. Las contribuciones son bienvenidas:
+Contribuciones son bienvenidas:
 
 1. Fork el proyecto
-2. Crea una rama (`git checkout -b feature/amazing-feature`)
-3. Commit tus cambios (`git commit -m 'Add amazing feature'`)
+2. Crea tu rama (`git checkout -b feature/amazing-feature`)
+3. Commit cambios (`git commit -m 'Add amazing feature'`)
 4. Push a la rama (`git push origin feature/amazing-feature`)
 5. Abre un Pull Request
 
 ## 📜 Licencia
 
-MIT License - Ver [LICENSE](LICENSE) para más detalles.
+MIT License
 
 ## 👨‍🎤 Autor
 
 **Betunx** - Músico & Developer
 - Email: bstabscontact@gmail.com
-- Primera canción: "Emma" en Bm
 
 ---
 
 <p align="center">
-  <b>Hecho con ❤️ por músicos, para músicos</b>
-</p>
-<p align="center">
+  <b>Hecho con ❤️ por músicos, para músicos</b><br>
   <i>"Knowing for love, fun and free!"</i>
 </p>
