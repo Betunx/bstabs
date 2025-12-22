@@ -1,0 +1,74 @@
+{
+  "id": "emma-betunx-001",
+  "title": "Emma",
+  "artist": "Betunx",
+  "key": "Bm",
+  "tempo": 78,
+  "timeSignature": "4/4",
+  "tuning": "Standard (EADGBE)",
+  "difficulty": "intermediate",
+  "story": "En honor a mi primer bajo y todo lo que representa en mi vida musical.",
+  "sections": [
+    {
+      "name": "Intro",
+      "lines": [
+        {
+          "chords": [
+            { "chord": "Bm", "position": 0 },
+            { "chord": "F#m", "position": 20 }
+          ],
+          "lyrics": "                    "
+        }
+      ]
+    },
+    {
+      "name": "Verso 1",
+      "lines": [
+        {
+          "chords": [
+            { "chord": "E", "position": 0 },
+            { "chord": "D", "position": 14 },
+            { "chord": "Dm7", "position": 18 }
+          ],
+          "lyrics": "Pero esa luna es mi condena"
+        },
+        {
+          "chords": [
+            { "chord": "Am", "position": 0 },
+            { "chord": "G", "position": 10 }
+          ],
+          "lyrics": "Y no puedo escapar"
+        },
+        {
+          "chords": [
+            { "chord": "E", "position": 0 },
+            { "chord": "D", "position": 14 }
+          ],
+          "lyrics": "De este sentir tan profundo"
+        }
+      ]
+    },
+    {
+      "name": "Coro",
+      "lines": [
+        {
+          "chords": [
+            { "chord": "Bm", "position": 0 },
+            { "chord": "A", "position": 8 },
+            { "chord": "G", "position": 16 }
+          ],
+          "lyrics": "Emma, mi Emma querida"
+        },
+        {
+          "chords": [
+            { "chord": "D", "position": 0 },
+            { "chord": "A", "position": 12 }
+          ],
+          "lyrics": "Eres mi melodía"
+        }
+      ]
+    }
+  ],
+  "createdAt": "2024-12-22T04:30:00.000Z",
+  "updatedAt": "2024-12-22T04:30:00.000Z"
+}

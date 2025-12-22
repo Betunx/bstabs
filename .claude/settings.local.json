@@ -12,7 +12,10 @@
       "Bash(npm uninstall:*)",
       "Bash(ng generate:*)",
       "Bash(pkill:*)",
-      "Bash(ng serve:*)"
+      "Bash(ng serve:*)",
+      "Bash(git remote add:*)",
+      "Bash(git branch:*)",
+      "Bash(git push:*)"
     ]
   }
 }

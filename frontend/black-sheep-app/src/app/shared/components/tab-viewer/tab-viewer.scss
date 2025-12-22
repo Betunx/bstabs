@@ -1,0 +1,146 @@
+.tab-viewer-container {
+  max-width: 900px;
+  margin-inline: auto;
+  margin-block: 2rem;
+  padding-inline: 1rem;
+  background-color: white;
+  color: black;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+// Header de la canciÛn
+.song-header {
+  text-align: center;
+  padding-block: 2rem;
+  border-bottom: 2px solid #e5e5e5;
+  margin-block-end: 2rem;
+
+  .song-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-block: 0 0.5rem;
+    color: #0A0A0A;
+  }
+
+  .song-artist {
+    font-size: 1.25rem;
+    color: #666;
+    margin-block: 0 1rem;
+  }
+
+  .song-metadata {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-block-start: 1rem;
+
+    .metadata-item {
+      font-size: 0.95rem;
+      color: #444;
+
+      strong {
+        color: #D4AF37;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .song-story {
+    margin-block-start: 1.5rem;
+    padding: 1rem;
+    background-color: #FAF9F6;
+    border-left: 4px solid #D4AF37;
+    border-radius: 4px;
+    text-align: left;
+
+    p {
+      margin: 0;
+      font-style: italic;
+      color: #555;
+      line-height: 1.6;
+    }
+  }
+}
+
+// Secciones de la tablatura
+.tab-sections {
+  padding-block: 1rem 2rem;
+}
+
+.tab-section {
+  margin-block-end: 2rem;
+
+  .section-name {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #D4AF37;
+    margin-block: 1lh 1lh; // ê Espaciado consistente
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .section-content {
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+}
+
+// Contenedor de lÌnea de acordes + letra
+.chord-line-wrapper {
+  position: relative;
+  margin-block: 1lh; // ê Espaciado consistente entre lÌneas
+}
+
+// LÌnea de acordes (posicionados absolutamente)
+.chord-line {
+  position: relative;
+  height: 1.5em;
+  pointer-events: none;
+
+  .chord-symbol {
+    position: absolute;
+    top: 0;
+    font-weight: bold;
+    color: #D4AF37;
+    white-space: nowrap;
+    font-size: 0.95rem;
+  }
+}
+
+// LÌnea de letra
+.lyrics-line {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  color: black;
+  font-weight: 400;
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .tab-viewer-container {
+    margin-block: 1rem;
+    padding-inline: 0.75rem;
+  }
+
+  .song-header {
+    .song-title {
+      font-size: 2rem;
+    }
+
+    .song-artist {
+      font-size: 1.1rem;
+    }
+
+    .song-metadata {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+
+  .chord-line-wrapper {
+    font-size: 0.9rem;
+  }
+}
