@@ -1,0 +1,48 @@
+.tab-editor-container {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding: 2rem;
+}
+
+.form-section {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-block-end: 2rem;
+  border: 1px solid #e5e5e5;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-block-end: 1rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.lyrics-input-wrapper input {
+  width: 100%;
+  padding: 0.75rem;
+  font-family: 'Courier Prime', monospace;
+  cursor: text;
+}
+
+.chord-item {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.btn-add-section {
+  padding: 0.75rem 1.5rem;
+  background: #D4AF37;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}

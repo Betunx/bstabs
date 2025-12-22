@@ -1,0 +1,139 @@
+<div class="tab-editor-container">
+  <h2>Editor de Tablaturas</h2>
+
+  <form [formGroup]="songForm" (ngSubmit)="onSubmit()">
+
+    <!-- Metadata -->
+    <div class="form-section">
+      <h3>Información de la Canción</h3>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label>Título *</label>
+          <input type="text" formControlName="title" placeholder="Nombre de la canción">
+        </div>
+
+        <div class="form-field">
+          <label>Artista *</label>
+          <input type="text" formControlName="artist" placeholder="Nombre del artista">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label>Tono *</label>
+          <input type="text" formControlName="key" placeholder="ej: Bm, Am, C">
+        </div>
+
+        <div class="form-field">
+          <label>Tempo (BPM) *</label>
+          <input type="number" formControlName="tempo" placeholder="ej: 120">
+        </div>
+
+        <div class="form-field">
+          <label>Compás *</label>
+          <input type="text" formControlName="timeSignature" placeholder="ej: 4/4, 3/4">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label>Afinación *</label>
+          <input type="text" formControlName="tuning" placeholder="ej: Standard (EADGBE)">
+        </div>
+
+        <div class="form-field">
+          <label>Dificultad *</label>
+          <select formControlName="difficulty">
+            <option value="beginner">Principiante</option>
+            <option value="intermediate">Intermedio</option>
+            <option value="advanced">Avanzado</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label>Historia (opcional)</label>
+        <textarea formControlName="story" rows="3" placeholder="Historia o contexto de la canción"></textarea>
+      </div>
+    </div>
+
+    <!-- Secciones -->
+    <div class="form-section">
+      <h3>Secciones de la Canción</h3>
+
+      <div formArrayName="sections">
+        @for (section of sections.controls; track $index) {
+          <div class="section-editor" [formGroupName]="$index">
+            <div class="section-header">
+              <input type="text" formControlName="name" placeholder="Nombre de sección (ej: Intro, Verso 1)">
+              <button type="button" (click)="removeSection($index)" class="btn-remove">✕</button>
+            </div>
+
+            <!-- Líneas -->
+            <div formArrayName="lines">
+              @for (line of getLinesArray($index).controls; track $i; let $i = $index) {
+                <div class="line-editor" [formGroupName]="$i">
+
+                  <!-- Campo de letra -->
+                  <div class="lyrics-input-wrapper">
+                    <label>Letra</label>
+                    <input
+                      #lyricsInput
+                      type="text"
+                      formControlName="lyrics"
+                      (click)="onLyricsClick($event, $index, $i)"
+                      placeholder="Escribe la letra de esta línea">
+                    <small>Click donde quieras agregar un acorde</small>
+                  </div>
+
+                  <!-- Lista de acordes -->
+                  <div class="chords-list">
+                    <div formArrayName="chords">
+                      @for (chord of getChordsArray($index, $i).controls; track $c; let $c = $index) {
+                        <div class="chord-item" [formGroupName]="$c">
+                          <input
+                            type="text"
+                            formControlName="chord"
+                            placeholder="Acorde">
+                          <input
+                            type="number"
+                            formControlName="position"
+                            placeholder="Pos"
+                            readonly>
+                          <button type="button" (click)="removeChord($index, $i, $c)" class="btn-mini-remove">✕</button>
+                        </div>
+                      }
+                    </div>
+                    <button type="button" (click)="addChordManual($index, $i)" class="btn-add-chord">+ Acorde manual</button>
+                  </div>
+
+                  <button type="button" (click)="removeLine($index, $i)" class="btn-remove-line">Eliminar línea</button>
+                </div>
+              }
+            </div>
+
+            <button type="button" (click)="addLine($index)" class="btn-add">+ Agregar línea</button>
+          </div>
+        }
+      </div>
+
+      <button type="button" (click)="addSection()" class="btn-add-section">+ Agregar sección</button>
+    </div>
+
+    <!-- Preview -->
+    @if (previewSong) {
+      <div class="preview-section">
+        <h3>Vista Previa</h3>
+        <app-tab-viewer [song]="previewSong"></app-tab-viewer>
+      </div>
+    }
+
+    <!-- Botones -->
+    <div class="form-actions">
+      <button type="button" (click)="generatePreview()" class="btn-preview">Ver Preview</button>
+      <button type="submit" [disabled]="!songForm.valid" class="btn-submit">Guardar Canción</button>
+    </div>
+
+  </form>
+</div>
