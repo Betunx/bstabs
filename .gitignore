@@ -52,6 +52,9 @@ tmp/
 temp/
 *.tmp
 
+# Scraper extracted tabs
+scripts/scraper/extracted-tabs/
+
 # AWS
 .aws/
 *.pem
