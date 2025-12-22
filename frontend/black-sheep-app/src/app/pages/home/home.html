@@ -1,0 +1,59 @@
+<div class="min-h-screen flex flex-col">
+  <app-header></app-header>
+
+  <main class="flex-1 container mx-auto px-4 py-12">
+    <!-- Hero Section -->
+    <div class="text-center mb-12">
+      <h1 class="text-5xl md:text-6xl font-bold mb-4">Black Sheep</h1>
+      <p class="text-2xl md:text-3xl text-bs-gold italic">"Knowing for love, fun and free!"</p>
+      <p class="mt-4 text-lg opacity-75">Aprende música sin distracciones, sin anuncios, con amor.</p>
+    </div>
+
+    <!-- 4 Cuadros de Navegación - Estilo Ventana -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+
+      <!-- Artistas -->
+      <a routerLink="/artists"
+         class="group bg-white dark:bg-gray-800 rounded-lg shadow-lg hover:shadow-2xl transition-all p-8 text-center border-4 border-transparent hover:border-bs-gold">
+        <div class="text-6xl mb-4">🎸</div>
+        <h2 class="text-2xl font-bold mb-2">Artistas</h2>
+        <p class="opacity-75">Explora músicos y sus canciones</p>
+      </a>
+
+      <!-- Canciones -->
+      <a routerLink="/songs"
+         class="group bg-white dark:bg-gray-800 rounded-lg shadow-lg hover:shadow-2xl transition-all p-8 text-center border-4 border-transparent hover:border-bs-gold">
+        <div class="text-6xl mb-4">🎵</div>
+        <h2 class="text-2xl font-bold mb-2">Canciones</h2>
+        <p class="opacity-75">Busca tablaturas por nombre</p>
+      </a>
+
+      <!-- Últimos Tutoriales -->
+      <a routerLink="/tutorials"
+         class="group bg-white dark:bg-gray-800 rounded-lg shadow-lg hover:shadow-2xl transition-all p-8 text-center border-4 border-transparent hover:border-bs-gold">
+        <div class="text-6xl mb-4">📚</div>
+        <h2 class="text-2xl font-bold mb-2">Últimos Tutoriales</h2>
+        <p class="opacity-75">Aprende las canciones más recientes</p>
+      </a>
+
+      <!-- Contacto -->
+      <a routerLink="/contact"
+         class="group bg-white dark:bg-gray-800 rounded-lg shadow-lg hover:shadow-2xl transition-all p-8 text-center border-4 border-transparent hover:border-bs-gold">
+        <div class="text-6xl mb-4">✉️</div>
+        <h2 class="text-2xl font-bold mb-2">Contacto</h2>
+        <p class="opacity-75">Envíanos tus comentarios</p>
+      </a>
+
+    </div>
+
+    <!-- Pedir Canción CTA -->
+    <div class="mt-12 text-center">
+      <a routerLink="/request-song"
+         class="inline-block bg-bs-gold hover:bg-yellow-600 text-black font-bold px-8 py-4 rounded-lg shadow-lg hover:scale-105 transition">
+        🎼 ¿No encuentras una canción? Pídela aquí
+      </a>
+    </div>
+  </main>
+
+  <app-footer></app-footer>
+</div>
