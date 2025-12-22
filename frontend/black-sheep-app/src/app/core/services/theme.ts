@@ -6,6 +6,7 @@ export interface ThemeConfig {
   name: string;
   class: string;
   preview: string;
+  textColor: string;
 }
 
 @Injectable({
@@ -20,22 +21,26 @@ export class ThemeService {
     light: {
       name: 'Light Mode',
       class: 'theme-light',
-      preview: '#FAF9F6'
+      preview: '#FFFFFF',
+      textColor: '#000000'
     },
     dark: {
       name: 'Dark Mode',
       class: 'theme-dark',
-      preview: '#1A1A1A'
+      preview: '#1A1A1A',
+      textColor: '#FFFFFF'
     },
     night: {
       name: 'Night Red',
       class: 'theme-night',
-      preview: '#2D1B1B'
+      preview: '#2D1B1B',
+      textColor: '#FFFFFF'
     },
     oled: {
       name: 'OLED Black',
       class: 'theme-oled',
-      preview: '#000000'
+      preview: '#000000',
+      textColor: '#FFFFFF'
     }
   };
 

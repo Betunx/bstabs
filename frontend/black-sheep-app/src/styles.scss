@@ -24,7 +24,7 @@ body {
 
 /* Theme Classes */
 .theme-light {
-  --bg-primary: #FAF9F6;
+  --bg-primary: #FFFFFF;
   --bg-header: #0A0A0A;
   --text-primary: #1A1A1A;
   --accent: #D4AF37;
@@ -56,4 +56,20 @@ body {
   font-family: 'Courier Prime', 'Courier New', monospace;
   line-height: 1.5;
   letter-spacing: 0.05em;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out;
 }

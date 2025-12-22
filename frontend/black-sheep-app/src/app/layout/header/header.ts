@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule, KeyValuePipe } from '@angular/common';
 import { ThemeService, ThemeType } from '../../core/services/theme';
@@ -12,6 +12,7 @@ import { ThemeService, ThemeType } from '../../core/services/theme';
 })
 export class Header {
   themeService = inject(ThemeService);
+  isThemeDropdownOpen = signal(false);
 
   getThemeKeys(): ThemeType[] {
     return Object.keys(this.themeService.themes) as ThemeType[];
@@ -19,5 +20,14 @@ export class Header {
 
   setTheme(theme: ThemeType): void {
     this.themeService.setTheme(theme);
+    this.isThemeDropdownOpen.set(false);
+  }
+
+  toggleThemeDropdown(): void {
+    this.isThemeDropdownOpen.set(!this.isThemeDropdownOpen());
+  }
+
+  closeThemeDropdown(): void {
+    this.isThemeDropdownOpen.set(false);
   }
 }
