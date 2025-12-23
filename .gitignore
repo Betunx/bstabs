@@ -63,3 +63,7 @@ scripts/scraper/extracted-tabs/
 secrets/
 *.key
 *.cert
+# Archivos temporales de testing - nunca commitear
+test-db-connection.js
+test-*.txt
+*.tmp
