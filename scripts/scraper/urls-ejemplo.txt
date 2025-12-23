@@ -1,0 +1,19 @@
+# Lista de URLs para scraping
+# Soporta HTML y PDF
+# Líneas que empiezan con # son comentarios
+
+# === PDFs de AcordesWeb ===
+https://acordesweb.com/descarga-pdf/natanael-cano/viejo-lobo-ft-luis-r-conriquez/0/0/0.pdf
+
+# === HTML de AcordesWeb ===
+# (agregar URLs de páginas HTML aquí)
+
+# === CifraClub ===
+# (agregar URLs de CifraClub aquí)
+
+# === Otros sitios ===
+# (agregar otras fuentes aquí)
+
+# === Archivos locales (PDFs) ===
+# ./pdfs/mi-cancion.pdf
+# C:/Users/Humbe/Downloads/tab.pdf

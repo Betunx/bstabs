@@ -1,0 +1,16 @@
+{
+  "name": "scraper",
+  "version": "1.0.0",
+  "description": "```bash\r cd scripts/scraper\r node tab-scraper.js \"https://www.cifraclub.com.br/artist/song/\" cifraclub\r ```",
+  "main": "import-to-db.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "pdf-parse": "^2.4.5",
+    "pg": "^8.16.3"
+  }
+}

@@ -24,6 +24,11 @@ export class AdminDashboard implements OnInit {
   pendingCount = signal(0);
   isLoading = signal(true);
 
+  // Drag & Drop states
+  isDragging = signal(false);
+  uploadProgress = signal<number | null>(null);
+  uploadError = signal<string | null>(null);
+
   ngOnInit(): void {
     this.loadStats();
     this.loadPendingSongs();
@@ -56,6 +61,90 @@ export class AdminDashboard implements OnInit {
       // Actualizar lista
       this.pendingSongs.update(songs => songs.filter(s => s.id !== id));
       this.pendingCount.update(count => count - 1);
+    }
+  }
+
+  // ===== DRAG & DROP METHODS =====
+
+  onDragOver(event: DragEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+    this.isDragging.set(true);
+  }
+
+  onDragLeave(event: DragEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+    this.isDragging.set(false);
+  }
+
+  onDrop(event: DragEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+    this.isDragging.set(false);
+
+    const files = event.dataTransfer?.files;
+    if (files && files.length > 0) {
+      this.handleFiles(files);
+    }
+  }
+
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.handleFiles(input.files);
+    }
+  }
+
+  private handleFiles(files: FileList): void {
+    // Filtrar solo PDFs
+    const pdfFiles = Array.from(files).filter(file => file.type === 'application/pdf');
+
+    if (pdfFiles.length === 0) {
+      this.uploadError.set('Solo se permiten archivos PDF');
+      setTimeout(() => this.uploadError.set(null), 3000);
+      return;
+    }
+
+    // Procesar cada PDF
+    pdfFiles.forEach(file => this.uploadPDF(file));
+  }
+
+  private async uploadPDF(file: File): Promise<void> {
+    try {
+      this.uploadProgress.set(0);
+      this.uploadError.set(null);
+
+      // TODO: Implementar cuando el backend esté funcionando
+      // const formData = new FormData();
+      // formData.append('pdf', file);
+      //
+      // await fetch('/api/songs/import-pdf', {
+      //   method: 'POST',
+      //   headers: {
+      //     'X-Admin-Key': 'BsT@bs_4dm1n_k3y_2025_H3@tcl1ff!'
+      //   },
+      //   body: formData
+      // });
+
+      console.log('📤 Subiendo PDF:', file.name);
+
+      // Simulación de progreso por ahora
+      for (let i = 0; i <= 100; i += 10) {
+        await new Promise(resolve => setTimeout(resolve, 100));
+        this.uploadProgress.set(i);
+      }
+
+      console.log('✅ PDF procesado:', file.name);
+      this.uploadProgress.set(null);
+
+      // Recargar lista de canciones
+      this.loadPendingSongs();
+
+    } catch (error) {
+      console.error('❌ Error subiendo PDF:', error);
+      this.uploadError.set('Error al procesar el PDF');
+      this.uploadProgress.set(null);
     }
   }
 }
