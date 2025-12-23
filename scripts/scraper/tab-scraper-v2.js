@@ -84,17 +84,23 @@ class TabScraperV2 {
       .replace(/\f/g, '\n\n') // Form feed → doble salto
       .trim();
 
-    // Intenta detectar acordes
+    // Normaliza acordes en español a inglés ANTES de detectarlos
+    clean = this.normalizeAllChords(clean);
+
+    // Intenta detectar acordes (ahora ya normalizados)
     const chordPattern = /\b([A-G][#b]?(?:m|maj|min|aug|dim|sus|add)?[0-9]?(?:\/[A-G][#b]?)?)\b/g;
     const chords = [...new Set(clean.match(chordPattern) || [])];
 
     // Divide en secciones (Intro, Verso, Coro, etc.)
     const sections = this.detectSections(clean);
 
+    // Completa letras incompletas basándose en contexto
+    const completedSections = this.completeIncompleteLyrics(sections);
+
     return {
       rawText: clean,
       chords: chords,
-      sections: sections,
+      sections: completedSections,
       sourceType: 'pdf',
       sourceUrl: url
     };
@@ -232,12 +238,129 @@ class TabScraperV2 {
   }
 
   /**
-   * Detecta acordes
+   * Normaliza acordes en español a notación internacional
+   */
+  normalizeChordNotation(chord) {
+    const spanishToEnglish = {
+      'La': 'A',
+      'Si': 'B',
+      'Do': 'C',
+      'Re': 'D',
+      'Mi': 'E',
+      'Fa': 'F',
+      'Sol': 'G'
+    };
+
+    // Detecta patrón: La, LA, Re7, MI7, etc.
+    let normalized = chord;
+
+    for (const [spanish, english] of Object.entries(spanishToEnglish)) {
+      // Coincidencia exacta al inicio (case-insensitive)
+      const regex = new RegExp(`^${spanish}`, 'i');
+      if (regex.test(normalized)) {
+        normalized = normalized.replace(regex, english);
+        break;
+      }
+    }
+
+    return normalized;
+  }
+
+  /**
+   * Normaliza TODOS los acordes en un texto (español → inglés)
+   */
+  normalizeAllChords(text) {
+    const spanishChordPattern = /\b(La|Si|Do|Re|Mi|Fa|Sol|LA|SI|DO|RE|MI|FA|SOL)([#b]?(?:m|maj|min|aug|dim|sus|add)?[0-9]?(?:\/[A-G][#b]?)?)\b/g;
+
+    return text.replace(spanishChordPattern, (match, note, suffix) => {
+      const normalized = this.normalizeChordNotation(note);
+      return normalized + (suffix || '');
+    });
+  }
+
+  /**
+   * Completa letras incompletas basándose en contexto
+   * Identifica líneas que son solo acordes y las mantiene separadas de la letra
+   */
+  completeIncompleteLyrics(sections) {
+    return sections.map(section => {
+      const completedLines = [];
+      let previousLine = '';
+
+      for (let i = 0; i < section.lines.length; i++) {
+        const line = section.lines[i];
+        const nextLine = section.lines[i + 1] || '';
+
+        // Detecta si es una línea de solo acordes
+        const isChordLine = this.isChordOnlyLine(line);
+
+        if (isChordLine && nextLine && !this.isChordOnlyLine(nextLine)) {
+          // Línea de acordes seguida de letra - combínalas
+          completedLines.push({
+            chords: line,
+            lyrics: nextLine
+          });
+          i++; // Salta la siguiente línea porque ya la procesamos
+        } else if (isChordLine) {
+          // Línea de solo acordes sin letra
+          completedLines.push({
+            chords: line,
+            lyrics: ''
+          });
+        } else {
+          // Línea de letra sin acordes encima
+          completedLines.push({
+            chords: '',
+            lyrics: line
+          });
+        }
+
+        previousLine = line;
+      }
+
+      return {
+        ...section,
+        lines: completedLines
+      };
+    });
+  }
+
+  /**
+   * Detecta si una línea contiene SOLO acordes (sin letra)
+   */
+  isChordOnlyLine(line) {
+    if (!line || line.trim().length === 0) return false;
+
+    // Patrón de acordes (A-G con modificadores)
+    const chordPattern = /\b[A-G][#b]?(?:m|maj|min|aug|dim|sus|add)?[0-9]?(?:\/[A-G][#b]?)?\b/g;
+
+    // Extrae todas las palabras que NO son espacios
+    const words = line.trim().split(/\s+/);
+
+    // Cuenta cuántas palabras son acordes
+    let chordCount = 0;
+    for (const word of words) {
+      if (chordPattern.test(word)) {
+        chordCount++;
+      }
+    }
+
+    // Si más del 70% son acordes, consideramos que es línea de acordes
+    return (chordCount / words.length) >= 0.7;
+  }
+
+  /**
+   * Detecta acordes (incluye español e inglés)
    */
   detectChords(content) {
-    const chordPattern = /\b([A-G][#b]?(?:m|maj|min|aug|dim|sus|add)?[0-9]?(?:\/[A-G][#b]?)?)\b/g;
+    // Patrón extendido que captura acordes en español e inglés
+    const chordPattern = /\b(La|Si|Do|Re|Mi|Fa|Sol|LA|SI|DO|RE|MI|FA|SOL|[A-G])[#b]?(?:m|maj|min|aug|dim|sus|add)?[0-9]?(?:\/[A-G][#b]?)?\b/g;
     const chords = content.match(chordPattern) || [];
-    return [...new Set(chords)];
+
+    // Normaliza todos los acordes a notación inglesa
+    const normalized = chords.map(chord => this.normalizeChordNotation(chord));
+
+    return [...new Set(normalized)];
   }
 
   /**
