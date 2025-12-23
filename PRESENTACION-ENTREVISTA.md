@@ -1,43 +1,4 @@
-# Black Sheep Tabs - Presentación para Entrevista
 
-## Elevator Pitch (30 segundos)
-
-**Black Sheep Tabs** es una plataforma web de tablaturas musicales diseñada para músicos que quieren aprender canciones de forma fácil y rápida. Permite buscar, visualizar y practicar acordes de guitarra/bajo con una interfaz moderna y responsive.
-
----
-
-## Características Principales
-
-### 1. Búsqueda Inteligente
-- Autocompletado en tiempo real mientras escribes
-- Sugerencias "Did you mean?" para correcciones
-- Búsqueda por título, artista o acordes
-- Resultados instantáneos
-
-### 2. Visualización de Tablaturas
-- Acordes resaltados visualmente
-- Letra sincronizada con acordes
-- Responsive: funciona en móvil, tablet y desktop
-- Modo oscuro/claro
-
-### 3. Sistema de Scraping
-- Extrae automáticamente tablaturas de múltiples sitios
-- Soporta: CifraClub, Ultimate Guitar, AcordesWeb, y más
-- Detecta acordes automáticamente
-- Limpia HTML y extrae solo contenido musical
-
-### 4. Panel de Administración
-- Gestión de canciones (CRUD completo)
-- Review de tabs scraped antes de publicar
-- Sistema de estados: draft, pending, published
-- Estadísticas de uso
-
-### 5. Sistema de Donaciones
-- Integración con PayPal
-- Página dedicada para supporters
-- Transparente y opcional
-
----
 
 ## Stack Tecnológico
 
@@ -173,11 +134,9 @@ node import-to-db.js https://api-url
 ✅ Multi-idioma
 ✅ Mejor UX móvil
 ✅ Sistema de donaciones transparente
-✅ API pública disponible
+ API pública disponible
 
----
-
-## Roadmap Futuro
+ Roadmap Futuro
 
 ### Fase 1 (MVP - ACTUAL)
 - ✅ CRUD de canciones
@@ -185,8 +144,8 @@ node import-to-db.js https://api-url
 - ✅ Scraper funcional
 - ✅ Deploy en Railway
 
-### Fase 2 (Próximos 3 meses)
-- 🔲 Transposición de tonalidad
+Fase 2 (Próximos 3 meses)
+-  Transposición de tonalidad
 - 🔲 Favoritos y playlists
 - 🔲 Compartir en redes sociales
 - 🔲 Exportar a PDF
@@ -283,19 +242,6 @@ node import-to-db.js https://api-url
 - Cacheo de búsquedas frecuentes
 - Load balancing con Railway
 
-### ¿Contribuciones open source?
-**R:** Sí! GitHub público, issues abiertos, PRs bienvenidos.
-
----
-
-## Contacto y Recursos
-
-- **GitHub:** github.com/tu-usuario/blackSheep
-- **Demo:** blacksheep-tabs.vercel.app
-- **Docs:** Ver carpeta /docs en el repo
-- **Email:** tu-email@example.com
-
----
 
 ## Puntos Clave para Recordar
 
