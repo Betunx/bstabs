@@ -48,6 +48,9 @@ class TabScraper {
     // Patrones comunes para diferentes sitios
     const patterns = {
       cifraclub: /<pre class="[^"]*cifra[^"]*"[^>]*>(.*?)<\/pre>/gs,
+      cifrasbr: /<pre[^>]*id="[^"]*cifra[^"]*"[^>]*>(.*?)<\/pre>/gs,
+      espirituguitarrista: /<div[^>]*class="[^"]*tab-content[^"]*"[^>]*>(.*?)<\/div>/gs,
+      chordify: /<div[^>]*class="[^"]*chords-lyrics[^"]*"[^>]*>(.*?)<\/div>/gs,
       ultimateGuitar: /<pre[^>]*class="[^"]*js-tab-content[^"]*"[^>]*>(.*?)<\/pre>/gs,
       acordesweb: /<pre[^>]*>(.*?)<\/pre>/gs,
       generic: /<pre[^>]*>(.*?)<\/pre>/gs
@@ -205,11 +208,31 @@ class TabScraper {
   }
 
   /**
+   * Auto-detecta el sitio por la URL
+   */
+  detectSite(url) {
+    if (url.includes('cifraclub.com.br')) return 'cifraclub';
+    if (url.includes('cifraclub.com')) return 'cifraclub';
+    if (url.includes('cifras.com.br')) return 'cifrasbr';
+    if (url.includes('espirituguitarrista.com')) return 'espirituguitarrista';
+    if (url.includes('chordify.net')) return 'chordify';
+    if (url.includes('acordesweb.com')) return 'acordesweb';
+    if (url.includes('ultimate-guitar.com')) return 'ultimateGuitar';
+    return 'generic';
+  }
+
+  /**
    * Procesa una URL y guarda el resultado
    */
-  async scrapeTab(url, siteName = 'generic') {
+  async scrapeTab(url, siteName = null) {
     try {
       console.log(`\n🎵 Extrayendo: ${url}`);
+
+      // Auto-detecta el sitio si no se especificó
+      if (!siteName) {
+        siteName = this.detectSite(url);
+        console.log(`🔍 Sitio detectado: ${siteName}`);
+      }
 
       const html = await this.fetchHTML(url);
       const tabContent = this.extractTabContent(html, siteName);
@@ -296,9 +319,12 @@ if (require.main === module) {
 
   // Ejemplo de uso con una sola URL
   const testUrl = process.argv[2];
-  const siteName = process.argv[3] || 'generic';
+  const siteName = process.argv[3] || null;
 
-  if (testUrl) {
+  if (testUrl === '--batch') {
+    const urlsFile = process.argv[3] || 'urls.txt';
+    scraper.scrapeBatch(urlsFile);
+  } else if (testUrl) {
     scraper.scrapeTab(testUrl, siteName);
   } else {
     console.log(`
@@ -310,7 +336,14 @@ if (require.main === module) {
   Batch (desde archivo):
   node tab-scraper.js --batch urls.txt
 
-  Sitios soportados: cifraclub, ultimateGuitar, generic
+  Sitios soportados:
+    - cifraclub (CifraClub.com)
+    - cifrasbr (Cifras.com.br)
+    - espirituguitarrista (EspirituGuitarrista.com)
+    - chordify (Chordify.net)
+    - acordesweb (AcordesWeb.com)
+    - ultimateGuitar (Ultimate-Guitar.com)
+    - generic (cualquier sitio con tags <pre>)
     `);
   }
 }
