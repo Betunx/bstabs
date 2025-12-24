@@ -6,7 +6,9 @@
       "Bash(taskkill:*)",
       "Bash(node test-db-connection.js:*)",
       "Bash(sc query:*)",
-      "Bash(\"C:\\Program Files\\PostgreSQL\\18\\bin\\psql.exe\" --version)"
+      "Bash(\"C:\\Program Files\\PostgreSQL\\18\\bin\\psql.exe\" --version)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []

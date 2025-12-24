@@ -1,50 +1,36 @@
-# 🎸 Black Sheep Tabs
+# Black Sheep Tabs
 
-> **"Knowing for love, fun and free!"**
+> "Knowing for love, fun and free!"
 
-Plataforma moderna de tablaturas musicales. Sin anuncios, sin distracciones, solo música pura.
+Plataforma moderna de tablaturas musicales. Sin anuncios, sin distracciones, solo musica pura.
 
-## ✨ Características
+## Caracteristicas
 
-- 📱 **Mobile-First PWA** - Instálalo como app nativa
-- 🎨 **4 Modos de Visualización** - Light, Dark, Night Red, OLED
-- 🎵 **Formato Profesional** - Acordes, letra, metadata completa
-- 📄 **Export a PDF** - Descarga tablaturas limpias
-- 🎧 **Enlaces Musicales** - Botones a Spotify y YouTube
-- 💛 **Libre de Anuncios** - Financiado por donaciones
-- ⚡ **Ultra Rápido** - Optimizado para performance
-- 🔍 **Búsqueda Avanzada** - Por artista, tono, dificultad
+- Mobile-First PWA - Instalalo como app nativa
+- 4 Modos de Visualizacion - Light, Dark, Night Red, OLED
+- Formato Profesional - Acordes, letra, metadata completa
+- Export a PDF - Descarga tablaturas limpias
+- Enlaces Musicales - Botones a Spotify y YouTube
+- Libre de Anuncios - Financiado por donaciones
+- Ultra Rapido - Optimizado para performance
+- Busqueda Avanzada - Por artista, tono, dificultad
 
-## 🏗️ Stack Tecnológico
+## Stack Tecnologico
 
-- **Frontend**: Angular 20.3 + Tailwind CSS + PWA
-- **Backend**: NestJS 11 + TypeORM + PostgreSQL
-- **Seguridad**: Helmet, Rate Limiting, CSRF, Input Sanitization
-- **PDF**: pdfkit para generación de documentos
-- **Deploy**: Vercel (frontend) + Railway/Render (backend)
-- **Domain**: Cloudflare DNS/CDN
+- Frontend: Angular 20.3 + Tailwind CSS + PWA
+- Backend: NestJS 11 + TypeORM + PostgreSQL
+- Seguridad: Helmet, Rate Limiting, CSRF, Input Sanitization
+- PDF: pdfkit para generacion de documentos
+- Deploy: Vercel (frontend) + Railway/Render (backend)
 
-## 📁 Estructura del Proyecto
-
-```
-blackSheep/
-├── frontend/black-sheep-app/  # Angular PWA
-├── backend/black-sheep-api/   # NestJS API
-├── docs/                      # Documentación técnica
-├── scripts/                   # Scraper y utilidades
-└── ROADMAP.md                 # Plan de desarrollo
-```
-
-**Documentación completa**: Ver [docs/REFERENCE.md](docs/REFERENCE.md)
-
-## 🚀 Inicio Rápido
+## Inicio Rapido
 
 ### Prerrequisitos
 - Node.js 18+
 - npm 10+
 - PostgreSQL (o Docker)
 
-### Instalación Local
+### Instalacion Local
 
 ```bash
 # Clonar repositorio
@@ -55,13 +41,13 @@ cd bstabs
 cd frontend/black-sheep-app
 npm install
 npm start
-# → http://localhost:4200
+# http://localhost:4200
 
 # Backend
 cd backend/black-sheep-api
 npm install
 npm run start:dev
-# → http://localhost:3000
+# http://localhost:3000
 ```
 
 ### Con Docker
@@ -72,7 +58,7 @@ docker-compose up -d
 # Backend: http://localhost:3000
 ```
 
-## 🗄️ Formato de Tablaturas
+## Formato de Tablaturas
 
 Las tablaturas usan JSON estructurado:
 
@@ -92,7 +78,7 @@ Las tablaturas usan JSON estructurado:
             { "chord": "Am", "position": 0 },
             { "chord": "G", "position": 15 }
           ],
-          "lyrics": "En la sierra nací..."
+          "lyrics": "En la sierra naci..."
         }
       ]
     }
@@ -102,40 +88,25 @@ Las tablaturas usan JSON estructurado:
 }
 ```
 
-Ver [docs/REFERENCE.md](docs/REFERENCE.md) para especificación completa.
+## Documentacion
 
-## 📝 Próximos Pasos
+Para desarrolladores y colaboradores, consulta la guia completa del proyecto:
 
-Ver [ROADMAP.md](ROADMAP.md) para el plan detallado de desarrollo.
+**[GUIA_PROYECTO.md](GUIA_PROYECTO.md)** - Documentacion tecnica completa, arquitectura, deployment, tareas pendientes, y mas.
 
-**Prioridades actuales**:
-1. Sistema de generación de PDFs
-2. Enlaces a Spotify/YouTube (híbrido)
-3. Agregar primera canción de ejemplo
-4. Deploy a producción
+## Apoya el Proyecto
 
-## 💛 Apoya el Proyecto
+Black Sheep es gratuito y sin anuncios. Si te resulta util, considera donar:
 
-Black Sheep es gratuito y sin anuncios. Si te resulta útil, considera donar:
+- PayPal: [paypal.me/betunx](https://paypal.me/betunx)
+- Email: bstabscontact@gmail.com
 
-- **PayPal**: [paypal.me/betunx](https://paypal.me/betunx)
-- **Email**: bstabscontact@gmail.com
+## Enlaces
 
-## 🌐 Enlaces
+- Produccion: [bstabs.com](https://bstabs.com) (proximamente)
+- Repositorio: [github.com/Betunx/bstabs](https://github.com/Betunx/bstabs)
 
-- **Producción**: [bstabs.com](https://bstabs.com)
-- **Repositorio**: [github.com/Betunx/bstabs](https://github.com/Betunx/bstabs)
-
-## 📚 Documentación
-
-- [ROADMAP.md](ROADMAP.md) - Plan de desarrollo y tareas
-- [docs/REFERENCE.md](docs/REFERENCE.md) - Referencia técnica completa
-- [docs/DEPLOY.md](docs/DEPLOY.md) - Guía de deployment
-- [docs/SCRAPING-GUIDE.md](docs/SCRAPING-GUIDE.md) - Uso del web scraper
-- [docs/RAILWAY-GUIDE.md](docs/RAILWAY-GUIDE.md) - Deploy en Railway
-- [docs/CLOUDFLARE-SETUP.md](docs/CLOUDFLARE-SETUP.md) - Configuración de dominio
-
-## 🤝 Contribuir
+## Contribuir
 
 Contribuciones son bienvenidas:
 
@@ -145,18 +116,16 @@ Contribuciones son bienvenidas:
 4. Push a la rama (`git push origin feature/amazing-feature`)
 5. Abre un Pull Request
 
-## 📜 Licencia
+## Licencia
 
 MIT License
 
-## 👨‍🎤 Autor
+## Autor
 
-**Betunx** - Músico & Developer
+Betunx - Musico & Developer
 - Email: bstabscontact@gmail.com
 
 ---
 
-<p align="center">
-  <b>Hecho con ❤️ por músicos, para músicos</b><br>
-  <i>"Knowing for love, fun and free!"</i>
-</p>
+Hecho con amor por musicos, para musicos
+"Knowing for love, fun and free!"
