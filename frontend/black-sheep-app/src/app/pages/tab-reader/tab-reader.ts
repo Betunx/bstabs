@@ -17,13 +17,26 @@ export class TabReader implements OnInit {
   ngOnInit(): void {
     const songId = this.route.snapshot.paramMap.get('id');
     // TODO: Fetch song from API using songId
-    // For now, using mock data
-    this.loadMockSong();
+    // For now, using mock data based on songId
+    this.loadMockSong(songId || '');
   }
 
-  private loadMockSong(): void {
-    // Mock song data with complete tablature
-    this.song.set({
+  private loadMockSong(songId: string): void {
+    // Mock song library - in production, this would come from API
+    const mockSongs: { [key: string]: Song } = {
+      'wonderwall': this.getWonderwallData(),
+      'hotel-california': this.getHotelCaliforniaData(),
+      'stairway-to-heaven': this.getStairwayToHeavenData(),
+      '1': this.getWonderwallData() // fallback for numeric ID
+    };
+
+    const song = mockSongs[songId.toLowerCase()] || mockSongs['wonderwall'];
+    this.song.set(song);
+    this.loading.set(false);
+  }
+
+  private getWonderwallData(): Song {
+    return {
       id: '1',
       title: 'Wonderwall',
       artist: 'Oasis',
@@ -171,7 +184,159 @@ export class TabReader implements OnInit {
       ],
       createdAt: new Date(),
       updatedAt: new Date()
-    });
-    this.loading.set(false);
+    };
+  }
+
+  private getHotelCaliforniaData(): Song {
+    return {
+      id: 'hotel-california',
+      title: 'Hotel California',
+      artist: 'Eagles',
+      key: 'Bm',
+      tempo: 74,
+      timeSignature: '4/4',
+      tuning: 'Standard (EADGBE)',
+      difficulty: 'intermediate',
+      story: 'Clásico atemporal de Eagles de 1976. Conocida por su icónico solo de guitarra y letras misteriosas.',
+      sections: [
+        {
+          name: 'Intro',
+          lines: [
+            {
+              chords: [
+                { chord: 'Bm', position: 0 },
+                { chord: 'F#', position: 12 },
+                { chord: 'A', position: 24 },
+                { chord: 'E', position: 36 }
+              ],
+              lyrics: ''
+            }
+          ]
+        },
+        {
+          name: 'Verso 1',
+          lines: [
+            {
+              chords: [
+                { chord: 'Bm', position: 0 }
+              ],
+              lyrics: 'On a dark desert highway'
+            },
+            {
+              chords: [
+                { chord: 'F#', position: 0 }
+              ],
+              lyrics: 'Cool wind in my hair'
+            },
+            {
+              chords: [
+                { chord: 'A', position: 0 }
+              ],
+              lyrics: 'Warm smell of colitas'
+            },
+            {
+              chords: [
+                { chord: 'E', position: 0 }
+              ],
+              lyrics: 'Rising up through the air'
+            }
+          ]
+        },
+        {
+          name: 'Coro',
+          lines: [
+            {
+              chords: [
+                { chord: 'G', position: 0 },
+                { chord: 'D', position: 20 }
+              ],
+              lyrics: 'Welcome to the Hotel California'
+            },
+            {
+              chords: [
+                { chord: 'Em', position: 0 },
+                { chord: 'F#', position: 30 }
+              ],
+              lyrics: 'Such a lovely place (such a lovely place)'
+            },
+            {
+              chords: [
+                { chord: 'G', position: 0 },
+                { chord: 'D', position: 25 }
+              ],
+              lyrics: 'Plenty of room at the Hotel California'
+            },
+            {
+              chords: [
+                { chord: 'Em', position: 0 },
+                { chord: 'F#', position: 18 }
+              ],
+              lyrics: 'Any time of year, you can find it here'
+            }
+          ]
+        }
+      ],
+      createdAt: new Date(),
+      updatedAt: new Date()
+    };
+  }
+
+  private getStairwayToHeavenData(): Song {
+    return {
+      id: 'stairway-to-heaven',
+      title: 'Stairway to Heaven',
+      artist: 'Led Zeppelin',
+      key: 'Am',
+      tempo: 82,
+      timeSignature: '4/4',
+      tuning: 'Standard (EADGBE)',
+      difficulty: 'advanced',
+      story: 'Obra maestra de Led Zeppelin de 1971. Considerada una de las mejores canciones de rock de todos los tiempos.',
+      sections: [
+        {
+          name: 'Intro',
+          lines: [
+            {
+              chords: [
+                { chord: 'Am', position: 0 },
+                { chord: 'E/G#', position: 8 },
+                { chord: 'C/G', position: 16 },
+                { chord: 'D/F#', position: 24 }
+              ],
+              lyrics: ''
+            }
+          ]
+        },
+        {
+          name: 'Verso 1',
+          lines: [
+            {
+              chords: [
+                { chord: 'Am', position: 0 },
+                { chord: 'E/G#', position: 23 }
+              ],
+              lyrics: 'There\'s a lady who\'s sure'
+            },
+            {
+              chords: [
+                { chord: 'C/G', position: 0 },
+                { chord: 'D/F#', position: 20 }
+              ],
+              lyrics: 'All that glitters is gold'
+            },
+            {
+              chords: [
+                { chord: 'Fmaj7', position: 0 },
+                { chord: 'G', position: 15 },
+                { chord: 'Am', position: 30 }
+              ],
+              lyrics: 'And she\'s buying a stairway to heaven'
+            }
+          ]
+        }
+      ],
+      createdAt: new Date(),
+      updatedAt: new Date()
+    };
   }
 }
