@@ -1,18 +1,24 @@
-import { Component, inject, signal } from '@angular/core';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { Component, inject, signal, OnInit, OnDestroy, HostBinding } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive, NavigationEnd } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ThemeService, ThemeType } from '../../core/services/theme';
 import { SearchService, SearchResult } from '../../core/services/search.service';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-header',
   imports: [RouterLink, RouterLinkActive, CommonModule, FormsModule],
   templateUrl: './header.html',
   styleUrl: './header.scss',
-  standalone: true
+  standalone: true,
+  host: {
+    '[class.header-hidden]': '!isHeaderVisible() && isTabReaderRoute()',
+    '[class.sticky]': '!isTabReaderRoute()',
+    'class': 'top-0 z-50 transition-transform duration-300'
+  }
 })
-export class Header {
+export class Header implements OnInit, OnDestroy {
   themeService = inject(ThemeService);
   searchService = inject(SearchService);
   router = inject(Router);
@@ -25,6 +31,13 @@ export class Header {
 
   // Admin access only in development/preview (not in production bstabs.com)
   isDevMode = signal(!window.location.hostname.includes('bstabs.com'));
+
+  // Scroll behavior for tab reader
+  isHeaderVisible = signal(true);
+  isTabReaderRoute = signal(false);
+  private lastScrollY = 0;
+  private scrollThreshold = 100; // pixels from top to show header
+  private scrollListener?: () => void;
 
   getThemeKeys(): ThemeType[] {
     return Object.keys(this.themeService.themes) as ThemeType[];
@@ -90,5 +103,54 @@ export class Header {
     this.searchQuery.set('');
     this.searchResults.set([]);
     this.didYouMean.set(null);
+  }
+
+  ngOnInit(): void {
+    // Listen to route changes
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event: any) => {
+        this.checkIfTabReaderRoute(event.urlAfterRedirects);
+      });
+
+    // Check initial route
+    this.checkIfTabReaderRoute(this.router.url);
+
+    // Setup scroll listener
+    this.scrollListener = this.handleScroll.bind(this);
+    window.addEventListener('scroll', this.scrollListener, { passive: true });
+  }
+
+  ngOnDestroy(): void {
+    if (this.scrollListener) {
+      window.removeEventListener('scroll', this.scrollListener);
+    }
+  }
+
+  private checkIfTabReaderRoute(url: string): void {
+    const isTabReader = url.startsWith('/tab/');
+    this.isTabReaderRoute.set(isTabReader);
+
+    // Reset header visibility when navigating away from tab reader
+    if (!isTabReader) {
+      this.isHeaderVisible.set(true);
+    }
+  }
+
+  private handleScroll(): void {
+    if (!this.isTabReaderRoute()) {
+      return; // Normal sticky behavior for non-tab-reader routes
+    }
+
+    const currentScrollY = window.scrollY;
+
+    // Show header only when at the very top
+    if (currentScrollY <= this.scrollThreshold) {
+      this.isHeaderVisible.set(true);
+    } else {
+      this.isHeaderVisible.set(false);
+    }
+
+    this.lastScrollY = currentScrollY;
   }
 }

@@ -1,0 +1,12 @@
+:host {
+  display: block;
+  position: sticky;
+
+  &.header-hidden {
+    transform: translateY(-100%);
+  }
+
+  &:not(.header-hidden) {
+    transform: translateY(0);
+  }
+}

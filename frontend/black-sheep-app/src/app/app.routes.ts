@@ -6,13 +6,16 @@ import { Tutorials } from './pages/tutorials/tutorials';
 import { Contact } from './pages/contact/contact';
 import { RequestSong } from './pages/request-song/request-song';
 import { Donate } from './pages/donate/donate';
+import { TabReader } from './pages/tab-reader/tab-reader';
 import { AdminDashboard } from './admin/admin-dashboard/admin-dashboard';
 import { TabEditor } from './admin/tab-editor/tab-editor';
 
 export const routes: Routes = [
   { path: '', component: Home },
   { path: 'artists', component: Artists },
+  { path: 'artist/:id', component: Artists }, // Artist detail page (TODO: create separate component)
   { path: 'songs', component: Songs },
+  { path: 'tab/:id', component: TabReader, data: { hideHeaderOnScroll: true } },
   { path: 'tutorials', component: Tutorials },
   { path: 'contact', component: Contact },
   { path: 'request-song', component: RequestSong },
