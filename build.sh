@@ -3,7 +3,7 @@ set -e
 
 echo "Installing dependencies..."
 cd frontend/black-sheep-app
-npm ci --legacy-peer-deps
+npm install --legacy-peer-deps
 
 echo "Building application..."
 npm run build
