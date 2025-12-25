@@ -8,6 +8,7 @@
 
 # Agrega tus URLs aquí:
 https://acordesweb.com/cancion/natanael-cano/viejo-lobo-ft-luis-r-conriquez
+<<<<<<< HEAD
 
 # URLs agregadas para la entrevista - 2025-12-22
 https://www.cifras.com.br/cifra/grupo-codiciado/ando-enfocado
@@ -22,3 +23,16 @@ https://acordesweb.com/descarga-pdf/los-apson/anoche-me-enamore/0/0/0.pdf
 https://www.cifraclub.com/death-note/nightmare-the-world/
 https://www.cifraclub.com/mongol800/chiisana-koi-no-uta/
 https://www.espirituguitarrista.com/frecuencia/
+=======
+https://acordesweb.com/cancion/junior-h/el-tsurito-ft-peso-pluma-gabito-ballesteros#google_vignette
+https://acordesweb.com/cancion/peso-pluma/rubicon
+
+https://www.espirituguitarrista.com/reloj/
+https://www.espirituguitarrista.com/rosa-pastel/
+https://www.espirituguitarrista.com/nadie/
+https://www.espirituguitarrista.com/mas-altas-que-bajadas/
+https://www.espirituguitarrista.com/entre-las-de-20/
+https://www.cifraclub.com.br/neton-vega/m-m/https:/
+/www.cifraclub.com.br/fuerza-regida/excesos/
+https://www.cifraclub.com.br/fuerza-regida/excesos/
+>>>>>>> fe43418 (feat: Deploy Cloudflare Workers + Pages con Supabase)
