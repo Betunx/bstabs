@@ -33,7 +33,6 @@ export class TabReader implements OnInit {
       tuning: 'Standard (EADGBE)',
       difficulty: 'intermediate',
       sections: [],
-      status: 'published',
       createdAt: new Date(),
       updatedAt: new Date()
     });
