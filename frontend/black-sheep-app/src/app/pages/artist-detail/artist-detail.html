@@ -1,0 +1,16 @@
+<div class="artist-detail-container">
+  @if (loading()) {
+    <div class="loading">Cargando...</div>
+  } @else {
+    <div class="artist-header">
+      <h1 class="artist-name">{{ artistName() }}</h1>
+      <p class="song-count">{{ songs().length }} {{ songs().length === 1 ? 'canción' : 'canciones' }}</p>
+    </div>
+
+    <app-item-list
+      [items]="songs()"
+      [title]="'Canciones de ' + artistName()"
+      [emptyMessage]="'No hay canciones disponibles para este artista'"
+    />
+  }
+</div>
