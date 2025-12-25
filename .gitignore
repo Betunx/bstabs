@@ -63,6 +63,10 @@ scripts/scraper/extracted-tabs/
 secrets/
 *.key
 *.cert
+
+# Vercel (legacy - now using Cloudflare)
+.vercel
+
 # Archivos temporales de testing - nunca commitear
 test-db-connection.js
 test-*.txt

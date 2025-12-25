@@ -45,10 +45,10 @@ Black Sheep Tabs es una plataforma moderna de tablaturas musicales enfocada en o
 - .env.example sin credenciales hardcodeadas
 
 ### Deploy
-- Frontend: Vercel
-- Backend: Railway o Render
-- Base de Datos: Supabase (500MB gratis) o Railway PostgreSQL
-- Domain: Cloudflare DNS/CDN
+- Frontend: Cloudflare Pages (blacksheep-tabs.pages.dev)
+- Backend: Cloudflare Workers (backend-workers)
+- Base de Datos: Supabase PostgreSQL
+- Domain: bstabs.com (Cloudflare DNS/CDN)
 - SSL/HTTPS automatico
 
 ---

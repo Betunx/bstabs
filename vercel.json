@@ -1,5 +1,0 @@
-{
-  "buildCommand": "cd frontend/black-sheep-app && npm run build",
-  "outputDirectory": "frontend/black-sheep-app/dist/black-sheep-app/browser",
-  "installCommand": "cd frontend/black-sheep-app && npm install"
-}
