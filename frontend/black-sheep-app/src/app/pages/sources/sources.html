@@ -1,0 +1,100 @@
+<div class="sources-page">
+  <div class="container mx-auto px-4 py-12 max-w-4xl">
+    <!-- Header -->
+    <div class="mb-12 text-center">
+      <h1 class="text-4xl font-bold mb-4">Fuentes y Atribuciones</h1>
+      <p class="text-gray-400 text-lg">
+        BlackSheep Tabs agradece a las siguientes plataformas por proporcionar contenido musical accesible
+      </p>
+    </div>
+
+    <!-- Legal Notice -->
+    <div class="legal-notice mb-12 p-6 bg-gray-800 rounded-lg border border-gray-700">
+      <h2 class="text-xl font-semibold mb-3">Aviso Legal</h2>
+      <p class="text-gray-300 mb-3">
+        Todo el contenido de acordes, tablaturas y letras disponible en BlackSheep Tabs proviene de fuentes públicas
+        en internet y se presenta únicamente con fines educativos y de práctica musical.
+      </p>
+      <p class="text-gray-300 mb-3">
+        Respetamos plenamente los derechos de autor y la propiedad intelectual. Cada tablatura y letra incluye
+        atribución clara a su fuente original.
+      </p>
+      <p class="text-gray-300">
+        Si eres titular de derechos de autor y consideras que algún contenido debe ser eliminado, por favor
+        <a routerLink="/contact" class="text-bs-gold hover:underline">contáctanos</a> y lo retiraremos inmediatamente.
+      </p>
+    </div>
+
+    <!-- Tabs Sources -->
+    <div class="source-section mb-10">
+      <h2 class="text-2xl font-bold mb-6 flex items-center">
+        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path>
+        </svg>
+        Acordes y Tablaturas
+      </h2>
+
+      <div class="grid gap-4">
+        @for (source of getSourcesByType('tabs'); track source.name) {
+          <div class="source-card p-6 bg-gray-800 rounded-lg border border-gray-700 hover:border-bs-gold transition">
+            <div class="flex items-start justify-between">
+              <div class="flex-1">
+                <h3 class="text-xl font-semibold mb-2">{{ source.name }}</h3>
+                <p class="text-gray-400 mb-3">{{ source.description }}</p>
+                <a [href]="source.url" target="_blank" rel="noopener noreferrer"
+                   class="text-bs-gold hover:underline inline-flex items-center">
+                  Visitar sitio
+                  <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Lyrics Sources -->
+    <div class="source-section mb-10">
+      <h2 class="text-2xl font-bold mb-6 flex items-center">
+        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+        </svg>
+        Letras de Canciones
+      </h2>
+
+      <div class="grid gap-4">
+        @for (source of getSourcesByType('lyrics'); track source.name) {
+          <div class="source-card p-6 bg-gray-800 rounded-lg border border-gray-700 hover:border-bs-gold transition">
+            <div class="flex items-start justify-between">
+              <div class="flex-1">
+                <h3 class="text-xl font-semibold mb-2">{{ source.name }}</h3>
+                <p class="text-gray-400 mb-3">{{ source.description }}</p>
+                <a [href]="source.url" target="_blank" rel="noopener noreferrer"
+                   class="text-bs-gold hover:underline inline-flex items-center">
+                  Visitar sitio
+                  <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Contribution -->
+    <div class="contribution-section p-6 bg-gradient-to-r from-bs-gold/10 to-bs-gold/5 rounded-lg border border-bs-gold/30">
+      <h2 class="text-2xl font-bold mb-3">Colabora con Nosotros</h2>
+      <p class="text-gray-300 mb-4">
+        Si conoces fuentes de calidad de tablaturas o letras que deberíamos incluir, o si encuentras algún error
+        en las atribuciones, por favor háznoslo saber.
+      </p>
+      <a routerLink="/contact" class="inline-block px-6 py-3 bg-bs-gold text-black font-semibold rounded-lg hover:bg-yellow-500 transition">
+        Contáctanos
+      </a>
+    </div>
+  </div>
+</div>

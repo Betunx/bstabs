@@ -144,3 +144,39 @@
     font-size: 0.9rem;
   }
 }
+
+  .source-attribution {
+    margin-block-start: 1.5rem;
+    padding: 0.75rem 1rem;
+    background-color: #F5F5F5;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+
+    .attribution-label {
+      color: #666;
+      font-weight: 500;
+    }
+
+    .attribution-link {
+      color: #D4AF37;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      transition: all 0.2s ease;
+
+      &:hover {
+        color: #B8941F;
+        text-decoration: underline;
+      }
+
+      .external-icon {
+        width: 14px;
+        height: 14px;
+      }
+    }
+  }

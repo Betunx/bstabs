@@ -1,0 +1,36 @@
+.sources-page {
+  min-height: calc(100vh - 200px);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.legal-notice {
+  h2 {
+    color: var(--bs-gold);
+  }
+}
+
+.source-section {
+  h2 {
+    color: var(--text-primary);
+  }
+}
+
+.source-card {
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.1);
+  }
+
+  h3 {
+    color: var(--bs-gold);
+  }
+}
+
+.contribution-section {
+  h2 {
+    color: var(--bs-gold);
+  }
+}

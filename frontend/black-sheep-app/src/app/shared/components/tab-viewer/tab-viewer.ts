@@ -11,4 +11,11 @@ import { Song } from '../../../core/models/song.model';
 })
 export class TabViewer {
   @Input({ required: true }) song!: Song;
+
+  getSourceName(url: string): string {
+    if (url.includes('cifraclub.com')) return 'CifraClub';
+    if (url.includes('letras.com')) return 'Letras.com';
+    if (url.includes('musica.com')) return 'Musica.com';
+    return 'Fuente externa';
+  }
 }

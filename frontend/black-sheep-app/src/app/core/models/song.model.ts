@@ -11,6 +11,7 @@ export interface Song {
   difficulty: Difficulty;
   story?: string;
   sections: SongSection[];
+  sourceUrl?: string;
   createdAt: Date;
   updatedAt: Date;
 }
