@@ -1,0 +1,60 @@
+# Popular songs URLs for scraping
+# CifraClub URLs
+
+# Oasis
+https://www.cifraclub.com.br/oasis/wonderwall/
+https://www.cifraclub.com.br/oasis/dont-look-back-in-anger/
+https://www.cifraclub.com.br/oasis/champagne-supernova/
+
+# The Beatles
+https://www.cifraclub.com.br/the-beatles/hey-jude/
+https://www.cifraclub.com.br/the-beatles/let-it-be/
+https://www.cifraclub.com.br/the-beatles/yesterday/
+https://www.cifraclub.com.br/the-beatles/blackbird/
+https://www.cifraclub.com.br/the-beatles/here-comes-the-sun/
+
+# Led Zeppelin
+https://www.cifraclub.com.br/led-zeppelin/stairway-to-heaven/
+https://www.cifraclub.com.br/led-zeppelin/whole-lotta-love/
+
+# Eagles
+https://www.cifraclub.com.br/eagles/hotel-california/
+
+# Queen
+https://www.cifraclub.com.br/queen/bohemian-rhapsody/
+https://www.cifraclub.com.br/queen/we-are-the-champions/
+https://www.cifraclub.com.br/queen/dont-stop-me-now/
+
+# Nirvana
+https://www.cifraclub.com.br/nirvana/smells-like-teen-spirit/
+https://www.cifraclub.com.br/nirvana/come-as-you-are/
+https://www.cifraclub.com.br/nirvana/lithium/
+
+# AC/DC
+https://www.cifraclub.com.br/acdc/back-in-black/
+https://www.cifraclub.com.br/acdc/highway-to-hell/
+https://www.cifraclub.com.br/acdc/thunderstruck/
+
+# Guns N' Roses
+https://www.cifraclub.com.br/guns-n-roses/sweet-child-o-mine/
+https://www.cifraclub.com.br/guns-n-roses/november-rain/
+https://www.cifraclub.com.br/guns-n-roses/knockin-on-heavens-door/
+
+# Pink Floyd
+https://www.cifraclub.com.br/pink-floyd/wish-you-were-here/
+https://www.cifraclub.com.br/pink-floyd/another-brick-in-the-wall-part-2/
+
+# Metallica
+https://www.cifraclub.com.br/metallica/nothing-else-matters/
+https://www.cifraclub.com.br/metallica/enter-sandman/
+
+# Bob Marley
+https://www.cifraclub.com.br/bob-marley/no-woman-no-cry/
+https://www.cifraclub.com.br/bob-marley/redemption-song/
+
+# Creedence Clearwater Revival
+https://www.cifraclub.com.br/creedence-clearwater-revival/have-you-ever-seen-the-rain/
+
+# Red Hot Chili Peppers
+https://www.cifraclub.com.br/red-hot-chili-peppers/californication/
+https://www.cifraclub.com.br/red-hot-chili-peppers/under-the-bridge/
