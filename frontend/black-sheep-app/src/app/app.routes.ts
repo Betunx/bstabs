@@ -3,7 +3,6 @@ import { Home } from './pages/home/home';
 import { Artists } from './pages/artists/artists';
 import { ArtistDetail } from './pages/artist-detail/artist-detail';
 import { Songs } from './pages/songs/songs';
-import { Tutorials } from './pages/tutorials/tutorials';
 import { Contact } from './pages/contact/contact';
 import { RequestSong } from './pages/request-song/request-song';
 import { Donate } from './pages/donate/donate';
@@ -17,9 +16,8 @@ export const routes: Routes = [
   { path: 'artist/:id', component: ArtistDetail },
   { path: 'songs', component: Songs },
   { path: 'tab/:id', component: TabReader, data: { hideHeaderOnScroll: true } },
-  { path: 'tutorials', component: Tutorials },
   { path: 'contact', component: Contact },
-  { path: 'request-song', component: RequestSong },
+  { path: 'request-song', component: RequestSong }, // Accesible but not in nav
   { path: 'donate', component: Donate },
 
   // Admin routes
