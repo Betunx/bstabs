@@ -1,11 +1,31 @@
 # 🚀 Quick Start - Scraping en 5 Minutos
 
+## ⚡ Super Rápido con Helper Script
+
+```bash
+cd scripts/scraper
+
+# Test con 1 canción
+bash scrape.sh test
+
+# Quick start: 20 tabs populares automáticamente
+bash scrape.sh quick
+
+# Ver todos los comandos
+bash scrape.sh
+```
+
+---
+
 ## Opción 1: Test Rápido (1 canción)
 
 ```bash
 # Prueba el scraper con una canción individual
 cd scripts/scraper
 node tab-scraper-v2.js "https://www.cifraclub.com.br/oasis/wonderwall/"
+
+# O usa el helper:
+bash scrape.sh test
 ```
 
 **Output:** `extracted-tabs/wonderwall-[timestamp].json`
