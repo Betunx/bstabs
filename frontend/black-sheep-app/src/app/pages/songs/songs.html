@@ -1,5 +1,71 @@
-<app-item-list
-  [items]="songs()"
-  title="Canciones"
-  emptyMessage="No hay canciones disponibles">
-</app-item-list>
+<div class="songs-page">
+  <!-- Controles de filtros -->
+  <div class="filters-container">
+    <div class="container mx-auto px-4 py-4">
+      <div class="flex flex-wrap items-center gap-4 justify-between">
+        <!-- Ordenamiento -->
+        <div class="flex items-center gap-2">
+          <label class="text-sm font-semibold">Ordenar por:</label>
+          <select 
+            [(ngModel)]="sortBy" 
+            (ngModelChange)="setSortBy($event)"
+            class="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-bs-gold">
+            <option value="recent">Más recientes</option>
+            <option value="a-z">A-Z</option>
+            <option value="difficulty">Dificultad</option>
+          </select>
+        </div>
+
+        <!-- Filtro de dificultad -->
+        <div class="flex items-center gap-2 flex-wrap">
+          <label class="text-sm font-semibold">Dificultad:</label>
+          <div class="flex gap-2">
+            <button
+              (click)="setDifficultyFilter('all')"
+              [class.active]="difficultyFilter() === 'all'"
+              class="difficulty-chip">
+              Todas
+            </button>
+            <button
+              (click)="setDifficultyFilter('beginner')"
+              [class.active]="difficultyFilter() === 'beginner'"
+              class="difficulty-chip chip-beginner">
+              Principiante
+            </button>
+            <button
+              (click)="setDifficultyFilter('intermediate')"
+              [class.active]="difficultyFilter() === 'intermediate'"
+              class="difficulty-chip chip-intermediate">
+              Intermedio
+            </button>
+            <button
+              (click)="setDifficultyFilter('advanced')"
+              [class.active]="difficultyFilter() === 'advanced'"
+              class="difficulty-chip chip-advanced">
+              Avanzado
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lista de canciones -->
+  <app-item-list
+    [items]="songs()"
+    title="Canciones"
+    emptyMessage="No hay canciones con estos filtros">
+  </app-item-list>
+
+  <!-- CTA para pedir canciones (si lista vacía por búsqueda) -->
+  @if (songs().length === 0 && difficultyFilter() !== 'all') {
+    <div class="empty-state">
+      <div class="container mx-auto px-4 py-8 text-center">
+        <p class="text-gray-600 mb-4">No encontramos canciones con este nivel de dificultad</p>
+        <a routerLink="/request-song" class="btn-primary">
+          Pedir una canción
+        </a>
+      </div>
+    </div>
+  }
+</div>

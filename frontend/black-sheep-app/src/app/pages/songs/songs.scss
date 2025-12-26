@@ -1,0 +1,61 @@
+.songs-page {
+  min-height: 100vh;
+}
+
+.filters-container {
+  background: var(--bg-secondary);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  position: sticky;
+  top: 64px;
+  z-index: 30;
+}
+
+.difficulty-chip {
+  @apply px-4 py-2 rounded-full text-sm font-semibold;
+  @apply border-2 transition-all duration-200;
+  cursor: pointer;
+
+  &:not(.active) {
+    @apply bg-transparent border-gray-400 text-gray-600;
+    @apply hover:border-bs-gold hover:text-bs-gold;
+  }
+
+  &.active {
+    @apply bg-bs-gold text-black border-bs-gold;
+  }
+
+  &.chip-beginner.active {
+    @apply bg-green-500 border-green-500 text-white;
+  }
+
+  &.chip-intermediate.active {
+    @apply bg-yellow-500 border-yellow-500 text-white;
+  }
+
+  &.chip-advanced.active {
+    @apply bg-red-500 border-red-500 text-white;
+  }
+}
+
+.btn-primary {
+  @apply inline-block px-6 py-3;
+  @apply bg-bs-gold text-black font-semibold rounded-lg;
+  @apply hover:bg-yellow-600 transition-all;
+}
+
+.empty-state {
+  @apply py-12;
+}
+
+@media (max-width: 640px) {
+  .filters-container {
+    .flex {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  .difficulty-chip {
+    @apply px-3 py-1.5 text-xs;
+  }
+}
