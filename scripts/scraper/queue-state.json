@@ -1,0 +1,164 @@
+{
+  "queue": [
+    {
+      "url": "https://www.cifraclub.com.br/guns-n-roses/sweet-child-o-mine/",
+      "attempts": 1,
+      "priority": 100,
+      "status": "retry",
+      "addedAt": "2025-12-26T19:17:38.660Z"
+    },
+    {
+      "url": "https://www.cifraclub.com.br/guns-n-roses/knockin-on-heavens-door/",
+      "attempts": 1,
+      "priority": 100,
+      "status": "retry",
+      "addedAt": "2025-12-26T19:17:38.660Z"
+    }
+  ],
+  "processing": [],
+  "completed": [
+    {
+      "url": "https://www.cifraclub.com.br/oasis/wonderwall/",
+      "status": "completed"
+    },
+    {
+      "url": "https://www.cifraclub.com.br/oasis/dont-look-back-in-anger/",
+      "status": "completed"
+    },
+    {
+      "url": "https://www.cifraclub.com.br/oasis/champagne-supernova/",
+      "status": "completed"
+    },
+    {
+      "url": "https://www.cifraclub.com.br/the-beatles/hey-jude/",
+      "status": "completed"
+    },
+    {
+      "url": "https://www.cifraclub.com.br/the-beatles/let-it-be/",
+      "status": "completed"
+    },
+    {
+      "url": "https://www.cifraclub.com.br/the-beatles/yesterday/",
+      "status": "completed"
+    },
+    {
+      "url": "https://www.cifraclub.com.br/the-beatles/blackbird/",
+      "status": "completed"
+    },
+    {
+      "url": "https://www.cifraclub.com.br/led-zeppelin/stairway-to-heaven/",
+      "status": "completed"
+    },
+    {
+      "url": "https://www.cifraclub.com.br/led-zeppelin/whole-lotta-love/",
+      "status": "completed"
+    },
+    {
+      "url": "https://www.cifraclub.com.br/queen/bohemian-rhapsody/",
+      "status": "completed"
+    },
+    {
+      "url": "https://www.cifraclub.com.br/queen/we-are-the-champions/",
+      "status": "completed"
+    },
+    {
+      "url": "https://www.cifraclub.com.br/queen/dont-stop-me-now/",
+      "status": "completed"
+    },
+    {
+      "url": "https://www.cifraclub.com.br/nirvana/smells-like-teen-spirit/",
+      "status": "completed"
+    },
+    {
+      "url": "https://www.cifraclub.com.br/nirvana/come-as-you-are/",
+      "status": "completed"
+    },
+    {
+      "url": "https://www.cifraclub.com.br/nirvana/lithium/",
+      "status": "completed"
+    },
+    {
+      "url": "https://www.cifraclub.com.br/guns-n-roses/november-rain/",
+      "status": "completed"
+    },
+    {
+      "url": "https://www.cifraclub.com.br/pink-floyd/wish-you-were-here/",
+      "status": "completed"
+    },
+    {
+      "url": "https://www.cifraclub.com.br/pink-floyd/another-brick-in-the-wall-part-2/",
+      "status": "completed"
+    },
+    {
+      "url": "https://www.cifraclub.com.br/metallica/nothing-else-matters/",
+      "status": "completed"
+    },
+    {
+      "url": "https://www.cifraclub.com.br/metallica/enter-sandman/",
+      "status": "completed"
+    },
+    {
+      "url": "https://www.cifraclub.com.br/bob-marley/redemption-song/",
+      "status": "completed"
+    },
+    {
+      "url": "https://www.cifraclub.com.br/bob-marley/no-woman-no-cry/",
+      "status": "completed"
+    },
+    {
+      "url": "https://www.cifraclub.com.br/red-hot-chili-peppers/californication/",
+      "status": "completed"
+    },
+    {
+      "url": "https://www.cifraclub.com.br/red-hot-chili-peppers/under-the-bridge/",
+      "status": "completed"
+    },
+    {
+      "url": "https://www.cifraclub.com.br/creedence-clearwater-revival/have-you-ever-seen-the-rain/",
+      "status": "completed"
+    }
+  ],
+  "failed": [
+    {
+      "url": "https://www.cifraclub.com.br/the-beatles/here-comes-the-sun/",
+      "attempts": 2,
+      "priority": 100,
+      "status": "failed",
+      "addedAt": "2025-12-26T19:17:38.660Z",
+      "error": "No se pudo extraer contenido"
+    },
+    {
+      "url": "https://www.cifraclub.com.br/eagles/hotel-california/",
+      "attempts": 2,
+      "priority": 100,
+      "status": "failed",
+      "addedAt": "2025-12-26T19:17:38.660Z",
+      "error": "No se pudo extraer contenido"
+    },
+    {
+      "url": "https://www.cifraclub.com.br/acdc/back-in-black/",
+      "attempts": 2,
+      "priority": 100,
+      "status": "failed",
+      "addedAt": "2025-12-26T19:17:38.660Z",
+      "error": "No se pudo extraer contenido"
+    },
+    {
+      "url": "https://www.cifraclub.com.br/acdc/highway-to-hell/",
+      "attempts": 2,
+      "priority": 100,
+      "status": "failed",
+      "addedAt": "2025-12-26T19:17:38.660Z",
+      "error": "No se pudo extraer contenido"
+    },
+    {
+      "url": "https://www.cifraclub.com.br/acdc/thunderstruck/",
+      "attempts": 2,
+      "priority": 100,
+      "status": "failed",
+      "addedAt": "2025-12-26T19:17:38.660Z",
+      "error": "No se pudo extraer contenido"
+    }
+  ],
+  "savedAt": "2025-12-26T19:18:15.090Z"
+}

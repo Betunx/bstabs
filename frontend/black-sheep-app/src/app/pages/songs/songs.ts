@@ -1,8 +1,9 @@
-import { Component, signal, computed } from '@angular/core';
+import { Component, signal, computed, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ItemList, ListItem } from '../../shared/components/item-list/item-list';
+import { SongsService } from '../../core/services/songs.service';
 
 interface SongItem extends ListItem {
   difficulty?: 'beginner' | 'intermediate' | 'advanced';
@@ -18,50 +19,48 @@ type DifficultyFilter = 'all' | 'beginner' | 'intermediate' | 'advanced';
   templateUrl: './songs.html',
   styleUrl: './songs.scss',
 })
-export class Songs {
-  // Estado
+export class Songs implements OnInit {
+  private songsService = inject(SongsService);
+
   sortBy = signal<SortOption>('recent');
   difficultyFilter = signal<DifficultyFilter>('all');
+  loading = signal(true);
 
-  // Datos originales
-  private allSongs = signal<SongItem[]>([
-    // TODO: Replace with real data from API
-    {
-      id: '1',
-      title: 'Wonderwall',
-      subtitle: 'Oasis',
-      routerLink: '/tab/wonderwall',
-      difficulty: 'beginner',
-      createdAt: new Date('2024-01-15')
-    },
-    {
-      id: '2',
-      title: 'Hotel California',
-      subtitle: 'Eagles',
-      routerLink: '/tab/hotel-california',
-      difficulty: 'intermediate',
-      createdAt: new Date('2024-01-16')
-    },
-    {
-      id: '3',
-      title: 'Stairway to Heaven',
-      subtitle: 'Led Zeppelin',
-      routerLink: '/tab/stairway-to-heaven',
-      difficulty: 'advanced',
-      createdAt: new Date('2024-01-17')
-    }
-  ]);
+  private allSongs = signal<SongItem[]>([]);
 
-  // Canciones filtradas y ordenadas
+  ngOnInit() {
+    this.loadSongs();
+  }
+
+  private loadSongs() {
+    this.loading.set(true);
+    this.songsService.getAllSongs().subscribe({
+      next: (songs) => {
+        const songItems: SongItem[] = songs.map(song => ({
+          id: song.id,
+          title: song.title,
+          subtitle: song.artist,
+          routerLink: `/tab/${song.id}`,
+          difficulty: song.difficulty,
+          createdAt: song.createdAt
+        }));
+        this.allSongs.set(songItems);
+        this.loading.set(false);
+      },
+      error: (err) => {
+        console.error('Error loading songs:', err);
+        this.loading.set(false);
+      }
+    });
+  }
+
   songs = computed(() => {
     let filtered = this.allSongs();
 
-    // Filtrar por dificultad
     if (this.difficultyFilter() !== 'all') {
       filtered = filtered.filter(song => song.difficulty === this.difficultyFilter());
     }
 
-    // Ordenar
     const sorted = [...filtered];
     switch (this.sortBy()) {
       case 'recent':

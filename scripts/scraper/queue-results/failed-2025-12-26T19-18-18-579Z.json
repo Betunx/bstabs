@@ -1,0 +1,58 @@
+[
+  {
+    "url": "https://www.cifraclub.com.br/the-beatles/here-comes-the-sun/",
+    "attempts": 2,
+    "priority": 100,
+    "status": "failed",
+    "addedAt": "2025-12-26T19:17:38.660Z",
+    "error": "No se pudo extraer contenido"
+  },
+  {
+    "url": "https://www.cifraclub.com.br/eagles/hotel-california/",
+    "attempts": 2,
+    "priority": 100,
+    "status": "failed",
+    "addedAt": "2025-12-26T19:17:38.660Z",
+    "error": "No se pudo extraer contenido"
+  },
+  {
+    "url": "https://www.cifraclub.com.br/acdc/back-in-black/",
+    "attempts": 2,
+    "priority": 100,
+    "status": "failed",
+    "addedAt": "2025-12-26T19:17:38.660Z",
+    "error": "No se pudo extraer contenido"
+  },
+  {
+    "url": "https://www.cifraclub.com.br/acdc/highway-to-hell/",
+    "attempts": 2,
+    "priority": 100,
+    "status": "failed",
+    "addedAt": "2025-12-26T19:17:38.660Z",
+    "error": "No se pudo extraer contenido"
+  },
+  {
+    "url": "https://www.cifraclub.com.br/acdc/thunderstruck/",
+    "attempts": 2,
+    "priority": 100,
+    "status": "failed",
+    "addedAt": "2025-12-26T19:17:38.660Z",
+    "error": "No se pudo extraer contenido"
+  },
+  {
+    "url": "https://www.cifraclub.com.br/guns-n-roses/sweet-child-o-mine/",
+    "attempts": 2,
+    "priority": 100,
+    "status": "failed",
+    "addedAt": "2025-12-26T19:17:38.660Z",
+    "error": "No se pudo extraer contenido"
+  },
+  {
+    "url": "https://www.cifraclub.com.br/guns-n-roses/knockin-on-heavens-door/",
+    "attempts": 2,
+    "priority": 100,
+    "status": "failed",
+    "addedAt": "2025-12-26T19:17:38.660Z",
+    "error": "No se pudo extraer contenido"
+  }
+]

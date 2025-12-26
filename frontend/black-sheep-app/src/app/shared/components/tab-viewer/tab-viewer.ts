@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Song } from '../../../core/models/song.model';
 
@@ -11,6 +11,12 @@ import { Song } from '../../../core/models/song.model';
 })
 export class TabViewer {
   @Input({ required: true }) song!: Song;
+
+  lyricsOnlyMode = signal(false);
+
+  toggleLyricsMode() {
+    this.lyricsOnlyMode.update(current => !current);
+  }
 
   getSourceName(url: string): string {
     if (url.includes('cifraclub.com')) return 'CifraClub';

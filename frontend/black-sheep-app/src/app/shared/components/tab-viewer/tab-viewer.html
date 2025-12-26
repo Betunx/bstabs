@@ -18,6 +18,19 @@
       </div>
     }
 
+    <!-- Lyrics-Only Mode Toggle -->
+    <div class="mode-toggle">
+      <button 
+        (click)="toggleLyricsMode()" 
+        class="toggle-button"
+        [class.active]="lyricsOnlyMode()">
+        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+        </svg>
+        {{ lyricsOnlyMode() ? 'Mostrar Acordes' : 'Solo Letra' }}
+      </button>
+    </div>
+
     <!-- Source Attribution -->
     @if (song.sourceUrl) {
       <div class="source-attribution">
@@ -41,19 +54,23 @@
         <div class="section-content">
           @for (line of section.lines; track $index) {
             <div class="chord-line-wrapper">
-              <!-- Línea de acordes -->
-              <div class="chord-line">
-                @for (chordPos of line.chords; track $index) {
-                  <span
-                    class="chord-symbol"
-                    [style.left.ch]="chordPos.position">
-                    {{ chordPos.chord }}
-                  </span>
-                }
-              </div>
+              <!-- Línea de acordes (oculta en modo Solo Letra) -->
+              @if (!lyricsOnlyMode() && line.chords.length > 0) {
+                <div class="chord-line">
+                  @for (chordPos of line.chords; track $index) {
+                    <span
+                      class="chord-symbol"
+                      [style.left.ch]="chordPos.position">
+                      {{ chordPos.chord }}
+                    </span>
+                  }
+                </div>
+              }
 
               <!-- Línea de letra -->
-              <div class="lyrics-line">{{ line.lyrics }}</div>
+              <div class="lyrics-line" [class.lyrics-only]="lyricsOnlyMode()">
+                {{ line.lyrics }}
+              </div>
             </div>
           }
         </div>
