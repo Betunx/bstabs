@@ -12,16 +12,21 @@ export class Artists {
     // TODO: Replace with real data from API
     {
       id: '1',
-      title: 'The Beatles',
-      subtitle: '120 canciones',
-      routerLink: '/artist/the-beatles'
+      title: 'Oasis',
+      subtitle: '1 canción',
+      routerLink: '/artist/oasis'
     },
     {
       id: '2',
-      title: 'Led Zeppelin',
-      subtitle: '85 canciones',
-      routerLink: '/artist/led-zeppelin'
+      title: 'Eagles',
+      subtitle: '1 canción',
+      routerLink: '/artist/eagles'
     },
-    // Add more mock data as needed
+    {
+      id: '3',
+      title: 'Led Zeppelin',
+      subtitle: '1 canción',
+      routerLink: '/artist/led-zeppelin'
+    }
   ]);
 }

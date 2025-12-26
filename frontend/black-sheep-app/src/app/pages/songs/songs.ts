@@ -12,9 +12,9 @@ export class Songs {
     // TODO: Replace with real data from API
     {
       id: '1',
-      title: 'Stairway to Heaven',
-      subtitle: 'Led Zeppelin',
-      routerLink: '/tab/stairway-to-heaven'
+      title: 'Wonderwall',
+      subtitle: 'Oasis',
+      routerLink: '/tab/wonderwall'
     },
     {
       id: '2',
@@ -22,6 +22,11 @@ export class Songs {
       subtitle: 'Eagles',
       routerLink: '/tab/hotel-california'
     },
-    // Add more mock data as needed
+    {
+      id: '3',
+      title: 'Stairway to Heaven',
+      subtitle: 'Led Zeppelin',
+      routerLink: '/tab/stairway-to-heaven'
+    }
   ]);
 }

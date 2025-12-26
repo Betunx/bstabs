@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { Home } from './pages/home/home';
 import { Artists } from './pages/artists/artists';
+import { ArtistDetail } from './pages/artist-detail/artist-detail';
 import { Songs } from './pages/songs/songs';
 import { Tutorials } from './pages/tutorials/tutorials';
 import { Contact } from './pages/contact/contact';
@@ -13,7 +14,7 @@ import { TabEditor } from './admin/tab-editor/tab-editor';
 export const routes: Routes = [
   { path: '', component: Home },
   { path: 'artists', component: Artists },
-  { path: 'artist/:id', component: Artists }, // Artist detail page (TODO: create separate component)
+  { path: 'artist/:id', component: ArtistDetail },
   { path: 'songs', component: Songs },
   { path: 'tab/:id', component: TabReader, data: { hideHeaderOnScroll: true } },
   { path: 'tutorials', component: Tutorials },
