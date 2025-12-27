@@ -1,7 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import { Observable, map, of } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { SongsService } from './songs.service';
 
 export interface Artist {
   id: string;
@@ -15,21 +16,23 @@ export interface Artist {
 })
 export class ArtistsService {
   private http = inject(HttpClient);
+  private songsService = inject(SongsService);
   private apiUrl = environment.apiUrl;
+  private useMockData = environment.enableMockData;
 
-  /**
-   * Get all artists with their song count
-   * Since the API doesn't have a dedicated artists endpoint,
-   * we'll aggregate from songs
-   */
   getAllArtists(): Observable<Artist[]> {
+    if (this.useMockData) {
+      return this.songsService.getAllSongs().pipe(
+        map(songs => this.aggregateArtistsFromSongs(songs))
+      );
+    }
+
     return this.http.get<any[]>(`${this.apiUrl}/songs`).pipe(
       map(songs => this.aggregateArtists(songs))
     );
   }
 
   getArtistById(id: string): Observable<Artist> {
-    // For now, we'll use the artist name as ID
     return this.getAllArtists().pipe(
       map(artists => {
         const artist = artists.find(a => this.slugify(a.name) === id);
@@ -42,9 +45,37 @@ export class ArtistsService {
   }
 
   getSongsByArtist(artistId: string): Observable<any[]> {
+    if (this.useMockData) {
+      return this.songsService.getAllSongs().pipe(
+        map(songs => songs.filter(song => this.slugify(song.artist) === artistId))
+      );
+    }
+
     return this.http.get<any[]>(`${this.apiUrl}/songs`).pipe(
       map(songs => songs.filter(song => this.slugify(song.artist) === artistId))
     );
+  }
+
+  private aggregateArtistsFromSongs(songs: any[]): Artist[] {
+    const artistMap = new Map<string, Artist>();
+
+    songs.forEach(song => {
+      const artistName = song.artist || 'Desconocido';
+      const artistId = this.slugify(artistName);
+
+      if (artistMap.has(artistId)) {
+        const artist = artistMap.get(artistId)!;
+        artist.songCount++;
+      } else {
+        artistMap.set(artistId, {
+          id: artistId,
+          name: artistName,
+          songCount: 1
+        });
+      }
+    });
+
+    return Array.from(artistMap.values()).sort((a, b) => a.name.localeCompare(b.name));
   }
 
   private aggregateArtists(songs: any[]): Artist[] {
@@ -73,7 +104,7 @@ export class ArtistsService {
     return text
       .toLowerCase()
       .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '') // Remove accents
+      .replace(/[\u0300-\u036f]/g, '')
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-|-$/g, '');
   }

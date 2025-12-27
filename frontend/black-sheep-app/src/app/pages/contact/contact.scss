@@ -1,0 +1,39 @@
+.contact-page {
+  min-height: calc(100vh - 200px);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.contact-card {
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.1);
+  }
+
+  .icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background: rgba(212, 175, 55, 0.1);
+    border-radius: 12px;
+  }
+}
+
+.social-card {
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(212, 175, 55, 0.15);
+  }
+}
+
+.portfolio-section {
+  h2 {
+    color: var(--bs-gold);
+  }
+}
