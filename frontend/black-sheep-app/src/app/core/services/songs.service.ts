@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, map, of } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, map, of, catchError, throwError } from 'rxjs';
 import { Song } from '../models/song.model';
 import { environment } from '../../../environments/environment';
 
@@ -29,13 +29,46 @@ export class SongsService {
   private apiUrl = environment.apiUrl;
   private useMockData = environment.enableMockData;
 
+  // In-memory cache for performance
+  private songsCache: Song[] | null = null;
+  private searchCache = new Map<string, Song[]>();
+  private cacheTTL = 5 * 60 * 1000; // 5 minutes
+  private cacheTimestamp: number | null = null;
+
   getAllSongs(): Observable<Song[]> {
     if (this.useMockData) {
       return of(this.getMockSongs());
     }
 
+    // Check cache validity
+    const now = Date.now();
+    if (this.songsCache && this.cacheTimestamp && (now - this.cacheTimestamp) < this.cacheTTL) {
+      console.log('📦 Returning cached songs');
+      return of(this.songsCache);
+    }
+
     return this.http.get<SongDto[]>(`${this.apiUrl}/songs`).pipe(
-      map(songs => songs.map(dto => this.mapDtoToSong(dto)))
+      map(songs => songs.map(dto => this.mapDtoToSong(dto))),
+      map(songs => {
+        // Update cache
+        this.songsCache = songs;
+        this.cacheTimestamp = Date.now();
+        return songs;
+      }),
+      catchError((error: HttpErrorResponse) => {
+        console.error('Error fetching songs:', error);
+        // Return stale cache if available
+        if (this.songsCache) {
+          console.warn('⚠️ Using stale cache due to API error');
+          return of(this.songsCache);
+        }
+        // Fallback to mock data if API fails
+        if (environment.enableDebugMode) {
+          console.warn('🔄 Falling back to mock data due to API error');
+          return of(this.getMockSongs());
+        }
+        return throwError(() => error);
+      })
     );
   }
 
@@ -47,7 +80,19 @@ export class SongsService {
     }
 
     return this.http.get<SongDto>(`${this.apiUrl}/songs/${id}`).pipe(
-      map(dto => this.mapDtoToSong(dto))
+      map(dto => this.mapDtoToSong(dto)),
+      catchError((error: HttpErrorResponse) => {
+        console.error(`Error fetching song ${id}:`, error);
+        // Try to fallback to mock data
+        if (environment.enableDebugMode) {
+          const song = this.getMockSongs().find(s => s.id === id);
+          if (song) {
+            console.warn('🔄 Falling back to mock data');
+            return of(song);
+          }
+        }
+        return throwError(() => error);
+      })
     );
   }
 
@@ -60,10 +105,42 @@ export class SongsService {
       return of(filtered);
     }
 
+    // Check search cache
+    const cacheKey = query.toLowerCase();
+    if (this.searchCache.has(cacheKey)) {
+      console.log('📦 Returning cached search results for:', query);
+      return of(this.searchCache.get(cacheKey)!);
+    }
+
     const encodedQuery = encodeURIComponent(query);
     return this.http.get<SongDto[]>(`${this.apiUrl}/songs/search?q=${encodedQuery}`).pipe(
-      map(songs => songs.map(dto => this.mapDtoToSong(dto)))
+      map(songs => songs.map(dto => this.mapDtoToSong(dto))),
+      map(songs => {
+        // Cache search results
+        this.searchCache.set(cacheKey, songs);
+        // Limit cache size to 50 entries
+        if (this.searchCache.size > 50) {
+          const firstKey = this.searchCache.keys().next().value;
+          this.searchCache.delete(firstKey);
+        }
+        return songs;
+      }),
+      catchError((error: HttpErrorResponse) => {
+        console.error('Error searching songs:', error);
+        // Return empty array on error instead of breaking the UI
+        return of([]);
+      })
     );
+  }
+
+  /**
+   * Clear all caches (useful for manual refresh)
+   */
+  clearCache(): void {
+    this.songsCache = null;
+    this.cacheTimestamp = null;
+    this.searchCache.clear();
+    console.log('🗑️ Cache cleared');
   }
 
   private mapDtoToSong(dto: SongDto): Song {

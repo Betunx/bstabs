@@ -17,45 +17,41 @@ Plataforma moderna de tablaturas musicales. Sin anuncios, sin distracciones, sol
 
 ## Stack Tecnologico
 
-- Frontend: Angular 20.3 + Tailwind CSS + PWA
-- Backend: NestJS 11 + TypeORM + PostgreSQL
-- Seguridad: Helmet, Rate Limiting, CSRF, Input Sanitization
-- PDF: pdfkit para generacion de documentos
-- Deploy: Vercel (frontend) + Railway/Render (backend)
+- **Frontend:** Angular 19 + Tailwind CSS + PWA
+- **Backend:** Cloudflare Workers + Supabase (PostgreSQL)
+- **Deploy:** Cloudflare Pages (frontend) + Cloudflare Workers (API)
+
+## Estructura del Proyecto
+
+```
+blackSheep/
+├── frontend/black-sheep-app/   # Angular PWA
+├── backend-workers/            # Cloudflare Workers API
+└── scripts/scraper/            # Scrapers de tablaturas
+```
 
 ## Inicio Rapido
 
 ### Prerrequisitos
 - Node.js 18+
 - npm 10+
-- PostgreSQL (o Docker)
 
-### Instalacion Local
+### Frontend
 
 ```bash
-# Clonar repositorio
-git clone https://github.com/Betunx/bstabs.git
-cd bstabs
-
-# Frontend
 cd frontend/black-sheep-app
 npm install
 npm start
 # http://localhost:4200
-
-# Backend
-cd backend/black-sheep-api
-npm install
-npm run start:dev
-# http://localhost:3000
 ```
 
-### Con Docker
+### Backend (Workers)
 
 ```bash
-docker-compose up -d
-# Frontend: http://localhost:4200
-# Backend: http://localhost:3000
+cd backend-workers
+npm install
+npx wrangler dev
+# http://localhost:8787
 ```
 
 ## Formato de Tablaturas
@@ -82,17 +78,9 @@ Las tablaturas usan JSON estructurado:
         }
       ]
     }
-  ],
-  "spotifyUrl": "https://open.spotify.com/track/...",
-  "youtubeUrl": "https://youtube.com/watch?v=..."
+  ]
 }
 ```
-
-## Documentacion
-
-Para desarrolladores y colaboradores, consulta la guia completa del proyecto:
-
-**[GUIA_PROYECTO.md](GUIA_PROYECTO.md)** - Documentacion tecnica completa, arquitectura, deployment, tareas pendientes, y mas.
 
 ## Apoya el Proyecto
 
@@ -103,18 +91,8 @@ Black Sheep es gratuito y sin anuncios. Si te resulta util, considera donar:
 
 ## Enlaces
 
-- Produccion: [bstabs.com](https://bstabs.com) (proximamente)
-- Repositorio: [github.com/Betunx/bstabs](https://github.com/Betunx/bstabs)
-
-## Contribuir
-
-Contribuciones son bienvenidas:
-
-1. Fork el proyecto
-2. Crea tu rama (`git checkout -b feature/amazing-feature`)
-3. Commit cambios (`git commit -m 'Add amazing feature'`)
-4. Push a la rama (`git push origin feature/amazing-feature`)
-5. Abre un Pull Request
+- Produccion: [bstabs.com](https://bstabs.com)
+- API: blacksheep-api.bstabs.workers.dev
 
 ## Licencia
 
@@ -122,10 +100,10 @@ MIT License
 
 ## Autor
 
-Betunx - Musico & Developer
+**Humberto López** - Músico & Full Stack Developer
+- LinkedIn: [linkedin.com/in/humberto-lópez-435b77216](https://www.linkedin.com/in/humberto-lópez-435b77216)
 - Email: bstabscontact@gmail.com
 
 ---
 
 Hecho con amor por musicos, para musicos
-"Knowing for love, fun and free!"

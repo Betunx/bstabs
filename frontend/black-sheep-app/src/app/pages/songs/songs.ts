@@ -1,4 +1,4 @@
-import { Component, signal, computed, inject, OnInit } from '@angular/core';
+import { Component, signal, computed, inject, OnInit, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
@@ -10,8 +10,7 @@ interface SongItem extends ListItem {
   createdAt?: Date;
 }
 
-type SortOption = 'recent' | 'a-z' | 'difficulty';
-type DifficultyFilter = 'all' | 'beginner' | 'intermediate' | 'advanced';
+type SortOption = 'recent' | 'a-z';
 
 @Component({
   selector: 'app-songs',
@@ -23,13 +22,33 @@ export class Songs implements OnInit {
   private songsService = inject(SongsService);
 
   sortBy = signal<SortOption>('recent');
-  difficultyFilter = signal<DifficultyFilter>('all');
+  searchQuery = signal<string>('');
+  debouncedQuery = signal<string>(''); // Query después del debounce
   loading = signal(true);
+  suggestions = signal<SongItem[]>([]); // Sugerencias autocomplete
+  showSuggestions = signal(false);
 
   private allSongs = signal<SongItem[]>([]);
+  private debounceTimer: any = null;
 
   ngOnInit() {
     this.loadSongs();
+
+    // Efecto para debounce: espera 300ms después de que el usuario deje de escribir
+    effect(() => {
+      const query = this.searchQuery();
+
+      // Limpiar timer anterior
+      if (this.debounceTimer) {
+        clearTimeout(this.debounceTimer);
+      }
+
+      // Esperar 300ms antes de actualizar
+      this.debounceTimer = setTimeout(() => {
+        this.debouncedQuery.set(query);
+        this.updateSuggestions(query);
+      }, 300);
+    });
   }
 
   private loadSongs() {
@@ -57,10 +76,16 @@ export class Songs implements OnInit {
   songs = computed(() => {
     let filtered = this.allSongs();
 
-    if (this.difficultyFilter() !== 'all') {
-      filtered = filtered.filter(song => song.difficulty === this.difficultyFilter());
+    // Filtrar por búsqueda (usa debouncedQuery para evitar lag)
+    const query = this.debouncedQuery().toLowerCase().trim();
+    if (query) {
+      filtered = filtered.filter(song =>
+        song.title.toLowerCase().includes(query) ||
+        song.subtitle.toLowerCase().includes(query)
+      );
     }
 
+    // Ordenar
     const sorted = [...filtered];
     switch (this.sortBy()) {
       case 'recent':
@@ -69,20 +94,82 @@ export class Songs implements OnInit {
       case 'a-z':
         sorted.sort((a, b) => a.title.localeCompare(b.title));
         break;
-      case 'difficulty':
-        const diffOrder = { beginner: 1, intermediate: 2, advanced: 3 };
-        sorted.sort((a, b) => (diffOrder[a.difficulty || 'beginner'] || 0) - (diffOrder[b.difficulty || 'beginner'] || 0));
-        break;
     }
 
     return sorted;
   });
 
+  /**
+   * Actualiza sugerencias de autocomplete
+   */
+  private updateSuggestions(query: string) {
+    const q = query.toLowerCase().trim();
+
+    if (!q || q.length < 2) {
+      this.suggestions.set([]);
+      this.showSuggestions.set(false);
+      return;
+    }
+
+    // Buscar las primeras 5 coincidencias
+    const matches = this.allSongs()
+      .filter(song =>
+        song.title.toLowerCase().includes(q) ||
+        song.subtitle.toLowerCase().includes(q)
+      )
+      .slice(0, 5);
+
+    this.suggestions.set(matches);
+    this.showSuggestions.set(matches.length > 0);
+  }
+
+  /**
+   * Resaltar texto que coincide con la búsqueda
+   */
+  highlightMatch(text: string, query: string): string {
+    if (!query) return text;
+
+    const regex = new RegExp(`(${this.escapeRegex(query)})`, 'gi');
+    return text.replace(regex, '<mark class="bg-yellow-200 dark:bg-yellow-600 px-1 rounded">$1</mark>');
+  }
+
+  private escapeRegex(str: string): string {
+    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
   setSortBy(option: SortOption) {
     this.sortBy.set(option);
   }
 
-  setDifficultyFilter(filter: DifficultyFilter) {
-    this.difficultyFilter.set(filter);
+  setSearchQuery(query: string) {
+    this.searchQuery.set(query);
+  }
+
+  /**
+   * Seleccionar una sugerencia
+   */
+  selectSuggestion(song: SongItem) {
+    this.searchQuery.set(song.title);
+    this.debouncedQuery.set(song.title);
+    this.showSuggestions.set(false);
+  }
+
+  /**
+   * Ocultar sugerencias
+   */
+  hideSuggestions() {
+    // Delay para permitir click en sugerencia
+    setTimeout(() => {
+      this.showSuggestions.set(false);
+    }, 200);
+  }
+
+  /**
+   * Mostrar sugerencias al hacer focus
+   */
+  onSearchFocus() {
+    if (this.suggestions().length > 0) {
+      this.showSuggestions.set(true);
+    }
   }
 }

@@ -1,30 +1,61 @@
 import { Routes } from '@angular/router';
 import { Home } from './pages/home/home';
-import { Artists } from './pages/artists/artists';
-import { ArtistDetail } from './pages/artist-detail/artist-detail';
-import { Songs } from './pages/songs/songs';
-import { Contact } from './pages/contact/contact';
-import { RequestSong } from './pages/request-song/request-song';
-import { Donate } from './pages/donate/donate';
-import { Sources } from './pages/sources/sources';
-import { TabReader } from './pages/tab-reader/tab-reader';
-import { AdminDashboard } from './admin/admin-dashboard/admin-dashboard';
-import { TabEditor } from './admin/tab-editor/tab-editor';
 
+/**
+ * Lazy-loaded routes for better initial bundle size
+ * - Home is eagerly loaded (most visited)
+ * - Everything else is lazy-loaded on demand
+ */
 export const routes: Routes = [
+  // Eager: Home page (most visited, keep in main bundle)
   { path: '', component: Home },
-  { path: 'artists', component: Artists },
-  { path: 'artist/:id', component: ArtistDetail },
-  { path: 'songs', component: Songs },
-  { path: 'tab/:id', component: TabReader, data: { hideHeaderOnScroll: true } },
-  { path: 'contact', component: Contact },
-  { path: 'request-song', component: RequestSong }, // Accesible but not in nav
-  { path: 'donate', component: Donate },
-  { path: 'sources', component: Sources },
 
-  // Admin routes
-  { path: 'admin', component: AdminDashboard },
-  { path: 'admin/editor/:id', component: TabEditor },
+  // Lazy: Song browsing routes
+  {
+    path: 'artists',
+    loadComponent: () => import('./pages/artists/artists').then(m => m.Artists)
+  },
+  {
+    path: 'artist/:id',
+    loadComponent: () => import('./pages/artist-detail/artist-detail').then(m => m.ArtistDetail)
+  },
+  {
+    path: 'songs',
+    loadComponent: () => import('./pages/songs/songs').then(m => m.Songs)
+  },
+  {
+    path: 'tab/:id',
+    loadComponent: () => import('./pages/tab-reader/tab-reader').then(m => m.TabReader),
+    data: { hideHeaderOnScroll: true }
+  },
+
+  // Lazy: Secondary pages
+  {
+    path: 'contact',
+    loadComponent: () => import('./pages/contact/contact').then(m => m.Contact)
+  },
+  {
+    path: 'request-song',
+    loadComponent: () => import('./pages/request-song/request-song').then(m => m.RequestSong)
+  },
+  {
+    path: 'donate',
+    loadComponent: () => import('./pages/donate/donate').then(m => m.Donate)
+  },
+  {
+    path: 'sources',
+    loadComponent: () => import('./pages/sources/sources').then(m => m.Sources)
+  },
+
+  // Lazy: Admin routes (rarely accessed)
+  {
+    path: 'admin',
+    loadComponent: () => import('./admin/admin-dashboard/admin-dashboard').then(m => m.AdminDashboard)
+  },
+  {
+    path: 'admin/editor/:id',
+    loadComponent: () => import('./admin/tab-editor/tab-editor').then(m => m.TabEditor)
+  },
 
   { path: '**', redirectTo: '' }
 ];

@@ -3,50 +3,53 @@
   <div class="filters-container">
     <div class="container mx-auto px-4 py-4">
       <div class="flex flex-wrap items-center gap-4 justify-between">
+        <!-- Búsqueda en tiempo real con autocomplete -->
+        <div class="flex-1 max-w-md relative">
+          <input
+            type="text"
+            [ngModel]="searchQuery()"
+            (ngModelChange)="setSearchQuery($event)"
+            (focus)="onSearchFocus()"
+            (blur)="hideSuggestions()"
+            placeholder="Buscar por canción o artista..."
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-bs-gold focus:border-transparent"
+            autocomplete="off">
+
+          <!-- Autocomplete dropdown -->
+          @if (showSuggestions() && suggestions().length > 0) {
+            <div class="absolute z-10 w-full mt-1 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg shadow-lg max-h-64 overflow-y-auto">
+              @for (suggestion of suggestions(); track suggestion.id) {
+                <button
+                  type="button"
+                  (click)="selectSuggestion(suggestion)"
+                  class="w-full px-4 py-3 text-left hover:bg-gray-100 dark:hover:bg-gray-700 transition border-b border-gray-200 dark:border-gray-700 last:border-b-0">
+                  <div class="font-semibold" [innerHTML]="highlightMatch(suggestion.title, searchQuery())"></div>
+                  <div class="text-sm text-gray-600 dark:text-gray-400" [innerHTML]="highlightMatch(suggestion.subtitle, searchQuery())"></div>
+                </button>
+              }
+            </div>
+          }
+        </div>
+
         <!-- Ordenamiento -->
         <div class="flex items-center gap-2">
-          <label class="text-sm font-semibold">Ordenar por:</label>
-          <select 
-            [(ngModel)]="sortBy" 
+          <label class="text-sm font-semibold">Ordenar:</label>
+          <select
+            [(ngModel)]="sortBy"
             (ngModelChange)="setSortBy($event)"
             class="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-bs-gold">
             <option value="recent">Más recientes</option>
             <option value="a-z">A-Z</option>
-            <option value="difficulty">Dificultad</option>
           </select>
         </div>
-
-        <!-- Filtro de dificultad -->
-        <div class="flex items-center gap-2 flex-wrap">
-          <label class="text-sm font-semibold">Dificultad:</label>
-          <div class="flex gap-2">
-            <button
-              (click)="setDifficultyFilter('all')"
-              [class.active]="difficultyFilter() === 'all'"
-              class="difficulty-chip">
-              Todas
-            </button>
-            <button
-              (click)="setDifficultyFilter('beginner')"
-              [class.active]="difficultyFilter() === 'beginner'"
-              class="difficulty-chip chip-beginner">
-              Principiante
-            </button>
-            <button
-              (click)="setDifficultyFilter('intermediate')"
-              [class.active]="difficultyFilter() === 'intermediate'"
-              class="difficulty-chip chip-intermediate">
-              Intermedio
-            </button>
-            <button
-              (click)="setDifficultyFilter('advanced')"
-              [class.active]="difficultyFilter() === 'advanced'"
-              class="difficulty-chip chip-advanced">
-              Avanzado
-            </button>
-          </div>
-        </div>
       </div>
+
+      <!-- Contador de resultados -->
+      @if (searchQuery()) {
+        <div class="mt-3 text-sm text-gray-600">
+          {{ songs().length }} resultado{{ songs().length !== 1 ? 's' : '' }} encontrado{{ songs().length !== 1 ? 's' : '' }}
+        </div>
+      }
     </div>
   </div>
 
@@ -54,16 +57,16 @@
   <app-item-list
     [items]="songs()"
     title="Canciones"
-    emptyMessage="No hay canciones con estos filtros">
+    [emptyMessage]="searchQuery() ? 'No se encontraron canciones con \"' + searchQuery() + '\"' : 'No hay canciones disponibles'">
   </app-item-list>
 
   <!-- CTA para pedir canciones (si lista vacía por búsqueda) -->
-  @if (songs().length === 0 && difficultyFilter() !== 'all') {
+  @if (songs().length === 0 && searchQuery()) {
     <div class="empty-state">
       <div class="container mx-auto px-4 py-8 text-center">
-        <p class="text-gray-600 mb-4">No encontramos canciones con este nivel de dificultad</p>
-        <a routerLink="/request-song" class="btn-primary">
-          Pedir una canción
+        <p class="text-gray-600 mb-4">¿No encuentras lo que buscas?</p>
+        <a routerLink="/request-song" class="btn-primary inline-block px-6 py-3 bg-bs-gold text-black font-semibold rounded-lg hover:bg-yellow-500 transition">
+          Solicitar una canción
         </a>
       </div>
     </div>
