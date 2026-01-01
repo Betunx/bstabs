@@ -9,7 +9,7 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-// Header de la canciÛn
+// Header de la cancion
 .song-header {
   text-align: center;
   padding-block: 2rem;
@@ -62,88 +62,6 @@
       line-height: 1.6;
     }
   }
-}
-
-// Secciones de la tablatura
-.tab-sections {
-  padding-block: 1rem 2rem;
-}
-
-.tab-section {
-  margin-block-end: 2rem;
-
-  .section-name {
-    font-size: 1.25rem;
-    font-weight: bold;
-    color: #D4AF37;
-    margin-block: 1lh 1lh; // ê Espaciado consistente
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .section-content {
-    font-family: 'Courier Prime', 'Courier New', monospace;
-    font-size: 1rem;
-    line-height: 1.5;
-  }
-}
-
-// Contenedor de lÌnea de acordes + letra
-.chord-line-wrapper {
-  position: relative;
-  margin-block: 1lh; // ê Espaciado consistente entre lÌneas
-}
-
-// LÌnea de acordes (posicionados absolutamente)
-.chord-line {
-  position: relative;
-  height: 1.5em;
-  pointer-events: none;
-
-  .chord-symbol {
-    position: absolute;
-    top: 0;
-    font-weight: bold;
-    color: #D4AF37;
-    white-space: nowrap;
-    font-size: 0.95rem;
-  }
-}
-
-// LÌnea de letra
-.lyrics-line {
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  color: black;
-  font-weight: 400;
-}
-
-// Responsive
-@media (max-width: 768px) {
-  .tab-viewer-container {
-    margin-block: 1rem;
-    padding-inline: 0.75rem;
-  }
-
-  .song-header {
-    .song-title {
-      font-size: 2rem;
-    }
-
-    .song-artist {
-      font-size: 1.1rem;
-    }
-
-    .song-metadata {
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-  }
-
-  .chord-line-wrapper {
-    font-size: 0.9rem;
-  }
-}
 
   .source-attribution {
     margin-block-start: 1.5rem;
@@ -225,14 +143,126 @@
       }
     }
   }
+}
 
-  .lyrics-line.lyrics-only {
+// Secciones de la tablatura
+.tab-sections {
+  padding-block: 1rem 2rem;
+}
+
+.tab-section {
+  margin-block-end: 2rem;
+
+  .section-name {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #D4AF37;
+    margin-block: 1.5rem 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .section-content {
+    font-family: 'Courier Prime', 'Courier New', Consolas, monospace;
+    font-size: 1rem;
+    line-height: 1.5;
+    overflow-x: auto;
+    padding-block: 0.5rem;
+  }
+}
+
+// Contenedor de linea de acordes + letra
+.chord-line-wrapper {
+  position: relative;
+  margin-block: 1.25rem;
+  white-space: pre;
+}
+
+// Linea de acordes (posicionados absolutamente)
+.chord-line {
+  position: relative;
+  height: 1.4em;
+  pointer-events: none;
+  min-width: max-content;
+
+  .chord-symbol {
+    position: absolute;
+    top: 0;
+    font-weight: bold;
+    color: #D4AF37;
+    white-space: nowrap;
+    font-size: 0.95rem;
+  }
+}
+
+// Linea de letra
+.lyrics-line {
+  white-space: pre;
+  color: black;
+  font-weight: 400;
+  min-width: max-content;
+
+  &.lyrics-only {
     margin-block-start: 0.5rem;
     line-height: 1.8;
+    white-space: pre-wrap;
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .tab-viewer-container {
+    margin-block: 1rem;
+    padding-inline: 0.5rem;
+    border-radius: 0;
+  }
+
+  .song-header {
+    padding-block: 1.5rem;
+
+    .song-title {
+      font-size: 1.75rem;
+    }
+
+    .song-artist {
+      font-size: 1rem;
+    }
+
+    .song-metadata {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+
+  .tab-section {
+    .section-content {
+      font-size: 0.875rem;
+    }
   }
 
   .chord-line-wrapper {
-    &:has(.lyrics-only) {
-      margin-block: 0.25lh;
+    margin-block: 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+// Scrollbar styling para overflow
+.section-content {
+  &::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #D4AF37;
+    border-radius: 3px;
+
+    &:hover {
+      background: #B8941F;
     }
   }
+}

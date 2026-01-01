@@ -1,4 +1,4 @@
-export type Difficulty = 'beginner' | 'intermediate' | 'advanced';
+import { MusicGenre } from '../constants/genres';
 
 export interface Song {
   id: string;
@@ -8,7 +8,7 @@ export interface Song {
   tempo: number;
   timeSignature: string;
   tuning: string;
-  difficulty: Difficulty;
+  genre?: MusicGenre;
   story?: string;
   sections: SongSection[];
   sourceUrl?: string;

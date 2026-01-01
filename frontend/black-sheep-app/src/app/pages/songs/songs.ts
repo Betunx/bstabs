@@ -4,9 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ItemList, ListItem } from '../../shared/components/item-list/item-list';
 import { SongsService } from '../../core/services/songs.service';
+import { MusicGenre, MUSIC_GENRES } from '../../core/constants/genres';
 
 interface SongItem extends ListItem {
-  difficulty?: 'beginner' | 'intermediate' | 'advanced';
+  genre?: MusicGenre;
   createdAt?: Date;
 }
 
@@ -24,9 +25,13 @@ export class Songs implements OnInit {
   sortBy = signal<SortOption>('recent');
   searchQuery = signal<string>('');
   debouncedQuery = signal<string>(''); // Query después del debounce
+  selectedGenre = signal<MusicGenre | ''>(''); // Filtro de género
   loading = signal(true);
   suggestions = signal<SongItem[]>([]); // Sugerencias autocomplete
   showSuggestions = signal(false);
+
+  // Lista de géneros disponibles
+  readonly genres = MUSIC_GENRES;
 
   private allSongs = signal<SongItem[]>([]);
   private debounceTimer: any = null;
@@ -60,7 +65,7 @@ export class Songs implements OnInit {
           title: song.title,
           subtitle: song.artist,
           routerLink: `/tab/${song.id}`,
-          difficulty: song.difficulty,
+          genre: song.genre,
           createdAt: song.createdAt
         }));
         this.allSongs.set(songItems);
@@ -81,8 +86,14 @@ export class Songs implements OnInit {
     if (query) {
       filtered = filtered.filter(song =>
         song.title.toLowerCase().includes(query) ||
-        song.subtitle.toLowerCase().includes(query)
+        (song.subtitle?.toLowerCase() || '').includes(query)
       );
+    }
+
+    // Filtrar por género
+    const genre = this.selectedGenre();
+    if (genre) {
+      filtered = filtered.filter(song => song.genre === genre);
     }
 
     // Ordenar
@@ -115,7 +126,7 @@ export class Songs implements OnInit {
     const matches = this.allSongs()
       .filter(song =>
         song.title.toLowerCase().includes(q) ||
-        song.subtitle.toLowerCase().includes(q)
+        (song.subtitle?.toLowerCase() || '').includes(q)
       )
       .slice(0, 5);
 
@@ -143,6 +154,10 @@ export class Songs implements OnInit {
 
   setSearchQuery(query: string) {
     this.searchQuery.set(query);
+  }
+
+  setGenre(genre: MusicGenre | '') {
+    this.selectedGenre.set(genre);
   }
 
   /**

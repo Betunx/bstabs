@@ -279,13 +279,38 @@ class TabScraperV2 {
   }
 
   /**
+   * Parsea una línea de acordes y extrae las posiciones de cada acorde
+   * Entrada: "Am      G        F"
+   * Salida: [{ chord: "Am", position: 0 }, { chord: "G", position: 8 }, { chord: "F", position: 17 }]
+   */
+  parseChordPositions(chordLine) {
+    if (!chordLine || chordLine.trim().length === 0) {
+      return [];
+    }
+
+    const positions = [];
+    // Patrón robusto para acordes: A-G, modificadores, extensiones, bajos
+    const chordPattern = /([A-G][#b]?(?:m|maj|min|aug|dim|sus|add|7|9|11|13|6)?(?:[0-9])?(?:\/[A-G][#b]?)?)/g;
+
+    let match;
+    while ((match = chordPattern.exec(chordLine)) !== null) {
+      positions.push({
+        chord: match[1],
+        position: match.index
+      });
+    }
+
+    return positions;
+  }
+
+  /**
    * Completa letras incompletas basándose en contexto
    * Identifica líneas que son solo acordes y las mantiene separadas de la letra
+   * Genera formato compatible con frontend: { chords: ChordPosition[], lyrics: string }
    */
   completeIncompleteLyrics(sections) {
     return sections.map(section => {
       const completedLines = [];
-      let previousLine = '';
 
       for (let i = 0; i < section.lines.length; i++) {
         const line = section.lines[i];
@@ -297,25 +322,23 @@ class TabScraperV2 {
         if (isChordLine && nextLine && !this.isChordOnlyLine(nextLine)) {
           // Línea de acordes seguida de letra - combínalas
           completedLines.push({
-            chords: line,
+            chords: this.parseChordPositions(line),
             lyrics: nextLine
           });
           i++; // Salta la siguiente línea porque ya la procesamos
         } else if (isChordLine) {
           // Línea de solo acordes sin letra
           completedLines.push({
-            chords: line,
+            chords: this.parseChordPositions(line),
             lyrics: ''
           });
         } else {
           // Línea de letra sin acordes encima
           completedLines.push({
-            chords: '',
+            chords: [],
             lyrics: line
           });
         }
-
-        previousLine = line;
       }
 
       return {
@@ -331,8 +354,8 @@ class TabScraperV2 {
   isChordOnlyLine(line) {
     if (!line || line.trim().length === 0) return false;
 
-    // Patrón de acordes (A-G con modificadores)
-    const chordPattern = /\b[A-G][#b]?(?:m|maj|min|aug|dim|sus|add)?[0-9]?(?:\/[A-G][#b]?)?\b/g;
+    // Patrón de acordes completo (A-G con todos los modificadores comunes)
+    const chordPattern = /^[A-G][#b]?(?:m|maj|min|aug|dim|sus|add|7|9|11|13|6)?(?:[0-9])?(?:\/[A-G][#b]?)?$/;
 
     // Extrae todas las palabras que NO son espacios
     const words = line.trim().split(/\s+/);

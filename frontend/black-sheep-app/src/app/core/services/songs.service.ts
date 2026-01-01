@@ -12,7 +12,7 @@ interface SongDto {
   tempo: number | null;
   time_signature: string | null;
   tuning: string | null;
-  difficulty: string | null;
+  genre: string | null;
   story: string | null;
   sections: any[];
   source_url: string | null;
@@ -121,7 +121,9 @@ export class SongsService {
         // Limit cache size to 50 entries
         if (this.searchCache.size > 50) {
           const firstKey = this.searchCache.keys().next().value;
-          this.searchCache.delete(firstKey);
+          if (firstKey) {
+            this.searchCache.delete(firstKey);
+          }
         }
         return songs;
       }),
@@ -152,7 +154,7 @@ export class SongsService {
       tempo: dto.tempo || 120,
       timeSignature: dto.time_signature || '4/4',
       tuning: dto.tuning || 'Standard',
-      difficulty: (dto.difficulty as any) || 'beginner',
+      genre: (dto.genre as any) || undefined,
       story: dto.story || undefined,
       sections: dto.sections || [],
       sourceUrl: dto.source_url || undefined,
@@ -171,7 +173,7 @@ export class SongsService {
         tempo: 87,
         timeSignature: '4/4',
         tuning: 'Standard (EADGBE)',
-        difficulty: 'beginner',
+        genre: 'Rock',
         story: 'Icónica canción de Oasis lanzada en 1995.',
         sourceUrl: 'https://www.cifraclub.com.br/oasis/wonderwall/',
         sections: [
@@ -198,7 +200,7 @@ export class SongsService {
         tempo: 73,
         timeSignature: '4/4',
         tuning: 'Standard (EADGBE)',
-        difficulty: 'beginner',
+        genre: 'Pop',
         story: 'Clásico atemporal de The Beatles.',
         sourceUrl: 'https://www.cifraclub.com.br/the-beatles/hey-jude/',
         sections: [
@@ -220,7 +222,7 @@ export class SongsService {
         tempo: 82,
         timeSignature: '4/4',
         tuning: 'Standard (EADGBE)',
-        difficulty: 'advanced',
+        genre: 'Rock',
         story: 'Obra maestra de Led Zeppelin.',
         sourceUrl: 'https://www.cifraclub.com.br/led-zeppelin/stairway-to-heaven/',
         sections: [
@@ -242,7 +244,7 @@ export class SongsService {
         tempo: 72,
         timeSignature: '4/4',
         tuning: 'Standard (EADGBE)',
-        difficulty: 'advanced',
+        genre: 'Rock',
         story: 'Épica obra maestra de Queen.',
         sourceUrl: 'https://www.cifraclub.com.br/queen/bohemian-rhapsody/',
         sections: [
@@ -264,7 +266,7 @@ export class SongsService {
         tempo: 46,
         timeSignature: '4/4',
         tuning: 'Standard (EADGBE)',
-        difficulty: 'intermediate',
+        genre: 'Metal',
         story: 'Balada icónica de Metallica.',
         sourceUrl: 'https://www.cifraclub.com.br/metallica/nothing-else-matters/',
         sections: [

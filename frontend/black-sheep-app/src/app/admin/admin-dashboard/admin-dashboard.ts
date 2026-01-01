@@ -1,15 +1,7 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-
-interface PendingSong {
-  id: string;
-  title: string;
-  artist: string;
-  chords: string[];
-  createdAt: Date;
-  sourceUrl?: string;
-}
+import { AdminService, AdminSong, SongRequest } from '../../core/services/admin.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -19,10 +11,15 @@ interface PendingSong {
   styleUrl: './admin-dashboard.scss'
 })
 export class AdminDashboard implements OnInit {
-  pendingSongs = signal<PendingSong[]>([]);
+  private adminService = inject(AdminService);
+
+  pendingSongs = signal<AdminSong[]>([]);
+  userRequests = signal<SongRequest[]>([]);
   publishedCount = signal(0);
   pendingCount = signal(0);
+  requestsCount = signal(0);
   isLoading = signal(true);
+  activeTab = signal<'pending' | 'requests'>('pending');
 
   // Drag & Drop states
   isDragging = signal(false);
@@ -30,38 +27,115 @@ export class AdminDashboard implements OnInit {
   uploadError = signal<string | null>(null);
 
   ngOnInit(): void {
-    this.loadStats();
-    this.loadPendingSongs();
+    this.loadData();
   }
 
-  private loadStats(): void {
-    // TODO: Conectar con API real
-    // GET /api/songs?status=published
-    // GET /api/songs?status=pending
+  private loadData(): void {
+    this.isLoading.set(true);
 
-    // Mock data por ahora
-    this.publishedCount.set(0);
-    this.pendingCount.set(0);
+    this.adminService.getStats().subscribe({
+      next: (stats) => {
+        this.publishedCount.set(stats.publishedCount);
+        this.pendingCount.set(stats.pendingCount);
+        this.requestsCount.set(stats.pendingRequestsCount);
+      },
+      error: (err) => console.error('Error loading stats:', err)
+    });
+
+    this.adminService.getSongs('pending').subscribe({
+      next: (songs) => {
+        this.pendingSongs.set(songs);
+        this.isLoading.set(false);
+      },
+      error: (err) => {
+        console.error('Error loading pending songs:', err);
+        this.isLoading.set(false);
+      }
+    });
+
+    this.adminService.getRequests('pending').subscribe({
+      next: (requests) => this.userRequests.set(requests),
+      error: (err) => console.error('Error loading requests:', err)
+    });
   }
 
-  private loadPendingSongs(): void {
-    // TODO: Conectar con API real
-    // GET /api/songs?status=pending
+  setActiveTab(tab: 'pending' | 'requests'): void {
+    this.activeTab.set(tab);
+  }
 
-    // Mock data por ahora
-    this.pendingSongs.set([]);
-    this.isLoading.set(false);
+  publishSong(id: string): void {
+    this.adminService.publishSong(id).subscribe({
+      next: () => {
+        this.pendingSongs.update(songs => songs.filter(s => s.id !== id));
+        this.pendingCount.update(c => c - 1);
+        this.publishedCount.update(c => c + 1);
+      },
+      error: (err) => console.error('Error publishing:', err)
+    });
+  }
+
+  rejectSong(id: string): void {
+    if (confirm('¿Rechazar esta canción? Volverá a la cola de pendientes.')) {
+      this.adminService.rejectSong(id).subscribe({
+        next: () => this.loadData(),
+        error: (err) => console.error('Error rejecting:', err)
+      });
+    }
   }
 
   deleteSong(id: string): void {
-    if (confirm('¿Estás seguro de eliminar esta tab?')) {
-      // TODO: DELETE /api/songs/:id
-      console.log('Eliminando:', id);
-
-      // Actualizar lista
-      this.pendingSongs.update(songs => songs.filter(s => s.id !== id));
-      this.pendingCount.update(count => count - 1);
+    if (confirm('¿Eliminar esta canción permanentemente?')) {
+      this.adminService.deleteSong(id).subscribe({
+        next: () => {
+          this.pendingSongs.update(songs => songs.filter(s => s.id !== id));
+          this.pendingCount.update(c => c - 1);
+        },
+        error: (err) => console.error('Error deleting:', err)
+      });
     }
+  }
+
+  completeRequest(id: string): void {
+    this.adminService.updateRequest(id, { status: 'completed' }).subscribe({
+      next: () => {
+        this.userRequests.update(reqs => reqs.filter(r => r.id !== id));
+        this.requestsCount.update(c => c - 1);
+      },
+      error: (err) => console.error('Error completing request:', err)
+    });
+  }
+
+  rejectRequest(id: string): void {
+    this.adminService.updateRequest(id, { status: 'rejected' }).subscribe({
+      next: () => {
+        this.userRequests.update(reqs => reqs.filter(r => r.id !== id));
+        this.requestsCount.update(c => c - 1);
+      },
+      error: (err) => console.error('Error rejecting request:', err)
+    });
+  }
+
+  deleteRequest(id: string): void {
+    if (confirm('¿Eliminar esta solicitud?')) {
+      this.adminService.deleteRequest(id).subscribe({
+        next: () => {
+          this.userRequests.update(reqs => reqs.filter(r => r.id !== id));
+          this.requestsCount.update(c => c - 1);
+        },
+        error: (err) => console.error('Error deleting request:', err)
+      });
+    }
+  }
+
+  getEditReasonLabel(reason: string | null): string {
+    const labels: Record<string, string> = {
+      'wrong_chords': 'Acordes incorrectos',
+      'wrong_lyrics': 'Letra incorrecta',
+      'missing_section': 'Sección faltante',
+      'wrong_key': 'Tono incorrecto',
+      'other': 'Otro'
+    };
+    return reason ? labels[reason] || reason : '';
   }
 
   // ===== DRAG & DROP METHODS =====
@@ -138,8 +212,8 @@ export class AdminDashboard implements OnInit {
       console.log('✅ PDF procesado:', file.name);
       this.uploadProgress.set(null);
 
-      // Recargar lista de canciones
-      this.loadPendingSongs();
+      // Recargar datos
+      this.loadData();
 
     } catch (error) {
       console.error('❌ Error subiendo PDF:', error);

@@ -7,6 +7,28 @@ interface Env {
   ADMIN_API_KEY: string
 }
 
+type MusicGenre =
+  | 'Rock'
+  | 'Pop'
+  | 'Balada'
+  | 'Corrido'
+  | 'Norteño'
+  | 'Banda'
+  | 'Regional Mexicano'
+  | 'Ranchera'
+  | 'Metal'
+  | 'Punk'
+  | 'Indie'
+  | 'Folk'
+  | 'Blues'
+  | 'Jazz'
+  | 'Gospel/Cristiana'
+  | 'Cumbia'
+  | 'Salsa'
+  | 'Reggae'
+  | 'Country'
+  | 'Alternativo'
+
 interface Song {
   id?: string
   title: string
@@ -15,13 +37,31 @@ interface Song {
   tempo?: number
   time_signature?: string
   tuning?: string
-  difficulty?: 'beginner' | 'intermediate' | 'advanced'
+  genre?: MusicGenre
   story?: string
   sections: any[]
   spotify_url?: string
   youtube_url?: string
   source_url?: string
   status?: 'draft' | 'pending' | 'published' | 'archived'
+}
+
+interface SongRequest {
+  id?: string
+  type: 'new_song' | 'edit'
+  song_id?: string
+  song_title: string
+  artist_name?: string
+  lyrics?: string
+  chords?: string[]
+  song_key?: string
+  tempo?: number
+  spotify_url?: string
+  youtube_url?: string
+  edit_reason?: 'wrong_chords' | 'wrong_lyrics' | 'missing_section' | 'wrong_key' | 'other'
+  description?: string
+  user_email?: string
+  status?: 'pending' | 'completed' | 'rejected'
 }
 
 // CORS headers
@@ -74,7 +114,7 @@ export default {
       // GET /songs - Listar canciones publicadas
       if (path === '/songs' && request.method === 'GET') {
         const artist = url.searchParams.get('artist')
-        const difficulty = url.searchParams.get('difficulty')
+        const genre = url.searchParams.get('genre')
         const search = url.searchParams.get('q')
 
         let query = supabase
@@ -84,7 +124,7 @@ export default {
           .order('created_at', { ascending: false })
 
         if (artist) query = query.ilike('artist', `%${artist}%`)
-        if (difficulty) query = query.eq('difficulty', difficulty)
+        if (genre) query = query.eq('genre', genre)
         if (search) query = query.or(`title.ilike.%${search}%,artist.ilike.%${search}%`)
 
         const { data, error } = await query
@@ -182,6 +222,203 @@ export default {
 
         if (error) throw error
         return jsonResponse(data)
+      }
+
+      // POST /songs/:id/reject - Rechazar cancion (vuelve a pending)
+      if (path.match(/^\/songs\/[a-f0-9-]+\/reject$/) && request.method === 'POST') {
+        if (!verifyApiKey(request, env)) {
+          return jsonResponse({ error: 'Unauthorized' }, 401)
+        }
+
+        const id = path.split('/')[2]
+
+        const { data, error } = await supabase
+          .from('songs')
+          .update({ status: 'pending' })
+          .eq('id', id)
+          .select()
+          .single()
+
+        if (error) throw error
+        return jsonResponse(data)
+      }
+
+      // ===== BÚSQUEDA PÚBLICA =====
+
+      // GET /songs/search - Buscar canciones (para sugerencias)
+      if (path === '/songs/search' && request.method === 'GET') {
+        const q = url.searchParams.get('q') || ''
+        const limit = parseInt(url.searchParams.get('limit') || '10')
+
+        if (q.length < 2) {
+          return jsonResponse([])
+        }
+
+        const { data, error } = await supabase
+          .from('songs')
+          .select('id, title, artist')
+          .eq('status', 'published')
+          .or(`title.ilike.%${q}%,artist.ilike.%${q}%`)
+          .limit(limit)
+
+        if (error) throw error
+        return jsonResponse(data)
+      }
+
+      // ===== SOLICITUDES DE USUARIOS (PÚBLICAS) =====
+
+      // POST /requests - Crear solicitud de canción/edición
+      if (path === '/requests' && request.method === 'POST') {
+        const requestData: SongRequest = await request.json()
+
+        // Validar campos requeridos para nueva canción
+        if (requestData.type === 'new_song') {
+          if (!requestData.song_title || !requestData.artist_name || !requestData.lyrics || !requestData.chords || requestData.chords.length === 0) {
+            return jsonResponse({ error: 'Para solicitar una canción necesitas: título, artista, letra y al menos un acorde' }, 400)
+          }
+        }
+
+        // Validar campos requeridos para edición
+        if (requestData.type === 'edit') {
+          if (!requestData.song_id || !requestData.song_title) {
+            return jsonResponse({ error: 'song_id and song_title are required for edit requests' }, 400)
+          }
+        }
+
+        // Validar tipo
+        if (!requestData.type || !['new_song', 'edit'].includes(requestData.type)) {
+          return jsonResponse({ error: 'type must be new_song or edit' }, 400)
+        }
+
+        const { data, error } = await supabase
+          .from('song_requests')
+          .insert([{
+            type: requestData.type,
+            song_id: requestData.song_id || null,
+            song_title: requestData.song_title,
+            artist_name: requestData.artist_name || null,
+            lyrics: requestData.lyrics || null,
+            chords: requestData.chords || null,
+            song_key: requestData.song_key || null,
+            tempo: requestData.tempo || null,
+            spotify_url: requestData.spotify_url || null,
+            youtube_url: requestData.youtube_url || null,
+            edit_reason: requestData.edit_reason || null,
+            description: requestData.description || null,
+            user_email: requestData.user_email || null,
+            status: 'pending'
+          }])
+          .select()
+          .single()
+
+        if (error) throw error
+        return jsonResponse({ message: 'Solicitud enviada correctamente', id: data.id }, 201)
+      }
+
+      // ===== ADMIN: GESTIÓN DE SOLICITUDES =====
+
+      // GET /admin/requests - Listar solicitudes (requiere API key)
+      if (path === '/admin/requests' && request.method === 'GET') {
+        if (!verifyApiKey(request, env)) {
+          return jsonResponse({ error: 'Unauthorized' }, 401)
+        }
+
+        const status = url.searchParams.get('status')
+        const type = url.searchParams.get('type')
+
+        let query = supabase
+          .from('song_requests')
+          .select('*')
+          .order('created_at', { ascending: false })
+
+        if (status) query = query.eq('status', status)
+        if (type) query = query.eq('type', type)
+
+        const { data, error } = await query
+
+        if (error) throw error
+        return jsonResponse(data)
+      }
+
+      // PUT /admin/requests/:id - Actualizar solicitud (requiere API key)
+      if (path.match(/^\/admin\/requests\/[a-f0-9-]+$/) && request.method === 'PUT') {
+        if (!verifyApiKey(request, env)) {
+          return jsonResponse({ error: 'Unauthorized' }, 401)
+        }
+
+        const id = path.split('/')[3]
+        const updates: Partial<SongRequest> = await request.json()
+
+        const { data, error } = await supabase
+          .from('song_requests')
+          .update({ ...updates, updated_at: new Date().toISOString() })
+          .eq('id', id)
+          .select()
+          .single()
+
+        if (error) throw error
+        return jsonResponse(data)
+      }
+
+      // DELETE /admin/requests/:id - Eliminar solicitud (requiere API key)
+      if (path.match(/^\/admin\/requests\/[a-f0-9-]+$/) && request.method === 'DELETE') {
+        if (!verifyApiKey(request, env)) {
+          return jsonResponse({ error: 'Unauthorized' }, 401)
+        }
+
+        const id = path.split('/')[3]
+
+        const { error } = await supabase
+          .from('song_requests')
+          .delete()
+          .eq('id', id)
+
+        if (error) throw error
+        return jsonResponse({ message: 'Request deleted' })
+      }
+
+      // ===== ADMIN: GESTIÓN DE CANCIONES (todas las canciones) =====
+
+      // GET /admin/songs - Listar TODAS las canciones (requiere API key)
+      if (path === '/admin/songs' && request.method === 'GET') {
+        if (!verifyApiKey(request, env)) {
+          return jsonResponse({ error: 'Unauthorized' }, 401)
+        }
+
+        const status = url.searchParams.get('status')
+        const search = url.searchParams.get('q')
+
+        let query = supabase
+          .from('songs')
+          .select('*')
+          .order('created_at', { ascending: false })
+
+        if (status) query = query.eq('status', status)
+        if (search) query = query.or(`title.ilike.%${search}%,artist.ilike.%${search}%`)
+
+        const { data, error } = await query
+
+        if (error) throw error
+        return jsonResponse(data)
+      }
+
+      // GET /admin/stats - Estadísticas (requiere API key)
+      if (path === '/admin/stats' && request.method === 'GET') {
+        if (!verifyApiKey(request, env)) {
+          return jsonResponse({ error: 'Unauthorized' }, 401)
+        }
+
+        const [publishedRes, pendingRes, requestsRes] = await Promise.all([
+          supabase.from('songs').select('id', { count: 'exact', head: true }).eq('status', 'published'),
+          supabase.from('songs').select('id', { count: 'exact', head: true }).eq('status', 'pending'),
+          supabase.from('song_requests').select('id', { count: 'exact', head: true }).eq('status', 'pending')
+        ])
+
+        return jsonResponse({
+          publishedCount: publishedRes.count || 0,
+          pendingCount: pendingRes.count || 0,
+          pendingRequestsCount: requestsRes.count || 0
+        })
       }
 
       // Ruta no encontrada

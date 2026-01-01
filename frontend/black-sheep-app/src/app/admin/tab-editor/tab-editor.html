@@ -1,5 +1,49 @@
 <div class="tab-editor-container">
-  <h2>Editor de Tablaturas</h2>
+  <div class="editor-header">
+    <h2>Editor de Tablaturas</h2>
+    <button type="button" (click)="createNew()" class="btn-new">+ Nueva Canción</button>
+  </div>
+
+  <!-- Búsqueda de canciones existentes -->
+  <div class="search-section">
+    <h3>Editar canción existente</h3>
+    <div class="search-box">
+      <input
+        type="text"
+        [value]="searchQuery()"
+        (input)="onSearchInput($event)"
+        placeholder="Buscar por título o artista..."
+        class="search-input">
+      @if (isSearching()) {
+        <span class="search-loading">Buscando...</span>
+      }
+    </div>
+
+    @if (searchResults().length > 0) {
+      <div class="search-results">
+        @for (song of searchResults(); track song.id) {
+          <div class="search-result-item" (click)="selectSong(song)">
+            <strong>{{ song.title }}</strong>
+            <span class="artist">{{ song.artist }}</span>
+            <span class="status-badge" [class]="song.status">{{ song.status }}</span>
+          </div>
+        }
+      </div>
+    }
+  </div>
+
+  @if (isEditing()) {
+    <div class="editing-indicator">
+      Editando: <strong>{{ songForm.value.title }}</strong> - {{ songForm.value.artist }}
+      <span class="song-id">(ID: {{ selectedSongId() }})</span>
+    </div>
+  }
+
+  @if (saveMessage()) {
+    <div class="save-message" [class.error]="saveMessage().includes('Error')">
+      {{ saveMessage() }}
+    </div>
+  }
 
   <form [formGroup]="songForm" (ngSubmit)="onSubmit()">
 
@@ -21,46 +65,62 @@
 
       <div class="form-row">
         <div class="form-field">
-          <label>Tono *</label>
+          <label>Tono</label>
           <input type="text" formControlName="key" placeholder="ej: Bm, Am, C">
         </div>
 
         <div class="form-field">
-          <label>Tempo (BPM) *</label>
+          <label>Tempo (BPM)</label>
           <input type="number" formControlName="tempo" placeholder="ej: 120">
         </div>
 
         <div class="form-field">
-          <label>Compás *</label>
+          <label>Compás</label>
           <input type="text" formControlName="timeSignature" placeholder="ej: 4/4, 3/4">
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-field">
-          <label>Afinación *</label>
+          <label>Afinación</label>
           <input type="text" formControlName="tuning" placeholder="ej: Standard (EADGBE)">
         </div>
 
         <div class="form-field">
-          <label>Dificultad *</label>
-          <select formControlName="difficulty">
-            <option value="beginner">Principiante</option>
-            <option value="intermediate">Intermedio</option>
-            <option value="advanced">Avanzado</option>
+          <label>Género Musical</label>
+          <select formControlName="genre">
+            <option value="">Seleccionar género</option>
+            @for (genre of genres; track genre) {
+              <option [value]="genre">{{ genre }}</option>
+            }
           </select>
         </div>
       </div>
 
       <div class="form-field">
         <label>Historia (opcional)</label>
-        <textarea formControlName="story" rows="3" placeholder="Historia o contexto de la canción"></textarea>
+        <textarea formControlName="story" rows="2" placeholder="Historia o contexto de la canción"></textarea>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label>URL Fuente</label>
+          <input type="text" formControlName="sourceUrl" placeholder="https://...">
+        </div>
+        <div class="form-field">
+          <label>Spotify URL</label>
+          <input type="text" formControlName="spotifyUrl" placeholder="https://open.spotify.com/...">
+        </div>
+        <div class="form-field">
+          <label>YouTube URL</label>
+          <input type="text" formControlName="youtubeUrl" placeholder="https://youtube.com/...">
+        </div>
       </div>
     </div>
 
     <!-- Secciones -->
     <div class="form-section">
-      <h3>Secciones de la Canción</h3>
+      <h3>Secciones de la Canción ({{ sections.length }})</h3>
 
       <div formArrayName="sections">
         @for (section of sections.controls; track $index) {
@@ -105,7 +165,7 @@
                         </div>
                       }
                     </div>
-                    <button type="button" (click)="addChordManual($index, $i)" class="btn-add-chord">+ Acorde manual</button>
+                    <button type="button" (click)="addChordManual($index, $i)" class="btn-add-chord">+ Acorde</button>
                   </div>
 
                   <button type="button" (click)="removeLine($index, $i)" class="btn-remove-line">Eliminar línea</button>
@@ -132,7 +192,12 @@
     <!-- Botones -->
     <div class="form-actions">
       <button type="button" (click)="generatePreview()" class="btn-preview">Ver Preview</button>
-      <button type="submit" [disabled]="!songForm.valid" class="btn-submit">Guardar Canción</button>
+      <button type="submit" [disabled]="isSaving()" class="btn-submit">
+        {{ isSaving() ? 'Guardando...' : (isEditing() ? 'Actualizar' : 'Crear') }} Canción
+      </button>
+      @if (isEditing() && selectedSongId()) {
+        <button type="button" (click)="publishSong()" class="btn-publish">Publicar</button>
+      }
     </div>
 
   </form>

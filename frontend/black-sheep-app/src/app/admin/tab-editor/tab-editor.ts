@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormArray, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Song, SongSection, ChordLine, ChordPosition } from '../../core/models/song.model';
 import { TabViewer } from '../../shared/components/tab-viewer/tab-viewer';
+import { AdminService } from '../../core/services/admin.service';
+import { MUSIC_GENRES, MusicGenre } from '../../core/constants/genres';
+import { debounceTime, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-tab-editor',
@@ -12,13 +15,132 @@ import { TabViewer } from '../../shared/components/tab-viewer/tab-viewer';
   standalone: true
 })
 export class TabEditor implements OnInit {
+  private adminService = inject(AdminService);
 
   songForm!: FormGroup;
   previewSong: Song | null = null;
 
+  // Lista de géneros disponibles
+  readonly genres = MUSIC_GENRES;
+
+  // Búsqueda de canciones existentes
+  searchQuery = signal('');
+  searchResults = signal<any[]>([]);
+  isSearching = signal(false);
+  selectedSongId = signal<string | null>(null);
+  isEditing = signal(false);
+  isSaving = signal(false);
+  saveMessage = signal('');
+
+  private searchSubject = new Subject<string>();
+
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
+    this.initForm();
+    this.setupSearch();
+  }
+
+  private setupSearch(): void {
+    this.searchSubject.pipe(
+      debounceTime(300)
+    ).subscribe(query => {
+      if (query.length < 2) {
+        this.searchResults.set([]);
+        return;
+      }
+
+      this.isSearching.set(true);
+      this.adminService.getSongs(query).subscribe({
+        next: (songs) => {
+          this.searchResults.set(songs);
+          this.isSearching.set(false);
+        },
+        error: () => {
+          this.searchResults.set([]);
+          this.isSearching.set(false);
+        }
+      });
+    });
+  }
+
+  onSearchInput(event: Event): void {
+    const query = (event.target as HTMLInputElement).value;
+    this.searchQuery.set(query);
+    this.searchSubject.next(query);
+  }
+
+  selectSong(song: any): void {
+    this.selectedSongId.set(song.id);
+    this.isEditing.set(true);
+    this.searchResults.set([]);
+    this.searchQuery.set('');
+    this.loadSongToForm(song);
+  }
+
+  loadSongToForm(song: any): void {
+    // Limpiar secciones existentes
+    while (this.sections.length) {
+      this.sections.removeAt(0);
+    }
+
+    // Cargar datos básicos
+    this.songForm.patchValue({
+      title: song.title,
+      artist: song.artist,
+      key: song.key || '',
+      tempo: song.tempo || 120,
+      timeSignature: song.time_signature || '4/4',
+      tuning: song.tuning || 'Standard (EADGBE)',
+      genre: song.genre || '',
+      story: song.story || '',
+      sourceUrl: song.source_url || '',
+      spotifyUrl: song.spotify_url || '',
+      youtubeUrl: song.youtube_url || ''
+    });
+
+    // Cargar secciones
+    if (song.sections && Array.isArray(song.sections)) {
+      song.sections.forEach((section: any) => {
+        const sectionGroup = this.fb.group({
+          name: [section.name || '', Validators.required],
+          lines: this.fb.array([])
+        });
+
+        const linesArray = sectionGroup.get('lines') as FormArray;
+
+        if (section.lines && Array.isArray(section.lines)) {
+          section.lines.forEach((line: any) => {
+            const lineGroup = this.fb.group({
+              lyrics: [line.lyrics || ''],
+              chords: this.fb.array([])
+            });
+
+            const chordsArray = lineGroup.get('chords') as FormArray;
+
+            if (line.chords && Array.isArray(line.chords)) {
+              line.chords.forEach((chord: any) => {
+                chordsArray.push(this.fb.group({
+                  chord: [chord.chord || '', Validators.required],
+                  position: [chord.position || 0, [Validators.required, Validators.min(0)]]
+                }));
+              });
+            }
+
+            linesArray.push(lineGroup);
+          });
+        }
+
+        this.sections.push(sectionGroup);
+      });
+    }
+  }
+
+  createNew(): void {
+    this.selectedSongId.set(null);
+    this.isEditing.set(false);
+    this.previewSong = null;
+    this.saveMessage.set('');
     this.initForm();
   }
 
@@ -26,12 +148,15 @@ export class TabEditor implements OnInit {
     this.songForm = this.fb.group({
       title: ['', Validators.required],
       artist: ['', Validators.required],
-      key: ['', Validators.required],
-      tempo: [120, [Validators.required, Validators.min(40), Validators.max(300)]],
-      timeSignature: ['4/4', Validators.required],
-      tuning: ['Standard (EADGBE)', Validators.required],
-      difficulty: ['intermediate', Validators.required],
+      key: [''],
+      tempo: [120, [Validators.min(40), Validators.max(300)]],
+      timeSignature: ['4/4'],
+      tuning: ['Standard (EADGBE)'],
+      genre: [''],
       story: [''],
+      sourceUrl: [''],
+      spotifyUrl: [''],
+      youtubeUrl: [''],
       sections: this.fb.array([])
     });
   }
@@ -62,7 +187,7 @@ export class TabEditor implements OnInit {
 
   addLine(sectionIndex: number): void {
     const line = this.fb.group({
-      lyrics: ['', Validators.required],
+      lyrics: [''],
       chords: this.fb.array([])
     });
     this.getLinesArray(sectionIndex).push(line);
@@ -84,12 +209,10 @@ export class TabEditor implements OnInit {
     this.getChordsArray(sectionIndex, lineIndex).removeAt(chordIndex);
   }
 
-  // FUNCIÓN CLAVE: Click en la letra para agregar acorde
   onLyricsClick(event: MouseEvent, sectionIndex: number, lineIndex: number): void {
     const input = event.target as HTMLInputElement;
     const clickPosition = input.selectionStart || 0;
 
-    // Pedir nombre del acorde
     const chordName = prompt(`Acorde en posición ${clickPosition}:`);
     if (!chordName) return;
 
@@ -100,7 +223,6 @@ export class TabEditor implements OnInit {
 
     this.getChordsArray(sectionIndex, lineIndex).push(chord);
 
-    // Ordenar acordes por posición
     const chordsArray = this.getChordsArray(sectionIndex, lineIndex);
     const sortedChords = chordsArray.value.sort((a: any, b: any) => a.position - b.position);
     chordsArray.clear();
@@ -110,11 +232,6 @@ export class TabEditor implements OnInit {
   }
 
   generatePreview(): void {
-    if (!this.songForm.valid) {
-      alert('Por favor completa todos los campos requeridos');
-      return;
-    }
-
     const formValue = this.songForm.value;
 
     const sections: SongSection[] = formValue.sections.map((s: any) => ({
@@ -126,31 +243,93 @@ export class TabEditor implements OnInit {
     }));
 
     this.previewSong = {
-      id: 'preview-' + Date.now(),
+      id: this.selectedSongId() || 'preview-' + Date.now(),
       title: formValue.title,
       artist: formValue.artist,
-      key: formValue.key,
-      tempo: formValue.tempo,
-      timeSignature: formValue.timeSignature,
-      tuning: formValue.tuning,
-      difficulty: formValue.difficulty,
+      key: formValue.key || 'C',
+      tempo: formValue.tempo || 120,
+      timeSignature: formValue.timeSignature || '4/4',
+      tuning: formValue.tuning || 'Standard (EADGBE)',
+      genre: formValue.genre || undefined,
       story: formValue.story || undefined,
       sections,
+      sourceUrl: formValue.sourceUrl || undefined,
       createdAt: new Date(),
       updatedAt: new Date()
     };
   }
 
   onSubmit(): void {
-    if (!this.songForm.valid) {
-      alert('Por favor completa todos los campos requeridos');
+    if (!this.songForm.value.title || !this.songForm.value.artist) {
+      this.saveMessage.set('Título y artista son requeridos');
       return;
     }
 
-    this.generatePreview();
+    this.isSaving.set(true);
+    this.saveMessage.set('');
 
-    // TODO: Enviar al backend
-    console.log('Canción a guardar:', this.previewSong);
-    alert('Canción guardada! (TODO: integrar con API)');
+    const formValue = this.songForm.value;
+
+    const songData = {
+      title: formValue.title,
+      artist: formValue.artist,
+      key: formValue.key || null,
+      tempo: formValue.tempo || null,
+      time_signature: formValue.timeSignature || '4/4',
+      tuning: formValue.tuning || 'Standard (EADGBE)',
+      difficulty: formValue.difficulty || 'intermediate',
+      story: formValue.story || null,
+      source_url: formValue.sourceUrl || null,
+      spotify_url: formValue.spotifyUrl || null,
+      youtube_url: formValue.youtubeUrl || null,
+      sections: formValue.sections.map((s: any) => ({
+        name: s.name,
+        lines: s.lines.map((l: any) => ({
+          chords: l.chords,
+          lyrics: l.lyrics
+        }))
+      }))
+    };
+
+    if (this.isEditing() && this.selectedSongId()) {
+      // Actualizar canción existente
+      this.adminService.updateSong(this.selectedSongId()!, songData).subscribe({
+        next: () => {
+          this.saveMessage.set('Canción actualizada correctamente');
+          this.isSaving.set(false);
+        },
+        error: (err) => {
+          this.saveMessage.set('Error al actualizar: ' + (err.error?.error || err.message));
+          this.isSaving.set(false);
+        }
+      });
+    } else {
+      // Crear nueva canción
+      this.adminService.createSong(songData).subscribe({
+        next: (response: any) => {
+          this.saveMessage.set('Canción creada correctamente');
+          this.selectedSongId.set(response.id);
+          this.isEditing.set(true);
+          this.isSaving.set(false);
+        },
+        error: (err) => {
+          this.saveMessage.set('Error al crear: ' + (err.error?.error || err.message));
+          this.isSaving.set(false);
+        }
+      });
+    }
+  }
+
+  publishSong(): void {
+    if (!this.selectedSongId()) return;
+
+    this.adminService.publishSong(this.selectedSongId()!).subscribe({
+      next: () => {
+        this.saveMessage.set('Canción publicada');
+      },
+      error: (err) => {
+        this.saveMessage.set('Error al publicar: ' + (err.error?.error || err.message));
+      }
+    });
   }
 }

@@ -3,9 +3,9 @@
  */
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3000/api',
+  apiUrl: 'https://blacksheep-api.bstabs.workers.dev',
   appUrl: 'http://localhost:4200',
-  adminApiKey: 'dev-admin-key-change-in-production',
+  adminApiKey: 'admin123',
   enableDebugMode: true,
-  enableMockData: true,
+  enableMockData: false,
 };

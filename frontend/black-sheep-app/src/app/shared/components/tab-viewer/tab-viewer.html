@@ -9,7 +9,9 @@
       <span class="metadata-item">Tempo: <strong>{{ song.tempo }} BPM</strong></span>
       <span class="metadata-item">Compás: <strong>{{ song.timeSignature }}</strong></span>
       <span class="metadata-item">Afinación: <strong>{{ song.tuning }}</strong></span>
-      <span class="metadata-item">Dificultad: <strong>{{ song.difficulty }}</strong></span>
+      @if (song.genre) {
+        <span class="metadata-item">Género: <strong>{{ song.genre }}</strong></span>
+      }
     </div>
 
     @if (song.story) {

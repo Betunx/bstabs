@@ -1,1 +1,365 @@
-<p>request-song works!</p>
+<div class="min-h-screen bg-gray-50 py-8">
+  <div class="container mx-auto px-4 max-w-2xl">
+    <!-- Header -->
+    <div class="text-center mb-8">
+      <h1 class="text-3xl font-bold text-gray-900">Solicitar Cancion</h1>
+      <p class="text-gray-600 mt-2">Ayudanos a crecer el catalogo o mejorar una tablatura existente</p>
+    </div>
+
+    <!-- Success Message -->
+    @if (submitSuccess()) {
+      <div class="mb-6 bg-green-50 border border-green-200 rounded-lg p-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <svg class="h-5 w-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <span class="text-green-800">Solicitud enviada correctamente. La revisaremos pronto.</span>
+          </div>
+          <button (click)="closeSuccessMessage()" class="text-green-600 hover:text-green-800">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    }
+
+    <!-- Request Type Tabs -->
+    <div class="bg-white rounded-lg shadow mb-6">
+      <div class="flex border-b">
+        <button
+          (click)="setRequestType('new_song')"
+          class="flex-1 py-4 px-6 text-center font-medium transition"
+          [class.text-blue-600]="requestType() === 'new_song'"
+          [class.border-b-2]="requestType() === 'new_song'"
+          [class.border-blue-600]="requestType() === 'new_song'"
+          [class.text-gray-500]="requestType() !== 'new_song'">
+          Nueva Cancion
+        </button>
+        <button
+          (click)="setRequestType('edit')"
+          class="flex-1 py-4 px-6 text-center font-medium transition"
+          [class.text-orange-600]="requestType() === 'edit'"
+          [class.border-b-2]="requestType() === 'edit'"
+          [class.border-orange-600]="requestType() === 'edit'"
+          [class.text-gray-500]="requestType() !== 'edit'">
+          Editar Existente
+        </button>
+      </div>
+    </div>
+
+    <!-- Form -->
+    <div class="bg-white rounded-lg shadow p-6">
+      <!-- NEW SONG FORM -->
+      @if (requestType() === 'new_song') {
+        <div class="space-y-6">
+          <!-- Title (Required) -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">
+              Titulo de la cancion <span class="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              [ngModel]="songTitle()"
+              (ngModelChange)="songTitle.set($event)"
+              placeholder="Ej: Bohemian Rhapsody"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+          </div>
+
+          <!-- Artist (Required) -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">
+              Artista <span class="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              [ngModel]="artistName()"
+              (ngModelChange)="artistName.set($event)"
+              placeholder="Ej: Queen"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+          </div>
+
+          <!-- Lyrics (Required) -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">
+              Letra de la cancion <span class="text-red-500">*</span>
+            </label>
+            <textarea
+              [ngModel]="lyrics()"
+              (ngModelChange)="lyrics.set($event)"
+              rows="6"
+              placeholder="Escribe o pega la letra de la cancion..."
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-y"></textarea>
+          </div>
+
+          <!-- Chords (Required) - Accordion -->
+          <div class="border border-gray-200 rounded-lg">
+            <button
+              type="button"
+              (click)="toggleChordInput()"
+              class="w-full flex items-center justify-between px-4 py-3 text-left bg-gray-50 hover:bg-gray-100 transition rounded-t-lg"
+              [class.rounded-b-lg]="!showChordInput()">
+              <span class="font-medium text-gray-700">
+                Acordes de la cancion <span class="text-red-500">*</span>
+                @if (chords().length > 0) {
+                  <span class="ml-2 text-sm text-gray-500">({{ chords().length }} acordes)</span>
+                }
+              </span>
+              <svg
+                class="h-5 w-5 text-gray-500 transition-transform"
+                [class.rotate-180]="showChordInput()"
+                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+
+            @if (showChordInput()) {
+              <div class="p-4 border-t">
+                <div class="flex gap-2 mb-3">
+                  <input
+                    type="text"
+                    [ngModel]="newChord()"
+                    (ngModelChange)="newChord.set($event)"
+                    (keydown)="onChordKeydown($event)"
+                    placeholder="Escribe un acorde (ej: Am, G, C7)"
+                    class="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm" />
+                  <button
+                    type="button"
+                    (click)="addChord()"
+                    class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition text-sm">
+                    Agregar
+                  </button>
+                </div>
+
+                @if (chords().length > 0) {
+                  <div class="flex flex-wrap gap-2">
+                    @for (chord of chords(); track chord) {
+                      <span class="inline-flex items-center px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
+                        {{ chord }}
+                        <button
+                          type="button"
+                          (click)="removeChord(chord)"
+                          class="ml-2 text-blue-600 hover:text-blue-800">
+                          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                          </svg>
+                        </button>
+                      </span>
+                    }
+                  </div>
+                } @else {
+                  <p class="text-sm text-gray-500">Agrega los acordes que usa la cancion (minimo 1)</p>
+                }
+              </div>
+            }
+          </div>
+
+          <!-- Optional Fields Toggle -->
+          <button
+            type="button"
+            (click)="toggleOptionalFields()"
+            class="flex items-center text-sm text-blue-600 hover:text-blue-800">
+            <svg
+              class="h-4 w-4 mr-1 transition-transform"
+              [class.rotate-90]="showOptionalFields()"
+              fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+            {{ showOptionalFields() ? 'Ocultar campos opcionales' : 'Mostrar campos opcionales' }}
+          </button>
+
+          <!-- Optional Fields -->
+          @if (showOptionalFields()) {
+            <div class="space-y-4 p-4 bg-gray-50 rounded-lg">
+              <p class="text-sm text-gray-500 mb-4">Estos campos son opcionales pero ayudan a mejorar la tablatura</p>
+
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-1">Tono</label>
+                  <input
+                    type="text"
+                    [ngModel]="songKey()"
+                    (ngModelChange)="songKey.set($event)"
+                    placeholder="Ej: Am, C, G"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm" />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-1">BPM / Tempo</label>
+                  <input
+                    type="number"
+                    [ngModel]="tempo()"
+                    (ngModelChange)="tempo.set($event)"
+                    placeholder="Ej: 120"
+                    min="40"
+                    max="300"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm" />
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Link de Spotify</label>
+                <input
+                  type="url"
+                  [ngModel]="spotifyUrl()"
+                  (ngModelChange)="spotifyUrl.set($event)"
+                  placeholder="https://open.spotify.com/track/..."
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm" />
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Link de YouTube</label>
+                <input
+                  type="url"
+                  [ngModel]="youtubeUrl()"
+                  (ngModelChange)="youtubeUrl.set($event)"
+                  placeholder="https://youtube.com/watch?v=..."
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm" />
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Notas adicionales</label>
+                <textarea
+                  [ngModel]="description()"
+                  (ngModelChange)="description.set($event)"
+                  rows="3"
+                  placeholder="Cualquier informacion adicional..."
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm resize-y"></textarea>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Tu email (opcional)</label>
+                <input
+                  type="email"
+                  [ngModel]="userEmail()"
+                  (ngModelChange)="userEmail.set($event)"
+                  placeholder="Para notificarte cuando se publique"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm" />
+              </div>
+            </div>
+          }
+        </div>
+      }
+
+      <!-- EDIT SONG FORM -->
+      @if (requestType() === 'edit') {
+        <div class="space-y-6">
+          <div class="relative">
+            <label class="block text-sm font-medium text-gray-700 mb-1">
+              Buscar cancion a editar <span class="text-red-500">*</span>
+            </label>
+            @if (selectedSongId()) {
+              <div class="flex items-center justify-between p-3 bg-orange-50 border border-orange-200 rounded-lg">
+                <span class="font-medium text-orange-800">{{ searchQuery() }}</span>
+                <button type="button" (click)="clearSelectedSong()" class="text-orange-600 hover:text-orange-800">
+                  Cambiar
+                </button>
+              </div>
+            } @else {
+              <input
+                type="text"
+                [ngModel]="searchQuery()"
+                (ngModelChange)="searchQuery.set($event)"
+                (input)="onSearchInput()"
+                placeholder="Escribe el nombre de la cancion..."
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent" />
+
+              @if (showSuggestions()) {
+                <div class="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg max-h-60 overflow-auto">
+                  @for (song of searchResults(); track song.id) {
+                    <button
+                      type="button"
+                      (click)="selectSong(song)"
+                      class="w-full px-4 py-3 text-left hover:bg-gray-50 border-b last:border-b-0">
+                      <span class="font-medium">{{ song.title }}</span>
+                      <span class="text-gray-500 ml-2">- {{ song.artist }}</span>
+                    </button>
+                  }
+                </div>
+              }
+            }
+          </div>
+
+          @if (selectedSongId()) {
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">
+                Que quieres corregir? <span class="text-red-500">*</span>
+              </label>
+              <select
+                [ngModel]="editReason()"
+                (ngModelChange)="editReason.set($event)"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                <option value="wrong_chords">Acordes incorrectos</option>
+                <option value="wrong_lyrics">Letra incorrecta</option>
+                <option value="missing_section">Seccion faltante</option>
+                <option value="wrong_key">Tono incorrecto</option>
+                <option value="other">Otro</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Describe el problema</label>
+              <textarea
+                [ngModel]="description()"
+                (ngModelChange)="description.set($event)"
+                rows="4"
+                placeholder="Explica que esta mal y cual seria la correccion..."
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent resize-y"></textarea>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Tu email (opcional)</label>
+              <input
+                type="email"
+                [ngModel]="userEmail()"
+                (ngModelChange)="userEmail.set($event)"
+                placeholder="Para notificarte cuando se corrija"
+                class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm" />
+            </div>
+          }
+        </div>
+      }
+
+      <!-- Error Message -->
+      @if (submitError()) {
+        <div class="mt-6 bg-red-50 border border-red-200 rounded-lg p-4">
+          <div class="flex items-center">
+            <svg class="h-5 w-5 text-red-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <span class="text-red-700">{{ submitError() }}</span>
+          </div>
+        </div>
+      }
+
+      <!-- Submit Button -->
+      <div class="mt-8">
+        <button
+          type="button"
+          (click)="submitRequest()"
+          [disabled]="!isFormValid() || isSubmitting()"
+          class="w-full py-3 px-6 text-white font-medium rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
+          [class.bg-blue-600]="requestType() === 'new_song'"
+          [class.hover:bg-blue-700]="requestType() === 'new_song' && isFormValid() && !isSubmitting()"
+          [class.bg-orange-600]="requestType() === 'edit'"
+          [class.hover:bg-orange-700]="requestType() === 'edit' && isFormValid() && !isSubmitting()">
+          @if (isSubmitting()) {
+            <span class="flex items-center justify-center">
+              <svg class="animate-spin h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              Enviando...
+            </span>
+          } @else {
+            {{ requestType() === 'new_song' ? 'Enviar Solicitud' : 'Enviar Correccion' }}
+          }
+        </button>
+      </div>
+    </div>
+
+    <div class="mt-6 text-center text-sm text-gray-500">
+      <p>Las solicitudes son revisadas manualmente.</p>
+    </div>
+  </div>
+</div>

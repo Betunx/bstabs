@@ -12,7 +12,22 @@
       "Bash(git rm:*)",
       "Bash(git checkout:*)",
       "Bash(git pull:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(dir /b \"C:\\Users\\Humbe\\Documents\\Programacion\\blackSheep\\backend\\data\\tabs\")",
+      "Bash(dir /b \"C:\\Users\\Humbe\\Documents\\Programacion\\blackSheep\\backend-workers\")",
+      "Bash(npm start)",
+      "Bash(curl:*)",
+      "Bash(node:*)",
+      "Bash(npx wrangler deploy)",
+      "Bash(npx ng:*)",
+      "Bash(npx wrangler pages deploy:*)",
+      "Bash(npx wrangler:*)",
+      "Bash(tasklist:*)",
+      "Bash(findstr:*)",
+      "Bash(dir:*)",
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(npm run deploy:*)"
     ],
     "deny": [],
     "ask": []
