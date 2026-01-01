@@ -41,10 +41,36 @@ export class AdminService {
   private http = inject(HttpClient);
   private apiUrl = environment.apiUrl;
 
+  // Store API key in memory (session-only, not persisted)
+  private _apiKey: string | null = null;
+
+  /**
+   * Set the admin API key for the current session
+   * Call this method when admin logs in or from the dashboard
+   */
+  setApiKey(key: string): void {
+    this._apiKey = key;
+  }
+
+  /**
+   * Get the current API key, prompting if not set
+   */
+  private getApiKey(): string {
+    if (!this._apiKey) {
+      const key = prompt('Ingresa tu API Key de administrador:');
+      if (key) {
+        this._apiKey = key;
+      } else {
+        throw new Error('API Key es requerida para operaciones de administrador');
+      }
+    }
+    return this._apiKey;
+  }
+
   private getHeaders(): HttpHeaders {
     return new HttpHeaders({
       'Content-Type': 'application/json',
-      'x-api-key': environment.adminApiKey
+      'x-api-key': this.getApiKey()
     });
   }
 

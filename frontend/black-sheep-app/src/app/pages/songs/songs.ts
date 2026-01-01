@@ -5,6 +5,7 @@ import { RouterLink } from '@angular/router';
 import { SongListCompact, CompactSongItem } from '../../shared/components/song-list-compact/song-list-compact';
 import { SongsService } from '../../core/services/songs.service';
 import { MusicGenre, MUSIC_GENRES } from '../../core/constants/genres';
+import { environment } from '../../../environments/environment';
 
 interface SongItemWithMeta extends CompactSongItem {
   createdAt?: Date;
@@ -72,7 +73,7 @@ export class Songs implements OnInit {
         this.loading.set(false);
       },
       error: (err) => {
-        console.error('Error loading songs:', err);
+        if (environment.enableDebugMode) console.error('Error loading songs:', err);
         this.loading.set(false);
       }
     });

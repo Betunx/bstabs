@@ -1,6 +1,7 @@
 import { Component, signal, inject, OnInit } from '@angular/core';
 import { ArtistGrid, ArtistItem } from '../../shared/components/artist-grid/artist-grid';
 import { ArtistsService } from '../../core/services/artists.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-artists',
@@ -33,7 +34,7 @@ export class Artists implements OnInit {
         this.loading.set(false);
       },
       error: (err) => {
-        console.error('Error loading artists:', err);
+        if (environment.enableDebugMode) console.error('Error loading artists:', err);
         this.loading.set(false);
       }
     });

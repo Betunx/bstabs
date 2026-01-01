@@ -2,6 +2,7 @@ import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { AdminService, AdminSong, SongRequest } from '../../core/services/admin.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -39,7 +40,7 @@ export class AdminDashboard implements OnInit {
         this.pendingCount.set(stats.pendingCount);
         this.requestsCount.set(stats.pendingRequestsCount);
       },
-      error: (err) => console.error('Error loading stats:', err)
+      error: (err) => { if (environment.enableDebugMode) console.error('Error loading stats:', err) }
     });
 
     this.adminService.getSongs('pending').subscribe({
@@ -48,14 +49,14 @@ export class AdminDashboard implements OnInit {
         this.isLoading.set(false);
       },
       error: (err) => {
-        console.error('Error loading pending songs:', err);
+        if (environment.enableDebugMode) console.error('Error loading pending songs:', err);
         this.isLoading.set(false);
       }
     });
 
     this.adminService.getRequests('pending').subscribe({
       next: (requests) => this.userRequests.set(requests),
-      error: (err) => console.error('Error loading requests:', err)
+      error: (err) => { if (environment.enableDebugMode) console.error('Error loading requests:', err) }
     });
   }
 
@@ -70,7 +71,7 @@ export class AdminDashboard implements OnInit {
         this.pendingCount.update(c => c - 1);
         this.publishedCount.update(c => c + 1);
       },
-      error: (err) => console.error('Error publishing:', err)
+      error: (err) => { if (environment.enableDebugMode) console.error('Error publishing:', err) }
     });
   }
 
@@ -78,7 +79,7 @@ export class AdminDashboard implements OnInit {
     if (confirm('¿Rechazar esta canción? Volverá a la cola de pendientes.')) {
       this.adminService.rejectSong(id).subscribe({
         next: () => this.loadData(),
-        error: (err) => console.error('Error rejecting:', err)
+        error: (err) => { if (environment.enableDebugMode) console.error('Error rejecting:', err) }
       });
     }
   }
@@ -90,7 +91,7 @@ export class AdminDashboard implements OnInit {
           this.pendingSongs.update(songs => songs.filter(s => s.id !== id));
           this.pendingCount.update(c => c - 1);
         },
-        error: (err) => console.error('Error deleting:', err)
+        error: (err) => { if (environment.enableDebugMode) console.error('Error deleting:', err) }
       });
     }
   }
@@ -101,7 +102,7 @@ export class AdminDashboard implements OnInit {
         this.userRequests.update(reqs => reqs.filter(r => r.id !== id));
         this.requestsCount.update(c => c - 1);
       },
-      error: (err) => console.error('Error completing request:', err)
+      error: (err) => { if (environment.enableDebugMode) console.error('Error completing request:', err) }
     });
   }
 
@@ -111,7 +112,7 @@ export class AdminDashboard implements OnInit {
         this.userRequests.update(reqs => reqs.filter(r => r.id !== id));
         this.requestsCount.update(c => c - 1);
       },
-      error: (err) => console.error('Error rejecting request:', err)
+      error: (err) => { if (environment.enableDebugMode) console.error('Error rejecting request:', err) }
     });
   }
 
@@ -122,7 +123,7 @@ export class AdminDashboard implements OnInit {
           this.userRequests.update(reqs => reqs.filter(r => r.id !== id));
           this.requestsCount.update(c => c - 1);
         },
-        error: (err) => console.error('Error deleting request:', err)
+        error: (err) => { if (environment.enableDebugMode) console.error('Error deleting request:', err) }
       });
     }
   }
@@ -201,7 +202,7 @@ export class AdminDashboard implements OnInit {
       //   body: formData
       // });
 
-      console.log('📤 Subiendo PDF:', file.name);
+      if (environment.enableDebugMode) console.log('📤 Subiendo PDF:', file.name);
 
       // Simulación de progreso por ahora
       for (let i = 0; i <= 100; i += 10) {
@@ -209,14 +210,14 @@ export class AdminDashboard implements OnInit {
         this.uploadProgress.set(i);
       }
 
-      console.log('✅ PDF procesado:', file.name);
+      if (environment.enableDebugMode) console.log('✅ PDF procesado:', file.name);
       this.uploadProgress.set(null);
 
       // Recargar datos
       this.loadData();
 
     } catch (error) {
-      console.error('❌ Error subiendo PDF:', error);
+      if (environment.enableDebugMode) console.error('❌ Error subiendo PDF:', error);
       this.uploadError.set('Error al procesar el PDF');
       this.uploadProgress.set(null);
     }

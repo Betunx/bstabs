@@ -15,10 +15,15 @@ export const errorHandlerInterceptor: HttpInterceptorFn = (req, next) => {
       if (error.error instanceof ErrorEvent) {
         // Client-side or network error
         errorMessage = `Error de red: ${error.error.message}`;
-        console.error('🔴 Client error:', error.error.message);
+        // Only log errors in development
+        if (typeof window !== 'undefined' && (window as any).__DEBUG_MODE__) {
+          console.error('🔴 Client error:', error.error.message);
+        }
       } else {
         // Backend returned an unsuccessful response code
-        console.error(`🔴 Backend error ${error.status}:`, error.message);
+        if (typeof window !== 'undefined' && (window as any).__DEBUG_MODE__) {
+          console.error(`🔴 Backend error ${error.status}:`, error.message);
+        }
 
         switch (error.status) {
           case 0:

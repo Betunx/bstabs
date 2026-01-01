@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { TabViewer } from '../../shared/components/tab-viewer/tab-viewer';
 import { Song } from '../../core/models/song.model';
 import { SongsService } from '../../core/services/songs.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-tab-reader',
@@ -32,7 +33,7 @@ export class TabReader implements OnInit {
         this.loading.set(false);
       },
       error: (err) => {
-        console.error('Error loading song:', err);
+        if (environment.enableDebugMode) console.error('Error loading song:', err);
         this.loading.set(false);
       }
     });
