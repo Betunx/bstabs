@@ -55,6 +55,9 @@ temp/
 # Scraper extracted tabs
 scripts/scraper/extracted-tabs/
 
+# Archivos obsoletos del proyecto (no commitear)
+scripts/archive-obsolete/
+
 # AWS
 .aws/
 *.pem
@@ -71,3 +74,9 @@ secrets/
 test-db-connection.js
 test-*.txt
 *.tmp
+*temp*.json
+temp-songs.json
+
+# Prevenir archivos con paths absolutos corruptos
+C:*
+/C:*

@@ -13,11 +13,11 @@ Plataforma moderna de tablaturas musicales. Sin anuncios, sin distracciones, sol
 - Enlaces Musicales - Botones a Spotify y YouTube
 - Libre de Anuncios - Financiado por donaciones
 - Ultra Rapido - Optimizado para performance
-- Busqueda Avanzada - Por artista, tono, dificultad
+- Busqueda Avanzada - Por artista, tono, genero musical
 
 ## Stack Tecnologico
 
-- **Frontend:** Angular 19 + Tailwind CSS + PWA
+- **Frontend:** Angular 20 (Signals, Standalone Components) + Tailwind CSS + PWA
 - **Backend:** Cloudflare Workers + Supabase (PostgreSQL)
 - **Deploy:** Cloudflare Pages (frontend) + Cloudflare Workers (API)
 
@@ -64,7 +64,7 @@ Las tablaturas usan JSON estructurado:
   "artist": "Natanael Cano ft Luis R Conriquez",
   "key": "Am",
   "tempo": 90,
-  "difficulty": "intermediate",
+  "genre": "Corrido",
   "sections": [
     {
       "name": "Verso 1",
