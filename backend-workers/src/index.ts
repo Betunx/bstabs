@@ -5,6 +5,7 @@ interface Env {
   SUPABASE_URL: string
   SUPABASE_SERVICE_KEY: string
   ADMIN_API_KEY: string
+  ARTIST_IMAGES: R2Bucket  // R2 bucket binding
 }
 
 type MusicGenre =
@@ -419,6 +420,99 @@ export default {
           pendingCount: pendingRes.count || 0,
           pendingRequestsCount: requestsRes.count || 0
         })
+      }
+
+      // ===== ARTIST IMAGES (R2) =====
+
+      // GET /artists/images/:slug - Servir imagen de artista
+      if (path.match(/^\/artists\/images\/[a-z0-9-]+\.(jpg|jpeg|png|webp)$/) && request.method === 'GET') {
+        const filename = path.split('/').pop() || ''
+
+        try {
+          const object = await env.ARTIST_IMAGES.get(filename)
+
+          if (!object) {
+            return new Response('Image not found', { status: 404 })
+          }
+
+          const headers = new Headers()
+          object.writeHttpMetadata(headers)
+          headers.set('Cache-Control', 'public, max-age=31536000') // Cache 1 año
+          headers.set('Access-Control-Allow-Origin', '*')
+
+          return new Response(object.body, { headers })
+        } catch (error) {
+          console.error('Error fetching image:', error)
+          return new Response('Error fetching image', { status: 500 })
+        }
+      }
+
+      // POST /admin/artists/images/:slug - Subir imagen de artista (requiere API key)
+      if (path.match(/^\/admin\/artists\/images\/[a-z0-9-]+\.(jpg|jpeg|png|webp)$/) && request.method === 'POST') {
+        if (!verifyApiKey(request, env)) {
+          return jsonResponse({ error: 'Unauthorized' }, 401)
+        }
+
+        const filename = path.split('/').pop() || ''
+        const contentType = request.headers.get('content-type') || 'image/jpeg'
+
+        try {
+          const imageData = await request.arrayBuffer()
+
+          await env.ARTIST_IMAGES.put(filename, imageData, {
+            httpMetadata: {
+              contentType: contentType,
+            },
+          })
+
+          return jsonResponse({
+            message: 'Image uploaded successfully',
+            filename,
+            url: `/artists/images/${filename}`
+          })
+        } catch (error: any) {
+          console.error('Error uploading image:', error)
+          return jsonResponse({ error: error.message || 'Error uploading image' }, 500)
+        }
+      }
+
+      // DELETE /admin/artists/images/:slug - Eliminar imagen de artista (requiere API key)
+      if (path.match(/^\/admin\/artists\/images\/[a-z0-9-]+\.(jpg|jpeg|png|webp)$/) && request.method === 'DELETE') {
+        if (!verifyApiKey(request, env)) {
+          return jsonResponse({ error: 'Unauthorized' }, 401)
+        }
+
+        const filename = path.split('/').pop() || ''
+
+        try {
+          await env.ARTIST_IMAGES.delete(filename)
+          return jsonResponse({ message: 'Image deleted successfully' })
+        } catch (error: any) {
+          console.error('Error deleting image:', error)
+          return jsonResponse({ error: error.message || 'Error deleting image' }, 500)
+        }
+      }
+
+      // GET /admin/artists/images - Listar todas las imágenes (requiere API key)
+      if (path === '/admin/artists/images' && request.method === 'GET') {
+        if (!verifyApiKey(request, env)) {
+          return jsonResponse({ error: 'Unauthorized' }, 401)
+        }
+
+        try {
+          const objects = await env.ARTIST_IMAGES.list()
+          const images = objects.objects.map(obj => ({
+            key: obj.key,
+            size: obj.size,
+            uploaded: obj.uploaded,
+            url: `/artists/images/${obj.key}`
+          }))
+
+          return jsonResponse({ images, count: images.length })
+        } catch (error: any) {
+          console.error('Error listing images:', error)
+          return jsonResponse({ error: error.message || 'Error listing images' }, 500)
+        }
       }
 
       // Ruta no encontrada

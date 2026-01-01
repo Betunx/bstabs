@@ -1,79 +1,95 @@
 /**
- * Artist Images Mapping
+ * Artist Images - Cloudflare R2 CDN
  *
- * Sistema centralizado para gestión de fotos de artistas.
+ * Sistema de imágenes de artistas usando Cloudflare R2 via Worker.
  *
- * ESTRATEGIA DE IMPLEMENTACIÓN:
+ * ARQUITECTURA ACTUAL (Producción):
+ * - Cloudflare R2 bucket: bstabs-artist-images
+ * - Servido via Worker: https://blacksheep-api.bstabs.workers.dev/artists/images/{slug}.jpg
+ * - CDN automático de Cloudflare
+ * - Cache: 1 año (max-age=31536000)
  *
- * Opción 1 (Actual - Recomendada para MVP):
- * - Mapeo manual de URLs públicas (Unsplash, Wikipedia, sitios oficiales)
- * - Ventajas: Rápido, sin costos de almacenamiento, fácil actualización
- * - Desventajas: URLs pueden romperse, dependencia de terceros
+ * CÓMO AGREGAR/ACTUALIZAR IMÁGENES:
  *
- * Opción 2 (Futuro - Producción):
- * - Cloudflare R2 (S3-compatible storage)
- * - URL pattern: https://artists.bstabs.com/{artist-slug}.jpg
- * - Ventajas: Control total, CDN integrado, sin costos de egress
- * - Desventajas: Requiere configuración de R2 bucket
- *
- * Opción 3 (Alternativa):
- * - GitHub repo público como CDN
- * - URL pattern: https://raw.githubusercontent.com/Betunx/bstabs-assets/main/artists/{artist-slug}.jpg
- * - Ventajas: Gratis, versionado con git, fácil deploy
- * - Desventajas: Rate limiting, no optimizado para CDN
- *
- * CÓMO AGREGAR NUEVOS ARTISTAS:
- *
- * 1. Obtener imagen (preferiblemente 500x500px o mayor, cuadrada)
- * 2. Subir a Cloudflare R2 bucket 'artist-images' (cuando se configure)
- * 3. Agregar entrada en este objeto con el slug del artista
- * 4. El slug debe coincidir con el generado por ArtistsService.slugify()
- *
- * EJEMPLO DE USO:
- * ```typescript
- * import { ARTIST_IMAGES } from '@core/constants/artist-images';
- *
- * const imageUrl = ARTIST_IMAGES['peso-pluma']; // Returns URL or undefined
+ * Opción 1: PowerShell (Windows)
+ * ```powershell
+ * .\scripts\upload-artist-image.ps1 .\photos\peso-pluma.jpg peso-pluma
  * ```
+ *
+ * Opción 2: Bash (Linux/Mac)
+ * ```bash
+ * ./scripts/upload-artist-image.sh ./photos/peso-pluma.jpg peso-pluma
+ * ```
+ *
+ * Opción 3: curl directo
+ * ```bash
+ * curl -X POST \
+ *   -H "x-api-key: YOUR_API_KEY" \
+ *   -H "Content-Type: image/jpeg" \
+ *   --data-binary "@peso-pluma.jpg" \
+ *   https://blacksheep-api.bstabs.workers.dev/admin/artists/images/peso-pluma.jpg
+ * ```
+ *
+ * REQUISITOS DE IMÁGENES:
+ * - Formato: JPG, PNG, o WebP
+ * - Tamaño recomendado: 500x500px (cuadrada)
+ * - Peso máximo: 200KB
+ * - Nombre: {artist-slug}.{ext} (ej: peso-pluma.jpg)
+ *
+ * El slug debe coincidir con el generado por ArtistsService.slugify()
  */
 
-export const ARTIST_IMAGES: Record<string, string> = {
-  // Corridos / Regional Mexicano
-  'peso-pluma': 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=500&h=500&fit=crop',
-  'junior-h': 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=500&h=500&fit=crop',
-  'natanael-cano': 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=500&h=500&fit=crop',
+/**
+ * Base URL del CDN de imágenes (Worker)
+ */
+const ARTIST_IMAGE_CDN_BASE = 'https://blacksheep-api.bstabs.workers.dev/artists/images';
 
-  // Rock en Español
-  'soda-stereo': 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=500&h=500&fit=crop',
-  'caifanes': 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=500&h=500&fit=crop',
-  'mana': 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=500&h=500&fit=crop',
-
-  // TODO: Agregar más artistas conforme se vayan importando a la base de datos
-  // Formato: 'artist-slug': 'https://url-to-image.jpg',
+/**
+ * Mapeo manual para casos especiales o overrides
+ *
+ * Usar solo cuando necesites una URL diferente para un artista específico
+ * (ej. imagen temporal, URL externa, etc.)
+ */
+const MANUAL_OVERRIDES: Record<string, string> = {
+  // Ejemplo:
+  // 'artista-especial': 'https://otra-url.com/imagen.jpg',
 };
 
 /**
  * Obtiene la URL de la imagen de un artista
+ *
  * @param artistSlug - Slug del artista (generado por ArtistsService.slugify)
- * @returns URL de la imagen o undefined si no existe
+ * @returns URL de la imagen o undefined
+ *
+ * NOTA: Siempre retorna una URL, incluso si la imagen no existe en R2.
+ * El componente ArtistGrid mostrará un placeholder si la imagen da 404.
  */
 export function getArtistImage(artistSlug: string): string | undefined {
-  return ARTIST_IMAGES[artistSlug.toLowerCase()];
+  const slug = artistSlug.toLowerCase();
+
+  // Verificar override manual primero
+  if (MANUAL_OVERRIDES[slug]) {
+    return MANUAL_OVERRIDES[slug];
+  }
+
+  // Retornar URL del CDN (asume JPG por defecto)
+  // Si la imagen no existe, el frontend mostrará placeholder
+  return `${ARTIST_IMAGE_CDN_BASE}/${slug}.jpg`;
 }
 
 /**
- * Verifica si un artista tiene imagen configurada
+ * Verifica si un artista tiene una imagen manual configurada
+ *
+ * NOTA: Esta función solo verifica overrides manuales.
+ * Para verificar si existe en R2, hay que hacer una petición HTTP.
  */
 export function hasArtistImage(artistSlug: string): boolean {
-  return artistSlug.toLowerCase() in ARTIST_IMAGES;
+  return artistSlug.toLowerCase() in MANUAL_OVERRIDES;
 }
 
 /**
- * Placeholder cuando se configure Cloudflare R2
- * URL pattern futuro: https://artists.bstabs.com/{slug}.jpg
+ * Construye URL de imagen con extensión específica
  */
-export const ARTIST_IMAGE_CDN_BASE = 'https://artists.bstabs.com';
-
-export function getArtistImageFromCDN(artistSlug: string): string {
-  return `${ARTIST_IMAGE_CDN_BASE}/${artistSlug.toLowerCase()}.jpg`;
+export function getArtistImageWithExt(artistSlug: string, ext: 'jpg' | 'png' | 'webp' = 'jpg'): string {
+  return `${ARTIST_IMAGE_CDN_BASE}/${artistSlug.toLowerCase()}.${ext}`;
 }
