@@ -1,0 +1,831 @@
+{
+  "artist": "junior-h",
+  "totalSongs": 118,
+  "importedSongs": 2,
+  "songs": [
+    {
+      "title": "Las Noches",
+      "artist": "Junior H",
+      "sourceUrl": "https://acordesweb.com/cancion/junior-h/las-noches",
+      "chords": [
+        "Bm",
+        "C#m",
+        "D"
+      ],
+      "key": "D",
+      "sections": [
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [
+                {
+                  "chord": "Bm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Ya ven"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#m",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 29
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Que ya ha pasado tanto tiempo y a�n vivo el ayer"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#m",
+                  "position": 0
+                },
+                {
+                  "chord": "Bm",
+                  "position": 24
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Que la he pasado solo, yo sigo esper�ndote"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#m",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 24
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "No logro, no acostumbro, sigo ilusion�ndome"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#m",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Ya me cans�"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y dime por qu� te pienso"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#m",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Me lo dijiste en un comienzo"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Quer�as este costal de huesos"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#m",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y mentira como tus besos"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bm",
+                  "position": 0
+                },
+                {
+                  "chord": "C#m",
+                  "position": 23
+                },
+                {
+                  "chord": "D",
+                  "position": 56
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Dime qu� puedo hacer para cambiar esa manera tuya de pensar"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#m",
+                  "position": 0
+                },
+                {
+                  "chord": "Bm",
+                  "position": 38
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Que est�s loca por m� y te mueras de deseo de conmigo estar"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#m",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Pero eso solo lo pienso"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                },
+                {
+                  "chord": "C#m",
+                  "position": 28
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y tambi�n pienso en las noches que hac�amos el amor"
+            }
+          ]
+        },
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [
+                {
+                  "chord": "Bm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Yo s�"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#m",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 26
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Cambiarte es imposible, eso no se va a poder"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#m",
+                  "position": 0
+                },
+                {
+                  "chord": "Bm",
+                  "position": 31
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Tap�ndome los ojos, confi� en ti, lo sabes bien"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#m",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 27
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Me ten�as en la cima, desde arriba fui a caer"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#m",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y fui a caer"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y dime por qu� te pienso"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#m",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Me lo dijiste en un comienzo"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Quer�as este costal de huesos"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#m",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y mentira como tus besos"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bm",
+                  "position": 0
+                },
+                {
+                  "chord": "C#m",
+                  "position": 23
+                },
+                {
+                  "chord": "D",
+                  "position": 56
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Dime qu� puedo hacer para cambiar esa manera tuya de pensar"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#m",
+                  "position": 0
+                },
+                {
+                  "chord": "Bm",
+                  "position": 38
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Que est�s loca por m� y te mueras de deseo de conmigo estar"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#m",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Pero eso solo lo pienso"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                },
+                {
+                  "chord": "C#m",
+                  "position": 28
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y tambi�n pienso en las noches que hac�amos el amor"
+            }
+          ]
+        },
+        {
+          "name": "Outro",
+          "lines": [
+            {
+              "chords": [],
+              "lyrics": "Primero en #AcordesWeb.com"
+            }
+          ]
+        }
+      ],
+      "rawText": "Intro X4: Bm C#m D C#m\r\n   Bm\r\nYa ven\r\n                 C#m                          D\r\nQue ya ha pasado tanto tiempo y a�n vivo el ayer\r\n                C#m                     Bm\r\nQue la he pasado solo, yo sigo esper�ndote\r\n                 C#m                     D\r\nNo logro, no acostumbro, sigo ilusion�ndome\r\n         C#m\r\nYa me cans�\r\n\r\n  Bm\r\nY dime por qu� te pienso\r\nC#m\r\nMe lo dijiste en un comienzo\r\n        D\r\nQuer�as este costal de huesos\r\n    C#m\r\nY mentira como tus besos\r\nBm                     C#m                              D\r\nDime qu� puedo hacer para cambiar esa manera tuya de pensar\r\n                  C#m                                   Bm\r\nQue est�s loca por m� y te mueras de deseo de conmigo estar\r\n                     C#m\r\nPero eso solo lo pienso\r\n                     D                           C#m\r\nY tambi�n pienso en las noches que hac�amos el amor\r\nIntro X 4\r\n   Bm\r\nYo s�\r\n                C#m                       D\r\nCambiarte es imposible, eso no se va a poder\r\n             C#m                            Bm\r\nTap�ndome los ojos, confi� en ti, lo sabes bien\r\n               C#m                        D\r\nMe ten�as en la cima, desde arriba fui a caer\r\n         C#m\r\nY fui a caer\r\n\r\n  Bm\r\nY dime por qu� te pienso\r\nC#m\r\nMe lo dijiste en un comienzo\r\n        D\r\nQuer�as este costal de huesos\r\n    C#m\r\nY mentira como tus besos\r\nBm                     C#m                              D\r\nDime qu� puedo hacer para cambiar esa manera tuya de pensar\r\n                  C#m                                   Bm\r\nQue est�s loca por m� y te mueras de deseo de conmigo estar\r\n                     C#m\r\nPero eso solo lo pienso\r\n                     D                           C#m\r\nY tambi�n pienso en las noches que hac�amos el amor\r\nFinal sobre intro\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nPrimero en #AcordesWeb.com",
+      "pdfUrl": "https://acordesweb.com/descarga-pdf/junior-h/las-noches/0/0/0.pdf"
+    },
+    {
+      "title": "Tres Botellas",
+      "artist": "Junior H",
+      "sourceUrl": "https://acordesweb.com/cancion/junior-h/tres-botellas",
+      "chords": [
+        "Em",
+        "G",
+        "Bm",
+        "A",
+        "D"
+      ],
+      "key": "G",
+      "sections": [
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [
+                {
+                  "chord": "Em",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 3
+                },
+                {
+                  "chord": "Bm",
+                  "position": 5
+                },
+                {
+                  "chord": "A",
+                  "position": 8
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Em",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 20
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Pisteando con unos compas"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                },
+                {
+                  "chord": "A",
+                  "position": 27
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "destap� otro botecito porque te quiero olvidar"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Em",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 16
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Este roto sentimiento hace rato"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                },
+                {
+                  "chord": "A",
+                  "position": 30
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "no lo siento y cada vez me hace m�s mal"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Em",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 19
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Pa' curarme las heridas,"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                },
+                {
+                  "chord": "A",
+                  "position": 22
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Catarina con saliva, as� no siento nada"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Em",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 19
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Para no llorar me pongo a pistear"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bm",
+                  "position": 0
+                },
+                {
+                  "chord": "A",
+                  "position": 21
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Ya van tres botellas y a�n quiero m�s"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Em",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 21
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Para no pensarte tengo que empedarme"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bm",
+                  "position": 0
+                },
+                {
+                  "chord": "A",
+                  "position": 17
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Pues mi coraz�n ya no puede m�s"
+            },
+            {
+              "chords": [],
+              "lyrics": "Inter X2: Em G Bm A"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Em",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 22
+                },
+                {
+                  "chord": "Bm",
+                  "position": 48
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "No s� qu� estar�s pensando, si me estar�s extra�ando"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y de m� te has de acordar"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Em",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 24
+                },
+                {
+                  "chord": "D",
+                  "position": 48
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Por mi parte, ando pisteando, con mujeres platicando"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Pero ni as� se me da"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Em",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 21
+                },
+                {
+                  "chord": "D",
+                  "position": 49
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "La gente me ha preguntado sobre ti, que qu� ha pasado"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y no les quiero contestar"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Em",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 19
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Para no llorar me pongo a pistear"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bm",
+                  "position": 0
+                },
+                {
+                  "chord": "A",
+                  "position": 21
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Ya van tres botellas y a�n quiero m�s"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Em",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 21
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Para no pensarte tengo que empedarme"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bm",
+                  "position": 0
+                },
+                {
+                  "chord": "A",
+                  "position": 17
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Pues mi coraz�n ya no puede m�s"
+            }
+          ]
+        },
+        {
+          "name": "Outro",
+          "lines": [
+            {
+              "chords": [],
+              "lyrics": "Primero en #AcordesWeb.com"
+            }
+          ]
+        }
+      ],
+      "rawText": "Intro: Em G D A\r\n       Em G Bm A\r\nEm                  G\r\nPisteando con unos compas \r\n                 D                          A\r\ndestap� otro botecito porque te quiero olvidar\r\nEm              G\r\nEste roto sentimiento hace rato \r\n       D                             A\r\nno lo siento y cada vez me hace m�s mal\r\nEm                 G\r\nPa' curarme las heridas, \r\n               D                     A\r\nCatarina con saliva, as� no siento nada\r\n\r\n            Em                 G\r\nPara no llorar me pongo a pistear\r\n              Bm                   A\r\nYa van tres botellas y a�n quiero m�s\r\n           Em                   G\r\nPara no pensarte tengo que empedarme\r\n            Bm               A\r\nPues mi coraz�n ya no puede m�s\r\nInter X2: Em G Bm A\r\nEm                    G                         Bm\r\nNo s� qu� estar�s pensando, si me estar�s extra�ando\r\n                       A\r\nY de m� te has de acordar\r\nEm                      G                       D\r\nPor mi parte, ando pisteando, con mujeres platicando\r\n                  A\r\nPero ni as� se me da\r\nEm                   G                           D\r\nLa gente me ha preguntado sobre ti, que qu� ha pasado\r\n                       A\r\nY no les quiero contestar\r\n\r\n            Em                 G\r\nPara no llorar me pongo a pistear\r\n              Bm                   A\r\nYa van tres botellas y a�n quiero m�s\r\n           Em                   G\r\nPara no pensarte tengo que empedarme\r\n            Bm               A\r\nPues mi coraz�n ya no puede m�s\r\nFinal sobre inter\r\n\r\n\r\n\r\n\r\n\r\nPrimero en #AcordesWeb.com",
+      "pdfUrl": "https://acordesweb.com/descarga-pdf/junior-h/tres-botellas/0/0/0.pdf"
+    }
+  ]
+}
