@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { SongListCompact, CompactSongItem } from '../../shared/components/song-list-compact/song-list-compact';
+import { SkeletonSongList } from '../../shared/components/skeleton-song-list/skeleton-song-list';
 import { SongsService } from '../../core/services/songs.service';
 import { MusicGenre, MUSIC_GENRES } from '../../core/constants/genres';
 import { environment } from '../../../environments/environment';
@@ -15,7 +16,7 @@ type SortOption = 'recent' | 'a-z';
 
 @Component({
   selector: 'app-songs',
-  imports: [SongListCompact, CommonModule, FormsModule, RouterLink],
+  imports: [SongListCompact, SkeletonSongList, CommonModule, FormsModule, RouterLink],
   templateUrl: './songs.html',
   styleUrl: './songs.scss',
 })

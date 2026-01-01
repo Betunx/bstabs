@@ -68,10 +68,16 @@
   </div>
 
   <!-- Lista de canciones (componente compacto) -->
-  <app-song-list-compact
-    [songs]="songs()"
-    emptyMessage="No hay canciones disponibles">
-  </app-song-list-compact>
+  @if (loading()) {
+    <div class="container mx-auto px-4 py-8">
+      <app-skeleton-song-list [count]="10"></app-skeleton-song-list>
+    </div>
+  } @else {
+    <app-song-list-compact
+      [songs]="songs()"
+      emptyMessage="No hay canciones disponibles">
+    </app-song-list-compact>
+  }
 
   <!-- CTA para pedir canciones (si lista vacía por búsqueda) -->
   @if (songs().length === 0 && searchQuery()) {

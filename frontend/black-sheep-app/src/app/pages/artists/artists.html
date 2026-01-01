@@ -1,10 +1,37 @@
 <div class="artists-page">
   <div class="container mx-auto px-4 py-8">
-    <h1 class="text-4xl font-bold mb-8">Artistas</h1>
+    <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+      <h1 class="text-4xl font-bold">Artistas</h1>
+
+      <!-- Filtro por género -->
+      <div class="flex items-center gap-2">
+        <label class="text-sm font-semibold">Género:</label>
+        <select
+          [ngModel]="selectedGenre()"
+          (ngModelChange)="setGenre($event)"
+          class="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-bs-gold bg-white dark:bg-gray-800">
+          <option value="">Todos</option>
+          @for (genre of genres; track genre) {
+            <option [value]="genre">{{ genre }}</option>
+          }
+        </select>
+      </div>
+    </div>
+
+    <!-- Contador de resultados -->
+    @if (selectedGenre()) {
+      <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
+        {{ artists().length }} artista{{ artists().length !== 1 ? 's' : '' }} en {{ selectedGenre() }}
+      </div>
+    }
   </div>
 
-  <app-artist-grid
-    [artists]="artists()"
-    emptyMessage="No hay artistas disponibles">
-  </app-artist-grid>
+  @if (loading()) {
+    <app-skeleton-artist-grid [count]="12"></app-skeleton-artist-grid>
+  } @else {
+    <app-artist-grid
+      [artists]="artists()"
+      emptyMessage="No hay artistas disponibles">
+    </app-artist-grid>
+  }
 </div>
