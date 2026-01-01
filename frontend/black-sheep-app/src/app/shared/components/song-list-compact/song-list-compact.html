@@ -1,0 +1,55 @@
+<div class="container mx-auto px-4 py-8">
+  @if (songs.length > 0) {
+    <div class="space-y-2">
+      @for (song of songs; track song.id) {
+        <a
+          [routerLink]="song.routerLink"
+          class="song-compact-item group block bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-bs-gold hover:shadow-md transition-all duration-200">
+
+          <div class="flex items-center gap-4 p-4">
+            <!-- Indicador de color (accent bar) -->
+            <div class="w-1 h-12 bg-gradient-to-b from-bs-gold to-yellow-600 rounded-full"></div>
+
+            <!-- Información principal -->
+            <div class="flex-1 min-w-0">
+              <h3 class="font-bold text-lg truncate group-hover:text-bs-gold transition-colors">
+                {{ song.title }}
+              </h3>
+              <p class="text-sm text-gray-600 dark:text-gray-400 truncate">
+                {{ song.artist }}
+              </p>
+            </div>
+
+            <!-- Metadata (key y género) -->
+            <div class="hidden sm:flex items-center gap-3">
+              @if (song.key) {
+                <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-xs font-mono rounded-full">
+                  {{ song.key }}
+                </span>
+              }
+              @if (song.genre) {
+                <span class="px-3 py-1 bg-bs-gold/10 text-bs-gold text-xs font-semibold rounded-full">
+                  {{ song.genre }}
+                </span>
+              }
+            </div>
+
+            <!-- Icono flecha -->
+            <div class="text-gray-400 group-hover:text-bs-gold transition-colors">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </div>
+          </div>
+        </a>
+      }
+    </div>
+  } @else {
+    <div class="text-center py-16">
+      <svg class="w-16 h-16 mx-auto text-gray-300 dark:text-gray-700 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
+      </svg>
+      <p class="text-xl text-gray-500 dark:text-gray-400">{{ emptyMessage }}</p>
+    </div>
+  }
+</div>

@@ -24,7 +24,7 @@
                   (click)="selectSuggestion(suggestion)"
                   class="w-full px-4 py-3 text-left hover:bg-gray-100 dark:hover:bg-gray-700 transition border-b border-gray-200 dark:border-gray-700 last:border-b-0">
                   <div class="font-semibold" [innerHTML]="highlightMatch(suggestion.title, searchQuery())"></div>
-                  <div class="text-sm text-gray-600 dark:text-gray-400" [innerHTML]="highlightMatch(suggestion.subtitle || '', searchQuery())"></div>
+                  <div class="text-sm text-gray-600 dark:text-gray-400" [innerHTML]="highlightMatch(suggestion.artist, searchQuery())"></div>
                 </button>
               }
             </div>
@@ -67,12 +67,11 @@
     </div>
   </div>
 
-  <!-- Lista de canciones -->
-  <app-item-list
-    [items]="songs()"
-    title="Canciones"
+  <!-- Lista de canciones (componente compacto) -->
+  <app-song-list-compact
+    [songs]="songs()"
     emptyMessage="No hay canciones disponibles">
-  </app-item-list>
+  </app-song-list-compact>
 
   <!-- CTA para pedir canciones (si lista vacía por búsqueda) -->
   @if (songs().length === 0 && searchQuery()) {

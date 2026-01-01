@@ -1,17 +1,17 @@
 import { Component, signal, inject, OnInit } from '@angular/core';
-import { ItemList, ListItem } from '../../shared/components/item-list/item-list';
+import { ArtistGrid, ArtistItem } from '../../shared/components/artist-grid/artist-grid';
 import { ArtistsService } from '../../core/services/artists.service';
 
 @Component({
   selector: 'app-artists',
-  imports: [ItemList],
+  imports: [ArtistGrid],
   templateUrl: './artists.html',
   styleUrl: './artists.scss',
 })
 export class Artists implements OnInit {
   private artistsService = inject(ArtistsService);
 
-  artists = signal<ListItem[]>([]);
+  artists = signal<ArtistItem[]>([]);
   loading = signal(true);
 
   ngOnInit() {
@@ -22,16 +22,13 @@ export class Artists implements OnInit {
     this.loading.set(true);
     this.artistsService.getAllArtists().subscribe({
       next: (artists) => {
-        const artistItems: ListItem[] = artists.map(artist => {
-          const count = artist.songCount;
-          const label = count === 1 ? 'canción' : 'canciones';
-          return {
-            id: artist.id,
-            title: artist.name,
-            subtitle: count + ' ' + label,
-            routerLink: '/artist/' + artist.id
-          };
-        });
+        const artistItems: ArtistItem[] = artists.map(artist => ({
+          id: artist.id,
+          name: artist.name,
+          songCount: artist.songCount,
+          imageUrl: artist.imageUrl,
+          routerLink: '/artist/' + artist.id
+        }));
         this.artists.set(artistItems);
         this.loading.set(false);
       },

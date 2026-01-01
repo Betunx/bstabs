@@ -2,12 +2,11 @@ import { Component, signal, computed, inject, OnInit, effect } from '@angular/co
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { ItemList, ListItem } from '../../shared/components/item-list/item-list';
+import { SongListCompact, CompactSongItem } from '../../shared/components/song-list-compact/song-list-compact';
 import { SongsService } from '../../core/services/songs.service';
 import { MusicGenre, MUSIC_GENRES } from '../../core/constants/genres';
 
-interface SongItem extends ListItem {
-  genre?: MusicGenre;
+interface SongItemWithMeta extends CompactSongItem {
   createdAt?: Date;
 }
 
@@ -15,7 +14,7 @@ type SortOption = 'recent' | 'a-z';
 
 @Component({
   selector: 'app-songs',
-  imports: [ItemList, CommonModule, FormsModule, RouterLink],
+  imports: [SongListCompact, CommonModule, FormsModule, RouterLink],
   templateUrl: './songs.html',
   styleUrl: './songs.scss',
 })
@@ -27,13 +26,13 @@ export class Songs implements OnInit {
   debouncedQuery = signal<string>(''); // Query después del debounce
   selectedGenre = signal<MusicGenre | ''>(''); // Filtro de género
   loading = signal(true);
-  suggestions = signal<SongItem[]>([]); // Sugerencias autocomplete
+  suggestions = signal<SongItemWithMeta[]>([]); // Sugerencias autocomplete
   showSuggestions = signal(false);
 
   // Lista de géneros disponibles
   readonly genres = MUSIC_GENRES;
 
-  private allSongs = signal<SongItem[]>([]);
+  private allSongs = signal<SongItemWithMeta[]>([]);
   private debounceTimer: any = null;
 
   ngOnInit() {
@@ -60,12 +59,13 @@ export class Songs implements OnInit {
     this.loading.set(true);
     this.songsService.getAllSongs().subscribe({
       next: (songs) => {
-        const songItems: SongItem[] = songs.map(song => ({
+        const songItems: SongItemWithMeta[] = songs.map(song => ({
           id: song.id,
           title: song.title,
-          subtitle: song.artist,
-          routerLink: `/tab/${song.id}`,
+          artist: song.artist,
           genre: song.genre,
+          key: song.key,
+          routerLink: `/tab/${song.id}`,
           createdAt: song.createdAt
         }));
         this.allSongs.set(songItems);
@@ -86,7 +86,7 @@ export class Songs implements OnInit {
     if (query) {
       filtered = filtered.filter(song =>
         song.title.toLowerCase().includes(query) ||
-        (song.subtitle?.toLowerCase() || '').includes(query)
+        song.artist.toLowerCase().includes(query)
       );
     }
 
@@ -126,7 +126,7 @@ export class Songs implements OnInit {
     const matches = this.allSongs()
       .filter(song =>
         song.title.toLowerCase().includes(q) ||
-        (song.subtitle?.toLowerCase() || '').includes(q)
+        song.artist.toLowerCase().includes(q)
       )
       .slice(0, 5);
 
@@ -163,7 +163,7 @@ export class Songs implements OnInit {
   /**
    * Seleccionar una sugerencia
    */
-  selectSuggestion(song: SongItem) {
+  selectSuggestion(song: SongItemWithMeta) {
     this.searchQuery.set(song.title);
     this.debouncedQuery.set(song.title);
     this.showSuggestions.set(false);
