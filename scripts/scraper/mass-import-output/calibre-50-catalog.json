@@ -1,0 +1,4243 @@
+{
+  "artist": "calibre-50",
+  "totalSongs": 120,
+  "importedSongs": 10,
+  "songs": [
+    {
+      "title": "Por Que Cambiaste De Opinion",
+      "artist": "Calibre 50",
+      "sourceUrl": "https://acordesweb.com/cancion/calibre-50/por-que-cambiaste-de-opinion",
+      "chords": [
+        "F",
+        "A#",
+        "C",
+        "Am",
+        "A7",
+        "Dm",
+        "Gm",
+        "C#",
+        "C7",
+        "G#7",
+        "Fm"
+      ],
+      "key": "C",
+      "sections": [
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [
+                {
+                  "chord": "F",
+                  "position": 0
+                },
+                {
+                  "chord": "A#",
+                  "position": 27
+                },
+                {
+                  "chord": "C",
+                  "position": 40
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Me pediste que te olvidara y te lo cumpl�"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Am",
+                  "position": 0
+                },
+                {
+                  "chord": "A7",
+                  "position": 27
+                },
+                {
+                  "chord": "Dm",
+                  "position": 46
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Ahora expl�came que es lo que quieres, que ya me perd�"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                },
+                {
+                  "chord": "Gm",
+                  "position": 13
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "�Por qu� cambiaste de opini�n?"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Am",
+                  "position": 0
+                },
+                {
+                  "chord": "C",
+                  "position": 35
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Me quede cuando me dijiste no eres tu, soy yo"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F",
+                  "position": 0
+                },
+                {
+                  "chord": "A#",
+                  "position": 31
+                },
+                {
+                  "chord": "C",
+                  "position": 47
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Conociendo tu forma de ser las cosas no andan bien"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Am",
+                  "position": 0
+                },
+                {
+                  "chord": "A7",
+                  "position": 22
+                },
+                {
+                  "chord": "Dm",
+                  "position": 36
+                },
+                {
+                  "chord": "C",
+                  "position": 40
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "De mi no tengo nada que contarte ya lo super�"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Gm",
+                  "position": 0
+                },
+                {
+                  "chord": "C",
+                  "position": 55
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Me cost� trabajo el aceptar, muchas gracias por preguntar"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A#",
+                  "position": 0
+                },
+                {
+                  "chord": "C",
+                  "position": 25
+                },
+                {
+                  "chord": "C#",
+                  "position": 37
+                },
+                {
+                  "chord": "Dm",
+                  "position": 49
+                },
+                {
+                  "chord": "C",
+                  "position": 54
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "No me interesa ninguna propuesta, no hay negociaci�n"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A#",
+                  "position": 0
+                },
+                {
+                  "chord": "C",
+                  "position": 23
+                },
+                {
+                  "chord": "C#",
+                  "position": 33
+                },
+                {
+                  "chord": "Dm",
+                  "position": 42
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Insin�as que vuelva contigo es mi imaginaci�n"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                },
+                {
+                  "chord": "A#",
+                  "position": 20
+                },
+                {
+                  "chord": "C",
+                  "position": 44
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Ah� si no se va a poder, no me vas a convencer"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C7",
+                  "position": 0
+                },
+                {
+                  "chord": "A#",
+                  "position": 8
+                },
+                {
+                  "chord": "C",
+                  "position": 32
+                },
+                {
+                  "chord": "C#",
+                  "position": 44
+                },
+                {
+                  "chord": "G#7",
+                  "position": 51
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y a mi que si te ha ido mal en todo, eso me da igual"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A#",
+                  "position": 0
+                },
+                {
+                  "chord": "C",
+                  "position": 24
+                },
+                {
+                  "chord": "C#",
+                  "position": 34
+                },
+                {
+                  "chord": "Dm",
+                  "position": 44
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y no tengo nada contra ti es m�s bien personal"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                },
+                {
+                  "chord": "A#",
+                  "position": 19
+                },
+                {
+                  "chord": "C",
+                  "position": 40
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "No vayas a llorar, que nadie te va abrazar"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Gm",
+                  "position": 0
+                },
+                {
+                  "chord": "F",
+                  "position": 34
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "El coraje es conmigo porque ya sab�a"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Gm",
+                  "position": 0
+                },
+                {
+                  "chord": "C",
+                  "position": 33
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Que jugabas mal y yo aguantaba todo"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Fm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Porque te quer�a"
+            },
+            {
+              "chords": [],
+              "lyrics": "No me interesa ninguna propuesta, no hay negociaci�n�"
+            }
+          ]
+        }
+      ],
+      "rawText": "F                          A#           C\nMe pediste que te olvidara y te lo cumpl�\n      Am                         A7                 Dm\nAhora expl�came que es lo que quieres, que ya me perd�\nC            Gm\n�Por qu� cambiaste de opini�n?\nAm                                 C\nMe quede cuando me dijiste no eres tu, soy yo\nF                              A#              C\nConociendo tu forma de ser las cosas no andan bien\n      Am                    A7            Dm  C\nDe mi no tengo nada que contarte ya lo super�\nGm                                                     C\nMe cost� trabajo el aceptar, muchas gracias por preguntar\nA#                       C           C#          Dm   C\nNo me interesa ninguna propuesta, no hay negociaci�n\nA#                     C         C#       Dm\nInsin�as que vuelva contigo es mi imaginaci�n\nC                   A#                      C\nAh� si no se va a poder, no me vas a convencer\nC7      A#                      C           C#     G#7\nY a mi que si te ha ido mal en todo, eso me da igual\nA#                      C         C#        Dm\nY no tengo nada contra ti es m�s bien personal\nC                  A#                   C\nNo vayas a llorar, que nadie te va abrazar\nGm                                F\nEl coraje es conmigo porque ya sab�a\nGm                               C\nQue jugabas mal y yo aguantaba todo\n             Fmaj7\nPorque te quer�a\n\nNo me interesa ninguna propuesta, no hay negociaci�n�",
+      "pdfUrl": "https://acordesweb.com/descarga-pdf/calibre-50/por-que-cambiaste-de-opinion/0/0/0.pdf"
+    },
+    {
+      "title": "Tus Latidos",
+      "artist": "Calibre 50",
+      "sourceUrl": "https://acordesweb.com/cancion/calibre-50/tus-latidos",
+      "chords": [
+        "A"
+      ],
+      "key": "A",
+      "sections": [
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [],
+              "lyrics": "DO#                           RE#"
+            },
+            {
+              "chords": [],
+              "lyrics": "Hace unos meses la conoc� por face"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA#m                  SOL#-FA#-FAm-SOL#-DO#"
+            },
+            {
+              "chords": [],
+              "lyrics": "Sus ojos, su sonrisa, tiene un no se que"
+            },
+            {
+              "chords": [],
+              "lyrics": "DO#             RE#"
+            },
+            {
+              "chords": [],
+              "lyrics": "En unas horas, ya eramos buenos amigos"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA#m                 RE#"
+            },
+            {
+              "chords": [],
+              "lyrics": "Miro sus fotos y me encanta y estoy convencido"
+            },
+            {
+              "chords": [],
+              "lyrics": "DO#                    RE#"
+            },
+            {
+              "chords": [],
+              "lyrics": "Es poco el tiempo, pero todo sabe venir"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA#m          SOL#-FA#-FAm-SOL#-DO#"
+            },
+            {
+              "chords": [],
+              "lyrics": "Jamas imagine, enamorarme as�"
+            },
+            {
+              "chords": [],
+              "lyrics": "DO#                RE#"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                }
+              ],
+              "lyrics": "que sabr�n sus besos, me lo pregunto"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA#m                RE#/RE#7"
+            },
+            {
+              "chords": [],
+              "lyrics": "Y un suspiro aumenta mis latidos"
+            },
+            {
+              "chords": [],
+              "lyrics": "SOL#"
+            },
+            {
+              "chords": [],
+              "lyrics": "Y aunque nunca te he tocado"
+            },
+            {
+              "chords": [],
+              "lyrics": "FAm"
+            },
+            {
+              "chords": [],
+              "lyrics": "Y aunque nunca te he besado"
+            },
+            {
+              "chords": [],
+              "lyrics": "DO#           LA#7"
+            },
+            {
+              "chords": [],
+              "lyrics": "Te amo tanto que p�rese"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE#              RE#7"
+            },
+            {
+              "chords": [],
+              "lyrics": "Que te hice m�a tantas veces"
+            },
+            {
+              "chords": [],
+              "lyrics": "SOL#"
+            },
+            {
+              "chords": [],
+              "lyrics": "Y aunque no nos conocemos"
+            },
+            {
+              "chords": [],
+              "lyrics": "FAm"
+            },
+            {
+              "chords": [],
+              "lyrics": "Y aunque esto parezca cuento"
+            },
+            {
+              "chords": [],
+              "lyrics": "DO#             LA#7"
+            }
+          ]
+        },
+        {
+          "name": "Solo",
+          "lines": [
+            {
+              "chords": [],
+              "lyrics": "RE#             RE#7"
+            },
+            {
+              "chords": [],
+              "lyrics": "Y alg�n d�a estar sintiendo tus latidos"
+            },
+            {
+              "chords": [],
+              "lyrics": "INTERMEDIO: LA#m-RE#-LA#m-RE#"
+            },
+            {
+              "chords": [],
+              "lyrics": "Y es Calibre 50 mi reina!!"
+            },
+            {
+              "chords": [],
+              "lyrics": "DO#                RE#"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                }
+              ],
+              "lyrics": "que sabr�n sus besos, me lo pregunto"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA#m                RE#/RE#7"
+            },
+            {
+              "chords": [],
+              "lyrics": "Y un suspiro aumenta mis latidos"
+            },
+            {
+              "chords": [],
+              "lyrics": "SOL#"
+            },
+            {
+              "chords": [],
+              "lyrics": "Y aunque nunca te he tocado"
+            },
+            {
+              "chords": [],
+              "lyrics": "FAm"
+            },
+            {
+              "chords": [],
+              "lyrics": "Y aunque nunca te he besado"
+            },
+            {
+              "chords": [],
+              "lyrics": "DO#           LA#7"
+            },
+            {
+              "chords": [],
+              "lyrics": "Te amo tanto que p�rese"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE#              RE#7"
+            },
+            {
+              "chords": [],
+              "lyrics": "Que te hice m�a tantas veces"
+            },
+            {
+              "chords": [],
+              "lyrics": "SOL#"
+            },
+            {
+              "chords": [],
+              "lyrics": "Y aunque no nos conocemos"
+            },
+            {
+              "chords": [],
+              "lyrics": "FAm"
+            },
+            {
+              "chords": [],
+              "lyrics": "Y aunque esto parezca cuento"
+            },
+            {
+              "chords": [],
+              "lyrics": "DO#             LA#7"
+            }
+          ]
+        },
+        {
+          "name": "Solo",
+          "lines": [
+            {
+              "chords": [],
+              "lyrics": "RE#             RE#7"
+            },
+            {
+              "chords": [],
+              "lyrics": "Y alg�n d�a estar sintiendo tus latidos"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA#m-RE#-LA#m-RE#/RE#7-SOL#"
+            },
+            {
+              "chords": [],
+              "lyrics": "Cualquier duda les dejo mi facebook: Juan J. Zu�iga"
+            },
+            {
+              "chords": [],
+              "lyrics": "Saludos desde La Paz,B.C.S."
+            },
+            {
+              "chords": [],
+              "lyrics": "Puro Gatos Salvajes 1!2!3! UABCS lml"
+            }
+          ]
+        }
+      ],
+      "rawText": "INTRO: LA#m-RE#-LA#m-RE#\n\n DO#                           RE#\nHace unos meses la conoc� por face\n  LA#m                  SOL#-FA#-FAm-SOL#-DO#\nSus ojos, su sonrisa, tiene un no se que\n DO#             RE#\nEn unas horas, ya eramos buenos amigos\n LA#m                 RE#\nMiro sus fotos y me encanta y estoy convencido\n\n  DO#                    RE#\nEs poco el tiempo, pero todo sabe venir\n  LA#m          SOL#-FA#-FAm-SOL#-DO#\nJamas imagine, enamorarme as�\n DO#                RE#\nA que sabr�n sus besos, me lo pregunto\n      LA#m                RE#/RE#7\nY un suspiro aumenta mis latidos\n\n   SOL#\nY aunque nunca te he tocado\n   FAm\nY aunque nunca te he besado\n    DO#           LA#7\nTe amo tanto que p�rese\n        RE#              RE#7\nQue te hice m�a tantas veces\n\n\n   SOL#\nY aunque no nos conocemos\n    FAm\nY aunque esto parezca cuento\n   DO#             LA#7\nSolo quiero estar contigo\n    RE#             RE#7\nY alg�n d�a estar sintiendo tus latidos\n\nINTERMEDIO: LA#m-RE#-LA#m-RE#\n\nY es Calibre 50 mi reina!!\n\n DO#                RE#\nA que sabr�n sus besos, me lo pregunto\n      LA#m                RE#/RE#7\nY un suspiro aumenta mis latidos\n\n   SOL#\nY aunque nunca te he tocado\n   FAm\nY aunque nunca te he besado\n    DO#           LA#7\nTe amo tanto que p�rese\n        RE#              RE#7\nQue te hice m�a tantas veces\n\n\n   SOL#\nY aunque no nos conocemos\n    FAm\nY aunque esto parezca cuento\n   DO#             LA#7\nSolo quiero estar contigo\n    RE#             RE#7\nY alg�n d�a estar sintiendo tus latidos\n\n\n\nLA#m-RE#-LA#m-RE#/RE#7-SOL#\n\n\nCualquier duda les dejo mi facebook: Juan J. Zu�iga\n\nSaludos desde La Paz,B.C.S.\nPuro Gatos Salvajes 1!2!3! UABCS lml",
+      "pdfUrl": "https://acordesweb.com/descarga-pdf/calibre-50/tus-latidos/0/0/0.pdf"
+    },
+    {
+      "title": "Gano Holanda Perdio China",
+      "artist": "Calibre 50",
+      "sourceUrl": "https://acordesweb.com/cancion/calibre-50/gano-holanda-perdio-china",
+      "chords": [
+        "G#",
+        "C#",
+        "D#",
+        "Fm",
+        "A",
+        "C"
+      ],
+      "key": "G#",
+      "sections": [
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [],
+              "lyrics": "Acordes en orden de aparici�n"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G#",
+                  "position": 0
+                },
+                {
+                  "chord": "C#",
+                  "position": 10
+                },
+                {
+                  "chord": "D#",
+                  "position": 20
+                },
+                {
+                  "chord": "Fm",
+                  "position": 28
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "1|--4--|  |--x--|  |--x--|  |--1--|"
+            },
+            {
+              "chords": [],
+              "lyrics": "2|--4--|  |--x--|  |--x--|  |--1--|"
+            },
+            {
+              "chords": [],
+              "lyrics": "3|--5--|  |--6--|  |--8--|  |--1--|"
+            },
+            {
+              "chords": [],
+              "lyrics": "4|--6--|  |--3--|  |--5--|  |--3--|"
+            },
+            {
+              "chords": [],
+              "lyrics": "5|--x--|  |--4--|  |--6--|  |--x--|"
+            },
+            {
+              "chords": [],
+              "lyrics": "6|--x--|  |--x--|  |--x--|  |--x--|"
+            },
+            {
+              "chords": [],
+              "lyrics": "Riff 1"
+            },
+            {
+              "chords": [],
+              "lyrics": "|--6-5-3-1--|  Y se termina en el bajo de C#"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G#",
+                  "position": 0
+                },
+                {
+                  "chord": "G#",
+                  "position": 23
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Me gust� la vida recia  hice cosas malas, buenas"
+            },
+            {
+              "chords": [],
+              "lyrics": "(riff 1)            C#"
+            },
+            {
+              "chords": [],
+              "lyrics": "y una s�per del 40 me ense�o"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                }
+              ],
+              "lyrics": "LA vida hay que apostarle  y batallarle"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "para no ser del mont�n..."
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Fm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Hay historias que contar  y amigos que recordar"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "m�s no quiero  contagiarles mi dolor"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Fm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "tanto tiempo la perree  gane y prob� del poder"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "por inercia ya me tocaba perder..."
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G#",
+                  "position": 0
+                },
+                {
+                  "chord": "G#",
+                  "position": 23
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "No hice pacto con el diablo  no firme ning�n contrato"
+            },
+            {
+              "chords": [],
+              "lyrics": "(riff 1)                     C#"
+            },
+            {
+              "chords": [],
+              "lyrics": "al contrario siempre a dios me encomend�"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "no olvido las hamburguesas que vend�a"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "ni los carros que lave..."
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Fm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "La balanza se inclino  puse todo a mi favor"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "y lo que tanto espere  por fin llego"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Fm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "el dinero me sobro  y no lo niego me ayudo"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#",
+                  "position": 0
+                },
+                {
+                  "chord": "G#",
+                  "position": 34
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "y aquel perro  se convirti� en un se�or..."
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Fm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Fui blanco de la envidia  tal vez yo la llame"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "quise comerme al mundo  y lo que hab�a en el"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "como llueve se seca  el caf� se enfr�a"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                },
+                {
+                  "chord": "Fm",
+                  "position": 52
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "un d�a tore� mi suerte  Gano Holanda, Perdi� China..."
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#",
+                  "position": 0
+                },
+                {
+                  "chord": "G#",
+                  "position": 5
+                },
+                {
+                  "chord": "C#",
+                  "position": 10
+                },
+                {
+                  "chord": "C",
+                  "position": 15
+                },
+                {
+                  "chord": "Fm",
+                  "position": 21
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G#",
+                  "position": 0
+                },
+                {
+                  "chord": "G#",
+                  "position": 23
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                }
+              ],
+              "lyrics": "m� nadie va a contarme de Venecia, de Los Alpes,"
+            },
+            {
+              "chords": [],
+              "lyrics": "(riff 1)                 C#"
+            },
+            {
+              "chords": [],
+              "lyrics": "de Dub�i, Espa�a todo conoc�"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "y en las pir�mides de Egipto  raspe las suelas"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "de mis Louboutin..."
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Fm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Las m�s hermosas mujeres  las actrices de la tele"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "una cena  y adornaban mi colch�n"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Fm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "ese es otro rollo amigo lo m�s perro que he vivido"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "aunque se los cuente desde la prisi�n..."
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G#",
+                  "position": 0
+                },
+                {
+                  "chord": "G#",
+                  "position": 23
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Festejaba el a�o nuevo con puro champagne del bueno"
+            },
+            {
+              "chords": [],
+              "lyrics": "(riff 1)                C#"
+            },
+            {
+              "chords": [],
+              "lyrics": "ese d�a nunca  lo voy a olvidar"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "los g�eros de las paletas me atoraron"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "en la sala de abordar..."
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Fm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Era gente de Interpol de la DEA que se yo"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "apenas juntos  y pudieron detenerme"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Fm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "es el gusto que me llevo  y s� que ser�a otro juego"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "si hubiera cargado con mi 5.7..."
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Fm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Fui blanco de la envidia  tal vez yo la llame"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "quise comerme al mundo  y lo que hab�a en el"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "como llueve se seca  el caf� se enfr�a"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                },
+                {
+                  "chord": "Fm",
+                  "position": 52
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "un d�a tore� mi suerte  Gano Holanda, Perdi� China..."
+            }
+          ]
+        }
+      ],
+      "rawText": "Acordes en orden de aparici�n\n\n   G#        C#        D#      Fm\n 1|--4--|  |--x--|  |--x--|  |--1--|\n 2|--4--|  |--x--|  |--x--|  |--1--|\n 3|--5--|  |--6--|  |--8--|  |--1--|\n 4|--6--|  |--3--|  |--5--|  |--3--|\n 5|--x--|  |--4--|  |--6--|  |--x--|\n 6|--x--|  |--x--|  |--x--|  |--x--|\n\n\nRiff 1\n         |--6-5-3-1--|  Y se termina en el bajo de C#\n\n\n\n       G#                     G#\nMe gust� la vida recia  hice cosas malas, buenas\n      (riff 1)            C#\ny una s�per del 40 me ense�o\n      G#\nA LA vida hay que apostarle  y batallarle\n                    D#\npara no ser del mont�n...\n\n\n      Fm\nHay historias que contar  y amigos que recordar\n        G#\nm�s no quiero  contagiarles mi dolor\n        Fm\ntanto tiempo la perree  gane y prob� del poder\n      C#\npor inercia ya me tocaba perder...\n\n\n\n         G#                     G#\nNo hice pacto con el diablo  no firme ning�n contrato\n         (riff 1)                     C#\nal contrario siempre a dios me encomend�\n        G#\nno olvido las hamburguesas que vend�a\n                     D#\nni los carros que lave...\n\n\n       Fm\nLa balanza se inclino  puse todo a mi favor\n       C#\ny lo que tanto espere  por fin llego\n      Fm\nel dinero me sobro  y no lo niego me ayudo\n         C#                                G#\ny aquel perro  se convirti� en un se�or...\n\n\n\nFm\nFui blanco de la envidia  tal vez yo la llame\n D#\nquise comerme al mundo  y lo que hab�a en el\n   C#\ncomo llueve se seca  el caf� se enfr�a\n    C                                                   Fm\nun d�a tore� mi suerte  Gano Holanda, Perdi� China...\n\nC#   G#   C#   C     Fm\n\n\n       G#                     G#\nA m� nadie va a contarme de Venecia, de Los Alpes,\n  (riff 1)                 C#\nde Dub�i, Espa�a todo conoc�\n             G#\ny en las pir�mides de Egipto  raspe las suelas\n               D#\nde mis Louboutin...\n\n\n         Fm\nLas m�s hermosas mujeres  las actrices de la tele\n     C#\nuna cena  y adornaban mi colch�n\n         Fm\nese es otro rollo amigo lo m�s perro que he vivido\n       G#\naunque se los cuente desde la prisi�n...\n\n\n       G#                     G#\nFestejaba el a�o nuevo con puro champagne del bueno\n     (riff 1)                C#\nese d�a nunca  lo voy a olvidar\n      G#\nlos g�eros de las paletas me atoraron\n                   D#\nen la sala de abordar...\n\n\n     Fm\nEra gente de Interpol de la DEA que se yo\n        C#\napenas juntos  y pudieron detenerme\n       Fm\nes el gusto que me llevo  y s� que ser�a otro juego\n         C#\nsi hubiera cargado con mi 5.7...\n\n\n\n   Fm\nFui blanco de la envidia  tal vez yo la llame\n D#\nquise comerme al mundo  y lo que hab�a en el\n   C#\ncomo llueve se seca  el caf� se enfr�a\n    C                                                   Fm\nun d�a tore� mi suerte  Gano Holanda, Perdi� China...",
+      "pdfUrl": "https://acordesweb.com/descarga-pdf/calibre-50/gano-holanda-perdio-china/0/0/0.pdf"
+    },
+    {
+      "title": "Mujer De Nadie Mujer De Todos",
+      "artist": "Calibre 50",
+      "sourceUrl": "https://acordesweb.com/cancion/calibre-50/mujer-de-nadie-mujer-de-todos",
+      "chords": [
+        "Dm",
+        "C",
+        "A#",
+        "C7",
+        "F",
+        "A7"
+      ],
+      "key": "C",
+      "sections": [
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [],
+              "lyrics": "Aqui dejando esta rolita que ya subieron solo que corrigiendo"
+            },
+            {
+              "chords": [],
+              "lyrics": "uno que otros errores que ami no me daban los tonos en la cancion"
+            },
+            {
+              "chords": [],
+              "lyrics": "y por eso decidi subirla de acuerdo a los tonos que ami me dan"
+            },
+            {
+              "chords": [],
+              "lyrics": "saludos para las chicas del ITG Guaymas"
+            },
+            {
+              "chords": [],
+              "lyrics": "Empieza con Dm C A# A7"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Dm",
+                  "position": 0
+                },
+                {
+                  "chord": "C",
+                  "position": 19
+                },
+                {
+                  "chord": "A#",
+                  "position": 31
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "no eres mia ni de nadie, ohh ohhh"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C7",
+                  "position": 0
+                },
+                {
+                  "chord": "F",
+                  "position": 13
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "tu cama es nueva cada noche"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Dm",
+                  "position": 0
+                },
+                {
+                  "chord": "C",
+                  "position": 23
+                },
+                {
+                  "chord": "A#",
+                  "position": 36
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "tu piel no cura ni un momento, ohh ohhh"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C7",
+                  "position": 0
+                },
+                {
+                  "chord": "F",
+                  "position": 11
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "tus besos saben a mentira"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A#",
+                  "position": 0
+                },
+                {
+                  "chord": "C",
+                  "position": 20
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Caminas lejos pero regresas"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A7",
+                  "position": 0
+                },
+                {
+                  "chord": "Dm",
+                  "position": 15
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "son tus caricias tan adictivas"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A#",
+                  "position": 0
+                },
+                {
+                  "chord": "C",
+                  "position": 17
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "que quien las prueba vuelve a probar"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Dm",
+                  "position": 0
+                },
+                {
+                  "chord": "C",
+                  "position": 29
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Ay, mujer de nadie mujer de todos"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A#",
+                  "position": 0
+                },
+                {
+                  "chord": "C7",
+                  "position": 14
+                },
+                {
+                  "chord": "F",
+                  "position": 29
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "As� tu eres pero ni modo, as� te quiero, as� me gustas"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Dm",
+                  "position": 0
+                },
+                {
+                  "chord": "C",
+                  "position": 29
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Ay, mujer tan f�cil para gozarse"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A#",
+                  "position": 0
+                },
+                {
+                  "chord": "C7",
+                  "position": 19
+                },
+                {
+                  "chord": "F",
+                  "position": 36
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "caricias falsas que tienen precio, el precio es alto si te enamoras"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A#",
+                  "position": 0
+                },
+                {
+                  "chord": "C",
+                  "position": 25
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "te vas y llegas como el aire"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A#",
+                  "position": 0
+                },
+                {
+                  "chord": "C",
+                  "position": 27
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Mujer de todos, mujer de nadie"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Dm",
+                  "position": 0
+                },
+                {
+                  "chord": "C",
+                  "position": 3
+                },
+                {
+                  "chord": "A#",
+                  "position": 5
+                },
+                {
+                  "chord": "A7",
+                  "position": 8
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Dm",
+                  "position": 0
+                },
+                {
+                  "chord": "C",
+                  "position": 29
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Ay, mujer de nadie mujer de todos"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A#",
+                  "position": 0
+                },
+                {
+                  "chord": "C7",
+                  "position": 14
+                },
+                {
+                  "chord": "F",
+                  "position": 29
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "As� tu eres pero ni modo, as� te quiero, as� me gustas"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Dm",
+                  "position": 0
+                },
+                {
+                  "chord": "C",
+                  "position": 29
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Ay, mujer tan f�cil para gozarse"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A#",
+                  "position": 0
+                },
+                {
+                  "chord": "C7",
+                  "position": 19
+                },
+                {
+                  "chord": "F",
+                  "position": 35
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "caricias falsas que tienen precio, el precio es alto si te enamoras"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A#",
+                  "position": 0
+                },
+                {
+                  "chord": "C",
+                  "position": 25
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "te vas y llegas como el aire"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A#",
+                  "position": 0
+                },
+                {
+                  "chord": "C",
+                  "position": 27
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Mujer de todos, mujer de nadie"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Dm",
+                  "position": 0
+                },
+                {
+                  "chord": "C",
+                  "position": 3
+                },
+                {
+                  "chord": "A#",
+                  "position": 5
+                },
+                {
+                  "chord": "A7",
+                  "position": 8
+                },
+                {
+                  "chord": "Dm",
+                  "position": 11
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "y ya se la saben el raymonds de nuevo"
+            }
+          ]
+        }
+      ],
+      "rawText": "Aqui dejando esta rolita que ya subieron solo que corrigiendo\nuno que otros errores que ami no me daban los tonos en la cancion\ny por eso decidi subirla de acuerdo a los tonos que ami me dan\nsaludos para las chicas del ITG Guaymas\n\nEmpieza con Dm C A# A7\n\nDm                 C           A#\nno eres mia ni de nadie, ohh ohhh\n             C7           F\ntu cama es nueva cada noche\nDm                     C            A#\ntu piel no cura ni un momento, ohh ohhh\n            C7         F\ntus besos saben a mentira\n\n  A#                  C\nCaminas lejos pero regresas\n          A7             Dm\nson tus caricias tan adictivas\n               A#               C\nque quien las prueba vuelve a probar\n\nDm                           C\nAy, mujer de nadie mujer de todos\n                      A#            C7             F\nAs� tu eres pero ni modo, as� te quiero, as� me gustas\nDm                           C\nAy, mujer tan f�cil para gozarse\n                             A#                 C7               F\ncaricias falsas que tienen precio, el precio es alto si te enamoras\n\nA#                       C\nte vas y llegas como el aire\nA#                         C\nMujer de todos, mujer de nadie\n\n\n     Dm C A# A7\n\n\nDm                           C\nAy, mujer de nadie mujer de todos\n                      A#            C7             F\nAs� tu eres pero ni modo, as� te quiero, as� me gustas\nDm                           C\nAy, mujer tan f�cil para gozarse\n                             A#                 C7              F\ncaricias falsas que tienen precio, el precio es alto si te enamoras\n\nA#                       C\nte vas y llegas como el aire\nA#                         C\nMujer de todos, mujer de nadie\n\n     Dm C A# A7 Dm\n\ny ya se la saben el raymonds de nuevo",
+      "pdfUrl": "https://acordesweb.com/descarga-pdf/calibre-50/mujer-de-nadie-mujer-de-todos/0/0/0.pdf"
+    },
+    {
+      "title": "Mi Paloma",
+      "artist": "Calibre 50",
+      "sourceUrl": "https://acordesweb.com/cancion/calibre-50/mi-paloma",
+      "chords": [],
+      "key": null,
+      "sections": [
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [],
+              "lyrics": "Letra y acordes de Mi Paloma"
+            },
+            {
+              "chords": [],
+              "lyrics": "(Letra y m�sica de Calibre 50?)"
+            }
+          ]
+        },
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [],
+              "lyrics": "SOL#  DO#       LA#7      RE#7"
+            },
+            {
+              "chords": [],
+              "lyrics": "SOL#  RE#/SOL  FAm  RE#  SOL#"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE#7           SOL#        RE#7"
+            },
+            {
+              "chords": [],
+              "lyrics": "SOL#             RE#7           SOL#"
+            },
+            {
+              "chords": [],
+              "lyrics": "Me encontr� una paloma mal herida"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE#7                   SOL#"
+            },
+            {
+              "chords": [],
+              "lyrics": "Tra�a sus ojos casi secos de llorar"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA#7                        RE#7"
+            },
+            {
+              "chords": [],
+              "lyrics": "Estaba asustada pa' todos lados corr�a"
+            },
+            {
+              "chords": [],
+              "lyrics": "SOL#            RE#7      SOL#"
+            },
+            {
+              "chords": [],
+              "lyrics": "Me ten�a miedo y no se dejaba agarrar."
+            },
+            {
+              "chords": [],
+              "lyrics": "RE#7"
+            },
+            {
+              "chords": [],
+              "lyrics": "SOL#             RE#7          SOL#"
+            },
+            {
+              "chords": [],
+              "lyrics": "Le habl� bonito y como que no me cre�a"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE#7                        SOL#"
+            },
+            {
+              "chords": [],
+              "lyrics": "Hasta que al tiempo su confianza me gan�"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA#7                                   RE#7"
+            },
+            {
+              "chords": [],
+              "lyrics": "Tra�a las alas rotas y un mont�n de heridas"
+            },
+            {
+              "chords": [],
+              "lyrics": "SOL#       RE#7      SOL#"
+            },
+            {
+              "chords": [],
+              "lyrics": "Que con mis besos una a una le cur�."
+            },
+            {
+              "chords": [],
+              "lyrics": "SOL#7      DO#"
+            },
+            {
+              "chords": [],
+              "lyrics": "Pero si vieran que bonita mi Paloma"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA#7                                   RE#7"
+            },
+            {
+              "chords": [],
+              "lyrics": "Nom�s me mira y quiere volar a mis brazos"
+            },
+            {
+              "chords": [],
+              "lyrics": "SOL#             RE#7          SOL#"
+            },
+            {
+              "chords": [],
+              "lyrics": "Lleg� a mi vida a pintarme azul el cielo"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE#7                                   SOL#"
+            },
+            {
+              "chords": [],
+              "lyrics": "Cuando llevaba un poco m�s de mil fracasos."
+            },
+            {
+              "chords": [],
+              "lyrics": "DO#                                         LA#7      RE#7"
+            },
+            {
+              "chords": [],
+              "lyrics": "Y puro Calibre 50 chiquitita..."
+            },
+            {
+              "chords": [],
+              "lyrics": "SOL#  RE#/SOL  FAm  RE#  SOL#"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE#7           SOL#        RE#7"
+            },
+            {
+              "chords": [],
+              "lyrics": "SOL#                RE#7          SOL#"
+            },
+            {
+              "chords": [],
+              "lyrics": "Me trae pensando todo el tiempo en su cari�o"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE#7                        SOL#"
+            },
+            {
+              "chords": [],
+              "lyrics": "Se me hace largo el d�a pa' volverla a ver"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA#7                      RE#7"
+            },
+            {
+              "chords": [],
+              "lyrics": "Yo que pensaba ya curada volar�a"
+            },
+            {
+              "chords": [],
+              "lyrics": "SOL#             RE#7          SOL#"
+            },
+            {
+              "chords": [],
+              "lyrics": "Hizo su nido en lo mas hondo de mi ser."
+            },
+            {
+              "chords": [],
+              "lyrics": "RE#7"
+            },
+            {
+              "chords": [],
+              "lyrics": "SOL#             RE#7          SOL#"
+            },
+            {
+              "chords": [],
+              "lyrics": "Despu�s de todo y al final ya me tocaba"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE#7                        SOL#"
+            },
+            {
+              "chords": [],
+              "lyrics": "No me acordaba que era estar enamorado"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA#7                        RE#7"
+            },
+            {
+              "chords": [],
+              "lyrics": "Se me perdieron los ojos en su sonrisa"
+            },
+            {
+              "chords": [],
+              "lyrics": "SOL#          RE#7            SOL#"
+            },
+            {
+              "chords": [],
+              "lyrics": "Hay palomita como que te hab�as tardado."
+            },
+            {
+              "chords": [],
+              "lyrics": "SOL#7      DO#"
+            },
+            {
+              "chords": [],
+              "lyrics": "Pero si vieran que bonita mi Paloma"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA#7                                   RE#7"
+            },
+            {
+              "chords": [],
+              "lyrics": "Nom�s me mira y quiere volar a mis brazos"
+            },
+            {
+              "chords": [],
+              "lyrics": "SOL#             RE#7          SOL#"
+            },
+            {
+              "chords": [],
+              "lyrics": "Lleg� a mi vida a pintarme azul el cielo"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE#7                                   SOL#"
+            },
+            {
+              "chords": [],
+              "lyrics": "Cuando llevaba un poco m�s de mil fracasos."
+            },
+            {
+              "chords": [],
+              "lyrics": "RE#  RE#/DO#  DOm7  RE#7/LA#  SOL#"
+            }
+          ]
+        }
+      ],
+      "rawText": "Letra y acordes de Mi Paloma\n\n(Letra y m�sica de Calibre 50?)\nIntro\nSOL#  DO#       LA#7      RE#7\nSOL#  RE#/SOL  FAm  RE#  SOL#\nRE#7           SOL#        RE#7\n\n           SOL#             RE#7           SOL#\nMe encontr� una paloma mal herida\n                 RE#7                   SOL#\nTra�a sus ojos casi secos de llorar\n                   LA#7                        RE#7\nEstaba asustada pa' todos lados corr�a\n                  SOL#            RE#7      SOL#\nMe ten�a miedo y no se dejaba agarrar.\n\nRE#7\n\n                 SOL#             RE#7          SOL#\nLe habl� bonito y como que no me cre�a\n                           RE#7                        SOL#\nHasta que al tiempo su confianza me gan�\n                LA#7                                   RE#7\nTra�a las alas rotas y un mont�n de heridas\n                       SOL#       RE#7      SOL#\nQue con mis besos una a una le cur�.\n\nSOL#7      DO#\nPero si vieran que bonita mi Paloma\n                   LA#7                                   RE#7\nNom�s me mira y quiere volar a mis brazos\n                 SOL#             RE#7          SOL#\nLleg� a mi vida a pintarme azul el cielo\n                     RE#7                                   SOL#\nCuando llevaba un poco m�s de mil fracasos.\n\nDO#                                         LA#7      RE#7\nY puro Calibre 50 chiquitita...\nSOL#  RE#/SOL  FAm  RE#  SOL#\nRE#7           SOL#        RE#7\n\n                  SOL#                RE#7          SOL#\nMe trae pensando todo el tiempo en su cari�o\n                        RE#7                        SOL#\nSe me hace largo el d�a pa' volverla a ver\n                   LA#7                      RE#7\nYo que pensaba ya curada volar�a\n                 SOL#             RE#7          SOL#\nHizo su nido en lo mas hondo de mi ser.\n\nRE#7\n\n                 SOL#             RE#7          SOL#\nDespu�s de todo y al final ya me tocaba\n                           RE#7                        SOL#\nNo me acordaba que era estar enamorado\n                   LA#7                        RE#7\nSe me perdieron los ojos en su sonrisa\n                SOL#          RE#7            SOL#\nHay palomita como que te hab�as tardado.\n\nSOL#7      DO#\nPero si vieran que bonita mi Paloma\n                   LA#7                                   RE#7\nNom�s me mira y quiere volar a mis brazos\n                   SOL#             RE#7          SOL#\nLleg� a mi vida a pintarme azul el cielo\n                   RE#7                                   SOL#\nCuando llevaba un poco m�s de mil fracasos.\n\nRE#  RE#/DO#  DOm7  RE#7/LA#  SOL#",
+      "pdfUrl": "https://acordesweb.com/descarga-pdf/calibre-50/mi-paloma/0/0/0.pdf"
+    },
+    {
+      "title": "A La Antigita",
+      "artist": "Calibre 50",
+      "sourceUrl": "https://acordesweb.com/cancion/calibre-50/a-la-antigita",
+      "chords": [
+        "G#",
+        "F#",
+        "C#",
+        "Eb7",
+        "G",
+        "Eb",
+        "Fm",
+        "A",
+        "D7",
+        "C#7"
+      ],
+      "key": "C#",
+      "sections": [
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [
+                {
+                  "chord": "G#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Que bonita se ve"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y ya mir� que la mir�"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y me sonri�"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G#",
+                  "position": 0
+                },
+                {
+                  "chord": "Eb7",
+                  "position": 11
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Le gust� y me gust�"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Est� como pa' m�"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G#",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 8
+                },
+                {
+                  "chord": "F#",
+                  "position": 14
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Como pa' que viva aqu�"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "En mi coraz�n"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G#",
+                  "position": 0
+                },
+                {
+                  "chord": "Eb7",
+                  "position": 7
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y hacerla feliz"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Es cuesti�n que quiera"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y le entrego todo"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Eb",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Yo sabr� cuidarla mi amor"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Fm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Quererla a mi modo"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Pero a la antig�ita bonita"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Eb7",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                }
+              ],
+              "lyrics": "la antig�ita"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Serenatas, besos"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Flores y cartitas"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Eb",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Tengo mucho amor mi vida"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Fm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Pa' tirar pa' arriba"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Pero a la antig�ita bonita"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Eb7",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                }
+              ],
+              "lyrics": "la antig�ita"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Eb7",
+                  "position": 0
+                },
+                {
+                  "chord": "D7",
+                  "position": 8
+                },
+                {
+                  "chord": "C#7",
+                  "position": 15
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Usted no es opci�n"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Es un privilegio"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Si me da el honor de tenerla"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Eb7",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Yo voy a quererla bonita"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Pero a la antig�ita"
+            }
+          ]
+        },
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [],
+              "lyrics": "(Y puro Calibre 50 chiquitita)"
+            },
+            {
+              "chords": [],
+              "lyrics": "Es cuesti�n que quiera"
+            },
+            {
+              "chords": [],
+              "lyrics": "Y le entrego todo"
+            },
+            {
+              "chords": [],
+              "lyrics": "Yo sabr� cuidarla mi amor"
+            },
+            {
+              "chords": [],
+              "lyrics": "Quererla a mi modo"
+            },
+            {
+              "chords": [],
+              "lyrics": "Pero a la antig�ita bonita"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                }
+              ],
+              "lyrics": "la antig�ita"
+            },
+            {
+              "chords": [],
+              "lyrics": "Serenatas, besos"
+            },
+            {
+              "chords": [],
+              "lyrics": "Flores y cartitas"
+            },
+            {
+              "chords": [],
+              "lyrics": "Tengo mucho amor mi vida"
+            },
+            {
+              "chords": [],
+              "lyrics": "Pa' tirar pa' arriba"
+            },
+            {
+              "chords": [],
+              "lyrics": "Pero a la antig�ita bonita"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                }
+              ],
+              "lyrics": "la antig�ita"
+            },
+            {
+              "chords": [],
+              "lyrics": "Usted no es opci�n"
+            },
+            {
+              "chords": [],
+              "lyrics": "Es un privilegio"
+            },
+            {
+              "chords": [],
+              "lyrics": "Si me da el honor de tenerla"
+            },
+            {
+              "chords": [],
+              "lyrics": "Yo voy a quererla bonita"
+            },
+            {
+              "chords": [],
+              "lyrics": "Pero a la antig�ita"
+            },
+            {
+              "chords": [],
+              "lyrics": "Primero en #AcordesWeb.com"
+            }
+          ]
+        }
+      ],
+      "rawText": "Intro: G# F# C# G# Eb7\r\nG#\r\nQue bonita se ve\r\n                   F#\r\nY ya mir� que la mir�\r\n        C#\r\nY me sonri�\r\n      G#         Eb7\r\nLe gust� y me gust�\r\n\r\nG# \r\nEst� como pa' m�\r\n     G#      G     F#\r\nComo pa' que viva aqu�\r\n          C#\r\nEn mi coraz�n\r\n    G#     Eb7\r\nY hacerla feliz\r\n\r\n                 C#\r\nEs cuesti�n que quiera\r\n             G#\r\nY le entrego todo\r\n            Eb\r\nYo sabr� cuidarla mi amor\r\n              Fm\r\nQuererla a mi modo\r\n\r\n               G# \r\nPero a la antig�ita bonita\r\n          Eb7\r\nA la antig�ita\r\n\r\n           C#    \r\nSerenatas, besos\r\n           G#\r\nFlores y cartitas\r\n             Eb\r\nTengo mucho amor mi vida\r\n               Fm\r\nPa' tirar pa' arriba\r\n\r\n              G#\r\nPero a la antig�ita bonita\r\n         Eb7\r\nA la antig�ita\r\n\r\nEb7     D7     C#7\r\n Usted no es opci�n\r\n           G#\r\nEs un privilegio\r\n              F# \r\nSi me da el honor de tenerla\r\n            Eb7\r\nYo voy a quererla bonita\r\n               G#\r\nPero a la antig�ita\r\n\r\nIntro\r\n(Y puro Calibre 50 chiquitita)\r\n\r\nEs cuesti�n que quiera\r\nY le entrego todo\r\nYo sabr� cuidarla mi amor\r\nQuererla a mi modo\r\n\r\nPero a la antig�ita bonita\r\nA la antig�ita\r\n\r\nSerenatas, besos\r\nFlores y cartitas\r\nTengo mucho amor mi vida\r\nPa' tirar pa' arriba\r\n\r\nPero a la antig�ita bonita\r\nA la antig�ita\r\n\r\nUsted no es opci�n\r\nEs un privilegio\r\nSi me da el honor de tenerla\r\nYo voy a quererla bonita\r\n\r\nPero a la antig�ita\r\n\r\n\n\n\nPrimero en #AcordesWeb.com",
+      "pdfUrl": "https://acordesweb.com/descarga-pdf/calibre-50/a-la-antigita/0/0/0.pdf"
+    },
+    {
+      "title": "Aguaje Activado",
+      "artist": "Calibre 50",
+      "sourceUrl": "https://acordesweb.com/cancion/calibre-50/aguaje-activado",
+      "chords": [],
+      "key": null,
+      "sections": [
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [],
+              "lyrics": "La tonalidad de la rola esta en sostenido"
+            },
+            {
+              "chords": [],
+              "lyrics": "(un traste mas enfrente o capo en el primer traste)"
+            },
+            {
+              "chords": [],
+              "lyrics": "Dudas o aclaraciones a cesar__kgalas@hotmail.com"
+            }
+          ]
+        },
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [],
+              "lyrics": "LA"
+            },
+            {
+              "chords": [],
+              "lyrics": "Con una morrita a un lado"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE"
+            },
+            {
+              "chords": [],
+              "lyrics": "y en una troca perrona"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA"
+            },
+            {
+              "chords": [],
+              "lyrics": "entregando yo trabajo"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE"
+            },
+            {
+              "chords": [],
+              "lyrics": "cerveza, tequila y coca�s"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA"
+            },
+            {
+              "chords": [],
+              "lyrics": "pa�que no se acabe el party"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE"
+            },
+            {
+              "chords": [],
+              "lyrics": "mandele una de esta compa"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA"
+            },
+            {
+              "chords": [],
+              "lyrics": "Y en 15 minutos llego con las cheves"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE"
+            },
+            {
+              "chords": [],
+              "lyrics": "si no trae dinero aqui le fiamos"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA"
+            },
+            {
+              "chords": [],
+              "lyrics": "traigo morras en mi troca hasta cigarros"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE"
+            },
+            {
+              "chords": [],
+              "lyrics": "traigo todo pa�que siga cotorreando"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA"
+            },
+            {
+              "chords": [],
+              "lyrics": "traigo morras en mi troca hasta cigarros"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE"
+            },
+            {
+              "chords": [],
+              "lyrics": "traigo todo pa�que siga cotorreando"
+            },
+            {
+              "chords": [],
+              "lyrics": "Intermedio: LA, RE, LA, RE"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA"
+            },
+            {
+              "chords": [],
+              "lyrics": "Soy el aguaje activado"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE"
+            },
+            {
+              "chords": [],
+              "lyrics": "mas rapido y eficiente"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA"
+            },
+            {
+              "chords": [],
+              "lyrics": "pa�que usted siga enfiestado"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE"
+            },
+            {
+              "chords": [],
+              "lyrics": "marqueme y llego en caliente"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA"
+            },
+            {
+              "chords": [],
+              "lyrics": "soy mas rapido que un rayo"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE"
+            },
+            {
+              "chords": [],
+              "lyrics": "y estoy pa toda mi gente"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA"
+            },
+            {
+              "chords": [],
+              "lyrics": "Y en 15 minutos llego con las cheves"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE"
+            },
+            {
+              "chords": [],
+              "lyrics": "si no trae dinero aqui le fiamos"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA"
+            },
+            {
+              "chords": [],
+              "lyrics": "traigo morras en mi troca hasta cigarros"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE"
+            },
+            {
+              "chords": [],
+              "lyrics": "traigo todo pa�que siga cotorreando"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA"
+            },
+            {
+              "chords": [],
+              "lyrics": "traigo morras en mi troca hasta cigarros"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE"
+            },
+            {
+              "chords": [],
+              "lyrics": "si no trae dinero aqui le fiamos"
+            },
+            {
+              "chords": [],
+              "lyrics": "Intermedio: LA, RE, LA, RE"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA"
+            },
+            {
+              "chords": [],
+              "lyrics": "Siempre me la llevo ondeado"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE"
+            },
+            {
+              "chords": [],
+              "lyrics": "para nunca andar cansado"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA"
+            },
+            {
+              "chords": [],
+              "lyrics": "y llegarles en caliente"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE"
+            },
+            {
+              "chords": [],
+              "lyrics": "con todito mi mandado"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA"
+            },
+            {
+              "chords": [],
+              "lyrics": "pa�que sigan cotorreando"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE"
+            },
+            {
+              "chords": [],
+              "lyrics": "marque el Aguaje Activado"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA"
+            },
+            {
+              "chords": [],
+              "lyrics": "Y en 15 minutos llego con las cheves"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE"
+            },
+            {
+              "chords": [],
+              "lyrics": "si no trae dinero aqui le fiamos"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA"
+            },
+            {
+              "chords": [],
+              "lyrics": "traigo morras en mi troca hasta cigarros"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE"
+            },
+            {
+              "chords": [],
+              "lyrics": "traigo todo pa�que siga cotorreando"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA"
+            },
+            {
+              "chords": [],
+              "lyrics": "traigo morras en mi troca hasta cigarros"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE"
+            },
+            {
+              "chords": [],
+              "lyrics": "si no trae dinero aqui le fiamos..."
+            }
+          ]
+        },
+        {
+          "name": "Outro",
+          "lines": [
+            {
+              "chords": [],
+              "lyrics": "*Asi toco yo el Do-Do#-Re:"
+            },
+            {
+              "chords": [],
+              "lyrics": "DO  -  DO#(atras de RE)  -  RE"
+            },
+            {
+              "chords": [],
+              "lyrics": "0         1                  2"
+            },
+            {
+              "chords": [],
+              "lyrics": "1         2                  3"
+            },
+            {
+              "chords": [],
+              "lyrics": "0         1                  2"
+            },
+            {
+              "chords": [],
+              "lyrics": "2         0                  0"
+            },
+            {
+              "chords": [],
+              "lyrics": "3         0                  0"
+            },
+            {
+              "chords": [],
+              "lyrics": "0         0                  0"
+            }
+          ]
+        }
+      ],
+      "rawText": "La tonalidad de la rola esta en sostenido\n(un traste mas enfrente o capo en el primer traste)\nDudas o aclaraciones a cesar__kgalas@hotmail.com\n\nIntro: LA,RE.. (DO-DO#-RE)*Checar al final esto..\n\n                     LA\nCon una morrita a un lado\n                 RE\ny en una troca perrona\n                 LA\nentregando yo trabajo\n                   RE\ncerveza, tequila y coca�s\n                      LA\npa�que no se acabe el party\n                    RE\nmandele una de esta compa\n\n                                 LA\nY en 15 minutos llego con las cheves\n                             RE\nsi no trae dinero aqui le fiamos\n                                     LA\ntraigo morras en mi troca hasta cigarros\n                                RE\ntraigo todo pa�que siga cotorreando\n                                     LA\ntraigo morras en mi troca hasta cigarros\n                                RE\ntraigo todo pa�que siga cotorreando\n\nIntermedio: LA, RE, LA, RE\n\n                  LA\nSoy el aguaje activado\n                  RE\nmas rapido y eficiente\n                       LA\npa�que usted siga enfiestado\n                       RE\nmarqueme y llego en caliente\n                      LA\nsoy mas rapido que un rayo\n                   RE\ny estoy pa toda mi gente\n\n                                 LA\nY en 15 minutos llego con las cheves\n                             RE\nsi no trae dinero aqui le fiamos\n                                     LA\ntraigo morras en mi troca hasta cigarros\n                                RE\ntraigo todo pa�que siga cotorreando\n                                     LA\ntraigo morras en mi troca hasta cigarros\n                            RE\nsi no trae dinero aqui le fiamos\n\n\nIntermedio: LA, RE, LA, RE\n\n                      LA\nSiempre me la llevo ondeado\n                    RE\npara nunca andar cansado\n                  LA\ny llegarles en caliente\n                 RE\ncon todito mi mandado\n                   LA\npa�que sigan cotorreando\n                    RE\nmarque el Aguaje Activado\n\n                                 LA\nY en 15 minutos llego con las cheves\n                             RE\nsi no trae dinero aqui le fiamos\n                                     LA\ntraigo morras en mi troca hasta cigarros\n                                RE\ntraigo todo pa�que siga cotorreando\n                                     LA\ntraigo morras en mi troca hasta cigarros\n                            RE\nsi no trae dinero aqui le fiamos...\n\nFinal: LA, RE, LA, (RE, DO#, DO, DO#-RE)\n\n\n*Asi toco yo el Do-Do#-Re:\nDO  -  DO#(atras de RE)  -  RE\n0         1                  2\n1         2                  3\n0         1                  2\n2         0                  0\n3         0                  0\n0         0                  0",
+      "pdfUrl": "https://acordesweb.com/descarga-pdf/calibre-50/aguaje-activado/0/0/0.pdf"
+    },
+    {
+      "title": "Ajustes Inzunza",
+      "artist": "Calibre 50",
+      "sourceUrl": "https://acordesweb.com/cancion/calibre-50/ajustes-inzunza",
+      "chords": [
+        "Bb",
+        "F",
+        "Eb",
+        "A"
+      ],
+      "key": "Bb",
+      "sections": [
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [
+                {
+                  "chord": "Bb",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Bazucas granadas"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y Chalecos anti-balas"
+            },
+            {
+              "chords": [],
+              "lyrics": "Blindajes, las calle"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bb",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "En camioneta sin placas"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Eb",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Cobrando las cuentas"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bb",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y deudas pendientes"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Eb",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Raite a domicilio"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bb",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Les llego la muerte"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Eb",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y as� en pedacitos"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bb",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Colgados de un puente"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Eb",
+                  "position": 0
+                },
+                {
+                  "chord": "F",
+                  "position": 5
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Comando y dirijo"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bb",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                }
+              ],
+              "lyrics": "toda mi gente"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bb",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Esa lista negra"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "En mis manos la tengo"
+            },
+            {
+              "chords": [],
+              "lyrics": "Ubic� a la presa"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bb",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y ondeado metiendo"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Eb",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Calmado y sereno"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bb",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Lo agarro y lo encinto"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Eb",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Pa que me de tiempo"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bb",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Sacar el cuchillo"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Eb",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Lo tiro en un predio"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bb",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y una cartulina"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Eb",
+                  "position": 0
+                },
+                {
+                  "chord": "F",
+                  "position": 4
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Resalto el mensaje"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bb",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Ajustes Inzunza"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bb",
+                  "position": 0
+                },
+                {
+                  "chord": "F",
+                  "position": 23
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Al 300 % voy con el padrino"
+            },
+            {
+              "chords": [],
+              "lyrics": "Al tiro los plebes"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bb",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y mi compa chino"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Eb",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "El macho y los que"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bb",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "conforma su gavilla"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Eb",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Atacando de frente"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bb",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Estilo Pancho Villa"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Eb",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Toda la plebada"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bb",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Somos una empresa"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Eb",
+                  "position": 0
+                },
+                {
+                  "chord": "F",
+                  "position": 5
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Ajustes Inzunza"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bb",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Socio al MZ"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bb",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y que no se olviden"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Se�ores mi lema"
+            },
+            {
+              "chords": [],
+              "lyrics": "Los ni�os no tienen"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bb",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "La culpa de nada"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Eb",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Grandes contra grandes"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Est�n enredados"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Eb",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Me voy me despido"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bb",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Rumbo pa los llanos"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Eb",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Con mi pecherona"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bb",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y cuchillo en la mano"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Eb",
+                  "position": 0
+                },
+                {
+                  "chord": "F",
+                  "position": 4
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Compa soy Manuel"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bb",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "de apodo el ondeado"
+            }
+          ]
+        }
+      ],
+      "rawText": "Intro: Bb Cm Bb Eb Bb Eb Bb Eb Bb\n\nBb\nBazucas granadas\n                F\nY Chalecos anti-balas\n\nBlindajes, las calle\n                 Bb\nEn camioneta sin placas\n             Eb\nCobrando las cuentas\n            Bb\nY deudas pendientes\n            Eb\nRaite a domicilio\n             Bb\nLes llego la muerte\n             Eb\nY as� en pedacitos\n               Bb\nColgados de un puente\n            Eb   F\nComando y dirijo\n          Bb\nA toda mi gente\n\nBb\nEsa lista negra\n                F\nEn mis manos la tengo\n\nUbic� a la presa\n            Bb\nY ondeado metiendo\n            Eb\nCalmado y sereno\n                 Bb\nLo agarro y lo encinto\n             Eb\nPa que me de tiempo\n           Bb\nSacar el cuchillo\n              Eb\nLo tiro en un predio\n           Bb\nY una cartulina\n              Eb  F\nResalto el mensaje\n          Bb\nAjustes Inzunza\n\nBb                     F\nAl 300 % voy con el padrino\n\nAl tiro los plebes\n           Bb\nY mi compa chino\n               Eb\nEl macho y los que\n              Bb\nconforma su gavilla\n            Eb\nAtacando de frente\n              Bb\nEstilo Pancho Villa\n           Eb\nToda la plebada\n            Bb\nSomos una empresa\n          Eb   F\nAjustes Inzunza\n          Bb\nSocio al MZ\n\nBb\nY que no se olviden\n           F\nSe�ores mi lema\n\nLos ni�os no tienen\n            Bb\nLa culpa de nada\n               Eb\nGrandes contra grandes\n          F\nEst�n enredados\n             Eb\nMe voy me despido\n             Bb\nRumbo pa los llanos\n             Eb\nCon mi pecherona\n                 Bb\nY cuchillo en la mano\n            Eb  F\nCompa soy Manuel\n                Bb\nde apodo el ondeado",
+      "pdfUrl": "https://acordesweb.com/descarga-pdf/calibre-50/ajustes-inzunza/0/0/0.pdf"
+    },
+    {
+      "title": "Al Reves",
+      "artist": "Calibre 50",
+      "sourceUrl": "https://acordesweb.com/cancion/calibre-50/al-reves",
+      "chords": [
+        "G",
+        "C",
+        "Am",
+        "D",
+        "Em"
+      ],
+      "key": "G",
+      "sections": [
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Entre nosotros todo esta al rev�s"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Tu pides jugo yo pido caf�, yo"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Am",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Soy quien tiembla cuando tu me vez"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "T� quien me llama despu�s de las diez,"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Entre nosotros todo es diferente,"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Yo soy el cobarde t� eres La valiente"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Am",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "yo soy el discreto T� la imprudente"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "yo soy El d�bil y tu la fuerte.."
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 16
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Es tan il�gico tan inusual"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                },
+                {
+                  "chord": "Em",
+                  "position": 19
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Pero a la misma vez es tan perfecto"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 16
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "dos polos opuestos, nos atraemos.."
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 15
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Al rev�s, aqu� la historia"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Em",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 15
+                },
+                {
+                  "chord": "C",
+                  "position": 26
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Es al rev�s, pero funciona como vez"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Am",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 18
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "La escribimos juntos, como la pluma y el papel,"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 15
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Al rev�s aqu� la historia"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Em",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 14
+                },
+                {
+                  "chord": "C",
+                  "position": 29
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Es al rev�s y bajo nuestra propia ley,"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Am",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 16
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Puede ser absurdo pero al rev�s"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Estamos mas que bien.."
+            }
+          ]
+        },
+        {
+          "name": "Bridge",
+          "lines": [
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Yo en la cocina t� en el celular,"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "T� eres la firme yo el sentimental,"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Am",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y lo que opine la sociedad"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "sencillamente Nos da igual.."
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 16
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Es tan il�gico tan inusual"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                },
+                {
+                  "chord": "Em",
+                  "position": 19
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Pero a la misma vez es tan perfecto"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 16
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "dos polos opuestos, nos atraemos.."
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 15
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Al rev�s, aqu� la historia"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Em",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 15
+                },
+                {
+                  "chord": "C",
+                  "position": 26
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Es al rev�s, pero funciona como vez"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Am",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 18
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "La escribimos juntos, como la pluma y el papel,"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 15
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Al rev�s aqu� la historia"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Em",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 14
+                },
+                {
+                  "chord": "C",
+                  "position": 29
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Es al rev�s y bajo nuestra propia ley,"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Am",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 16
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Puede ser absurdo pero al rev�s"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Estamos mas que bien.."
+            }
+          ]
+        }
+      ],
+      "rawText": "INTRO: G, C, Am, D\n\n\n         G\nEntre nosotros todo esta al rev�s\n           C\nTu pides jugo yo pido caf�, yo\n            Am\nSoy quien tiembla cuando tu me vez\n             D\nT� quien me llama despu�s de las diez,\n\n        G\nEntre nosotros todo es diferente,\n             C\nYo soy el cobarde t� eres La valiente\n              Am\nyo soy el discreto T� la imprudente\n           D\nyo soy El d�bil y tu la fuerte..\n\n         C               D\nEs tan il�gico tan inusual\n           G                  Em\nPero a la misma vez es tan perfecto\n             C               D\ndos polos opuestos, nos atraemos..\n\n\n      G              D\nAl rev�s, aqu� la historia\n        Em             D          C\nEs al rev�s, pero funciona como vez\n               Am                D\nLa escribimos juntos, como la pluma y el papel,\n      G              D\nAl rev�s aqu� la historia\n        Em            D              C\nEs al rev�s y bajo nuestra propia ley,\n              Am              D\nPuede ser absurdo pero al rev�s\n                   G\nEstamos mas que bien..\n\n\nPuente: G, C, Am, D\n\n           G\nYo en la cocina t� en el celular,\n           C\nT� eres la firme yo el sentimental,\n            Am\nY lo que opine la sociedad\n      D\nsencillamente Nos da igual..\n\n\n         C               D\nEs tan il�gico tan inusual\n           G                  Em\nPero a la misma vez es tan perfecto\n             C               D\ndos polos opuestos, nos atraemos..\n\n\n      G              D\nAl rev�s, aqu� la historia\n        Em             D          C\nEs al rev�s, pero funciona como vez\n               Am                D\nLa escribimos juntos, como la pluma y el papel,\n      G              D\nAl rev�s aqu� la historia\n       Em            D              C\nEs al rev�s y bajo nuestra propia ley,\n              Am              D\nPuede ser absurdo pero al rev�s\n                   G\nEstamos mas que bien..\n\n\nFINAL: G, C, Am, D, G",
+      "pdfUrl": "https://acordesweb.com/descarga-pdf/calibre-50/al-reves/0/0/0.pdf"
+    },
+    {
+      "title": "Alterado Y Cochino",
+      "artist": "Calibre 50",
+      "sourceUrl": "https://acordesweb.com/cancion/calibre-50/alterado-y-cochino",
+      "chords": [
+        "D",
+        "G"
+      ],
+      "key": "D",
+      "sections": [
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Con Toda Esta Desvelada Que Traigo Arrastrando"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Por Andar Borracho"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Me La Sentenciaron Que Si No Me Aplaco"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Me Deja La Vieja Y Se Busca Otro Bato"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Asi Naci De Borracho Alterado Cochino"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Tambien Mujeriego"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Me Gustan Las Plebes Escuchar Corridos"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Jalando La Banda Tambien Los Norte�os"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 22
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "No Se Me Procupen Les Digo A Los Plebes"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 23
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Que Van A Tenerme Mientras Dios Lo Quiera"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 23
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Traigo Jente Al Tiro Que Estan Alterados"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 22
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Me Cuidan La Espalda Cuando Ando Pistiando"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 20
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y Si Este Corrido Le Llega A MI Vieja"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 25
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y La Ase De Pancho Porque Ando En La Fiesta"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 21
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Mas Vale Que No Le Busque Pies Al Gato"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 23
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Que Aguante La Risa O Se Busque Otro Bato"
+            },
+            {
+              "chords": [],
+              "lyrics": "Y SE REPITE OTRA VEZ"
+            },
+            {
+              "chords": [],
+              "lyrics": "Y TERMINA"
+            }
+          ]
+        }
+      ],
+      "rawText": "INTRO:G,D,G,D,G,D,G\n\n\n                   D\nCon Toda Esta Desvelada Que Traigo Arrastrando\n             G\nPor Andar Borracho\n                                 D\nMe La Sentenciaron Que Si No Me Aplaco\n                                 G\nMe Deja La Vieja Y Se Busca Otro Bato\n               D\nAsi Naci De Borracho Alterado Cochino\n             G\nTambien Mujeriego\n                                 D\nMe Gustan Las Plebes Escuchar Corridos\n                                G\nJalando La Banda Tambien Los Norte�os\n\n\n            D                     G\nNo Se Me Procupen Les Digo A Los Plebes\n            D                      G\nQue Van A Tenerme Mientras Dios Lo Quiera\n            D                      G\nTraigo Jente Al Tiro Que Estan Alterados\n               D                     G\nMe Cuidan La Espalda Cuando Ando Pistiando\n             D                   G\nY Si Este Corrido Le Llega A MI Vieja\n             D                        G\nY La Ase De Pancho Porque Ando En La Fiesta\n             D                    G\nMas Vale Que No Le Busque Pies Al Gato\n                 D                      G\nQue Aguante La Risa O Se Busque Otro Bato\n\n\nY SE REPITE OTRA VEZ\nY TERMINA",
+      "pdfUrl": "https://acordesweb.com/descarga-pdf/calibre-50/alterado-y-cochino/0/0/0.pdf"
+    }
+  ]
+}

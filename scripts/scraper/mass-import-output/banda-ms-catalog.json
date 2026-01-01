@@ -1,0 +1,4620 @@
+{
+  "artist": "banda-ms",
+  "totalSongs": 118,
+  "importedSongs": 10,
+  "songs": [
+    {
+      "title": "Me Vas A Extranar",
+      "artist": "Banda Ms",
+      "sourceUrl": "https://acordesweb.com/cancion/banda-ms/me-vas-a-extranar",
+      "chords": [
+        "G",
+        "Bm7",
+        "C",
+        "Am7",
+        "D",
+        "G7",
+        "Em7"
+      ],
+      "key": "G",
+      "sections": [
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [],
+              "lyrics": "Estos acordes est�n medio tono abajo y"
+            },
+            {
+              "chords": [],
+              "lyrics": "para tocar la canci�n en el tono original"
+            },
+            {
+              "chords": [],
+              "lyrics": "necesitamos el CAPO EN EL PRIMER TRASTE."
+            }
+          ]
+        },
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Los besos de mi boca no fueron suficientes"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bm7",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "para que te quedaras conmigo para siempre"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                },
+                {
+                  "chord": "Am7",
+                  "position": 21
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "no me alcanzo el cari�o para verte contenta"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "te amaba como un loco y no te diste cuenta."
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Me resultaron falsas toditas tus palabras"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bm7",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "tus manos me ment�an cuando me acariciaban"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                },
+                {
+                  "chord": "Am7",
+                  "position": 22
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "de que sirvi� rogarte para que te quedaras"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                },
+                {
+                  "chord": "G7",
+                  "position": 31
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "mi error fue darte todo cuando no vales nada."
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Me Vas A Extra�ar te apuesto lo que quieras"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                },
+                {
+                  "chord": "Bm7",
+                  "position": 13
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "que vas a buscarme y vas a llorar"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Em7",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "porque t� a mi jam�s supiste valorarme"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Am7",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 28
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "te vas a acordar de todas nuestras travesuras"
+            },
+            {
+              "chords": [],
+              "lyrics": "G---------G7"
+            },
+            {
+              "chords": [],
+              "lyrics": "pero ser� muy tarde."
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Me Vas A Extra�ar porque un amor como este"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                },
+                {
+                  "chord": "Bm7",
+                  "position": 21
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "no f�cil se olvida y nadie sabr�"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Em7",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "hacerte todas las cosas que yo a ti te hacia"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Am7",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 24
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "pero fue un error entregar mi coraz�n"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "a quien no lo merec�a."
+            },
+            {
+              "chords": [],
+              "lyrics": "INTERMEDIO: C-D-Bm7-Em7-Am7-D-G-G7"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Me Vas A Extra�ar te apuesto lo que quieras"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                },
+                {
+                  "chord": "Bm7",
+                  "position": 13
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "que vas a buscarme y vas a llorar"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Em7",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "porque t� a mi jam�s supiste valorarme"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Am7",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 27
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "te vas a acordar de todas nuestras travesuras"
+            },
+            {
+              "chords": [],
+              "lyrics": "G------G7"
+            },
+            {
+              "chords": [],
+              "lyrics": "pero ser� muy tarde."
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Me Vas A Extra�ar porque un amor como este"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                },
+                {
+                  "chord": "Bm7",
+                  "position": 21
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "no f�cil se olvida y nadie sabr�"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Em7",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "hacerte todas las cosas que yo a ti te hacia"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Am7",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 22
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "pero fue un error entregar mi coraz�n"
+            },
+            {
+              "chords": [],
+              "lyrics": "G-----C-D-G"
+            },
+            {
+              "chords": [],
+              "lyrics": "a quien no lo merec�a."
+            }
+          ]
+        }
+      ],
+      "rawText": "Estos acordes est�n medio tono abajo y\npara tocar la canci�n en el tono original\nnecesitamos el CAPO EN EL PRIMER TRASTE.\n\n\n\n\nINTRO: C-D-Bm7-Em7-Am7-D-G-D\n\n                G\nLos besos de mi boca no fueron suficientes\n     Bm7\npara que te quedaras conmigo para siempre\n                 C                    Am7\nno me alcanzo el cari�o para verte contenta\n                  D\nte amaba como un loco y no te diste cuenta.\n\n\n             G\nMe resultaron falsas toditas tus palabras\n                Bm7\ntus manos me ment�an cuando me acariciaban\n                C                     Am7\nde que sirvi� rogarte para que te quedaras\n                   D                              G7\nmi error fue darte todo cuando no vales nada.\n\n\n\n              C\nMe Vas A Extra�ar te apuesto lo que quieras\n               D            Bm7\nque vas a buscarme y vas a llorar\n                                 Em7\nporque t� a mi jam�s supiste valorarme\n              Am7                         D\nte vas a acordar de todas nuestras travesuras\n              G---------G7\npero ser� muy tarde.\n\n\n               C\nMe Vas A Extra�ar porque un amor como este\n         D                    Bm7\nno f�cil se olvida y nadie sabr�\n                                   Em7\nhacerte todas las cosas que yo a ti te hacia\n            Am7                     D\npero fue un error entregar mi coraz�n\n                  G\na quien no lo merec�a.\n\n\nINTERMEDIO: C-D-Bm7-Em7-Am7-D-G-G7\n\n              C\nMe Vas A Extra�ar te apuesto lo que quieras\n               D            Bm7\nque vas a buscarme y vas a llorar\n                                 Em7\nporque t� a mi jam�s supiste valorarme\n              Am7                        D\nte vas a acordar de todas nuestras travesuras\n              G------G7\npero ser� muy tarde.\n\n               C\nMe Vas A Extra�ar porque un amor como este\n         D                    Bm7\nno f�cil se olvida y nadie sabr�\n                                   Em7\nhacerte todas las cosas que yo a ti te hacia\n            Am7                   D\npero fue un error entregar mi coraz�n\n                   G-----C-D-G\na quien no lo merec�a.",
+      "pdfUrl": "https://acordesweb.com/descarga-pdf/banda-ms/me-vas-a-extranar/0/0/0.pdf"
+    },
+    {
+      "title": "Tu Postura",
+      "artist": "Banda Ms",
+      "sourceUrl": "https://acordesweb.com/cancion/banda-ms/tu-postura",
+      "chords": [
+        "Am",
+        "Em",
+        "F",
+        "Dm",
+        "G",
+        "C",
+        "A7"
+      ],
+      "key": "F",
+      "sections": [
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [],
+              "lyrics": "(Verso)"
+            },
+            {
+              "chords": [],
+              "lyrics": "C.                  G"
+            },
+            {
+              "chords": [],
+              "lyrics": "Me da mucha tristeza"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Am",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Ver c�mo eres,"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Em",
+                  "position": 0
+                },
+                {
+                  "chord": "F",
+                  "position": 18
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "No es que lo exagere,"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Dm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Nada te reprocho,"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Nada te pregunto,"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            }
+          ]
+        },
+        {
+          "name": "Solo",
+          "lines": [
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 18
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Yo s�, que hablando"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Am",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Esto se arreglar�a,"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Em",
+                  "position": 0
+                },
+                {
+                  "chord": "F",
+                  "position": 15
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "M�s te mentir�a,"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Dm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Si te digo algo,"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Como por ejemplo,"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Que no pasa nada�"
+            },
+            {
+              "chords": [],
+              "lyrics": "(Pre-coro)"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Em",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Parece, que es nada m�s"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Am",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Cuando t� quieres,"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 12
+                },
+                {
+                  "chord": "C",
+                  "position": 18
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Cuando tienes ganas�"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Em",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Me duele, que no te importa"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Am",
+                  "position": 0
+                },
+                {
+                  "chord": "F",
+                  "position": 6
+                },
+                {
+                  "chord": "G",
+                  "position": 11
+                },
+                {
+                  "chord": "C",
+                  "position": 16
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Si se muere, este coraz�n,"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Dm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Que a pesar de todo,"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Todav�a te ama�"
+            },
+            {
+              "chords": [],
+              "lyrics": "(Coro)"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Dm",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 38
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Me est�n sobrando los motivos para irme,"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F",
+                  "position": 0
+                },
+                {
+                  "chord": "Am",
+                  "position": 36
+                },
+                {
+                  "chord": "A7",
+                  "position": 40
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y lo que m�s me da coraje es Tu Postura,"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Dm",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 37
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Parece que estas oblig�ndome a rendirme,"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F",
+                  "position": 0
+                },
+                {
+                  "chord": "Dm",
+                  "position": 18
+                },
+                {
+                  "chord": "G",
+                  "position": 39
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Para al final decir que yo tuve la culpa�"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Dm",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 43
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y si no cambias desde ahorita te lo advierto,"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Em",
+                  "position": 0
+                },
+                {
+                  "chord": "Am",
+                  "position": 37
+                },
+                {
+                  "chord": "A7",
+                  "position": 41
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Voy a empezar a ser igual que tu conmigo,"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Dm",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 39
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y no es venganza ni rencor ni mucho menos,"
+            },
+            {
+              "chords": [],
+              "lyrics": "F.                 Dm                G"
+            },
+            {
+              "chords": [],
+              "lyrics": "Es simplemente dar lo mismo que recibo�"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 22
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Haces mucho m�s dif�cil,"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Lo que tiene arreglo,"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 24
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Parece que hacerme llorar,"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Te alimenta el ego."
+            },
+            {
+              "chords": [],
+              "lyrics": "(M�sica) :  Dm-G-Em-Am-A7"
+            },
+            {
+              "chords": [],
+              "lyrics": "Dm-G-F-Dm-G"
+            },
+            {
+              "chords": [],
+              "lyrics": "F-G-C F-G-C"
+            }
+          ]
+        }
+      ],
+      "rawText": "(Verso)\nC.                  G\nMe da mucha tristeza\n             Am\nVer c�mo eres,\nEm                F\nNo es que lo exagere,\n               Dm\nNada te reprocho,\n               G\nNada te pregunto,\n                 C\nSolo si me quieres�\n\n\n\nC                 G\nYo s�, que hablando\n                 Am\nEsto se arreglar�a,\nEm             F\nM�s te mentir�a,\n             Dm\nSi te digo algo,\n               G\nComo por ejemplo,\n              C\nQue no pasa nada�\n\n(Pre-coro)\n\nEm\nParece, que es nada m�s\n               Am\nCuando t� quieres,\nF           G     C\nCuando tienes ganas�\n\nEm\nMe duele, que no te importa\n       Am    F    G    C\nSi se muere, este coraz�n,\n                 Dm\nQue a pesar de todo,\n              G\nTodav�a te ama�\n\n                 (Coro)\n\n\nDm                                    G\nMe est�n sobrando los motivos para irme,\nF                                   Am  A7\nY lo que m�s me da coraje es Tu Postura,\nDm                                   G\nParece que estas oblig�ndome a rendirme,\nF                 Dm                   G\nPara al final decir que yo tuve la culpa�\n\n\nDm                                         G\nY si no cambias desde ahorita te lo advierto,\nEm                                   Am  A7\nVoy a empezar a ser igual que tu conmigo,\nDm                                     G\nY no es venganza ni rencor ni mucho menos,\nF.                 Dm                G\nEs simplemente dar lo mismo que recibo�\nF                     G\nHaces mucho m�s dif�cil,\n                  C\nLo que tiene arreglo,\nF                       G\nParece que hacerme llorar,\n                 C\nTe alimenta el ego.\n\n(M�sica) :  Dm-G-Em-Am-A7\n          Dm-G-F-Dm-G\n          F-G-C F-G-C",
+      "pdfUrl": "https://acordesweb.com/descarga-pdf/banda-ms/tu-postura/0/0/0.pdf"
+    },
+    {
+      "title": "Por Siempre Mi Amor",
+      "artist": "Banda Ms",
+      "sourceUrl": "https://acordesweb.com/cancion/banda-ms/por-siempre-mi-amor",
+      "chords": [
+        "G",
+        "C",
+        "D",
+        "D/F#",
+        "Em",
+        "G7",
+        "Am"
+      ],
+      "key": "G",
+      "sections": [
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [],
+              "lyrics": "Dediquen canciones."
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                },
+                {
+                  "chord": "C",
+                  "position": 17
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Eres la persona ideal"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Con la que quiero quedarme"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                },
+                {
+                  "chord": "D/F#",
+                  "position": 15
+                },
+                {
+                  "chord": "Em",
+                  "position": 30
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Nunca voy a hacerte mal te has vuelto tan indispensable"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Te llamas mi otra mitad"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y te quiero aqu� a mi lado"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                },
+                {
+                  "chord": "D/F#",
+                  "position": 16
+                },
+                {
+                  "chord": "Em",
+                  "position": 26
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Nadie te podr� igualar aunque te suene exagerado"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 6
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Eres lo m�s importante"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                },
+                {
+                  "chord": "C",
+                  "position": 14
+                },
+                {
+                  "chord": "G",
+                  "position": 21
+                },
+                {
+                  "chord": "G7",
+                  "position": 27
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Lo mejor que me ha pasado"
+            }
+          ]
+        },
+        {
+          "name": "Chorus",
+          "lines": [
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 21
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Encontr� mi buena suerte tan s�lo al quererte"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                },
+                {
+                  "chord": "D/F#",
+                  "position": 10
+                },
+                {
+                  "chord": "C",
+                  "position": 24
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y quiero quedarme por siempre mi amor"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Am",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Abrazado a tu cintura"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Te volviste mi locura"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 16
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Encontr� mi buena suerte y voy a cuidarte"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                },
+                {
+                  "chord": "D/F#",
+                  "position": 9
+                },
+                {
+                  "chord": "C",
+                  "position": 22
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "No quiero perderte no hay nada mejor"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Am",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Que tus labios en mi boca"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Tu mirada que me toca"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 4
+                },
+                {
+                  "chord": "G",
+                  "position": 15
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Vivir sin ti.... ser�a un error"
+            },
+            {
+              "chords": [],
+              "lyrics": "Encontr� mi�"
+            },
+            {
+              "chords": [],
+              "lyrics": "(D/F#)"
+            },
+            {
+              "chords": [],
+              "lyrics": "Cuerda   Traste"
+            },
+            {
+              "chords": [],
+              "lyrics": "6        2"
+            },
+            {
+              "chords": [],
+              "lyrics": "5        /"
+            },
+            {
+              "chords": [],
+              "lyrics": "4        /"
+            },
+            {
+              "chords": [],
+              "lyrics": "3        2"
+            },
+            {
+              "chords": [],
+              "lyrics": "2        3"
+            },
+            {
+              "chords": [],
+              "lyrics": "1        3"
+            },
+            {
+              "chords": [],
+              "lyrics": "Lo pongo as� porque fue la �nica manera que mi amigo pato le entendi�. Saludos"
+            },
+            {
+              "chords": [],
+              "lyrics": "Busquenme en FB como Jonny Antonio."
+            }
+          ]
+        }
+      ],
+      "rawText": "Dediquen canciones.\n\n\nG                C\nEres la persona ideal\n                 D\nCon la que quiero quedarme\n                     G              D/F#           Em\nNunca voy a hacerte mal te has vuelto tan indispensable\n\n                  C\nTe llamas mi otra mitad\n                  D\nY te quiero aqu� a mi lado\n                 G               D/F#      Em\nNadie te podr� igualar aunque te suene exagerado\n                 C     D\nEres lo m�s importante\nC             C      G     G7\nLo mejor que me ha pasado\n\nCORO\n                   C                    D\nEncontr� mi buena suerte tan s�lo al quererte\n           G         D/F#          C\nY quiero quedarme por siempre mi amor\n             Am\nAbrazado a tu cintura\n               D\nTe volviste mi locura\n                 C               D\nEncontr� mi buena suerte y voy a cuidarte\n           G        D/F#         C\nNo quiero perderte no hay nada mejor\n                 Am\nQue tus labios en mi boca\n               D\nTu mirada que me toca\n         C   D          G\nVivir sin ti.... ser�a un error\nEncontr� mi�\n\n(D/F#)\n\nCuerda   Traste\n  6        2\n  5        /\n  4        /\n  3        2\n  2        3\n  1        3\n\nLo pongo as� porque fue la �nica manera que mi amigo pato le entendi�. Saludos\n\nBusquenme en FB como Jonny Antonio.",
+      "pdfUrl": "https://acordesweb.com/descarga-pdf/banda-ms/por-siempre-mi-amor/0/0/0.pdf"
+    },
+    {
+      "title": "No Me Pidas Perdon",
+      "artist": "Banda Ms",
+      "sourceUrl": "https://acordesweb.com/cancion/banda-ms/no-me-pidas-perdon",
+      "chords": [
+        "G#",
+        "A#m",
+        "D#",
+        "C#",
+        "Cm",
+        "Fm"
+      ],
+      "key": "G#",
+      "sections": [
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [
+                {
+                  "chord": "G#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "No me pidas perd�n porque voy a caer"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A#m",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "No me inventes mentiras que voy a creer"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "No me hables con cara de arrepentida"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "La verdad tengo miedo que me hagas volver."
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#",
+                  "position": 0
+                },
+                {
+                  "chord": "D#",
+                  "position": 42
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "No prometas que vas a cambiar porque quieres volver a mis brazos"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Cm",
+                  "position": 0
+                },
+                {
+                  "chord": "Fm",
+                  "position": 30
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y armar ese rompecabezas de mi coraz�n en pedazos"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A#m",
+                  "position": 0
+                },
+                {
+                  "chord": "D#",
+                  "position": 41
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "No me pidas perdon porque corro el peligro que si te perdone"
+            },
+            {
+              "chords": [],
+              "lyrics": "G#-G#7"
+            },
+            {
+              "chords": [],
+              "lyrics": "Y no quiero hacerlo."
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#",
+                  "position": 0
+                },
+                {
+                  "chord": "D#",
+                  "position": 43
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "No me pidas perd�n que la linea es delgada entre tu y el deseo"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Cm",
+                  "position": 0
+                },
+                {
+                  "chord": "Fm",
+                  "position": 40
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "El deseo de arrancar tu blusa en segundos y besar tu cuerpo"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A#m",
+                  "position": 0
+                },
+                {
+                  "chord": "D#",
+                  "position": 39
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "No me pidas perdon porque soy vulnerable a todos tus encantos"
+            },
+            {
+              "chords": [],
+              "lyrics": "G#-G#7"
+            },
+            {
+              "chords": [],
+              "lyrics": "Porque aun te sigo amando."
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#",
+                  "position": 0
+                },
+                {
+                  "chord": "D#",
+                  "position": 34
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "No me pidas volver a caer en el juego de las apariencias"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Cm",
+                  "position": 0
+                },
+                {
+                  "chord": "Fm",
+                  "position": 33
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Me ha costado bastante salir adelante y ahora regresas"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A#m",
+                  "position": 0
+                },
+                {
+                  "chord": "D#",
+                  "position": 41
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "No me pidas perd�n cuando ya mi presente se encuentra estable"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "No me pidas perdon por favor te suplico,"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A#m",
+                  "position": 0
+                },
+                {
+                  "chord": "D#",
+                  "position": 10
+                },
+                {
+                  "chord": "G#",
+                  "position": 21
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Porque existe el riesgo que pueda perdonarte"
+            },
+            {
+              "chords": [],
+              "lyrics": "Intermdio: A#m - D# - G# - G#7"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#",
+                  "position": 0
+                },
+                {
+                  "chord": "D#",
+                  "position": 43
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "No me pidas perd�n que la linea es delgada entre tu y el deseo"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Cm",
+                  "position": 0
+                },
+                {
+                  "chord": "Fm",
+                  "position": 40
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "El deseo de arrancar tu blusa en segundos y besar tu cuerpo"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A#m",
+                  "position": 0
+                },
+                {
+                  "chord": "D#",
+                  "position": 39
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "No me pidas perdon porque soy vulnerable a todos tus encantos"
+            },
+            {
+              "chords": [],
+              "lyrics": "G#-G#7"
+            },
+            {
+              "chords": [],
+              "lyrics": "Porque aun te sigo amando."
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#",
+                  "position": 0
+                },
+                {
+                  "chord": "D#",
+                  "position": 34
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "No me pidas volver a caer en el juego de las apariencias"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Cm",
+                  "position": 0
+                },
+                {
+                  "chord": "Fm",
+                  "position": 33
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Me ha costado bastante salir adelante y ahora regresas"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A#m",
+                  "position": 0
+                },
+                {
+                  "chord": "D#",
+                  "position": 41
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "No me pidas perd�n cuando ya mi presente se encuentra estable"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "No me pidas perdon por favor te suplico,"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A#m",
+                  "position": 0
+                },
+                {
+                  "chord": "D#",
+                  "position": 10
+                },
+                {
+                  "chord": "G#",
+                  "position": 21
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Porque existe el riesgo que pueda perdonarte..."
+            },
+            {
+              "chords": [],
+              "lyrics": "Es mi primer canci�n que comparto..."
+            },
+            {
+              "chords": [],
+              "lyrics": "Espero sea de su agrado =D"
+            },
+            {
+              "chords": [],
+              "lyrics": "Alguna sugerencia escr�banme a mi correo: rafles_kcob_@hotmail.com"
+            }
+          ]
+        }
+      ],
+      "rawText": "Intro: C#-G#\n\n               G#\nNo me pidas perd�n porque voy a caer\n                  A#m\nNo me inventes mentiras que voy a creer\n                  D#\nNo me hables con cara de arrepentida\n                  G#\nLa verdad tengo miedo que me hagas volver.\n\n\n                 C#                                        D#\nNo prometas que vas a cambiar porque quieres volver a mis brazos\n              Cm                            Fm\nY armar ese rompecabezas de mi coraz�n en pedazos\n                A#m                                      D#\nNo me pidas perdon porque corro el peligro que si te perdone\n               G#-G#7\nY no quiero hacerlo.\n\n\n                C#                                         D#\nNo me pidas perd�n que la linea es delgada entre tu y el deseo\n               Cm                                      Fm\nEl deseo de arrancar tu blusa en segundos y besar tu cuerpo\n                A#m                                    D#\nNo me pidas perdon porque soy vulnerable a todos tus encantos\n                    G#-G#7\nPorque aun te sigo amando.\n\n                C#                                D#\nNo me pidas volver a caer en el juego de las apariencias\n                 Cm                               Fm\nMe ha costado bastante salir adelante y ahora regresas\n                A#m                                      D#\nNo me pidas perd�n cuando ya mi presente se encuentra estable\n                C#\nNo me pidas perdon por favor te suplico,\n                   A#m       D#         G#\nPorque existe el riesgo que pueda perdonarte\n\n\nIntermdio: A#m - D# - G# - G#7\n\n\n                C#                                         D#\nNo me pidas perd�n que la linea es delgada entre tu y el deseo\n               Cm                                      Fm\nEl deseo de arrancar tu blusa en segundos y besar tu cuerpo\n                A#m                                    D#\nNo me pidas perdon porque soy vulnerable a todos tus encantos\n                    G#-G#7\nPorque aun te sigo amando.\n\n                C#                                D#\nNo me pidas volver a caer en el juego de las apariencias\n                 Cm                               Fm\nMe ha costado bastante salir adelante y ahora regresas\n                A#m                                      D#\nNo me pidas perd�n cuando ya mi presente se encuentra estable\n                C#\nNo me pidas perdon por favor te suplico,\n                   A#m       D#         G#\nPorque existe el riesgo que pueda perdonarte...\n\n\nEs mi primer canci�n que comparto...\nEspero sea de su agrado =D\nAlguna sugerencia escr�banme a mi correo: rafles_kcob_@hotmail.com",
+      "pdfUrl": "https://acordesweb.com/descarga-pdf/banda-ms/no-me-pidas-perdon/0/0/0.pdf"
+    },
+    {
+      "title": "Me Gusta Tu Vieja",
+      "artist": "Banda Ms",
+      "sourceUrl": "https://acordesweb.com/cancion/banda-ms/me-gusta-tu-vieja",
+      "chords": [
+        "C",
+        "F",
+        "Bb",
+        "D",
+        "A",
+        "G"
+      ],
+      "key": "C",
+      "sections": [
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [],
+              "lyrics": "Y guarde su pinche pistola compa jajaja ahi esta..."
+            }
+          ]
+        },
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                },
+                {
+                  "chord": "F",
+                  "position": 10
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "-Compa 'Me Gusta Su Vieja'"
+            },
+            {
+              "chords": [],
+              "lyrics": "y si hay pedo lo arreglamos"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "a lo mejor no lo nota"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "pero ella y yo nos gustamos"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bb",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "si le doli� el comentario.."
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 9
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "hasta balazos nos damos..."
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "-Compa me est� confundiendo"
+            },
+            {
+              "chords": [],
+              "lyrics": "yo no ando con esa morra"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "yo ando con pura princesa"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "qu�dese con esa zorra"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "no se olvide que hay niveles.."
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "y yo no tomo de gorra..."
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F",
+                  "position": 0
+                },
+                {
+                  "chord": "C",
+                  "position": 2
+                },
+                {
+                  "chord": "F",
+                  "position": 4
+                },
+                {
+                  "chord": "Bb",
+                  "position": 6
+                },
+                {
+                  "chord": "C",
+                  "position": 9
+                },
+                {
+                  "chord": "F",
+                  "position": 11
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                },
+                {
+                  "chord": "F",
+                  "position": 12
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "-No este ofendiendo a mi vieja"
+            },
+            {
+              "chords": [],
+              "lyrics": "cuide su comportamiento"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "manejo carro del a�o"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "con armas en el asiento"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bb",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "no ponga en riesgo su vida.."
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 9
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "soy un mat�n se lo advierto..."
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "-Guarde su pinche pistola"
+            },
+            {
+              "chords": [],
+              "lyrics": "voy a dejarlo en verg�enza"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "y ma�ana su cad�ver"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "puede salir en la prensa"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "a los gatos como ustedes.."
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "no les permito una ofensa..."
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F",
+                  "position": 0
+                },
+                {
+                  "chord": "C",
+                  "position": 2
+                },
+                {
+                  "chord": "F",
+                  "position": 4
+                },
+                {
+                  "chord": "Bb",
+                  "position": 6
+                },
+                {
+                  "chord": "C",
+                  "position": 9
+                },
+                {
+                  "chord": "F",
+                  "position": 11
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                },
+                {
+                  "chord": "F",
+                  "position": 11
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Est� hablando con el diablo"
+            },
+            {
+              "chords": [],
+              "lyrics": "a cargo de mucha gente"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "tengo el poder en la zona"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "y no fue por accidente"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bb",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "es porque tengo talento.."
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 9
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "soy un hombre inteligente..."
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "-Ya se para quien trabaja"
+            },
+            {
+              "chords": [],
+              "lyrics": "pero a m� me vale madre"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "voy a cortarle la lengua"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "para que el perro no ladre"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "desde hoy se va de la empresa.."
+            },
+            {
+              "chords": [],
+              "lyrics": "porque su jefe es mi padre..."
+            }
+          ]
+        }
+      ],
+      "rawText": "Y guarde su pinche pistola compa jajaja ahi esta...\n\n\nIntro: F C F Bb C F\n\n            C         F\n-Compa 'Me Gusta Su Vieja'\n\ny si hay pedo lo arreglamos\n                  C\na lo mejor no lo nota\n                       F\npero ella y yo nos gustamos\n                     Bb\nsi le doli� el comentario..\n                    F        D\nhasta balazos nos damos...\n\n                       D\n-Compa me est� confundiendo\n\nyo no ando con esa morra\n                      A\nyo ando con pura princesa\n                 D\nqu�dese con esa zorra\n                        G\nno se olvide que hay niveles..\n                 D\ny yo no tomo de gorra...\n\n  F C F Bb C F\n\n               C           F\n-No este ofendiendo a mi vieja\n\ncuide su comportamiento\n                 C\nmanejo carro del a�o\n                   F\ncon armas en el asiento\n                       Bb\nno ponga en riesgo su vida..\n                       F        D\nsoy un mat�n se lo advierto...\n\n                      D\n-Guarde su pinche pistola\n\nvoy a dejarlo en verg�enza\n               A\ny ma�ana su cad�ver\n                    D\npuede salir en la prensa\n                    G\na los gatos como ustedes..\n                     D\nno les permito una ofensa...\n\n   F C F Bb C F\n\n            C          F\nEst� hablando con el diablo\n\na cargo de mucha gente\n                      C\ntengo el poder en la zona\n                   F\ny no fue por accidente\n                   Bb\nes porque tengo talento..\n                     F        D\nsoy un hombre inteligente...\n\n                      D\n-Ya se para quien trabaja\n\npero a m� me vale madre\n                   A\nvoy a cortarle la lengua\n                       D\npara que el perro no ladre\n                          G\ndesde hoy se va de la empresa..\n\nporque su jefe es mi padre...",
+      "pdfUrl": "https://acordesweb.com/descarga-pdf/banda-ms/me-gusta-tu-vieja/0/0/0.pdf"
+    },
+    {
+      "title": "141",
+      "artist": "Banda Ms",
+      "sourceUrl": "https://acordesweb.com/cancion/banda-ms/141",
+      "chords": [
+        "Fm",
+        "Bbm",
+        "Db",
+        "C",
+        "Eb",
+        "Ab",
+        "A"
+      ],
+      "key": "Db",
+      "sections": [
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [
+                {
+                  "chord": "Fm",
+                  "position": 0
+                }
+              ],
+              "lyrics": "- Db - C - Fm - Db - C - Fm"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bbm",
+                  "position": 0
+                }
+              ],
+              "lyrics": "- C - Fm - C"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Fm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Soy"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Db",
+                  "position": 0
+                },
+                {
+                  "chord": "C",
+                  "position": 13
+                },
+                {
+                  "chord": "Fm",
+                  "position": 25
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Del ciento cuarenta y uno y aqu� voy"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Db",
+                  "position": 0
+                },
+                {
+                  "chord": "Eb",
+                  "position": 14
+                },
+                {
+                  "chord": "Ab",
+                  "position": 30
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Tras las almas del cartel saben que estoy"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                },
+                {
+                  "chord": "Fm",
+                  "position": 25
+                },
+                {
+                  "chord": "Db",
+                  "position": 30
+                },
+                {
+                  "chord": "C",
+                  "position": 35
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Vamos fuerte los vaqueros, s� se�or"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Fm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Gaz"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Db",
+                  "position": 0
+                },
+                {
+                  "chord": "C",
+                  "position": 11
+                },
+                {
+                  "chord": "Fm",
+                  "position": 24
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Al cuidado del equipo y los dem�s"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Db",
+                  "position": 0
+                },
+                {
+                  "chord": "Eb",
+                  "position": 12
+                },
+                {
+                  "chord": "Ab",
+                  "position": 25
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y el fantasma nadie sabe d�nde est�"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                },
+                {
+                  "chord": "Fm",
+                  "position": 24
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Hace guerra para conseguir la paz"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Db",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Capit�n te paso un puro"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Eb",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Tienes todo mi respeto"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Db",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Siempre he sido el tipo duro"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Eb",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Por eso me comprometo"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Fm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                }
+              ],
+              "lyrics": "luchar por el equipo"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Db",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Se prendieron las alarmas"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Ab",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Pelot�n, estamos listos"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Les vamos a dar su karma"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Fm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Oye, Soap, te necesito"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Db",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Tu experiencia nos respalda"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Ab",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Pobres de mis enemigos"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Ya lleg� Alejndro Vargas"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bbm",
+                  "position": 0
+                },
+                {
+                  "chord": "C",
+                  "position": 13
+                },
+                {
+                  "chord": "Fm",
+                  "position": 25
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Somos uno, cuatro, uno; as� nom�s"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bbm",
+                  "position": 0
+                },
+                {
+                  "chord": "C",
+                  "position": 14
+                },
+                {
+                  "chord": "Fm",
+                  "position": 26
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Porque cada vez los buenos somos m�s"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Fm",
+                  "position": 0
+                }
+              ],
+              "lyrics": "- Db - C - Fm - Db - C - Fm - Bbm - C - Fm"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Fm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                }
+              ],
+              "lyrics": "luchar por el equipo"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Db",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Se prendieron las alarmas"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Ab",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Pelot�n, estamos listos"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Les vamos a dar su karma"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Fm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Oye, Soap, te necesito"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Db",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Tu experiencia nos respalda"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Ab",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Pobres de mis enemigos"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Ya lleg� Alejndro Vargas"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bbm",
+                  "position": 0
+                },
+                {
+                  "chord": "C",
+                  "position": 13
+                },
+                {
+                  "chord": "Fm",
+                  "position": 25
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Somos uno, cuatro, uno; as� nom�s"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bbm",
+                  "position": 0
+                },
+                {
+                  "chord": "C",
+                  "position": 14
+                },
+                {
+                  "chord": "Fm",
+                  "position": 26
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Porque cada vez los buenos somos m�s"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bbm",
+                  "position": 0
+                }
+              ],
+              "lyrics": "- C - Fm - Bbm"
+            }
+          ]
+        }
+      ],
+      "rawText": "Fm - Db - C - Fm - Db - C - Fm\nBbm - C - Fm - C\n\nFm\nSoy\n         Db           C           Fm\nDel ciento cuarenta y uno y aqu� voy\n         Db            Eb              Ab\nTras las almas del cartel saben que estoy\n        C                        Fm   Db   C\nVamos fuerte los vaqueros, s� se�or\n Fm\nGaz\n       Db         C            Fm\nAl cuidado del equipo y los dem�s\n         Db          Eb           Ab\nY el fantasma nadie sabe d�nde est�\n       C                       Fm\nHace guerra para conseguir la paz\n     Db\nCapit�n te paso un puro\n        Eb\nTienes todo mi respeto\n            Db\nSiempre he sido el tipo duro\n      Eb\nPor eso me comprometo\n      Fm\nA luchar por el equipo\n         Db\nSe prendieron las alarmas\n     Ab\nPelot�n, estamos listos\n       C\nLes vamos a dar su karma\n      Fm\nOye, Soap, te necesito\n         Db\nTu experiencia nos respalda\n        Ab\nPobres de mis enemigos\n         C\nYa lleg� Alejndro Vargas\n      Bbm          C           Fm\nSomos uno, cuatro, uno; as� nom�s\n        Bbm           C           Fm\nPorque cada vez los buenos somos m�s\n\nFm - Db - C - Fm - Db - C - Fm - Bbm - C - Fm\n\n      Fm\nA luchar por el equipo\n         Db\nSe prendieron las alarmas\n     Ab\nPelot�n, estamos listos\n       C\nLes vamos a dar su karma\n      Fm\nOye, Soap, te necesito\n         Db\nTu experiencia nos respalda\n        Ab\nPobres de mis enemigos\n         C\nYa lleg� Alejndro Vargas\n      Bbm          C           Fm\nSomos uno, cuatro, uno; as� nom�s\n        Bbm           C           Fm\nPorque cada vez los buenos somos m�s\n\nBbm - C - Fm - Bbm",
+      "pdfUrl": "https://acordesweb.com/descarga-pdf/banda-ms/141/0/0/0.pdf"
+    },
+    {
+      "title": "A Lo Mejor",
+      "artist": "Banda Ms",
+      "sourceUrl": "https://acordesweb.com/cancion/banda-ms/a-lo-mejor",
+      "chords": [
+        "A",
+        "Bm",
+        "G",
+        "D",
+        "F#",
+        "F#m",
+        "Em"
+      ],
+      "key": "A",
+      "sections": [
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [],
+              "lyrics": "--Versos--"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                },
+                {
+                  "chord": "Bm",
+                  "position": 7
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                }
+              ],
+              "lyrics": "lo mejor te olvido,"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                },
+                {
+                  "chord": "A",
+                  "position": 5
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                }
+              ],
+              "lyrics": "lo mejor jam�s."
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                },
+                {
+                  "chord": "A",
+                  "position": 11
+                },
+                {
+                  "chord": "Bm",
+                  "position": 21
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                }
+              ],
+              "lyrics": "lo mejor te pienso"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                },
+                {
+                  "chord": "A",
+                  "position": 5
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "un poco m�s que m�s..."
+            },
+            {
+              "chords": [],
+              "lyrics": "--Coro--"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                }
+              ],
+              "lyrics": "lo mejor te llamo por las noches,"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "a lo mejor tu cuelgas mi llamada,"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "te juro que no estoy exagerando"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                },
+                {
+                  "chord": "A",
+                  "position": 20
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "cuando te digo que sin ti soy nada..."
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                }
+              ],
+              "lyrics": "lo mejor tu tienes m�s orgullo,"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "a lo mejor yo tengo m�s problemas"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "en recordar que una vez me dijiste"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                },
+                {
+                  "chord": "A",
+                  "position": 18
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "que estar conmigo no val�a la pena..."
+            },
+            {
+              "chords": [],
+              "lyrics": "--Outro--"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Pero quien olvida al amor de su vida"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F#",
+                  "position": 0
+                },
+                {
+                  "chord": "Bm",
+                  "position": 19
+                },
+                {
+                  "chord": "F#m",
+                  "position": 44
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "en un par de d�as, en un par de noches... Uooh"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Tal vez s�lo t�,"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                },
+                {
+                  "chord": "Bm",
+                  "position": 10
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "o tal vez ni t�"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Em",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Pues si me olvidas as�,"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 13
+                },
+                {
+                  "chord": "G",
+                  "position": 22
+                },
+                {
+                  "chord": "D",
+                  "position": 25
+                },
+                {
+                  "chord": "Bm",
+                  "position": 28
+                },
+                {
+                  "chord": "Em",
+                  "position": 31
+                },
+                {
+                  "chord": "A",
+                  "position": 35
+                },
+                {
+                  "chord": "D",
+                  "position": 38
+                },
+                {
+                  "chord": "G",
+                  "position": 42
+                },
+                {
+                  "chord": "A",
+                  "position": 45
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "nunca fui el amor de tu vida..."
+            },
+            {
+              "chords": [],
+              "lyrics": "--Coro--"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                }
+              ],
+              "lyrics": "lo mejor te llamo por las noches,"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "a lo mejor tu cuelgas mi llamada,"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "te juro que no estoy exagerando"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                },
+                {
+                  "chord": "A",
+                  "position": 20
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "cuando te digo que sin ti soy nada..."
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                }
+              ],
+              "lyrics": "lo mejor tu tienes m�s orgullo,"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "a lo mejor yo tengo m�s problemas"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "en recordar que una vez me dijiste"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                },
+                {
+                  "chord": "A",
+                  "position": 18
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "que estar conmigo no val�a la pena..."
+            },
+            {
+              "chords": [],
+              "lyrics": "--Outro--"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Pero quien olvida al amor de su vida"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F#",
+                  "position": 0
+                },
+                {
+                  "chord": "Bm",
+                  "position": 19
+                },
+                {
+                  "chord": "F#m",
+                  "position": 44
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "en un par de d�as, en un par de noches... Uooh"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Tal vez s�lo t�,"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                },
+                {
+                  "chord": "Bm",
+                  "position": 10
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "o tal vez ni t�"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Em",
+                  "position": 0
+                },
+                {
+                  "chord": "A",
+                  "position": 19
+                },
+                {
+                  "chord": "D",
+                  "position": 28
+                },
+                {
+                  "chord": "Bm",
+                  "position": 37
+                },
+                {
+                  "chord": "D",
+                  "position": 44
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Pues si me olvidas as�, nunca fui el amor  de tu vida..."
+            },
+            {
+              "chords": [],
+              "lyrics": "�Tienes dudas?"
+            },
+            {
+              "chords": [],
+              "lyrics": "www.facebook.com/AlexFabianChords"
+            },
+            {
+              "chords": [],
+              "lyrics": "www.twitter.com/FabianChords"
+            },
+            {
+              "chords": [],
+              "lyrics": "Chiapas-M�xico"
+            }
+          ]
+        }
+      ],
+      "rawText": "Intro: D F# Bm F#m G D Em A D\n\n\n--Versos--\n\n            A      Bm\nA lo mejor te olvido,\n              G    A\nA lo mejor jam�s.\n\nD          A         Bm\nA lo mejor te pienso\n                G    A\nun poco m�s que m�s...\n\n\n--Coro--\n\n        D\nA lo mejor te llamo por las noches,\n        F#\na lo mejor tu cuelgas mi llamada,\n         Bm\nte juro que no estoy exagerando\n           G                   A\ncuando te digo que sin ti soy nada...\n\n        D\nA lo mejor tu tienes m�s orgullo,\n        F#\na lo mejor yo tengo m�s problemas\n        Bm\nen recordar que una vez me dijiste\n              G                 A\nque estar conmigo no val�a la pena...\n\n\n--Outro--\n\n       D\nPero quien olvida al amor de su vida\nF#                 Bm                       F#m\nen un par de d�as, en un par de noches... Uooh\n\n        G\nTal vez s�lo t�,\n   D         Bm\no tal vez ni t�\n             Em\nPues si me olvidas as�,\n        A            D        G  D  Bm Em  A  D   G  A\nnunca fui el amor de tu vida...\n\n\n--Coro--\n\n        D\nA lo mejor te llamo por las noches,\n        F#\na lo mejor tu cuelgas mi llamada,\n         Bm\nte juro que no estoy exagerando\n           G                   A\ncuando te digo que sin ti soy nada...\n\n        D\nA lo mejor tu tienes m�s orgullo,\n        F#\na lo mejor yo tengo m�s problemas\n        Bm\nen recordar que una vez me dijiste\n              G                 A\nque estar conmigo no val�a la pena...\n\n\n--Outro--\n\n        D\nPero quien olvida al amor de su vida\nF#                 Bm                       F#m\nen un par de d�as, en un par de noches... Uooh\n\n         G\nTal vez s�lo t�,\n   D         Bm\no tal vez ni t�\n             Em                 A        D        Bm     D\nPues si me olvidas as�, nunca fui el amor  de tu vida...\n\n�Tienes dudas?\nwww.facebook.com/AlexFabianChords\nwww.twitter.com/FabianChords\nChiapas-M�xico",
+      "pdfUrl": "https://acordesweb.com/descarga-pdf/banda-ms/a-lo-mejor/0/0/0.pdf"
+    },
+    {
+      "title": "A Mi Me Esta Doliendo",
+      "artist": "Banda Ms",
+      "sourceUrl": "https://acordesweb.com/cancion/banda-ms/a-mi-me-esta-doliendo",
+      "chords": [
+        "A",
+        "Am"
+      ],
+      "key": "A",
+      "sections": [
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [],
+              "lyrics": "FA"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                }
+              ],
+              "lyrics": "m� que me gustaba tanto"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE"
+            },
+            {
+              "chords": [],
+              "lyrics": "presumirte"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA#m"
+            },
+            {
+              "chords": [],
+              "lyrics": "y ahora que digo"
+            },
+            {
+              "chords": [],
+              "lyrics": "DO"
+            },
+            {
+              "chords": [],
+              "lyrics": "cuando me pregunten"
+            },
+            {
+              "chords": [],
+              "lyrics": "FA"
+            },
+            {
+              "chords": [],
+              "lyrics": "que fue de nosotros"
+            },
+            {
+              "chords": [],
+              "lyrics": "DO"
+            },
+            {
+              "chords": [],
+              "lyrics": "quien le fallo a quien..."
+            },
+            {
+              "chords": [],
+              "lyrics": "FA"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                }
+              ],
+              "lyrics": "m� que me gustaba tanto"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE"
+            },
+            {
+              "chords": [],
+              "lyrics": "darte besos"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA#m"
+            },
+            {
+              "chords": [],
+              "lyrics": "cerrando mis ojos"
+            },
+            {
+              "chords": [],
+              "lyrics": "DO"
+            },
+            {
+              "chords": [],
+              "lyrics": "y luego quitarte"
+            },
+            {
+              "chords": [],
+              "lyrics": "FA"
+            },
+            {
+              "chords": [],
+              "lyrics": "tu ropa despacio"
+            },
+            {
+              "chords": [],
+              "lyrics": "DO"
+            },
+            {
+              "chords": [],
+              "lyrics": "y hacerte el amor..."
+            },
+            {
+              "chords": [],
+              "lyrics": "PRE -- CORO:"
+            },
+            {
+              "chords": [],
+              "lyrics": "FA                          Am"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                }
+              ],
+              "lyrics": "m� que me gustaba tanto hablar"
+            },
+            {
+              "chords": [],
+              "lyrics": "REm"
+            },
+            {
+              "chords": [],
+              "lyrics": "que nuestro amor"
+            },
+            {
+              "chords": [],
+              "lyrics": "DO"
+            },
+            {
+              "chords": [],
+              "lyrics": "nunca se iba a acabar"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA#m"
+            },
+            {
+              "chords": [],
+              "lyrics": "a m� que me gustaba tanto"
+            },
+            {
+              "chords": [],
+              "lyrics": "DO"
+            },
+            {
+              "chords": [],
+              "lyrics": "no llorar..."
+            }
+          ]
+        },
+        {
+          "name": "Chorus",
+          "lines": [
+            {
+              "chords": [],
+              "lyrics": "FA                   Am"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                }
+              ],
+              "lyrics": "m� que me gustaba tanto"
+            },
+            {
+              "chords": [],
+              "lyrics": "hacerte m�a"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA#m"
+            },
+            {
+              "chords": [],
+              "lyrics": "a m� me est� doliendo"
+            },
+            {
+              "chords": [],
+              "lyrics": "DO      DO7"
+            },
+            {
+              "chords": [],
+              "lyrics": "cada d�a, cada noche sin ti..."
+            },
+            {
+              "chords": [],
+              "lyrics": "FA"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                }
+              ],
+              "lyrics": "m� que me gustaba"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Am",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "como me ve�as"
+            },
+            {
+              "chords": [],
+              "lyrics": "y con la boca"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA#m               DO"
+            },
+            {
+              "chords": [],
+              "lyrics": "siempre me com�as a m�"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA#m"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                }
+              ],
+              "lyrics": "M� Me Est� Doliendo"
+            },
+            {
+              "chords": [],
+              "lyrics": "DO              FA"
+            },
+            {
+              "chords": [],
+              "lyrics": "mucho estar sin ti..."
+            },
+            {
+              "chords": [],
+              "lyrics": "Se repite:"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA#m"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                }
+              ],
+              "lyrics": "M� Me Est� Doliendo"
+            },
+            {
+              "chords": [],
+              "lyrics": "DO              FA"
+            },
+            {
+              "chords": [],
+              "lyrics": "mucho estar sin ti..."
+            },
+            {
+              "chords": [],
+              "lyrics": "Con dedicaci�n especial: Miguel �ngel S�nchez Delgado."
+            }
+          ]
+        }
+      ],
+      "rawText": "FA\nA m� que me gustaba tanto\n       RE\npresumirte\n           LA#m\ny ahora que digo\n               DO\ncuando me pregunten\n            FA\nque fue de nosotros\n                  DO\nquien le fallo a quien...\n\nFA\nA m� que me gustaba tanto\n       RE\ndarte besos\n\nLA#m\ncerrando mis ojos\n              DO\ny luego quitarte\n\n              FA\ntu ropa despacio\n              DO\ny hacerte el amor...\n\nPRE -- CORO:\n\nFA                          Am\nA m� que me gustaba tanto hablar\n\nREm\nque nuestro amor\n                DO\nnunca se iba a acabar\n\nLA#m\na m� que me gustaba tanto\n\n     DO\nno llorar...\n\nCORO:\n\nFA                   Am\nA m� que me gustaba tanto\n hacerte m�a\n\n              LA#m\na m� me est� doliendo\n\n                       DO      DO7\ncada d�a, cada noche sin ti...\n\nFA\nA m� que me gustaba\n\n Am\ncomo me ve�as\n\ny con la boca\n\nLA#m               DO\nsiempre me com�as a m�\n\nLA#m\nA M� Me Est� Doliendo\nDO              FA\nmucho estar sin ti...\n\nSe repite:\n\nLA#m\nA M� Me Est� Doliendo\n\nDO              FA\nmucho estar sin ti...\n\nCon dedicaci�n especial: Miguel �ngel S�nchez Delgado.",
+      "pdfUrl": "https://acordesweb.com/descarga-pdf/banda-ms/a-mi-me-esta-doliendo/0/0/0.pdf"
+    },
+    {
+      "title": "A Mi Tambien Me Vale",
+      "artist": "Banda Ms",
+      "sourceUrl": "https://acordesweb.com/cancion/banda-ms/a-mi-tambien-me-vale",
+      "chords": [
+        "C",
+        "G",
+        "Am",
+        "F",
+        "A"
+      ],
+      "key": "C",
+      "sections": [
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 2
+                },
+                {
+                  "chord": "Am",
+                  "position": 4
+                },
+                {
+                  "chord": "G",
+                  "position": 7
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "*Bajeo para llegar a C"
+            },
+            {
+              "chords": [],
+              "lyrics": "e-------------------"
+            },
+            {
+              "chords": [],
+              "lyrics": "B-------------------"
+            },
+            {
+              "chords": [],
+              "lyrics": "G-------------------"
+            },
+            {
+              "chords": [],
+              "lyrics": "D-------------------"
+            },
+            {
+              "chords": [],
+              "lyrics": "A-------2-3---------"
+            },
+            {
+              "chords": [],
+              "lyrics": "E---3-5-------------"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "No me sorprende"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Est� noticia no me cae como agua helada"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Am",
+                  "position": 0
+                },
+                {
+                  "chord": "F",
+                  "position": 23
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Quieres terminar conmigo desde cuando lo pensabas"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 16
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Ya lo sab�a ya lo esperaba"
+            },
+            {
+              "chords": [],
+              "lyrics": "*BAJEO"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Voy a olvidarte"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Voy a olvidarte porque ya lo decid�"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Am",
+                  "position": 0
+                },
+                {
+                  "chord": "F",
+                  "position": 24
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Si quieres puedes marcharte aqu� nadie va a morir"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 19
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "No te preocupes estar� bien sin ti"
+            },
+            {
+              "chords": [],
+              "lyrics": "*Bajeo"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                },
+                {
+                  "chord": "C",
+                  "position": 19
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                }
+              ],
+              "lyrics": "mi tambi�n me vale"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "La verdad ni tiempo tengo pa� extra�arte"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Am",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "En esta vida nadie es indispensable"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 26
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y ah� te encargo que no vuelvas a buscarme porque voy a despreciarte"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Ami tambi�n me vale"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Es muy probable que alg�n d�a te sientas sola"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Am",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Yo ya no vuelvo ni aunque pongas veladoras"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 23
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "No est� en mis planes volver con esa persona que a la primera me abandona"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 16
+                },
+                {
+                  "chord": "C",
+                  "position": 53
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Si a ti no te importo ami tambi�n me vale madre nuestro amor"
+            },
+            {
+              "chords": [],
+              "lyrics": "*Bajeo"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                },
+                {
+                  "chord": "C",
+                  "position": 19
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                }
+              ],
+              "lyrics": "mi tambi�n me vale"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "La verdad ni tiempo tengo pa� extra�arte"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Am",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "En esta vida nadie es indispensable"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 26
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y ah� te encargo que no vuelvas a buscarme porque voy a despreciarte"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Ami tambi�n me vale"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Es muy probable que alg�n d�a te sientas sola"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Am",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Yo ya no vuelvo ni aunque pongas veladoras"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 23
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "No est� en mis planes volver con esa persona que a la primera me abandona"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 16
+                },
+                {
+                  "chord": "C",
+                  "position": 53
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Si a ti no te importo ami tambi�n me vale madre nuestro amor"
+            },
+            {
+              "chords": [],
+              "lyrics": "*Bajeo"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                },
+                {
+                  "chord": "C",
+                  "position": 19
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                }
+              ],
+              "lyrics": "mi tambi�n me vale"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "La verdad ni tiempo tengo pa� extra�arte"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Am",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "En esta vida nadie es indispensable"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 26
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y ah� te encargo que no vuelvas a buscarme porque voy a despreciarte"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Ami tambi�n me vale"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Es muy probable que alg�n d�a te sientas sola"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Am",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Yo ya no vuelvo ni aunque pongas veladoras"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 23
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "No est� en mis planes volver con esa persona que a la primera me abandona"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 16
+                },
+                {
+                  "chord": "C",
+                  "position": 53
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Si a ti no te importo ami tambi�n me vale madre nuestro amor"
+            },
+            {
+              "chords": [],
+              "lyrics": "By: Betiko Caldera"
+            },
+            {
+              "chords": [],
+              "lyrics": "30/11/17"
+            }
+          ]
+        }
+      ],
+      "rawText": "Intro\nC G Am G\n\n*Bajeo para llegar a C\n\ne-------------------\nB-------------------\nG-------------------\nD-------------------\nA-------2-3---------\nE---3-5-------------\n\nC\nNo me sorprende\n                                     G\nEst� noticia no me cae como agua helada\n        Am                     F\nQuieres terminar conmigo desde cuando lo pensabas\n         C               G\nYa lo sab�a ya lo esperaba\n\n*BAJEO\n\nC\nVoy a olvidarte\n                                  G\nVoy a olvidarte porque ya lo decid�\n         Am                      F\nSi quieres puedes marcharte aqu� nadie va a morir\n              C                  G\nNo te preocupes estar� bien sin ti\n\n\n*Bajeo\nG                  C\nA mi tambi�n me vale\n                                       G\nLa verdad ni tiempo tengo pa� extra�arte\n                                 Am\nEn esta vida nadie es indispensable\n               F                         G\nY ah� te encargo que no vuelvas a buscarme porque voy a despreciarte\n\n\n                 C\nAmi tambi�n me vale\n                                            G\nEs muy probable que alg�n d�a te sientas sola\n                                         Am\nYo ya no vuelvo ni aunque pongas veladoras\n                    F                      G\nNo est� en mis planes volver con esa persona que a la primera me abandona\n      F               G                                    C\nSi a ti no te importo ami tambi�n me vale madre nuestro amor\n\n\n*Bajeo\nG                  C\nA mi tambi�n me vale\n                                       G\nLa verdad ni tiempo tengo pa� extra�arte\n                                 Am\nEn esta vida nadie es indispensable\n               F                         G\nY ah� te encargo que no vuelvas a buscarme porque voy a despreciarte\n\n\n                 C\nAmi tambi�n me vale\n                                            G\nEs muy probable que alg�n d�a te sientas sola\n                                         Am\nYo ya no vuelvo ni aunque pongas veladoras\n                    F                      G\nNo est� en mis planes volver con esa persona que a la primera me abandona\n      F               G                                    C\nSi a ti no te importo ami tambi�n me vale madre nuestro amor\n\n\n\n*Bajeo\nG                  C\nA mi tambi�n me vale\n                                       G\nLa verdad ni tiempo tengo pa� extra�arte\n                                 Am\nEn esta vida nadie es indispensable\n               F                         G\nY ah� te encargo que no vuelvas a buscarme porque voy a despreciarte\n\n\n                 C\nAmi tambi�n me vale\n                                            G\nEs muy probable que alg�n d�a te sientas sola\n                                         Am\nYo ya no vuelvo ni aunque pongas veladoras\n                    F                      G\nNo est� en mis planes volver con esa persona que a la primera me abandona\n      F               G                                    C\nSi a ti no te importo ami tambi�n me vale madre nuestro amor\n\n\nBy: Betiko Caldera\n    30/11/17",
+      "pdfUrl": "https://acordesweb.com/descarga-pdf/banda-ms/a-mi-tambien-me-vale/0/0/0.pdf"
+    },
+    {
+      "title": "Al Despertar",
+      "artist": "Banda Ms",
+      "sourceUrl": "https://acordesweb.com/cancion/banda-ms/al-despertar",
+      "chords": [],
+      "key": null,
+      "sections": [
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [],
+              "lyrics": "Pues bueno aki tratando de hacer unas mejoras a los acordes"
+            },
+            {
+              "chords": [],
+              "lyrics": "de esta rola ke esta preciosa!!"
+            },
+            {
+              "chords": [],
+              "lyrics": "espero k les guste es la primera cancion k subo a este espacio...."
+            }
+          ]
+        },
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [],
+              "lyrics": "RE"
+            },
+            {
+              "chords": [],
+              "lyrics": "Lo decides hoy te vas"
+            },
+            {
+              "chords": [],
+              "lyrics": "SIm"
+            },
+            {
+              "chords": [],
+              "lyrics": "tus maletas listas ya"
+            },
+            {
+              "chords": [],
+              "lyrics": "MIm"
+            },
+            {
+              "chords": [],
+              "lyrics": "te despides ya de mi"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA     RE"
+            },
+            {
+              "chords": [],
+              "lyrics": "con un nudo en la garganta,sonrei."
+            },
+            {
+              "chords": [],
+              "lyrics": "FA#m"
+            },
+            {
+              "chords": [],
+              "lyrics": "Pues se va mi corazon"
+            },
+            {
+              "chords": [],
+              "lyrics": "SOL"
+            },
+            {
+              "chords": [],
+              "lyrics": "mi alma entera en este adios"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA              RE"
+            },
+            {
+              "chords": [],
+              "lyrics": "por no atreverme a confesarte"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA                SOL"
+            },
+            {
+              "chords": [],
+              "lyrics": "y no demostrarte que al marcharte"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA"
+            },
+            {
+              "chords": [],
+              "lyrics": "sufro yo"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE                  LA"
+            },
+            {
+              "chords": [],
+              "lyrics": "Y si me hubiera atrevido"
+            },
+            {
+              "chords": [],
+              "lyrics": "SOL"
+            },
+            {
+              "chords": [],
+              "lyrics": "hacer un lado mi orgullo"
+            },
+            {
+              "chords": [],
+              "lyrics": "decirte que te amo"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA"
+            },
+            {
+              "chords": [],
+              "lyrics": "y me aterra pensar"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE"
+            },
+            {
+              "chords": [],
+              "lyrics": "Que ma�ana al despertar"
+            },
+            {
+              "chords": [],
+              "lyrics": "SOL"
+            },
+            {
+              "chords": [],
+              "lyrics": "no tendre aquien amar, no"
+            },
+            {
+              "chords": [],
+              "lyrics": "MIm"
+            },
+            {
+              "chords": [],
+              "lyrics": "no podre vivir sin ti"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA"
+            },
+            {
+              "chords": [],
+              "lyrics": "recordando que en un tiempo"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE"
+            },
+            {
+              "chords": [],
+              "lyrics": "fui feliz"
+            },
+            {
+              "chords": [],
+              "lyrics": "Tu seras"
+            },
+            {
+              "chords": [],
+              "lyrics": "lo mas grande que"
+            },
+            {
+              "chords": [],
+              "lyrics": "SIm"
+            },
+            {
+              "chords": [],
+              "lyrics": "eh tenido en esta vida"
+            },
+            {
+              "chords": [],
+              "lyrics": "SOL"
+            },
+            {
+              "chords": [],
+              "lyrics": "y hoy me dejas"
+            },
+            {
+              "chords": [],
+              "lyrics": "LA          RE"
+            },
+            {
+              "chords": [],
+              "lyrics": "y te vas...... de mi."
+            },
+            {
+              "chords": [],
+              "lyrics": "RE,SOL,MIm,LA,SOL,MIm,LA"
+            },
+            {
+              "chords": [],
+              "lyrics": "Y si me hubiera atrevido...."
+            }
+          ]
+        }
+      ],
+      "rawText": "Pues bueno aki tratando de hacer unas mejoras a los acordes\nde esta rola ke esta preciosa!!\nespero k les guste es la primera cancion k subo a este espacio....\n\n\nIntro: RE,LA,SOL,MIm,LA,RE,SOL,MIm,LA\n\n                   RE\nLo decides hoy te vas\n                  SIm\ntus maletas listas ya\n                 MIm\nte despides ya de mi\n                       LA     RE\ncon un nudo en la garganta,sonrei.\n                 FA#m\nPues se va mi corazon\n                      SOL\nmi alma entera en este adios\n         LA              RE\npor no atreverme a confesarte\n         LA                SOL\ny no demostrarte que al marcharte\n      LA\nsufro yo\n\nRE                  LA\nY si me hubiera atrevido\n                    SOL\nhacer un lado mi orgullo\n\ndecirte que te amo\n             LA\ny me aterra pensar\n                   RE\nQue ma�ana al despertar\n                  SOL\nno tendre aquien amar, no\n                  MIm\nno podre vivir sin ti\n                     LA\nrecordando que en un tiempo\n    RE\nfui feliz\n\nTu seras\n\nlo mas grande que\n   SIm\neh tenido en esta vida\n         SOL\ny hoy me dejas\n     LA          RE\ny te vas...... de mi.\n\nRE,SOL,MIm,LA,SOL,MIm,LA\n\n\nY si me hubiera atrevido....",
+      "pdfUrl": "https://acordesweb.com/descarga-pdf/banda-ms/al-despertar/0/0/0.pdf"
+    }
+  ]
+}

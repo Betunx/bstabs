@@ -1,0 +1,3861 @@
+{
+  "artist": "natanael-cano",
+  "totalSongs": 85,
+  "importedSongs": 10,
+  "songs": [
+    {
+      "title": "Pienso En Ella",
+      "artist": "Natanael Cano",
+      "sourceUrl": "https://acordesweb.com/cancion/natanael-cano/pienso-en-ella",
+      "chords": [
+        "Fm7",
+        "E",
+        "Bm",
+        "Bm7"
+      ],
+      "key": "E",
+      "sections": [
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [],
+              "lyrics": "El rasgueo es B??b??"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Fm7",
+                  "position": 0
+                }
+              ],
+              "lyrics": "se toca as�"
+            },
+            {
+              "chords": [],
+              "lyrics": "-x-"
+            },
+            {
+              "chords": [],
+              "lyrics": "-x-"
+            },
+            {
+              "chords": [],
+              "lyrics": "-9-"
+            },
+            {
+              "chords": [],
+              "lyrics": "-7-"
+            },
+            {
+              "chords": [],
+              "lyrics": "-9-"
+            },
+            {
+              "chords": [],
+              "lyrics": "-x-"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "E",
+                  "position": 0
+                }
+              ],
+              "lyrics": "se toca as�"
+            },
+            {
+              "chords": [],
+              "lyrics": "-x-"
+            },
+            {
+              "chords": [],
+              "lyrics": "-x-"
+            },
+            {
+              "chords": [],
+              "lyrics": "-9-"
+            },
+            {
+              "chords": [],
+              "lyrics": "-6-"
+            },
+            {
+              "chords": [],
+              "lyrics": "-7-"
+            },
+            {
+              "chords": [],
+              "lyrics": "-x-"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bm",
+                  "position": 0
+                }
+              ],
+              "lyrics": "se toca as�"
+            },
+            {
+              "chords": [],
+              "lyrics": "-7-"
+            },
+            {
+              "chords": [],
+              "lyrics": "-7-"
+            },
+            {
+              "chords": [],
+              "lyrics": "-7-"
+            },
+            {
+              "chords": [],
+              "lyrics": "-9-"
+            },
+            {
+              "chords": [],
+              "lyrics": "-x-"
+            },
+            {
+              "chords": [],
+              "lyrics": "-x-"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Fm7",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Tiro humito al viento y pienso en ella"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "E",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Pensando en cuando voy a verla"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Para decirle lo bella"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Fm7",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Que luc�a la noche aquella"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "E",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Cuando hac�amos el amor"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Eso queda entre los dos"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Fm7",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Sin olvidarme de tu olor"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "E",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Que en mi piel se qued�"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Todos los besos de tu boca"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Fm7",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Los labios color de rosa"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "E",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Se marcharon en mi ropa"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Es que a�n yo no encuentro a otra"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Fm7",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Que me haga sentir mejor"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "E",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Todav�a en ti sigo pensando"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y cuando hac�amos el amor"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Fm7",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Las horas siempre iban volando"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Fm7",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Hace tiempo que t� fuiste m�a"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "E",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Yo s� que no se te olvida"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Cuando me brincabas encima"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Fm7",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Noches que nunca terminan"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "E",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Que t� te quedar�as conmigo"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Me dijiste siendo amigos"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Fm7",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Pasan los d�as y yo aqu� sigo"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "E",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Perdido, Dios es testigo"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bm7",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y no se me olvida ni un segundo"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Fm7",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Por m�s que pasen los a�os"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "E",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Mi coraz�n es un vagabundo"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Por el mundo haciendo da�o"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Fm7",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Insoportable este dolor"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "E",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Las heridas no han sanado"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Bm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y c�mo duele el coraz�n"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Fm7",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Cuando no est�s a mi lado"
+            }
+          ]
+        }
+      ],
+      "rawText": "El rasgueo es B??b??\n\nFm7 se toca as�\n-x-\n-x-\n-9-\n-7-\n-9-\n-x-\n\nE se toca as�\n-x-\n-x-\n-9-\n-6-\n-7-\n-x-\n\nBm se toca as�\n-7-\n-7-\n-7-\n-9-\n-x-\n-x-\n\n\nFm7\nTiro humito al viento y pienso en ella\nE\nPensando en cuando voy a verla\nBm\nPara decirle lo bella\nFm7\nQue luc�a la noche aquella\nE\nCuando hac�amos el amor\nBm\nEso queda entre los dos\nFm7\nSin olvidarme de tu olor\nE\nQue en mi piel se qued�\nBm\nTodos los besos de tu boca\nFm7\nLos labios color de rosa\nE\nSe marcharon en mi ropa\nBm\nEs que a�n yo no encuentro a otra\nFm7\nQue me haga sentir mejor\nE\nTodav�a en ti sigo pensando\nBm\nY cuando hac�amos el amor\nFm7\nLas horas siempre iban volando\n\n\nFm7\nHace tiempo que t� fuiste m�a\nE\nYo s� que no se te olvida\nBm\nCuando me brincabas encima\nFm7\nNoches que nunca terminan\nE\nQue t� te quedar�as conmigo\nBm\nMe dijiste siendo amigos\nFm7\nPasan los d�as y yo aqu� sigo\nE\nPerdido, Dios es testigo\nBm7\nY no se me olvida ni un segundo\nFm7\nPor m�s que pasen los a�os\nE\nMi coraz�n es un vagabundo\nBm\nPor el mundo haciendo da�o\nFm7\nInsoportable este dolor\nE\nLas heridas no han sanado\nBm\nY c�mo duele el coraz�n\nFm7\nCuando no est�s a mi lado",
+      "pdfUrl": "https://acordesweb.com/descarga-pdf/natanael-cano/pienso-en-ella/0/0/0.pdf"
+    },
+    {
+      "title": "Perlas Negras Ft Gabito Ballesteros",
+      "artist": "Natanael Cano",
+      "sourceUrl": "https://acordesweb.com/cancion/natanael-cano/perlas-negras-ft-gabito-ballesteros",
+      "chords": [
+        "G",
+        "D",
+        "A",
+        "D/F#"
+      ],
+      "key": "D",
+      "sections": [
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [],
+              "lyrics": "CAPO 1er TRASTE!!!!"
+            }
+          ]
+        },
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Un vestido color vino, sol, arena y mar"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Ella es tan afrodis�aca sobrenatural"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                },
+                {
+                  "chord": "A",
+                  "position": 33
+                },
+                {
+                  "chord": "D",
+                  "position": 43
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Bebe un shot pa' olvidar, que una vez la dejaron llorando (Llorando)"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D/F#",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 11
+                },
+                {
+                  "chord": "A",
+                  "position": 43
+                },
+                {
+                  "chord": "D",
+                  "position": 50
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Finge que no le duele y por eso se la lleva tomando (Tomando)"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Perlas negras con Red Bull y que no falte la actitud"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 11
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "El amor pa'l ata�d, pa' sexy dance se pego un tour"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D/F#",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 11
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Sus amigas le dicen que haga una p�gina azul"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 24
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Pa' que vea lo que perdi�"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Perlas negras con Red Bull y que no falte la actitud"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 11
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "El amor pa'l ata�d, pa' sexy dance se pego un tour"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D/F#",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 11
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Sus amigas le dicen que haga una p�gina azul"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 24
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Pa' que vea lo que perdi�"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Ya metido en ambiente subi� una historia al insta que se ve tan ardiente"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 25
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Que le llueven corazones, millones de pretendientes"
+            },
+            {
+              "chords": [],
+              "lyrics": "Pero ella solamente tiene a uno en la mente"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D/F#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Ya se lo que se siente"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Le pedir� su phone, por favor no me paren"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Voy a dar el salto pa' ver que me sale"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Puedo ser el remedio para su mal"
+            },
+            {
+              "chords": [],
+              "lyrics": "Porque esta noche ella y yo somos iguales"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Pues ni modo, sal� rog�n"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 10
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Porque s� que conmigo ella se pierde (Se pierde) se pierde"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D/F#",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 5
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Como yo nadie la toco (Toco)"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 10
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Por eso es que conmigo ella se muere (Se muere)"
+            },
+            {
+              "chords": [],
+              "lyrics": "Jajaja"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D/F#",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Ah"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y aunque a veces estamos mal"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 10
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "En la cama se arregla todo y se viene (Se viene) se viene (Se viene)"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D/F#",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 7
+                },
+                {
+                  "chord": "A",
+                  "position": 53
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Si con otra me va a mirar, t� bien sabes que no es real"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Tranqui' baby, tranqui' baby"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                },
+                {
+                  "chord": "A",
+                  "position": 33
+                },
+                {
+                  "chord": "D",
+                  "position": 43
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Bebe un shot pa' olvidar, que una vez la dejaron llorando (Llorando)"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D/F#",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 11
+                },
+                {
+                  "chord": "A",
+                  "position": 43
+                },
+                {
+                  "chord": "D",
+                  "position": 50
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Finge que no le duele y por eso se la lleva tomando (Tomando)"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Perlas negras con Red Bull y que no falte la actitud"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 11
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "El amor pa'l ata�d, pa' sexy dance se pego un tour"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D/F#",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 11
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Sus amigas le dicen que haga una p�gina azul"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 24
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Pa' que vea lo que perdi�"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Perlas negras con Red Bull y que no falte la actitud"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 11
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "El amor pa'l ata�d, pa' sexy dance se pego un tour"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D/F#",
+                  "position": 0
+                },
+                {
+                  "chord": "G",
+                  "position": 11
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Sus amigas le dicen que haga una p�gina azul"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 24
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Pa' que vea lo que perdi�"
+            }
+          ]
+        },
+        {
+          "name": "Outro",
+          "lines": [
+            {
+              "chords": [],
+              "lyrics": "Primero en #AcordesWeb.com"
+            }
+          ]
+        }
+      ],
+      "rawText": "CAPO 1er TRASTE!!!!\r\n\r\nIntro: G D\r\n      G\r\nUn vestido color vino, sol, arena y mar\r\n         D\r\nElla es tan afrodis�aca sobrenatural\r\n          G                                A         D    \r\nBebe un shot pa' olvidar, que una vez la dejaron llorando (Llorando)\r\nD/F#       G                               A      D\r\n    Finge que no le duele y por eso se la lleva tomando (Tomando)\r\n\r\n                       G\r\nPerlas negras con Red Bull y que no falte la actitud\r\n     A          D\r\nEl amor pa'l ata�d, pa' sexy dance se pego un tour\r\n   D/F#       G\r\nSus amigas le dicen que haga una p�gina azul\r\nA                       D\r\nPa' que vea lo que perdi�\r\n                       G\r\nPerlas negras con Red Bull y que no falte la actitud\r\n     A          D\r\nEl amor pa'l ata�d, pa' sexy dance se pego un tour\r\n   D/F#       G\r\nSus amigas le dicen que haga una p�gina azul\r\nA                       D\r\nPa' que vea lo que perdi�\r\n\r\n                G\r\nYa metido en ambiente subi� una historia al insta que se ve tan ardiente\r\n                    A                        D\r\nQue le llueven corazones, millones de pretendientes            \r\nPero ella solamente tiene a uno en la mente\r\n                 D/F#\r\nYa se lo que se siente\r\n               G \r\nLe pedir� su phone, por favor no me paren\r\n                                   A\r\nVoy a dar el salto pa' ver que me sale\r\n              D\r\nPuedo ser el remedio para su mal                     \r\nPorque esta noche ella y yo somos iguales\r\n\r\n        G\r\nPues ni modo, sal� rog�n\r\n                      A         D\r\nPorque s� que conmigo ella se pierde (Se pierde) se pierde\r\nD/F# G\r\nComo yo nadie la toco (Toco)\r\n                       A         D\r\nPor eso es que conmigo ella se muere (Se muere)\r\nJajaja\r\nD/F#\r\nAh\r\n            G\r\nY aunque a veces estamos mal\r\n                       A         D\r\nEn la cama se arregla todo y se viene (Se viene) se viene (Se viene)\r\nD/F#   G                                             A\r\nSi con otra me va a mirar, t� bien sabes que no es real\r\n          D\r\nTranqui' baby, tranqui' baby\r\n          G                                A         D    \r\nBebe un shot pa' olvidar, que una vez la dejaron llorando (Llorando)\r\nD/F#       G                               A      D\r\n    Finge que no le duele y por eso se la lleva tomando (Tomando)\r\n\r\n                       G\r\nPerlas negras con Red Bull y que no falte la actitud\r\n     A          D\r\nEl amor pa'l ata�d, pa' sexy dance se pego un tour\r\n   D/F#       G\r\nSus amigas le dicen que haga una p�gina azul\r\nA                       D\r\nPa' que vea lo que perdi�\r\n                       G\r\nPerlas negras con Red Bull y que no falte la actitud\r\n     A          D\r\nEl amor pa'l ata�d, pa' sexy dance se pego un tour\r\n   D/F#       G\r\nSus amigas le dicen que haga una p�gina azul\r\nA                       D\r\nPa' que vea lo que perdi�\r\nFinal: G  A D\r\n\r\n\r\n\r\n\r\n\r\n\r\nPrimero en #AcordesWeb.com",
+      "pdfUrl": "https://acordesweb.com/descarga-pdf/natanael-cano/perlas-negras-ft-gabito-ballesteros/0/0/0.pdf"
+    },
+    {
+      "title": "Sin Ti",
+      "artist": "Natanael Cano",
+      "sourceUrl": "https://acordesweb.com/cancion/natanael-cano/sin-ti",
+      "chords": [],
+      "key": null,
+      "sections": [
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [],
+              "lyrics": "MIb           REb             REbmaj7"
+            },
+            {
+              "chords": [],
+              "lyrics": "Porque ya no pienso en lo malo"
+            },
+            {
+              "chords": [],
+              "lyrics": "Y el tiempo no ha pasado"
+            },
+            {
+              "chords": [],
+              "lyrics": "FAm"
+            },
+            {
+              "chords": [],
+              "lyrics": "Y yo me siento alucinado"
+            },
+            {
+              "chords": [],
+              "lyrics": "MIb"
+            },
+            {
+              "chords": [],
+              "lyrics": "Qu� bonito estar aqu� parado"
+            },
+            {
+              "chords": [],
+              "lyrics": "REb                   DOm            LAb"
+            },
+            {
+              "chords": [],
+              "lyrics": "Y que la vida nos dio todo lo que esperamos"
+            },
+            {
+              "chords": [],
+              "lyrics": "FAm"
+            },
+            {
+              "chords": [],
+              "lyrics": "Desde el d�a que respiramos"
+            },
+            {
+              "chords": [],
+              "lyrics": "MIb                       REb"
+            },
+            {
+              "chords": [],
+              "lyrics": "Es lo que el camino me ha ense�ado"
+            },
+            {
+              "chords": [],
+              "lyrics": "REbmaj7             REb     FAm"
+            },
+            {
+              "chords": [],
+              "lyrics": "Sin ti"
+            },
+            {
+              "chords": [],
+              "lyrics": "Sin ti me la paso siempre al mill�n"
+            },
+            {
+              "chords": [],
+              "lyrics": "REb"
+            },
+            {
+              "chords": [],
+              "lyrics": "Sin tiempo pa' decirles que no"
+            },
+            {
+              "chords": [],
+              "lyrics": "DOm     FAm"
+            },
+            {
+              "chords": [],
+              "lyrics": "Y aqu�"
+            },
+            {
+              "chords": [],
+              "lyrics": "Aqu� ya no existen malos tratos"
+            },
+            {
+              "chords": [],
+              "lyrics": "MIb"
+            },
+            {
+              "chords": [],
+              "lyrics": "Yo soy al que le preguntan si se mueve"
+            },
+            {
+              "chords": [],
+              "lyrics": "REb                                  DOm"
+            },
+            {
+              "chords": [],
+              "lyrics": "Tantas cosas en mi mente y haciendo billete"
+            },
+            {
+              "chords": [],
+              "lyrics": "FAm"
+            },
+            {
+              "chords": [],
+              "lyrics": "Con toda esta gente, firme me muevo"
+            },
+            {
+              "chords": [],
+              "lyrics": "MIb"
+            },
+            {
+              "chords": [],
+              "lyrics": "No pregunto si se puede o no"
+            },
+            {
+              "chords": [],
+              "lyrics": "Las cosas se hacen al modo"
+            },
+            {
+              "chords": [],
+              "lyrics": "REb                                  DOm"
+            },
+            {
+              "chords": [],
+              "lyrics": "�D�nde est�n los que dec�an que los esperara?"
+            },
+            {
+              "chords": [],
+              "lyrics": "FAm"
+            },
+            {
+              "chords": [],
+              "lyrics": "Que un d�a llegar�an para donde estoy"
+            },
+            {
+              "chords": [],
+              "lyrics": "MIb7"
+            },
+            {
+              "chords": [],
+              "lyrics": "Disc�lpenme, pero, por favor, aqu� ya no existen puestos"
+            }
+          ]
+        }
+      ],
+      "rawText": "MIb           REb             REbmaj7\nPorque ya no pienso en lo malo\nY el tiempo no ha pasado\n             FAm\nY yo me siento alucinado\n         MIb\nQu� bonito estar aqu� parado\n\nREb                   DOm            LAb\nY que la vida nos dio todo lo que esperamos\n            FAm\nDesde el d�a que respiramos\n        MIb                       REb\nEs lo que el camino me ha ense�ado\n\n     REbmaj7             REb     FAm\nSin ti\nSin ti me la paso siempre al mill�n\n                         REb\nSin tiempo pa' decirles que no\n\n       DOm     FAm\nY aqu�\nAqu� ya no existen malos tratos\n    MIb\nYo soy al que le preguntan si se mueve\n\n REb                                  DOm\nTantas cosas en mi mente y haciendo billete\n                                FAm\nCon toda esta gente, firme me muevo\n                          MIb\nNo pregunto si se puede o no\nLas cosas se hacen al modo\n\n  REb                                  DOm\n�D�nde est�n los que dec�an que los esperara?\n                                 FAm\nQue un d�a llegar�an para donde estoy\n                        MIb7\nDisc�lpenme, pero, por favor, aqu� ya no existen puestos",
+      "pdfUrl": "https://acordesweb.com/descarga-pdf/natanael-cano/sin-ti/0/0/0.pdf"
+    },
+    {
+      "title": "Pancake Ft Peso Pluma",
+      "artist": "Natanael Cano",
+      "sourceUrl": "https://acordesweb.com/cancion/natanael-cano/pancake-ft-peso-pluma",
+      "chords": [
+        "F",
+        "Am"
+      ],
+      "key": "F",
+      "sections": [
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [
+                {
+                  "chord": "F",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Con un perico o lavado, un Mini Draco terciado"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Am",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Con la gorrita de lado, la gre�a no me he cortado"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Fino con las Balenciaga, si antes no cargaba nada"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Am",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Nomas le brilla la cara, cuando sale a chambear"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y un trago de clase azul, rol�ndose otro backwood"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Am",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Primo v�yase forjando, que esta madre va pa' largo"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y una rosita pastel, las morritas fuman vape"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Am",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Pase�ndose por el diez, compa Bladi aqu� ando al cien"
+            },
+            {
+              "chords": [],
+              "lyrics": "Inter X2: F Am"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Turisteando por Paris, de Morocco es el hachis"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Am",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Empolvada la nariz y la vida es perfecta"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Saludazos para el Diez, varios compadres con el"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Am",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Las fiestas se ponen bien, ya no ha tocado ver"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Con la gorrita de lado, la gre�a no me he cortado"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Am",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "En un carrito blindado, cuando sale a chambear"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y un trago de clase azul, rol�ndose otro backwood"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Am",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Primo v�yase rolando, que esta madre va pa' largo"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y una rosita pastel, las morritas fuman vape"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Am",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Pase�ndose por el diez, compa Bladi aqu� ando al cien"
+            }
+          ]
+        },
+        {
+          "name": "Outro",
+          "lines": [
+            {
+              "chords": [],
+              "lyrics": "Primero en #AcordesWeb.com"
+            }
+          ]
+        }
+      ],
+      "rawText": "Intro: (Am) F Am X2\r\nF\r\nCon un perico o lavado, un Mini Draco terciado\r\nAm\r\nCon la gorrita de lado, la gre�a no me he cortado\r\nF\r\nFino con las Balenciaga, si antes no cargaba nada\r\nAm\r\nNomas le brilla la cara, cuando sale a chambear\r\n\r\n  F\r\nY un trago de clase azul, rol�ndose otro backwood\r\nAm\r\nPrimo v�yase forjando, que esta madre va pa' largo\r\n  F\r\nY una rosita pastel, las morritas fuman vape\r\nAm\r\nPase�ndose por el diez, compa Bladi aqu� ando al cien\r\nInter X2: F Am\r\nF\r\nTuristeando por Paris, de Morocco es el hachis\r\nAm\r\nEmpolvada la nariz y la vida es perfecta\r\nF\r\nSaludazos para el Diez, varios compadres con el\r\nAm\r\nLas fiestas se ponen bien, ya no ha tocado ver\r\n\r\nF\r\nCon la gorrita de lado, la gre�a no me he cortado\r\nAm\r\nEn un carrito blindado, cuando sale a chambear\r\n  F\r\nY un trago de clase azul, rol�ndose otro backwood\r\nAm\r\nPrimo v�yase rolando, que esta madre va pa' largo\r\n  F\r\nY una rosita pastel, las morritas fuman vape\r\n Am\r\nPase�ndose por el diez, compa Bladi aqu� ando al cien\r\nFinal sobre F Am\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nPrimero en #AcordesWeb.com",
+      "pdfUrl": "https://acordesweb.com/descarga-pdf/natanael-cano/pancake-ft-peso-pluma/0/0/0.pdf"
+    },
+    {
+      "title": "Compa Bladi",
+      "artist": "Natanael Cano",
+      "sourceUrl": "https://acordesweb.com/cancion/natanael-cano/compa-bladi",
+      "chords": [
+        "E",
+        "G#7",
+        "C#m",
+        "A",
+        "B"
+      ],
+      "key": "E",
+      "sections": [
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [],
+              "lyrics": "Tienen que hacer acordes cheros para que suene rico."
+            },
+            {
+              "chords": [
+                {
+                  "chord": "E",
+                  "position": 0
+                }
+              ],
+              "lyrics": "G#  C#m  A  B  E  x2"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G#7",
+                  "position": 0
+                },
+                {
+                  "chord": "C#m",
+                  "position": 12
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Compa Bladi saque un pase"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                },
+                {
+                  "chord": "B",
+                  "position": 6
+                },
+                {
+                  "chord": "E",
+                  "position": 21
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "De lavada pa' activarme"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G#7",
+                  "position": 0
+                },
+                {
+                  "chord": "C#m",
+                  "position": 13
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Ya con ancias de jalarle"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                },
+                {
+                  "chord": "B",
+                  "position": 9
+                },
+                {
+                  "chord": "E",
+                  "position": 28
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                }
+              ],
+              "lyrics": "un veneno, es polvo de �ngel."
+            },
+            {
+              "chords": [],
+              "lyrics": "____________________________________________"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#m",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y pa'l relajo, soy perro bravo"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "E",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y no se me ag�ite"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "B",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Que yo aqu� traigo de lo mejor"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#m",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Para el levant�n."
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#m",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Se prende un gallo para elevarse"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "E",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "La buena vida le gusta darse"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "B",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Ya se enfiest�"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#m",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Ya se le amaneci�"
+            },
+            {
+              "chords": [],
+              "lyrics": "____________________________________________"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G#7",
+                  "position": 0
+                },
+                {
+                  "chord": "C#m",
+                  "position": 12
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y de las calles que caminaba"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                },
+                {
+                  "chord": "B",
+                  "position": 6
+                },
+                {
+                  "chord": "E",
+                  "position": 21
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Yuba City es mi casa"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "G#7",
+                  "position": 0
+                },
+                {
+                  "chord": "C#m",
+                  "position": 13
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Con mi clica, con mi raza"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "A",
+                  "position": 0
+                },
+                {
+                  "chord": "B",
+                  "position": 9
+                },
+                {
+                  "chord": "E",
+                  "position": 21
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Festejamos la vagancia"
+            },
+            {
+              "chords": [],
+              "lyrics": "_____________________________________________"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#m",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y pa'l relajo, soy perro bravo"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "E",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y no se me ag�ite"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "B",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Que yo aqu� traigo de lo mejor"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#m",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Para el levant�n."
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#m",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Se prende un gallo para elevarse"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "E",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "La buena vida le gusta darse"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "B",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Ya se enfiest�"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "C#m",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Ya se le amaneci�."
+            }
+          ]
+        }
+      ],
+      "rawText": "Tienen que hacer acordes cheros para que suene rico.\n\nE   G#  C#m  A  B  E  x2\n\n          G#7         C#m\nCompa Bladi saque un pase\nA     B              E\nDe lavada pa' activarme\n         G#7          C#m\nYa con ancias de jalarle\nA        B                  E\nA un veneno, es polvo de �ngel.\n____________________________________________\n\n         C#m\nY pa'l relajo, soy perro bravo\n             E\nY no se me ag�ite\n                           B\nQue yo aqu� traigo de lo mejor\n           C#m\nPara el levant�n.\n\n             C#m\nSe prende un gallo para elevarse\n          E\nLa buena vida le gusta darse\n          B\nYa se enfiest�\n            C#m\nYa se le amaneci�\n____________________________________________\n          G#7         C#m\nY de las calles que caminaba\nA     B              E\nYuba City es mi casa\n         G#7          C#m\nCon mi clica, con mi raza\nA        B           E\nFestejamos la vagancia\n_____________________________________________\n         C#m\nY pa'l relajo, soy perro bravo\n             E\nY no se me ag�ite\n                           B\nQue yo aqu� traigo de lo mejor\n           C#m\nPara el levant�n.\n\n             C#m\nSe prende un gallo para elevarse\n          E\nLa buena vida le gusta darse\n          B\nYa se enfiest�\n            C#m\nYa se le amaneci�.",
+      "pdfUrl": "https://acordesweb.com/descarga-pdf/natanael-cano/compa-bladi/0/0/0.pdf"
+    },
+    {
+      "title": "300 Noches",
+      "artist": "Natanael Cano",
+      "sourceUrl": "https://acordesweb.com/cancion/natanael-cano/300-noches",
+      "chords": [],
+      "key": null,
+      "sections": [
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [],
+              "lyrics": "El rasgueo es un 6/8"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE#maj7"
+            },
+            {
+              "chords": [],
+              "lyrics": "Y esper� tanto por ti"
+            },
+            {
+              "chords": [],
+              "lyrics": "SOL7"
+            },
+            {
+              "chords": [],
+              "lyrics": "Que, cuando cuenta yo me di"
+            },
+            {
+              "chords": [],
+              "lyrics": "DOm7"
+            },
+            {
+              "chords": [],
+              "lyrics": "Ya me hab�as dejado atr�s"
+            },
+            {
+              "chords": [],
+              "lyrics": "SOL#"
+            },
+            {
+              "chords": [],
+              "lyrics": "Y ahora, �qu� hago pa' olvidar?"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE#maj7"
+            },
+            {
+              "chords": [],
+              "lyrics": "Trescientas noches han pasado"
+            },
+            {
+              "chords": [],
+              "lyrics": "SOL7"
+            },
+            {
+              "chords": [],
+              "lyrics": "Y sigo pisando el pasado"
+            },
+            {
+              "chords": [],
+              "lyrics": "DOm7"
+            },
+            {
+              "chords": [],
+              "lyrics": "No puedes seguir siendo el rey"
+            },
+            {
+              "chords": [],
+              "lyrics": "SOL#"
+            },
+            {
+              "chords": [],
+              "lyrics": "Sin esta reina a tu lado"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE#maj7"
+            },
+            {
+              "chords": [],
+              "lyrics": "Baby, m�ranos"
+            },
+            {
+              "chords": [],
+              "lyrics": "SOL7"
+            },
+            {
+              "chords": [],
+              "lyrics": "Ahora somos dos extra�os"
+            },
+            {
+              "chords": [],
+              "lyrics": "DOm7"
+            },
+            {
+              "chords": [],
+              "lyrics": "Y se siente tan extra�o"
+            },
+            {
+              "chords": [],
+              "lyrics": "SOL#"
+            },
+            {
+              "chords": [],
+              "lyrics": "Que, despu�s que me jodiste, todav�a te ?xtra�o"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE#maj7"
+            },
+            {
+              "chords": [],
+              "lyrics": "Baby, m�ranos"
+            },
+            {
+              "chords": [],
+              "lyrics": "SOL7"
+            },
+            {
+              "chords": [],
+              "lyrics": "Lo di todo y no se nos dio"
+            },
+            {
+              "chords": [],
+              "lyrics": "DOm7"
+            },
+            {
+              "chords": [],
+              "lyrics": "No fue por m� que no funcion�"
+            },
+            {
+              "chords": [],
+              "lyrics": "SOL#"
+            },
+            {
+              "chords": [],
+              "lyrics": "Fu? por ti que todo se jodi�, todo se jodi�"
+            },
+            {
+              "chords": [],
+              "lyrics": "(RE#maj7, SOL7, DOm7, SOL#)"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE#maj7"
+            },
+            {
+              "chords": [],
+              "lyrics": "�C�mo se supone que voy a encontrar"
+            },
+            {
+              "chords": [],
+              "lyrics": "SOL7"
+            },
+            {
+              "chords": [],
+              "lyrics": "Eso que ten�a en otra persona?"
+            },
+            {
+              "chords": [],
+              "lyrics": "DOm7"
+            },
+            {
+              "chords": [],
+              "lyrics": "La misma forma de besar"
+            },
+            {
+              "chords": [],
+              "lyrics": "SOL#"
+            },
+            {
+              "chords": [],
+              "lyrics": "Esa conexi�n tan cabrona"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE#maj7"
+            },
+            {
+              "chords": [],
+              "lyrics": "A�n recuerdo c�mo lo hac�amos"
+            },
+            {
+              "chords": [],
+              "lyrics": "SOL7"
+            },
+            {
+              "chords": [],
+              "lyrics": "Y amanec�amos siempre abrazados"
+            },
+            {
+              "chords": [],
+              "lyrics": "DOm7"
+            },
+            {
+              "chords": [],
+              "lyrics": "Y estar contigo era como si Santa Claus"
+            },
+            {
+              "chords": [],
+              "lyrics": "SOL#"
+            },
+            {
+              "chords": [],
+              "lyrics": "Me trajera veintitr�s mil regalos"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE#maj7"
+            },
+            {
+              "chords": [],
+              "lyrics": "Trescientas noches han pasado"
+            },
+            {
+              "chords": [],
+              "lyrics": "SOL7"
+            },
+            {
+              "chords": [],
+              "lyrics": "Y sigo pisando el pasado"
+            },
+            {
+              "chords": [],
+              "lyrics": "DOm7"
+            },
+            {
+              "chords": [],
+              "lyrics": "No puedo seguir siendo el rey"
+            },
+            {
+              "chords": [],
+              "lyrics": "SOL#"
+            },
+            {
+              "chords": [],
+              "lyrics": "Sin esta reina a mi lado"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE#maj7"
+            },
+            {
+              "chords": [],
+              "lyrics": "Baby, m�ranos"
+            },
+            {
+              "chords": [],
+              "lyrics": "SOL7"
+            },
+            {
+              "chords": [],
+              "lyrics": "Ahora, somos dos extra�os"
+            },
+            {
+              "chords": [],
+              "lyrics": "DOm7"
+            },
+            {
+              "chords": [],
+              "lyrics": "Y se siente tan extra�o"
+            },
+            {
+              "chords": [],
+              "lyrics": "SOL#"
+            },
+            {
+              "chords": [],
+              "lyrics": "Que, despu�s que me jodiste, todav�a te extra�o"
+            },
+            {
+              "chords": [],
+              "lyrics": "RE#maj7"
+            },
+            {
+              "chords": [],
+              "lyrics": "Baby, m�ranos"
+            },
+            {
+              "chords": [],
+              "lyrics": "SOL7"
+            },
+            {
+              "chords": [],
+              "lyrics": "Lo di todo y no se nos dio"
+            },
+            {
+              "chords": [],
+              "lyrics": "DOm7"
+            },
+            {
+              "chords": [],
+              "lyrics": "No fue por m� que no funcion�"
+            },
+            {
+              "chords": [],
+              "lyrics": "SOL#"
+            },
+            {
+              "chords": [],
+              "lyrics": "Fue por ti que todo se jodi�, todo se jodi�"
+            },
+            {
+              "chords": [],
+              "lyrics": "(RE#maj7, SOL7, DOm7, SOL#)"
+            }
+          ]
+        }
+      ],
+      "rawText": "El rasgueo es un 6/8\n\nRE#maj7\nY esper� tanto por ti\nSOL7\nQue, cuando cuenta yo me di\nDOm7\nYa me hab�as dejado atr�s\nSOL#\nY ahora, �qu� hago pa' olvidar?\n\nRE#maj7\nTrescientas noches han pasado\nSOL7\nY sigo pisando el pasado\nDOm7\nNo puedes seguir siendo el rey\nSOL#\nSin esta reina a tu lado\n\nRE#maj7\nBaby, m�ranos\nSOL7\nAhora somos dos extra�os\nDOm7\nY se siente tan extra�o\nSOL#\nQue, despu�s que me jodiste, todav�a te ?xtra�o\n\nRE#maj7\nBaby, m�ranos\nSOL7\nLo di todo y no se nos dio\nDOm7\nNo fue por m� que no funcion�\nSOL#\nFu? por ti que todo se jodi�, todo se jodi�\n\n(RE#maj7, SOL7, DOm7, SOL#)\n\nRE#maj7\n�C�mo se supone que voy a encontrar\n                SOL7\nEso que ten�a en otra persona?\nDOm7\nLa misma forma de besar\nSOL#\nEsa conexi�n tan cabrona\n\nRE#maj7\nA�n recuerdo c�mo lo hac�amos\nSOL7\nY amanec�amos siempre abrazados\nDOm7\nY estar contigo era como si Santa Claus\nSOL#\nMe trajera veintitr�s mil regalos\n\nRE#maj7\nTrescientas noches han pasado\nSOL7\nY sigo pisando el pasado\nDOm7\nNo puedo seguir siendo el rey\nSOL#\nSin esta reina a mi lado\n\nRE#maj7\nBaby, m�ranos\nSOL7\nAhora, somos dos extra�os\nDOm7\nY se siente tan extra�o\nSOL#\nQue, despu�s que me jodiste, todav�a te extra�o\n\nRE#maj7\nBaby, m�ranos\nSOL7\nLo di todo y no se nos dio\nDOm7\nNo fue por m� que no funcion�\nSOL#\nFue por ti que todo se jodi�, todo se jodi�\n\n(RE#maj7, SOL7, DOm7, SOL#)",
+      "pdfUrl": "https://acordesweb.com/descarga-pdf/natanael-cano/300-noches/0/0/0.pdf"
+    },
+    {
+      "title": "Adrenalina Ft Dan Sanchez",
+      "artist": "Natanael Cano",
+      "sourceUrl": "https://acordesweb.com/cancion/natanael-cano/adrenalina-ft-dan-sanchez",
+      "chords": [
+        "Gm",
+        "Eb",
+        "D7"
+      ],
+      "key": "Eb",
+      "sections": [
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [
+                {
+                  "chord": "Gm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Pa' platicar con la muerte fue suficiente ponerse en la balanza"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Eb",
+                  "position": 0
+                },
+                {
+                  "chord": "D7",
+                  "position": 41
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Pero para qu� les miento, se siente el miedo cuando sabes qu� tranza"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Gm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Pero si de miedo vive, nom�s va a ver c�mo aqu� la gente avanza"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Eb",
+                  "position": 0
+                },
+                {
+                  "chord": "D7",
+                  "position": 37
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Lo �nico seguro es que un d�a nos lleve la pinche mentada calaca"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Gm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "En la sangre la adrenalina"
+            },
+            {
+              "chords": [],
+              "lyrics": "Colombiana la coca�na"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Eb",
+                  "position": 0
+                },
+                {
+                  "chord": "D7",
+                  "position": 51
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Pa' que me quiten los nervios y poderle jalar al gatillo del cuerno"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Gm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Vengo por lo que a m� me toca"
+            },
+            {
+              "chords": [],
+              "lyrics": "�brase si no quiero bronca"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Eb",
+                  "position": 0
+                },
+                {
+                  "chord": "D7",
+                  "position": 50
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Respeto si me respetan, al igual que tambi�n s� pasarme de verga"
+            }
+          ]
+        },
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [
+                {
+                  "chord": "Gm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "En verguiza en la carretera, corridos suenan y una nalguita a un lado"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Eb",
+                  "position": 0
+                },
+                {
+                  "chord": "D7",
+                  "position": 57
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "El sistema se me acelera, si hay que dar guerra, con plomo nos rifamos"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Gm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            }
+          ]
+        },
+        {
+          "name": "Solo",
+          "lines": [
+            {
+              "chords": [
+                {
+                  "chord": "Eb",
+                  "position": 0
+                },
+                {
+                  "chord": "D7",
+                  "position": 42
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Pa' que usted venga a juzgar hay que recorrer el tramo que he recorrido"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Gm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "En la sangre la adrenalina"
+            },
+            {
+              "chords": [],
+              "lyrics": "Colombiana la coca�na"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Eb",
+                  "position": 0
+                },
+                {
+                  "chord": "D7",
+                  "position": 51
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Pa' que me quiten los nervios y poderle jalar al gatillo del cuerno"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Gm",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Vengo por lo que a m� me toca"
+            },
+            {
+              "chords": [],
+              "lyrics": "�brase si no quiero bronca"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "Eb",
+                  "position": 0
+                },
+                {
+                  "chord": "D7",
+                  "position": 50
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Respeto si me respetan, al igual que tambi�n s� pasarme de verga"
+            },
+            {
+              "chords": [],
+              "lyrics": "Primero en #AcordesWeb.com"
+            }
+          ]
+        }
+      ],
+      "rawText": "Intro: Gm  Eb D7\r\nGm                      \r\nPa' platicar con la muerte fue suficiente ponerse en la balanza\r\nEb                                       D7\r\nPero para qu� les miento, se siente el miedo cuando sabes qu� tranza\r\nGm\r\nPero si de miedo vive, nom�s va a ver c�mo aqu� la gente avanza\r\n   Eb                                   D7\r\nLo �nico seguro es que un d�a nos lleve la pinche mentada calaca\r\n\r\nGm\r\nEn la sangre la adrenalina\r\nColombiana la coca�na\r\nEb                                                 D7\r\nPa' que me quiten los nervios y poderle jalar al gatillo del cuerno\r\nGm\r\nVengo por lo que a m� me toca\r\n�brase si no quiero bronca\r\nEb                                                D7\r\nRespeto si me respetan, al igual que tambi�n s� pasarme de verga\r\nIntro\r\n   Gm\r\nEn verguiza en la carretera, corridos suenan y una nalguita a un lado\r\n   Eb                                                       D7\r\nEl sistema se me acelera, si hay que dar guerra, con plomo nos rifamos\r\nGm         \r\nSolo el que carga el morral es consciente y sabe de todo el contenido\r\nEb                                        D7\r\nPa' que usted venga a juzgar hay que recorrer el tramo que he recorrido\r\n\r\nGm\r\nEn la sangre la adrenalina\r\nColombiana la coca�na\r\nEb                                                 D7\r\nPa' que me quiten los nervios y poderle jalar al gatillo del cuerno\r\nGm\r\nVengo por lo que a m� me toca\r\n�brase si no quiero bronca\r\nEb                                                D7\r\nRespeto si me respetan, al igual que tambi�n s� pasarme de verga\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nPrimero en #AcordesWeb.com",
+      "pdfUrl": "https://acordesweb.com/descarga-pdf/natanael-cano/adrenalina-ft-dan-sanchez/0/0/0.pdf"
+    },
+    {
+      "title": "Afs",
+      "artist": "Natanael Cano",
+      "sourceUrl": "https://acordesweb.com/cancion/natanael-cano/afs",
+      "chords": [
+        "D",
+        "E",
+        "F#m"
+      ],
+      "key": "D",
+      "sections": [
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Empezamos a temprana edad"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "E",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Solito se ense�� a trabajar"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F#m",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Ahora la vida le sonri� y no la hace cambiar"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "No se ocupar� ni mencionar"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "E",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Apoyo que carga es de familia"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F#m",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Con su gente siempre pa' arriba"
+            },
+            {
+              "chords": [],
+              "lyrics": "Bien preparados pa' lo que pueda pasar"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "No se ag�iten, que hay Chapo pa' m�s"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "E",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Con mi gente para lo que digan"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F#m",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Ellos saben que aqu� no hay salida"
+            },
+            {
+              "chords": [],
+              "lyrics": "Andamos chambeando en la movida"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y andamos matando al azar"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "E",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "No ando preguntando, y pa' qu� hablar"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F#m",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y aqu� somos puros de verdad"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Recuerdos quedaron de aquel d�a"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "E",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Se la pelaron, ya los tra�an"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F#m",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Arriba de la blindada con un corrid�n"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Compa Kaby, p�ngase en acci�n"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "E",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Que al cabo la brecha me la s� yo"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F#m",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Los plebes all� traen un refueg�n"
+            },
+            {
+              "chords": [],
+              "lyrics": "M�s los carros que traemos ac� en el convoy"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "En el radio se escucha el se�or"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "E",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "De aqu� salgo, pero como pueda"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F#m",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Ustedes plebes qu�dense en guerra"
+            },
+            {
+              "chords": [],
+              "lyrics": "Que para eso cargan la bandera"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y no es cualquiera, es un charol�n"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "E",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Aqu� andamos en el desierto"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F#m",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Salazar, para el que pregunt�"
+            }
+          ]
+        },
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Pa'l gabacho no pueden cruzar"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "E",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "No se ocupa, aqu� hay jale de m�s"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F#m",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "La bandera de aquel viejo aqu� se respeta"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Que se escuche Alfredo Salazar"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "E",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y por los pueblos los kilos cruzar"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F#m",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Las avionetas las miran bajar"
+            },
+            {
+              "chords": [],
+              "lyrics": "Se van cargadas con peso pero de m�s"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Buen piloto los que van fuera"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "E",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "El carrito para lo que digan"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F#m",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Con el equipo al frente lo miran"
+            },
+            {
+              "chords": [],
+              "lyrics": "Andamos chambeando en la movida"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Peleando lo que ocupe pelear"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "E",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "El miedo no existe, aqu� hay lealtad"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F#m",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y el billete ese ni se diga"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Empezamos a temprana edad"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "E",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Solito se ense�� a trabajar"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F#m",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Ahora la vida le sonri� y no la hace cambiar"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "No se ocupar� ni mencionar"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "E",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Apoyo que carga es de familia"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F#m",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Con su gente siempre pa' arriba"
+            },
+            {
+              "chords": [],
+              "lyrics": "Bien preparados pa' lo que pueda pasar"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "No se ag�iten, que hay Chapo pa' m�s"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "E",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Con mi gente para lo que digan"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F#m",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Ellos saben que aqu� no hay salida"
+            },
+            {
+              "chords": [],
+              "lyrics": "Andamos chambeando en la movida"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y andamos matando al azar"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "E",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "No ando preguntando, y pa' qu� hablar"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F#m",
+                  "position": 0
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Y aqu� somos puros de verdad"
+            }
+          ]
+        },
+        {
+          "name": "Outro",
+          "lines": [
+            {
+              "chords": [],
+              "lyrics": "Primero en #AcordesWeb.com"
+            }
+          ]
+        }
+      ],
+      "rawText": "Intro x4: D E F#m F#m\r\nD        \r\nEmpezamos a temprana edad\r\nE\r\nSolito se ense�� a trabajar\r\n F#m\r\nAhora la vida le sonri� y no la hace cambiar\r\n                        D\r\nNo se ocupar� ni mencionar\r\n                           E\r\nApoyo que carga es de familia\r\n                            F#m\r\nCon su gente siempre pa' arriba\r\nBien preparados pa' lo que pueda pasar\r\n\r\n                          D\r\nNo se ag�iten, que hay Chapo pa' m�s\r\n                  E\r\nCon mi gente para lo que digan\r\n                        F#m\r\nEllos saben que aqu� no hay salida\r\nAndamos chambeando en la movida\r\n                  D\r\nY andamos matando al azar\r\n                       E\r\nNo ando preguntando, y pa' qu� hablar\r\n                  F#m\r\nY aqu� somos puros de verdad\r\n\r\nD\r\nRecuerdos quedaron de aquel d�a\r\nE\r\nSe la pelaron, ya los tra�an\r\nF#m\r\nArriba de la blindada con un corrid�n\r\n                          D\r\nCompa Kaby, p�ngase en acci�n\r\n                               E\r\nQue al cabo la brecha me la s� yo\r\n                              F#m\r\nLos plebes all� traen un refueg�n\r\nM�s los carros que traemos ac� en el convoy\r\n                    D\r\nEn el radio se escucha el se�or\r\n                          E\r\nDe aqu� salgo, pero como pueda\r\n               F#m\r\nUstedes plebes qu�dense en guerra\r\nQue para eso cargan la bandera\r\n                           D\r\nY no es cualquiera, es un charol�n\r\n                    E\r\nAqu� andamos en el desierto\r\n                          F#m\r\nSalazar, para el que pregunt�\r\nIntro X2\r\nD\r\nPa'l gabacho no pueden cruzar\r\nE\r\nNo se ocupa, aqu� hay jale de m�s\r\nF#m\r\nLa bandera de aquel viejo aqu� se respeta\r\n                            D\r\nQue se escuche Alfredo Salazar\r\n                                E\r\nY por los pueblos los kilos cruzar\r\n                          F#m\r\nLas avionetas las miran bajar\r\nSe van cargadas con peso pero de m�s\r\n                     D\r\nBuen piloto los que van fuera\r\n                 E\r\nEl carrito para lo que digan\r\n                    F#m\r\nCon el equipo al frente lo miran\r\nAndamos chambeando en la movida\r\n                   D\r\nPeleando lo que ocupe pelear\r\n            E\r\nEl miedo no existe, aqu� hay lealtad\r\n              F#m\r\nY el billete ese ni se diga\r\nD\r\nEmpezamos a temprana edad\r\nE\r\nSolito se ense�� a trabajar\r\nF#m\r\nAhora la vida le sonri� y no la hace cambiar\r\n                        D\r\nNo se ocupar� ni mencionar\r\n                           E\r\nApoyo que carga es de familia\r\n                            F#m\r\nCon su gente siempre pa' arriba\r\nBien preparados pa' lo que pueda pasar\r\n                         \r\n           D\r\nNo se ag�iten, que hay Chapo pa' m�s\r\n                  E\r\nCon mi gente para lo que digan\r\n                        F#m\r\nEllos saben que aqu� no hay salida\r\nAndamos chambeando en la movida\r\n                  D\r\nY andamos matando al azar\r\n                       E\r\nNo ando preguntando, y pa' qu� hablar\r\n                  F#m\r\nY aqu� somos puros de verdad\r\nFinal sobre intro\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nPrimero en #AcordesWeb.com",
+      "pdfUrl": "https://acordesweb.com/descarga-pdf/natanael-cano/afs/0/0/0.pdf"
+    },
+    {
+      "title": "Amapola",
+      "artist": "Natanael Cano",
+      "sourceUrl": "https://acordesweb.com/cancion/natanael-cano/amapola",
+      "chords": [
+        "D",
+        "F#m",
+        "E"
+      ],
+      "key": "D",
+      "sections": [
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [],
+              "lyrics": "Ritmo 6/8"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": "(RE)"
+            },
+            {
+              "chords": [],
+              "lyrics": "Un gallito quemo al d�a"
+            },
+            {
+              "chords": [],
+              "lyrics": "Quemando sativa"
+            },
+            {
+              "chords": [],
+              "lyrics": "Con un baby g"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F#m",
+                  "position": 0
+                }
+              ],
+              "lyrics": "(FA#m)"
+            },
+            {
+              "chords": [],
+              "lyrics": "Con los LV en mi vista"
+            },
+            {
+              "chords": [],
+              "lyrics": "Con una plebita"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "E",
+                  "position": 0
+                }
+              ],
+              "lyrics": "(MI)"
+            },
+            {
+              "chords": [],
+              "lyrics": "Que es de por aqu�"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": "(RE)"
+            },
+            {
+              "chords": [],
+              "lyrics": "Ya traigo los ojos rojos"
+            },
+            {
+              "chords": [],
+              "lyrics": "La neta ando loco"
+            },
+            {
+              "chords": [],
+              "lyrics": "Para que mentir"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F#m",
+                  "position": 0
+                }
+              ],
+              "lyrics": "(FA#m)"
+            },
+            {
+              "chords": [],
+              "lyrics": "Una ruleta en la mano"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "E",
+                  "position": 0
+                }
+              ],
+              "lyrics": "(MI)"
+            },
+            {
+              "chords": [],
+              "lyrics": "Luciendo los Diamonds"
+            },
+            {
+              "chords": [],
+              "lyrics": "Siempre quise as�"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                }
+              ],
+              "lyrics": "(RE)"
+            },
+            {
+              "chords": [],
+              "lyrics": "Me gusto esta vida andar vistiendo dior"
+            },
+            {
+              "chords": [],
+              "lyrics": "Inhalando mucho perico"
+            },
+            {
+              "chords": [],
+              "lyrics": "En los antros se asoma el pacon"
+            },
+            {
+              "chords": [],
+              "lyrics": "Unas playboy"
+            },
+            {
+              "chords": [],
+              "lyrics": "Se nos dio"
+            },
+            {
+              "chords": [],
+              "lyrics": "Lo malandro siempre se nos dio"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F#m",
+                  "position": 0
+                }
+              ],
+              "lyrics": "(FA#m)"
+            },
+            {
+              "chords": [],
+              "lyrics": "Bien jalado aqui pendiente estoy"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "E",
+                  "position": 0
+                }
+              ],
+              "lyrics": "(MI)"
+            },
+            {
+              "chords": [],
+              "lyrics": "Y a los gueros ya les va un probon"
+            },
+            {
+              "chords": [],
+              "lyrics": "Cuajadon"
+            }
+          ]
+        }
+      ],
+      "rawText": "Ritmo 6/8\n\nD (RE)\n\nUn gallito quemo al d�a\nQuemando sativa\nCon un baby g\n\nF#m (FA#m)\nCon los LV en mi vista\nCon una plebita\nE (MI)\nQue es de por aqu�\n\nD (RE)\nYa traigo los ojos rojos\nLa neta ando loco\nPara que mentir\n\n\nF#m (FA#m)\nUna ruleta en la mano\nE (MI)\nLuciendo los Diamonds\nSiempre quise as�\n\nD (RE)\n\nMe gusto esta vida andar vistiendo dior\nInhalando mucho perico\nEn los antros se asoma el pacon\nUnas playboy\nSe nos dio\nLo malandro siempre se nos dio\n\nF#m (FA#m)\nBien jalado aqui pendiente estoy\n\nE (MI)\nY a los gueros ya les va un probon\nCuajadon\n\nFINAL : D (RE)",
+      "pdfUrl": "https://acordesweb.com/descarga-pdf/natanael-cano/amapola/0/0/0.pdf"
+    },
+    {
+      "title": "Amg Ft Peso Pluma Gabito Ballesteros",
+      "artist": "Natanael Cano",
+      "sourceUrl": "https://acordesweb.com/cancion/natanael-cano/amg-ft-peso-pluma-gabito-ballesteros",
+      "chords": [
+        "F#m",
+        "D",
+        "C#7"
+      ],
+      "key": "D",
+      "sections": [
+        {
+          "name": "Intro",
+          "lines": [
+            {
+              "chords": [
+                {
+                  "chord": "F#m",
+                  "position": 0
+                },
+                {
+                  "chord": "F#m",
+                  "position": 16
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "De todo ya pas�, claro que le batall�"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                },
+                {
+                  "chord": "C#7",
+                  "position": 20
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Lo saben dos o tres, no soy el mismo que era ayer"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F#m",
+                  "position": 0
+                },
+                {
+                  "chord": "F#m",
+                  "position": 12
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Mercedes AMG, Clase G-63"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                },
+                {
+                  "chord": "C#7",
+                  "position": 14
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Lo que un d�a so��, todo ya me lo compr�"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F#m",
+                  "position": 0
+                },
+                {
+                  "chord": "F#m",
+                  "position": 31
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Muy bueno para las cuentas, todo apunto en la libreta"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                },
+                {
+                  "chord": "C#7",
+                  "position": 27
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Ah� traigo la lista negra, pa'l que se pase de verga"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F#m",
+                  "position": 0
+                },
+                {
+                  "chord": "F#m",
+                  "position": 27
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Pura morrita bien buena, montada en mi camioneta"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                },
+                {
+                  "chord": "C#7",
+                  "position": 27
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Los radios suenan y suenan, pero yo siempre ando alerta, eah"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F#m",
+                  "position": 0
+                },
+                {
+                  "chord": "D",
+                  "position": 4
+                },
+                {
+                  "chord": "C#7",
+                  "position": 6
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F#m",
+                  "position": 0
+                },
+                {
+                  "chord": "F#m",
+                  "position": 20
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Un GT-R pa rolar, los baby a m� m? gustan m�s"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                },
+                {
+                  "chord": "C#7",
+                  "position": 20
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Puerto de Mazatl�n, divisando la ciudad"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F#m",
+                  "position": 0
+                },
+                {
+                  "chord": "F#m",
+                  "position": 21
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "En jet particular, m? pongo en cualquier lugar"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                },
+                {
+                  "chord": "C#7",
+                  "position": 35
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Destapando las champagne, hay billetes pa' gastar"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F#m",
+                  "position": 0
+                },
+                {
+                  "chord": "F#m",
+                  "position": 22
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Moviendo bien el ice, everywhere me han de mirar"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                },
+                {
+                  "chord": "C#7",
+                  "position": 17
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Con unos tenis Nike, soy maleante y es lo que hay"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F#m",
+                  "position": 0
+                },
+                {
+                  "chord": "F#m",
+                  "position": 31
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Muy bueno para las cuentas, todo apunto en mi libreta"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                },
+                {
+                  "chord": "C#7",
+                  "position": 27
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Ah� traigo la lista negra, pa'l que se pase de verga"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "F#m",
+                  "position": 0
+                },
+                {
+                  "chord": "F#m",
+                  "position": 26
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Pura morrita bien buena, montada en mi camioneta"
+            },
+            {
+              "chords": [
+                {
+                  "chord": "D",
+                  "position": 0
+                },
+                {
+                  "chord": "C#7",
+                  "position": 27
+                }
+              ],
+              "lyrics": ""
+            },
+            {
+              "chords": [],
+              "lyrics": "Los radios suenan y suenan, pero yo siempre ando alerta"
+            },
+            {
+              "chords": [],
+              "lyrics": "Primero en #AcordesWeb.com"
+            }
+          ]
+        }
+      ],
+      "rawText": "Intro:F#m D C#7 x2\r\n  F#m             F#m\r\nDe todo ya pas�, claro que le batall�\r\n    D                   C#7\r\nLo saben dos o tres, no soy el mismo que era ayer\r\n   F#m         F#m\r\nMercedes AMG, Clase G-63\r\n        D             C#7\r\nLo que un d�a so��, todo ya me lo compr�\r\n\r\nF#m                            F#m\r\nMuy bueno para las cuentas, todo apunto en la libreta\r\n D                          C#7\r\nAh� traigo la lista negra, pa'l que se pase de verga\r\n  F#m                        F#m\r\nPura morrita bien buena, montada en mi camioneta\r\n  D                          C#7\r\nLos radios suenan y suenan, pero yo siempre ando alerta, eah\r\nF#m D C#7\r\n  F#m                 F#m\r\nUn GT-R pa rolar, los baby a m� m? gustan m�s\r\n D                   C#7\r\nPuerto de Mazatl�n, divisando la ciudad\r\n\r\n F#m                  F#m\r\nEn jet particular, m? pongo en cualquier lugar\r\n     D                                  C#7\r\nDestapando las champagne, hay billetes pa' gastar\r\n   F#m                   F#m\r\nMoviendo bien el ice, everywhere me han de mirar\r\n     D                C#7\r\nCon unos tenis Nike, soy maleante y es lo que hay\r\n\r\nF#m                            F#m\r\nMuy bueno para las cuentas, todo apunto en mi libreta\r\n D                          C#7\r\nAh� traigo la lista negra, pa'l que se pase de verga\r\n  F#m                       F#m\r\nPura morrita bien buena, montada en mi camioneta\r\n  D                          C#7\r\nLos radios suenan y suenan, pero yo siempre ando alerta\r\n\r\n\r\n\r\n\r\n\r\n\n\n\nPrimero en #AcordesWeb.com",
+      "pdfUrl": "https://acordesweb.com/descarga-pdf/natanael-cano/amg-ft-peso-pluma-gabito-ballesteros/0/0/0.pdf"
+    }
+  ]
+}
