@@ -47,15 +47,8 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/sources/sources').then(m => m.Sources)
   },
 
-  // Lazy: Admin routes (rarely accessed)
-  {
-    path: 'admin',
-    loadComponent: () => import('./admin/admin-dashboard/admin-dashboard').then(m => m.AdminDashboard)
-  },
-  {
-    path: 'admin/editor/:id',
-    loadComponent: () => import('./admin/tab-editor/tab-editor').then(m => m.TabEditor)
-  },
+  // NOTE: Admin routes removed in production (main branch)
+  // Only available in admin branch at bstabs.pages.dev
 
   { path: '**', redirectTo: '' }
 ];
