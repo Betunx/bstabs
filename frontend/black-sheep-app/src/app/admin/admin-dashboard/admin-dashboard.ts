@@ -15,12 +15,17 @@ export class AdminDashboard implements OnInit {
   private adminService = inject(AdminService);
 
   pendingSongs = signal<AdminSong[]>([]);
+  draftSongs = signal<AdminSong[]>([]);
   userRequests = signal<SongRequest[]>([]);
   publishedCount = signal(0);
   pendingCount = signal(0);
+  draftCount = signal(0);
   requestsCount = signal(0);
   isLoading = signal(true);
-  activeTab = signal<'pending' | 'requests'>('pending');
+  activeTab = signal<'pending' | 'drafts' | 'requests'>('drafts');
+
+  // Batch selection
+  selectedSongs = signal<Set<string>>(new Set());
 
   // Drag & Drop states
   isDragging = signal(false);
@@ -43,15 +48,23 @@ export class AdminDashboard implements OnInit {
       error: (err) => { if (environment.enableDebugMode) console.error('Error loading stats:', err) }
     });
 
-    this.adminService.getSongs('pending').subscribe({
+    // Load drafts
+    this.adminService.getSongs('draft').subscribe({
       next: (songs) => {
-        this.pendingSongs.set(songs);
+        this.draftSongs.set(songs);
+        this.draftCount.set(songs.length);
         this.isLoading.set(false);
       },
       error: (err) => {
-        if (environment.enableDebugMode) console.error('Error loading pending songs:', err);
+        if (environment.enableDebugMode) console.error('Error loading draft songs:', err);
         this.isLoading.set(false);
       }
+    });
+
+    // Load pending
+    this.adminService.getSongs('pending').subscribe({
+      next: (songs) => this.pendingSongs.set(songs),
+      error: (err) => { if (environment.enableDebugMode) console.error('Error loading pending songs:', err) }
     });
 
     this.adminService.getRequests('pending').subscribe({
@@ -60,8 +73,57 @@ export class AdminDashboard implements OnInit {
     });
   }
 
-  setActiveTab(tab: 'pending' | 'requests'): void {
+  setActiveTab(tab: 'pending' | 'drafts' | 'requests'): void {
     this.activeTab.set(tab);
+    this.selectedSongs.set(new Set()); // Clear selection when switching tabs
+  }
+
+  // Batch selection methods
+  toggleSongSelection(id: string): void {
+    const selected = new Set(this.selectedSongs());
+    if (selected.has(id)) {
+      selected.delete(id);
+    } else {
+      selected.add(id);
+    }
+    this.selectedSongs.set(selected);
+  }
+
+  toggleSelectAll(): void {
+    const songs = this.activeTab() === 'drafts' ? this.draftSongs() : this.pendingSongs();
+    const allIds = songs.map(s => s.id);
+    const selected = this.selectedSongs();
+
+    if (selected.size === allIds.length) {
+      this.selectedSongs.set(new Set());
+    } else {
+      this.selectedSongs.set(new Set(allIds));
+    }
+  }
+
+  isAllSelected(): boolean {
+    const songs = this.activeTab() === 'drafts' ? this.draftSongs() : this.pendingSongs();
+    return songs.length > 0 && this.selectedSongs().size === songs.length;
+  }
+
+  publishSelectedSongs(): void {
+    const selected = Array.from(this.selectedSongs());
+    if (selected.length === 0) return;
+
+    if (confirm(`¿Publicar ${selected.length} canción${selected.length > 1 ? 'es' : ''}?`)) {
+      this.adminService.publishBatch(selected).subscribe({
+        next: () => {
+          this.draftSongs.update(songs => songs.filter(s => !selected.includes(s.id)));
+          this.draftCount.update(c => c - selected.length);
+          this.publishedCount.update(c => c + selected.length);
+          this.selectedSongs.set(new Set());
+        },
+        error: (err) => {
+          if (environment.enableDebugMode) console.error('Error publishing batch:', err);
+          alert('Error al publicar canciones');
+        }
+      });
+    }
   }
 
   publishSong(id: string): void {
@@ -190,21 +252,9 @@ export class AdminDashboard implements OnInit {
       this.uploadProgress.set(0);
       this.uploadError.set(null);
 
-      // TODO: Implementar cuando el backend esté funcionando
-      // const formData = new FormData();
-      // formData.append('pdf', file);
-      //
-      // await fetch('/api/songs/import-pdf', {
-      //   method: 'POST',
-      //   headers: {
-      //     'X-Admin-Key': 'BsT@bs_4dm1n_k3y_2025_H3@tcl1ff!'
-      //   },
-      //   body: formData
-      // });
-
       if (environment.enableDebugMode) console.log('📤 Subiendo PDF:', file.name);
 
-      // Simulación de progreso por ahora
+      // PDF upload simulation (backend implementation pending)
       for (let i = 0; i <= 100; i += 10) {
         await new Promise(resolve => setTimeout(resolve, 100));
         this.uploadProgress.set(i);
@@ -213,7 +263,6 @@ export class AdminDashboard implements OnInit {
       if (environment.enableDebugMode) console.log('✅ PDF procesado:', file.name);
       this.uploadProgress.set(null);
 
-      // Recargar datos
       this.loadData();
 
     } catch (error) {

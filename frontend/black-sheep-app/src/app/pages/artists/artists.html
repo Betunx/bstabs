@@ -11,7 +11,7 @@
           (ngModelChange)="setGenre($event)"
           class="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-bs-gold bg-white dark:bg-gray-800">
           <option value="">Todos</option>
-          @for (genre of genres; track genre) {
+          @for (genre of availableGenres(); track genre) {
             <option [value]="genre">{{ genre }}</option>
           }
         </select>

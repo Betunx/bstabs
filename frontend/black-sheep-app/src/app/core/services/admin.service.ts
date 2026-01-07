@@ -120,6 +120,12 @@ export class AdminService {
     });
   }
 
+  publishBatch(ids: string[]): Observable<any> {
+    return this.http.post(`${this.apiUrl}/admin/tabs/publish-batch`, { ids }, {
+      headers: this.getHeaders()
+    });
+  }
+
   rejectSong(id: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/songs/${id}/reject`, {}, {
       headers: this.getHeaders()

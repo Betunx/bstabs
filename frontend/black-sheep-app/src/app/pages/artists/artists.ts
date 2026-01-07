@@ -26,10 +26,18 @@ export class Artists implements OnInit {
   selectedGenre = signal<MusicGenre | ''>('');
   loading = signal(true);
 
-  // Lista de géneros disponibles
-  readonly genres = MUSIC_GENRES;
+  // Computed: solo géneros que tienen artistas disponibles
+  availableGenres = computed(() => {
+    const artists = this.allArtists();
+    const genresSet = new Set<MusicGenre>();
 
-  // Artistas filtrados por género
+    artists.forEach(artist => {
+      artist.genres.forEach(genre => genresSet.add(genre));
+    });
+
+    return MUSIC_GENRES.filter(genre => genresSet.has(genre));
+  });
+
   artists = computed(() => {
     const all = this.allArtists();
     const genre = this.selectedGenre();
@@ -52,10 +60,8 @@ export class Artists implements OnInit {
   private loadArtists() {
     this.loading.set(true);
 
-    // Cargar todas las canciones para obtener géneros por artista
     this.songsService.getAllSongs().subscribe({
       next: (songs) => {
-        // Agrupar canciones por artista con sus géneros
         const artistGenresMap = new Map<string, Set<MusicGenre>>();
 
         songs.forEach(song => {
@@ -68,7 +74,6 @@ export class Artists implements OnInit {
           }
         });
 
-        // Cargar artistas
         this.artistsService.getAllArtists().subscribe({
           next: (artists) => {
             const artistItems: ArtistItemWithGenres[] = artists.map(artist => ({

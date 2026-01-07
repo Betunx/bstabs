@@ -7,7 +7,7 @@
     </div>
 
     <!-- Stats Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-6 mb-8">
       <!-- Publicadas -->
       <div class="bg-white rounded-lg shadow p-6">
         <div class="flex items-center">
@@ -19,6 +19,21 @@
           <div class="ml-4">
             <p class="text-sm text-gray-600">Publicadas</p>
             <p class="text-2xl font-bold text-gray-900">{{ publishedCount() }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Borradores -->
+      <div class="bg-white rounded-lg shadow p-6">
+        <div class="flex items-center">
+          <div class="bg-orange-100 rounded-full p-3">
+            <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+            </svg>
+          </div>
+          <div class="ml-4">
+            <p class="text-sm text-gray-600">Borradores</p>
+            <p class="text-2xl font-bold text-gray-900">{{ draftCount() }}</p>
           </div>
         </div>
       </div>
@@ -63,7 +78,7 @@
           </div>
           <div class="ml-4">
             <p class="text-sm text-gray-600">Total</p>
-            <p class="text-2xl font-bold text-gray-900">{{ publishedCount() + pendingCount() }}</p>
+            <p class="text-2xl font-bold text-gray-900">{{ publishedCount() + draftCount() + pendingCount() }}</p>
           </div>
         </div>
       </div>
@@ -157,6 +172,16 @@
       <div class="border-b border-gray-200">
         <nav class="flex -mb-px">
           <button
+            (click)="setActiveTab('drafts')"
+            class="py-4 px-6 text-sm font-medium border-b-2 transition"
+            [class.border-orange-500]="activeTab() === 'drafts'"
+            [class.text-orange-600]="activeTab() === 'drafts'"
+            [class.border-transparent]="activeTab() !== 'drafts'"
+            [class.text-gray-500]="activeTab() !== 'drafts'"
+            [class.hover:text-gray-700]="activeTab() !== 'drafts'">
+            Borradores ({{ draftCount() }})
+          </button>
+          <button
             (click)="setActiveTab('pending')"
             class="py-4 px-6 text-sm font-medium border-b-2 transition"
             [class.border-blue-500]="activeTab() === 'pending'"
@@ -164,7 +189,7 @@
             [class.border-transparent]="activeTab() !== 'pending'"
             [class.text-gray-500]="activeTab() !== 'pending'"
             [class.hover:text-gray-700]="activeTab() !== 'pending'">
-            Canciones Pendientes ({{ pendingCount() }})
+            Pendientes ({{ pendingCount() }})
           </button>
           <button
             (click)="setActiveTab('requests')"
@@ -174,11 +199,100 @@
             [class.border-transparent]="activeTab() !== 'requests'"
             [class.text-gray-500]="activeTab() !== 'requests'"
             [class.hover:text-gray-700]="activeTab() !== 'requests'">
-            Solicitudes de Usuarios ({{ requestsCount() }})
+            Solicitudes ({{ requestsCount() }})
           </button>
         </nav>
       </div>
     </div>
+
+    <!-- Drafts Tab -->
+    @if (activeTab() === 'drafts') {
+      <div class="bg-white rounded-lg shadow">
+        <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+          <h2 class="text-xl font-semibold text-gray-900">Borradores - Requieren Revisión</h2>
+          @if (selectedSongs().size > 0) {
+            <button
+              (click)="publishSelectedSongs()"
+              class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 transition">
+              Publicar {{ selectedSongs().size }} seleccionada{{ selectedSongs().size > 1 ? 's' : '' }}
+            </button>
+          }
+        </div>
+
+        @if (isLoading()) {
+          <div class="p-12 text-center">
+            <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-gray-300 border-t-orange-600"></div>
+            <p class="mt-4 text-gray-600">Cargando borradores...</p>
+          </div>
+        } @else if (draftSongs().length === 0) {
+          <div class="p-12 text-center">
+            <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+            </svg>
+            <p class="mt-4 text-gray-600">No hay borradores pendientes de revisión</p>
+          </div>
+        } @else {
+          <!-- Select All Checkbox -->
+          <div class="px-6 py-3 bg-gray-50 border-b border-gray-200">
+            <label class="flex items-center cursor-pointer">
+              <input
+                type="checkbox"
+                [checked]="isAllSelected()"
+                (change)="toggleSelectAll()"
+                class="h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded cursor-pointer">
+              <span class="ml-2 text-sm text-gray-700">Seleccionar todas</span>
+            </label>
+          </div>
+
+          <div class="divide-y divide-gray-200">
+            @for (song of draftSongs(); track song.id) {
+              <div class="p-6 hover:bg-gray-50 transition">
+                <div class="flex items-start gap-4">
+                  <!-- Checkbox -->
+                  <input
+                    type="checkbox"
+                    [checked]="selectedSongs().has(song.id)"
+                    (change)="toggleSongSelection(song.id)"
+                    class="mt-1 h-5 w-5 text-orange-600 focus:ring-orange-500 border-gray-300 rounded cursor-pointer">
+
+                  <!-- Song Info -->
+                  <div class="flex-1">
+                    <h3 class="text-lg font-semibold text-gray-900">{{ song.title }}</h3>
+                    <p class="text-gray-600 mt-1">{{ song.artist }}</p>
+                    <div class="mt-2 flex items-center space-x-4 text-sm text-gray-500">
+                      <span class="bg-orange-100 text-orange-800 px-2 py-0.5 rounded">DRAFT</span>
+                      @if (song.key) {
+                        <span class="bg-blue-100 text-blue-800 px-2 py-0.5 rounded">{{ song.key }}</span>
+                      }
+                      <span>{{ song.created_at | date:'short' }}</span>
+                    </div>
+                  </div>
+
+                  <!-- Actions -->
+                  <div class="flex flex-col space-y-2">
+                    <a
+                      [routerLink]="['/admin/editor', song.id]"
+                      class="inline-flex items-center px-4 py-2 border border-orange-300 rounded-md shadow-sm text-sm font-medium text-orange-700 bg-white hover:bg-orange-50 transition">
+                      Editar
+                    </a>
+                    <button
+                      (click)="publishSong(song.id)"
+                      class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 transition">
+                      Publicar
+                    </button>
+                    <button
+                      (click)="deleteSong(song.id)"
+                      class="inline-flex items-center px-4 py-2 border border-red-300 rounded-md shadow-sm text-sm font-medium text-red-700 bg-white hover:bg-red-50 transition">
+                      Eliminar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        }
+      </div>
+    }
 
     <!-- Pending Songs Tab -->
     @if (activeTab() === 'pending') {
