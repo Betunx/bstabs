@@ -11,11 +11,12 @@ Diferenciador: Experiencia ad-free, priorizando UX sobre monetización.
 
 ## Links
 
-| Recurso | URL |
-|---------|-----|
-| Producción | https://www.bstabs.com/ |
-| GitHub | https://github.com/Betunx/bstabs |
-| API | https://blacksheep-api.bstabs.workers.dev |
+| Recurso | URL | Descripción |
+|---------|-----|-------------|
+| **Producción** | https://www.bstabs.com/ | Sitio público (sin admin) - rama `main` |
+| **Admin Dev** | https://bstabs.pages.dev/ | Versión con panel admin - rama `admin` |
+| **API** | https://blacksheep-api.bstabs.workers.dev | Cloudflare Workers API |
+| **GitHub** | https://github.com/Betunx/bstabs | Repositorio del proyecto |
 
 ## Contacto
 
@@ -152,14 +153,51 @@ Navegación horizontal: C D E F G A B
 - 28 grupos de duplicados (~60 canciones)
 - Entidades HTML sin decodificar
 
+## Estrategia de Deployment
+
+### Branches y URLs Permanentes
+
+| Rama | URL | Propósito | Deploy Command |
+|------|-----|-----------|----------------|
+| `main` | https://www.bstabs.com/ | **Producción pública** (sin rutas /admin) | `npm run deploy` |
+| `admin` | https://bstabs.pages.dev/ | **Versión admin** (con panel /admin y /admin/editor) | `npm run deploy:admin` |
+
+### Configuración Cloudflare Pages
+
+- **Project Name:** `bstabs`
+- **Custom Domain (main):** bstabs.com → rama `main`
+- **Preview URL (admin):** bstabs.pages.dev → rama `admin`
+- **Auto-deployment:** Deshabilitado para evitar branches temporales
+
+### Workflow de Deployment
+
+```bash
+# 1. Deploy versión pública (sin admin)
+git checkout main
+cd frontend/black-sheep-app
+npm run deploy              # → bstabs.com
+
+# 2. Deploy versión admin (con panel)
+git checkout admin
+cd frontend/black-sheep-app
+npm run deploy:admin        # → bstabs.pages.dev
+
+# 3. Backend API (siempre mismo endpoint)
+cd backend-workers
+npx wrangler deploy         # → blacksheep-api.bstabs.workers.dev
+```
+
 ## Comandos Rápidos
 
 ```bash
-# Frontend
+# Frontend - Development
 cd frontend/black-sheep-app
 ng serve                    # Dev → localhost:4200
 ng build                    # Build producción
-npm run deploy              # Deploy a Cloudflare Pages
+
+# Frontend - Deployment
+npm run deploy              # Deploy main → bstabs.com
+npm run deploy:admin        # Deploy admin → bstabs.pages.dev
 
 # Workers (backend)
 cd backend-workers

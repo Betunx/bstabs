@@ -6,6 +6,11 @@ compatibility_date = "2024-01-01"
 [vars]
 SUPABASE_URL = "https://alqpufucjekmonetoaih.supabase.co"
 
+# R2 Bucket Binding para imágenes de artistas
+[[r2_buckets]]
+binding = "ARTIST_IMAGES"
+bucket_name = "bstabs-artist-images"
+
 # Secrets (se configuran con wrangler secret put)
 # SUPABASE_SERVICE_KEY
 # ADMIN_API_KEY

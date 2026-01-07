@@ -1,44 +1,111 @@
-import { Component, signal, inject, OnInit } from '@angular/core';
-import { ItemList, ListItem } from '../../shared/components/item-list/item-list';
+import { Component, signal, inject, OnInit, computed } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { ArtistGrid, ArtistItem } from '../../shared/components/artist-grid/artist-grid';
+import { SkeletonArtistGrid } from '../../shared/components/skeleton-artist-grid/skeleton-artist-grid';
 import { ArtistsService } from '../../core/services/artists.service';
+import { SongsService } from '../../core/services/songs.service';
+import { MusicGenre, MUSIC_GENRES } from '../../core/constants/genres';
+import { environment } from '../../../environments/environment';
+
+interface ArtistItemWithGenres extends ArtistItem {
+  genres: MusicGenre[];
+}
 
 @Component({
   selector: 'app-artists',
-  imports: [ItemList],
+  imports: [ArtistGrid, SkeletonArtistGrid, CommonModule, FormsModule],
   templateUrl: './artists.html',
   styleUrl: './artists.scss',
 })
 export class Artists implements OnInit {
   private artistsService = inject(ArtistsService);
+  private songsService = inject(SongsService);
 
-  artists = signal<ListItem[]>([]);
+  private allArtists = signal<ArtistItemWithGenres[]>([]);
+  selectedGenre = signal<MusicGenre | ''>('');
   loading = signal(true);
+
+  // Computed: solo géneros que tienen artistas disponibles
+  availableGenres = computed(() => {
+    const artists = this.allArtists();
+    const genresSet = new Set<MusicGenre>();
+
+    artists.forEach(artist => {
+      artist.genres.forEach(genre => genresSet.add(genre));
+    });
+
+    return MUSIC_GENRES.filter(genre => genresSet.has(genre));
+  });
+
+  artists = computed(() => {
+    const all = this.allArtists();
+    const genre = this.selectedGenre();
+
+    if (!genre) {
+      return all;
+    }
+
+    return all.filter(artist => artist.genres.includes(genre));
+  });
 
   ngOnInit() {
     this.loadArtists();
   }
 
+  setGenre(genre: MusicGenre | '') {
+    this.selectedGenre.set(genre);
+  }
+
   private loadArtists() {
     this.loading.set(true);
-    this.artistsService.getAllArtists().subscribe({
-      next: (artists) => {
-        const artistItems: ListItem[] = artists.map(artist => {
-          const count = artist.songCount;
-          const label = count === 1 ? 'canción' : 'canciones';
-          return {
-            id: artist.id,
-            title: artist.name,
-            subtitle: count + ' ' + label,
-            routerLink: '/artist/' + artist.id
-          };
+
+    this.songsService.getAllSongs().subscribe({
+      next: (songs) => {
+        const artistGenresMap = new Map<string, Set<MusicGenre>>();
+
+        songs.forEach(song => {
+          const artistSlug = this.slugify(song.artist);
+          if (!artistGenresMap.has(artistSlug)) {
+            artistGenresMap.set(artistSlug, new Set());
+          }
+          if (song.genre) {
+            artistGenresMap.get(artistSlug)!.add(song.genre as MusicGenre);
+          }
         });
-        this.artists.set(artistItems);
-        this.loading.set(false);
+
+        this.artistsService.getAllArtists().subscribe({
+          next: (artists) => {
+            const artistItems: ArtistItemWithGenres[] = artists.map(artist => ({
+              id: artist.id,
+              name: artist.name,
+              songCount: artist.songCount,
+              imageUrl: artist.imageUrl,
+              routerLink: '/artist/' + artist.id,
+              genres: Array.from(artistGenresMap.get(artist.id) || [])
+            }));
+            this.allArtists.set(artistItems);
+            this.loading.set(false);
+          },
+          error: (err) => {
+            if (environment.enableDebugMode) console.error('Error loading artists:', err);
+            this.loading.set(false);
+          }
+        });
       },
       error: (err) => {
-        console.error('Error loading artists:', err);
+        if (environment.enableDebugMode) console.error('Error loading songs for genre filtering:', err);
         this.loading.set(false);
       }
     });
+  }
+
+  private slugify(text: string): string {
+    return text
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-|-$/g, '');
   }
 }

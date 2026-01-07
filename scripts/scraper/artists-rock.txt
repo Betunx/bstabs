@@ -1,0 +1,26 @@
+# Artistas de Rock en Español
+# Para usar: node acordesweb-mass-import.js --file artists-rock.txt --limit 10
+
+# Rock Argentino
+soda-stereo
+los-enanitos-verdes
+los-fabulosos-cadillacs
+andres-calamaro
+fito-paez
+
+# Rock Mexicano
+caifanes
+mana
+cafe-tacvba
+el-tri
+molotov
+
+# Rock Chileno
+la-ley
+los-prisioneros
+los-tres
+
+# Rock Español
+heroes-del-silencio
+hombres-g
+la-oreja-de-van-gogh

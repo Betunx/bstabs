@@ -27,7 +27,10 @@ export const retryInterceptor: HttpInterceptorFn = (req, next) => {
         // Only retry on network errors (status 0) or 5xx server errors
         if (error.status === 0 || (error.status >= 500 && error.status < 600)) {
           const delayMs = Math.pow(2, retryCount - 1) * 1000; // 1s, 2s, 4s
-          console.log(`🔄 Retry ${retryCount}/${maxRetries} after ${delayMs}ms`);
+          // Only log retries in development
+          if (typeof window !== 'undefined' && (window as any).__DEBUG_MODE__) {
+            console.log(`🔄 Retry ${retryCount}/${maxRetries} after ${delayMs}ms`);
+          }
           return timer(delayMs);
         }
 

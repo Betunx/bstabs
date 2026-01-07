@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, map, of } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { SongsService } from './songs.service';
+import { getArtistImage } from '../constants/artist-images';
 
 export interface Artist {
   id: string;
@@ -70,7 +71,8 @@ export class ArtistsService {
         artistMap.set(artistId, {
           id: artistId,
           name: artistName,
-          songCount: 1
+          songCount: 1,
+          imageUrl: getArtistImage(artistId)
         });
       }
     });
@@ -92,7 +94,8 @@ export class ArtistsService {
         artistMap.set(artistId, {
           id: artistId,
           name: artistName,
-          songCount: 1
+          songCount: 1,
+          imageUrl: getArtistImage(artistId)
         });
       }
     });

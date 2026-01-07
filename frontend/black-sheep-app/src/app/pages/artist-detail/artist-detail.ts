@@ -2,6 +2,7 @@ import { Component, OnInit, inject, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ItemList, ListItem } from '../../shared/components/item-list/item-list';
 import { ArtistsService } from '../../core/services/artists.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-artist-detail',
@@ -33,7 +34,7 @@ export class ArtistDetail implements OnInit {
         this.loadSongs(artistId);
       },
       error: (err) => {
-        console.error('Error loading artist:', err);
+        if (environment.enableDebugMode) console.error('Error loading artist:', err);
         this.artistName.set('Artista no encontrado');
         this.loading.set(false);
       }
@@ -53,7 +54,7 @@ export class ArtistDetail implements OnInit {
         this.loading.set(false);
       },
       error: (err) => {
-        console.error('Error loading songs:', err);
+        if (environment.enableDebugMode) console.error('Error loading songs:', err);
         this.songs.set([]);
         this.loading.set(false);
       }

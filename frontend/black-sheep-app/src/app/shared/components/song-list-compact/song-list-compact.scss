@@ -1,0 +1,9 @@
+.song-compact-item {
+  &:hover {
+    transform: translateX(4px);
+  }
+
+  &:active {
+    transform: translateX(2px);
+  }
+}

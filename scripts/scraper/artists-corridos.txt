@@ -1,0 +1,23 @@
+# Artistas de Corridos y Regional Mexicano
+# Para usar: node acordesweb-mass-import.js --file artists-corridos.txt --limit 10
+
+# Corridos Tumbados / Trap
+peso-pluma
+junior-h
+natanael-cano
+luis-r-conriquez
+grupo-frontera
+
+# Banda / Norteño
+fuerza-regida
+calibre-50
+banda-ms
+los-tucanes-de-tijuana
+el-fantasma
+
+# Regional Mexicano Clásico
+vicente-fernandez
+antonio-aguilar
+jose-alfredo-jimenez
+javier-solis
+pedro-infante

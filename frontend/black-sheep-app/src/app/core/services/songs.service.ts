@@ -43,7 +43,7 @@ export class SongsService {
     // Check cache validity
     const now = Date.now();
     if (this.songsCache && this.cacheTimestamp && (now - this.cacheTimestamp) < this.cacheTTL) {
-      console.log('📦 Returning cached songs');
+      if (environment.enableDebugMode) console.log('📦 Returning cached songs');
       return of(this.songsCache);
     }
 
@@ -56,10 +56,10 @@ export class SongsService {
         return songs;
       }),
       catchError((error: HttpErrorResponse) => {
-        console.error('Error fetching songs:', error);
+        if (environment.enableDebugMode) console.error('Error fetching songs:', error);
         // Return stale cache if available
         if (this.songsCache) {
-          console.warn('⚠️ Using stale cache due to API error');
+          if (environment.enableDebugMode) console.warn('⚠️ Using stale cache due to API error');
           return of(this.songsCache);
         }
         // Fallback to mock data if API fails
@@ -82,7 +82,7 @@ export class SongsService {
     return this.http.get<SongDto>(`${this.apiUrl}/songs/${id}`).pipe(
       map(dto => this.mapDtoToSong(dto)),
       catchError((error: HttpErrorResponse) => {
-        console.error(`Error fetching song ${id}:`, error);
+        if (environment.enableDebugMode) console.error(`Error fetching song ${id}:`, error);
         // Try to fallback to mock data
         if (environment.enableDebugMode) {
           const song = this.getMockSongs().find(s => s.id === id);
@@ -108,7 +108,7 @@ export class SongsService {
     // Check search cache
     const cacheKey = query.toLowerCase();
     if (this.searchCache.has(cacheKey)) {
-      console.log('📦 Returning cached search results for:', query);
+      if (environment.enableDebugMode) console.log('📦 Returning cached search results for:', query);
       return of(this.searchCache.get(cacheKey)!);
     }
 
@@ -128,7 +128,7 @@ export class SongsService {
         return songs;
       }),
       catchError((error: HttpErrorResponse) => {
-        console.error('Error searching songs:', error);
+        if (environment.enableDebugMode) console.error('Error searching songs:', error);
         // Return empty array on error instead of breaking the UI
         return of([]);
       })
@@ -142,7 +142,7 @@ export class SongsService {
     this.songsCache = null;
     this.cacheTimestamp = null;
     this.searchCache.clear();
-    console.log('🗑️ Cache cleared');
+    if (environment.enableDebugMode) console.log('🗑️ Cache cleared');
   }
 
   private mapDtoToSong(dto: SongDto): Song {

@@ -5,6 +5,7 @@ interface Env {
   SUPABASE_URL: string
   SUPABASE_SERVICE_KEY: string
   ADMIN_API_KEY: string
+  ARTIST_IMAGES: R2Bucket  // R2 bucket binding
 }
 
 type MusicGenre =
@@ -64,9 +65,28 @@ interface SongRequest {
   status?: 'pending' | 'completed' | 'rejected'
 }
 
-// CORS headers
+// CORS headers - SECURITY: Only allow specific origins
+const ALLOWED_ORIGINS = [
+  'https://www.bstabs.com',
+  'https://bstabs.com',
+  'https://bstabs.pages.dev',
+  'http://localhost:4200', // Development only
+];
+
+function getCorsHeaders(request: Request) {
+  const origin = request.headers.get('Origin') || '';
+  const allowedOrigin = ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
+
+  return {
+    'Access-Control-Allow-Origin': allowedOrigin,
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type, x-api-key',
+  };
+}
+
+// Legacy - kept for jsonResponse compatibility
 const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Origin': ALLOWED_ORIGINS[0],
   'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type, x-api-key',
 }
@@ -88,11 +108,42 @@ function verifyApiKey(request: Request, env: Env): boolean {
   return apiKey === env.ADMIN_API_KEY
 }
 
+// SECURITY: Validación y sanitización de inputs
+function validateSearchQuery(query: string): { valid: boolean; sanitized: string; error?: string } {
+  if (!query || query.trim().length === 0) {
+    return { valid: false, sanitized: '', error: 'Search query cannot be empty' }
+  }
+
+  if (query.length > 100) {
+    return { valid: false, sanitized: '', error: 'Search query too long (max 100 chars)' }
+  }
+
+  // Sanitizar: remover caracteres potencialmente peligrosos
+  const sanitized = query.trim().replace(/[<>\"']/g, '')
+
+  return { valid: true, sanitized }
+}
+
+function validateGenre(genre: string): { valid: boolean; error?: string } {
+  const validGenres: MusicGenre[] = [
+    'Rock', 'Pop', 'Balada', 'Corrido', 'Norteño', 'Banda',
+    'Regional Mexicano', 'Ranchera', 'Metal', 'Punk', 'Indie',
+    'Folk', 'Blues', 'Jazz', 'Gospel/Cristiana', 'Cumbia',
+    'Salsa', 'Reggae', 'Country', 'Alternativo'
+  ]
+
+  if (!validGenres.includes(genre as MusicGenre)) {
+    return { valid: false, error: `Invalid genre. Must be one of: ${validGenres.join(', ')}` }
+  }
+
+  return { valid: true }
+}
+
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
-    // Manejar preflight CORS
+    // Manejar preflight CORS - use origin-specific headers
     if (request.method === 'OPTIONS') {
-      return new Response(null, { headers: corsHeaders })
+      return new Response(null, { headers: getCorsHeaders(request) })
     }
 
     const url = new URL(request.url)
@@ -117,6 +168,25 @@ export default {
         const genre = url.searchParams.get('genre')
         const search = url.searchParams.get('q')
 
+        // SECURITY: Validar inputs
+        if (genre) {
+          const validation = validateGenre(genre)
+          if (!validation.valid) {
+            return jsonResponse({ error: validation.error }, 400)
+          }
+        }
+
+        if (search) {
+          const validation = validateSearchQuery(search)
+          if (!validation.valid) {
+            return jsonResponse({ error: validation.error }, 400)
+          }
+        }
+
+        if (artist && artist.length > 100) {
+          return jsonResponse({ error: 'Artist name too long (max 100 chars)' }, 400)
+        }
+
         let query = supabase
           .from('songs')
           .select('*')
@@ -125,7 +195,10 @@ export default {
 
         if (artist) query = query.ilike('artist', `%${artist}%`)
         if (genre) query = query.eq('genre', genre)
-        if (search) query = query.or(`title.ilike.%${search}%,artist.ilike.%${search}%`)
+        if (search) {
+          const { sanitized } = validateSearchQuery(search)
+          query = query.or(`title.ilike.%${sanitized}%,artist.ilike.%${sanitized}%`)
+        }
 
         const { data, error } = await query
 
@@ -419,6 +492,104 @@ export default {
           pendingCount: pendingRes.count || 0,
           pendingRequestsCount: requestsRes.count || 0
         })
+      }
+
+      // ===== ARTIST IMAGES (R2) =====
+
+      // GET /artists/images/:slug - Servir imagen de artista
+      if (path.match(/^\/artists\/images\/[a-z0-9-]+\.(jpg|jpeg|png|webp)$/) && request.method === 'GET') {
+        const filename = path.split('/').pop() || ''
+
+        try {
+          const object = await env.ARTIST_IMAGES.get(filename)
+
+          if (!object) {
+            return new Response('Image not found', { status: 404 })
+          }
+
+          const headers = new Headers()
+          object.writeHttpMetadata(headers)
+          headers.set('Cache-Control', 'public, max-age=31536000') // Cache 1 año
+
+          // Apply CORS headers
+          const corsHeaders = getCorsHeaders(request)
+          Object.entries(corsHeaders).forEach(([key, value]) => {
+            headers.set(key, value)
+          })
+
+          return new Response(object.body, { headers })
+        } catch (error) {
+          console.error('Error fetching image:', error)
+          return new Response('Error fetching image', { status: 500 })
+        }
+      }
+
+      // POST /admin/artists/images/:slug - Subir imagen de artista (requiere API key)
+      if (path.match(/^\/admin\/artists\/images\/[a-z0-9-]+\.(jpg|jpeg|png|webp)$/) && request.method === 'POST') {
+        if (!verifyApiKey(request, env)) {
+          return jsonResponse({ error: 'Unauthorized' }, 401)
+        }
+
+        const filename = path.split('/').pop() || ''
+        const contentType = request.headers.get('content-type') || 'image/jpeg'
+
+        try {
+          const imageData = await request.arrayBuffer()
+
+          await env.ARTIST_IMAGES.put(filename, imageData, {
+            httpMetadata: {
+              contentType: contentType,
+            },
+          })
+
+          return jsonResponse({
+            message: 'Image uploaded successfully',
+            filename,
+            url: `/artists/images/${filename}`
+          })
+        } catch (error: any) {
+          console.error('Error uploading image:', error)
+          return jsonResponse({ error: error.message || 'Error uploading image' }, 500)
+        }
+      }
+
+      // DELETE /admin/artists/images/:slug - Eliminar imagen de artista (requiere API key)
+      if (path.match(/^\/admin\/artists\/images\/[a-z0-9-]+\.(jpg|jpeg|png|webp)$/) && request.method === 'DELETE') {
+        if (!verifyApiKey(request, env)) {
+          return jsonResponse({ error: 'Unauthorized' }, 401)
+        }
+
+        const filename = path.split('/').pop() || ''
+
+        try {
+          await env.ARTIST_IMAGES.delete(filename)
+          return jsonResponse({ message: 'Image deleted successfully' })
+        } catch (error: any) {
+          console.error('Error deleting image:', error)
+          return jsonResponse({ error: error.message || 'Error deleting image' }, 500)
+        }
+      }
+
+      // GET /admin/artists/images - Listar todas las imágenes (requiere API key)
+      if (path === '/admin/artists/images' && request.method === 'GET') {
+        if (!verifyApiKey(request, env)) {
+          return jsonResponse({ error: 'Unauthorized' }, 401)
+        }
+
+        try {
+          const objects = await env.ARTIST_IMAGES.list()
+          const images = objects.objects.map(obj => ({
+            key: obj.key,
+            size: obj.size,
+            uploaded: obj.uploaded,
+            url: `/artists/images/${obj.key}`
+          }))
+
+          return jsonResponse({ images, count: images.length })
+        } catch (error: any) {
+          console.error('Error listing images:', error)
+          return jsonResponse({ error: error.message || 'Error listing images' }, 500)
+        }
       }
 
       // Ruta no encontrada
