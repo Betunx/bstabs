@@ -1,0 +1,11 @@
+packages:
+  - 'frontend/black-sheep-app'
+  - 'backend-workers'
+  - 'scripts/scraper'
+allowBuilds:
+  '@parcel/watcher': true   # Angular CLI file watching
+  esbuild: true             # Angular build system
+  lmdb: true                # wrangler dependency
+  msgpackr-extract: true    # wrangler/cloudflare dependency
+  sharp: true               # scripts/optimize-images.js
+  workerd: true             # Cloudflare local runtime (wrangler dev)

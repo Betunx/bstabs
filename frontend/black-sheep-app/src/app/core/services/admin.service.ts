@@ -15,7 +15,7 @@ export interface AdminSong {
   artist: string;
   key: string | null;
   tempo: number | null;
-  difficulty: string | null;
+  genre: string | null;
   status: string;
   source_url: string | null;
   created_at: string;

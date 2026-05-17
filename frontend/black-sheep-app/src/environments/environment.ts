@@ -1,15 +1,12 @@
-/**
- * Development environment configuration
- *
- * SECURITY NOTE:
- * - adminApiKey was REMOVED for security (API keys visible in compiled JS)
- * - Admin must enter API key manually in login screen
- * - TODO: Implement proper auth (OAuth, JWT, or Cloudflare Access)
- */
 export const environment = {
   production: false,
   apiUrl: 'https://blacksheep-api.bstabs.workers.dev',
   appUrl: 'http://localhost:4200',
   enableDebugMode: true,
   enableMockData: false,
+  // Supabase: copia de Settings → API en tu dashboard de Supabase
+  // La anon key es segura para el frontend (tiene RLS aplicado)
+  supabaseUrl: 'https://YOUR_PROJECT_ID.supabase.co',
+  supabaseAnonKey: 'YOUR_ANON_PUBLIC_KEY',
+  adminEmail: 'humbertolpzc.work@gmail.com',
 };

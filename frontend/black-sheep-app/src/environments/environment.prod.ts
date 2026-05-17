@@ -10,7 +10,11 @@
 export const environment = {
   production: true,
   apiUrl: 'https://blacksheep-api.bstabs.workers.dev',
-  appUrl: 'https://bstabs.com',
+  appUrl: 'https://www.bstabs.com',
   enableDebugMode: false,
   enableMockData: false,
+  // Supabase: copia de Settings → API en tu dashboard de Supabase
+  supabaseUrl: 'https://YOUR_PROJECT_ID.supabase.co',
+  supabaseAnonKey: 'YOUR_ANON_PUBLIC_KEY',
+  adminEmail: 'humbertolpzc.work@gmail.com',
 };

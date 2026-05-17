@@ -1,9 +1,10 @@
-import { Component, inject, signal, OnInit, OnDestroy, HostBinding } from '@angular/core';
+import { Component, inject, signal, OnInit, OnDestroy } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive, NavigationEnd } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ThemeService, ThemeType } from '../../core/services/theme';
 import { SearchService, SearchResult } from '../../core/services/search.service';
+import { AuthService } from '../../core/services/auth.service';
 import { filter } from 'rxjs';
 
 @Component({
@@ -21,16 +22,15 @@ import { filter } from 'rxjs';
 export class Header implements OnInit, OnDestroy {
   themeService = inject(ThemeService);
   searchService = inject(SearchService);
+  authService = inject(AuthService);
   router = inject(Router);
 
   isThemeDropdownOpen = signal(false);
   isSearchOpen = signal(false);
+  isUserMenuOpen = signal(false);
   searchQuery = signal('');
   searchResults = signal<SearchResult[]>([]);
   didYouMean = signal<string | null>(null);
-
-  // Admin access only in development/preview (not in production bstabs.com)
-  isDevMode = signal(!window.location.hostname.includes('bstabs.com'));
 
   // Scroll behavior for tab reader
   isHeaderVisible = signal(true);
@@ -103,6 +103,20 @@ export class Header implements OnInit, OnDestroy {
     this.searchQuery.set('');
     this.searchResults.set([]);
     this.didYouMean.set(null);
+  }
+
+  toggleUserMenu(): void {
+    this.isUserMenuOpen.update(v => !v);
+  }
+
+  closeUserMenu(): void {
+    this.isUserMenuOpen.set(false);
+  }
+
+  async signOut(): Promise<void> {
+    await this.authService.signOut();
+    this.closeUserMenu();
+    this.router.navigate(['/']);
   }
 
   ngOnInit(): void {

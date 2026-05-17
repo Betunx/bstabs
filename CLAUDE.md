@@ -187,22 +187,47 @@ cd backend-workers
 npx wrangler deploy         # → blacksheep-api.bstabs.workers.dev
 ```
 
+## Package Manager: pnpm
+
+El proyecto usa **pnpm** como gestor de paquetes (monorepo workspace).
+
+### Instalar pnpm (primera vez)
+```powershell
+npm install -g pnpm   # o: winget install pnpm.pnpm
+```
+
+### Migrar de npm a pnpm (si hay node_modules con npm)
+```bash
+# Borrar node_modules existentes en cada package
+Remove-Item -Recurse -Force frontend/black-sheep-app/node_modules
+Remove-Item -Recurse -Force backend-workers/node_modules
+Remove-Item -Recurse -Force scripts/scraper/node_modules
+
+# Instalar todo desde la raíz del workspace
+pnpm install
+```
+
 ## Comandos Rápidos
 
 ```bash
-# Frontend - Development
+# Desde la RAÍZ del monorepo (recomendado)
+pnpm --filter black-sheep-app start              # Dev → localhost:4200
+pnpm --filter blacksheep-api-workers dev         # Workers local
+
+pnpm --filter black-sheep-app run deploy          # → bstabs.com
+pnpm --filter black-sheep-app run deploy:admin    # → bstabs.pages.dev
+pnpm --filter blacksheep-api-workers run deploy   # → Workers API
+
+# O desde cada carpeta (también funciona)
 cd frontend/black-sheep-app
-ng serve                    # Dev → localhost:4200
-ng build                    # Build producción
+pnpm start              # ng serve
+pnpm build              # Build producción
+pnpm run deploy         # Deploy main → bstabs.com
+pnpm run deploy:admin   # Deploy admin → bstabs.pages.dev
 
-# Frontend - Deployment
-npm run deploy              # Deploy main → bstabs.com
-npm run deploy:admin        # Deploy admin → bstabs.pages.dev
-
-# Workers (backend)
 cd backend-workers
-npx wrangler dev            # Dev local
-npx wrangler deploy         # Producción
+pnpm dev                # wrangler dev
+pnpm run deploy         # wrangler deploy
 
 # Scraper
 cd scripts/scraper
@@ -230,6 +255,6 @@ node tab-scraper-v2.js "URL"
 ## Documentación Completa
 
 Para información detallada del proyecto, consultar:
-- **Claude Projects Memory** - Base de datos completa del proyecto
-- `PLAN-MEJORAS-UI.md` - Plan de 3 fases con cronograma
+- **`ORCHESTRATOR.md`** - Estado completo, deuda técnica, roadmap y comandos del workspace
+- `PLAN-MEJORAS-UI.md` - Plan de 3 fases con cronograma detallado
 - `scripts/scraper/README.md` - Guía del scraper

@@ -1,11 +1,7 @@
 import { Routes } from '@angular/router';
 import { Home } from './pages/home/home';
+import { authGuard } from './core/guards/auth.guard';
 
-/**
- * Lazy-loaded routes for better initial bundle size
- * - Home is eagerly loaded (most visited)
- * - Everything else is lazy-loaded on demand
- */
 export const routes: Routes = [
   // Eager: Home page (most visited, keep in main bundle)
   { path: '', component: Home },
@@ -29,14 +25,27 @@ export const routes: Routes = [
     data: { hideHeaderOnScroll: true }
   },
 
+  // Auth routes
+  {
+    path: 'auth/login',
+    loadComponent: () => import('./pages/auth/login/login').then(m => m.Login)
+  },
+  {
+    path: 'auth/callback',
+    loadComponent: () => import('./pages/auth/callback/callback').then(m => m.AuthCallback)
+  },
+
+  // Protected: requiere estar logueado
+  {
+    path: 'request-song',
+    loadComponent: () => import('./pages/request-song/request-song').then(m => m.RequestSong),
+    canActivate: [authGuard]
+  },
+
   // Lazy: Secondary pages
   {
     path: 'contact',
     loadComponent: () => import('./pages/contact/contact').then(m => m.Contact)
-  },
-  {
-    path: 'request-song',
-    loadComponent: () => import('./pages/request-song/request-song').then(m => m.RequestSong)
   },
   {
     path: 'donate',

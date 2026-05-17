@@ -1,8 +1,9 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
+import { AuthService } from '../../core/services/auth.service';
 
 interface SongSuggestion {
   id: string;
@@ -19,6 +20,7 @@ interface SongSuggestion {
 })
 export class RequestSong {
   private http = inject(HttpClient);
+  readonly auth = inject(AuthService);
 
   // Form mode
   requestType = signal<'new_song' | 'edit'>('new_song');
@@ -53,6 +55,14 @@ export class RequestSong {
   showChordInput = signal(false);
 
   private searchTimeout: any;
+
+  constructor() {
+    // Prefill email del usuario autenticado
+    effect(() => {
+      const email = this.auth.user()?.email;
+      if (email) this.userEmail.set(email);
+    });
+  }
 
   setRequestType(type: 'new_song' | 'edit'): void {
     this.requestType.set(type);

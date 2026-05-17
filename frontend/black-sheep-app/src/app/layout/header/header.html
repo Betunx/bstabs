@@ -12,15 +12,15 @@
       <a routerLink="/songs" routerLinkActive="text-bs-gold" class="hover:text-bs-gold transition">Canciones</a>
       <a routerLink="/contact" routerLinkActive="text-bs-gold" class="hover:text-bs-gold transition">Contacto</a>
 
-      <!-- Admin link - only visible in dev/preview -->
-      @if (isDevMode()) {
-        <a routerLink="/admin" routerLinkActive="text-bs-gold" class="hover:text-bs-gold transition bg-red-600 px-3 py-1 rounded">
+      <!-- Admin link - solo visible para el admin autenticado -->
+      @if (authService.isAdmin()) {
+        <a routerLink="/admin" routerLinkActive="text-bs-gold" class="hover:text-bs-gold transition bg-red-600 px-3 py-1 rounded text-sm">
           Admin
         </a>
       }
     </nav>
 
-    <!-- Search, Theme Selector & Donate Button -->
+    <!-- Search, Theme Selector, User & Donate Button -->
     <div class="flex items-center space-x-4">
       <!-- Search Button -->
       <button
@@ -69,10 +69,61 @@
         }
       </div>
 
+      <!-- User Menu / Login Button -->
+      @if (authService.isLoading()) {
+        <div class="w-9 h-9 rounded-full bg-gray-600 animate-pulse"></div>
+      } @else if (authService.isAuthenticated()) {
+        <div class="relative">
+          <button
+            (click)="toggleUserMenu()"
+            class="flex items-center gap-2 hover:opacity-80 transition"
+            title="{{ authService.displayName() }}">
+            @if (authService.avatarUrl()) {
+              <img [src]="authService.avatarUrl()!" class="w-9 h-9 rounded-full object-cover border-2 border-bs-gold" alt="Avatar">
+            } @else {
+              <div class="w-9 h-9 rounded-full bg-bs-gold flex items-center justify-center text-black font-bold text-sm">
+                {{ (authService.displayName() || 'U').charAt(0).toUpperCase() }}
+              </div>
+            }
+          </button>
+
+          @if (isUserMenuOpen()) {
+            <div
+              (mouseleave)="closeUserMenu()"
+              class="absolute top-12 right-0 bg-gray-800 rounded-lg shadow-xl min-w-[180px] z-50 overflow-hidden animate-fadeIn">
+              <div class="px-4 py-3 border-b border-gray-700">
+                <p class="text-white text-sm font-semibold truncate">{{ authService.displayName() }}</p>
+                <p class="text-gray-400 text-xs truncate">{{ authService.user()?.email }}</p>
+              </div>
+              <a routerLink="/request-song" (click)="closeUserMenu()"
+                 class="flex items-center gap-2 px-4 py-3 text-sm text-white hover:bg-gray-700 transition">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path>
+                </svg>
+                Pedir canción
+              </a>
+              <button
+                (click)="signOut()"
+                class="flex items-center gap-2 w-full px-4 py-3 text-sm text-red-400 hover:bg-gray-700 transition">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                </svg>
+                Cerrar sesión
+              </button>
+            </div>
+          }
+        </div>
+      } @else {
+        <a routerLink="/auth/login"
+           class="text-sm font-semibold px-4 py-2 rounded-full border-2 border-bs-gold text-bs-gold hover:bg-bs-gold hover:text-black transition">
+          Iniciar sesión
+        </a>
+      }
+
       <!-- Donate Button -->
       <a
         routerLink="/donate"
-        class="bg-bs-gold hover:bg-yellow-600 text-black font-bold w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition">
+        class="bg-bs-gold hover:bg-yellow-600 text-black font-bold w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition text-sm">
         D
       </a>
     </div>
@@ -83,6 +134,11 @@
     <a routerLink="/artists" routerLinkActive="text-bs-gold" class="text-xs hover:text-bs-gold">Artistas</a>
     <a routerLink="/songs" routerLinkActive="text-bs-gold" class="text-xs hover:text-bs-gold">Canciones</a>
     <a routerLink="/contact" routerLinkActive="text-bs-gold" class="text-xs hover:text-bs-gold">Contacto</a>
+    @if (authService.isAuthenticated()) {
+      <a routerLink="/request-song" routerLinkActive="text-bs-gold" class="text-xs hover:text-bs-gold">Pedir</a>
+    } @else {
+      <a routerLink="/auth/login" class="text-xs text-bs-gold">Login</a>
+    }
   </nav>
 </header>
 
