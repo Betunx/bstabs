@@ -30,10 +30,15 @@ export class AuthService {
   }
 
   private async init() {
-    const { data: { session } } = await this.supabase.auth.getSession();
-    this._session.set(session);
-    this._user.set(session?.user ?? null);
-    this._loading.set(false);
+    try {
+      const { data: { session } } = await this.supabase.auth.getSession();
+      this._session.set(session);
+      this._user.set(session?.user ?? null);
+    } catch {
+      // Credenciales Supabase no configuradas o error de red — app sigue funcionando sin auth
+    } finally {
+      this._loading.set(false);
+    }
 
     this.supabase.auth.onAuthStateChange((_, session) => {
       this._session.set(session);

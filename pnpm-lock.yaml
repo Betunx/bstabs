@@ -6,6 +6,8 @@ settings:
 
 importers:
 
+  .: {}
+
   backend-workers:
     dependencies:
       '@cloudflare/workers-types':
@@ -97,6 +99,9 @@ importers:
       typescript:
         specifier: ~5.9.2
         version: 5.9.3
+      wrangler:
+        specifier: ^4.54.0
+        version: 4.92.0(@cloudflare/workers-types@4.20260516.1)
 
   scripts/scraper:
     dependencies:

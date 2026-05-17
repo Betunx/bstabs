@@ -12,7 +12,7 @@
       <a routerLink="/songs" routerLinkActive="text-bs-gold" class="hover:text-bs-gold transition">Canciones</a>
       <a routerLink="/contact" routerLinkActive="text-bs-gold" class="hover:text-bs-gold transition">Contacto</a>
 
-      <!-- Admin link - solo visible para el admin autenticado -->
+      <!-- Admin link — visible solo para admin autenticado en cualquier dominio -->
       @if (authService.isAdmin()) {
         <a routerLink="/admin" routerLinkActive="text-bs-gold" class="hover:text-bs-gold transition bg-red-600 px-3 py-1 rounded text-sm">
           Admin
@@ -32,35 +32,56 @@
         </svg>
       </button>
 
-      <!-- Theme Switcher Dropdown -->
+      <!-- Theme Switcher -->
       <div class="relative">
-        <!-- Botón actual del tema -->
         <button
           (click)="toggleThemeDropdown()"
-          (mouseenter)="isThemeDropdownOpen.set(true)"
-          class="w-10 h-10 rounded-full border-2 border-white hover:scale-110 transition-all duration-200 shadow-lg flex items-center justify-center"
-          [style.background-color]="themeService.themes[themeService.currentTheme()].preview"
-          [title]="themeService.themes[themeService.currentTheme()].name">
-          <span class="text-xs font-bold"
-                [style.color]="themeService.themes[themeService.currentTheme()].textColor">
-            {{ themeService.themes[themeService.currentTheme()].name.charAt(0) }}
-          </span>
+          class="text-white hover:text-bs-gold transition-colors"
+          [title]="'Tema: ' + themeService.themes[themeService.currentTheme()].name">
+          @switch (themeService.currentTheme()) {
+            @case ('light') {
+              <!-- Sol -->
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="5"/>
+                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+              </svg>
+            }
+            @case ('dark') {
+              <!-- Luna -->
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+              </svg>
+            }
+            @case ('night') {
+              <!-- Luna + estrella (Night Red) -->
+              <svg class="w-6 h-6 text-red-400" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+                <path d="M19 3l.5 1.5L21 5l-1.5.5L19 7l-.5-1.5L17 5l1.5-.5z" fill="#ef4444"/>
+              </svg>
+            }
+            @default {
+              <!-- Círculo OLED -->
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="9"/>
+                <circle cx="12" cy="12" r="4" fill="currentColor"/>
+              </svg>
+            }
+          }
         </button>
 
         <!-- Dropdown de temas -->
         @if (isThemeDropdownOpen()) {
           <div
             (mouseleave)="closeThemeDropdown()"
-            class="absolute top-12 right-0 bg-gray-800 rounded-lg shadow-xl p-2 space-y-2 min-w-[160px] z-50 animate-fadeIn">
+            class="absolute top-10 right-0 bg-gray-800 rounded-lg shadow-xl p-2 space-y-1 min-w-[160px] z-50 animate-fadeIn">
             @for (themeKey of getThemeKeys(); track themeKey) {
               <button
                 (click)="setTheme(themeKey)"
                 [class.ring-2]="themeService.currentTheme() === themeKey"
                 [class.ring-bs-gold]="themeService.currentTheme() === themeKey"
                 class="w-full flex items-center space-x-3 px-3 py-2 rounded hover:bg-gray-700 transition">
-                <div
-                  class="w-6 h-6 rounded-full border-2 border-white"
-                  [style.background-color]="themeService.themes[themeKey].preview">
+                <div class="w-5 h-5 rounded-full border-2 border-white flex-shrink-0"
+                     [style.background-color]="themeService.themes[themeKey].preview">
                 </div>
                 <span class="text-white text-sm">{{ themeService.themes[themeKey].name }}</span>
               </button>
@@ -130,7 +151,7 @@
   </div>
 
   <!-- Mobile Navigation -->
-  <nav class="md:hidden flex justify-around py-2 border-t border-gray-700">
+  <nav class="md:hidden flex justify-around items-center py-2 border-t border-gray-700">
     <a routerLink="/artists" routerLinkActive="text-bs-gold" class="text-xs hover:text-bs-gold">Artistas</a>
     <a routerLink="/songs" routerLinkActive="text-bs-gold" class="text-xs hover:text-bs-gold">Canciones</a>
     <a routerLink="/contact" routerLinkActive="text-bs-gold" class="text-xs hover:text-bs-gold">Contacto</a>
@@ -139,6 +160,14 @@
     } @else {
       <a routerLink="/auth/login" class="text-xs text-bs-gold">Login</a>
     }
+    <!-- Theme toggle mobile -->
+    <button (click)="themeService.toggleTheme()" class="text-white hover:text-bs-gold transition-colors" [title]="'Tema: ' + themeService.themes[themeService.currentTheme()].name">
+      @if (themeService.currentTheme() === 'light') {
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      } @else {
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      }
+    </button>
   </nav>
 </header>
 

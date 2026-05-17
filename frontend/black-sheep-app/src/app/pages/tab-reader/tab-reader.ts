@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { TabViewer } from '../../shared/components/tab-viewer/tab-viewer';
 import { Song } from '../../core/models/song.model';
 import { SongsService } from '../../core/services/songs.service';
+import { ThemeService } from '../../core/services/theme';
 import { environment } from '../../../environments/environment';
 
 @Component({
@@ -14,6 +15,7 @@ import { environment } from '../../../environments/environment';
 export class TabReader implements OnInit {
   private route = inject(ActivatedRoute);
   private songsService = inject(SongsService);
+  readonly themeService = inject(ThemeService);
 
   song = signal<Song | null>(null);
   loading = signal(true);

@@ -14,6 +14,11 @@ yarn.lock
 .env.*.local
 !.env.example
 
+# Angular environment files — contienen Supabase URL/keys y adminEmail
+# Copiar de environment.example.ts y rellenar valores reales
+frontend/black-sheep-app/src/environments/environment.ts
+frontend/black-sheep-app/src/environments/environment.prod.ts
+
 # IDE
 .vscode/
 .idea/

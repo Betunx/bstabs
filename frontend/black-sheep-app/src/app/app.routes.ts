@@ -1,12 +1,12 @@
 import { Routes } from '@angular/router';
 import { Home } from './pages/home/home';
 import { authGuard } from './core/guards/auth.guard';
+import { adminGuard } from './core/guards/admin.guard';
 
 export const routes: Routes = [
-  // Eager: Home page (most visited, keep in main bundle)
   { path: '', component: Home },
 
-  // Lazy: Song browsing routes
+  // Song browsing
   {
     path: 'artists',
     loadComponent: () => import('./pages/artists/artists').then(m => m.Artists)
@@ -25,7 +25,7 @@ export const routes: Routes = [
     data: { hideHeaderOnScroll: true }
   },
 
-  // Auth routes
+  // Auth
   {
     path: 'auth/login',
     loadComponent: () => import('./pages/auth/login/login').then(m => m.Login)
@@ -35,14 +35,30 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/auth/callback/callback').then(m => m.AuthCallback)
   },
 
-  // Protected: requiere estar logueado
+  // Pública: cualquiera puede ver, login mejora la experiencia (prefill email, historial)
   {
     path: 'request-song',
     loadComponent: () => import('./pages/request-song/request-song').then(m => m.RequestSong),
-    canActivate: [authGuard]
   },
 
-  // Lazy: Secondary pages
+  // Admin: requiere ser admin (cualquier deploy, protegido por Supabase Auth)
+  {
+    path: 'admin',
+    loadComponent: () => import('./admin/admin-dashboard/admin-dashboard').then(m => m.AdminDashboard),
+    canActivate: [adminGuard]
+  },
+  {
+    path: 'admin/editor',
+    loadComponent: () => import('./admin/tab-editor/tab-editor').then(m => m.TabEditor),
+    canActivate: [adminGuard]
+  },
+  {
+    path: 'admin/editor/:id',
+    loadComponent: () => import('./admin/tab-editor/tab-editor').then(m => m.TabEditor),
+    canActivate: [adminGuard]
+  },
+
+  // Secondary pages
   {
     path: 'contact',
     loadComponent: () => import('./pages/contact/contact').then(m => m.Contact)
@@ -55,9 +71,6 @@ export const routes: Routes = [
     path: 'sources',
     loadComponent: () => import('./pages/sources/sources').then(m => m.Sources)
   },
-
-  // NOTE: Admin routes removed in production (main branch)
-  // Only available in admin branch at bstabs.pages.dev
 
   { path: '**', redirectTo: '' }
 ];
