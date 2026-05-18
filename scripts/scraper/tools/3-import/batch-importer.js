@@ -16,7 +16,7 @@ const path = require('path');
 
 // Configuración
 const API_URL = 'https://blacksheep-api.bstabs.workers.dev';
-const API_KEY = process.env.ADMIN_API_KEY || 'admin123';
+const API_KEY = process.env.ADMIN_API_KEY;
 
 // Artistas populares para stock inicial (variados géneros)
 const DEFAULT_ARTISTS = [

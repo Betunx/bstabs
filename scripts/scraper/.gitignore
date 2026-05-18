@@ -1,0 +1,37 @@
+# Outputs generados
+output/extracted/*
+output/images/*
+output/ocr-results/*
+output/catalog/*
+output/logs/*
+
+# Mantener estructura de carpetas
+!output/extracted/.gitkeep
+!output/images/.gitkeep
+!output/ocr-results/.gitkeep
+!output/catalog/.gitkeep
+!output/logs/.gitkeep
+
+# Carpetas antiguas (deprecadas)
+extracted-tabs/
+downloaded-tabs/
+catalog-output/
+mass-import-output/
+ocr-results/
+
+# Node modules
+node_modules/
+
+# Environment
+.env
+.env.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo

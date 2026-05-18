@@ -1,0 +1,8 @@
+# URLs de Espíritu Guitarrista para scraping
+# Formato: Una URL por línea
+# Líneas que empiezan con # son comentarios
+
+# Junior H
+https://www.espirituguitarrista.com/y-lloro/
+
+# Agregar más URLs aquí...

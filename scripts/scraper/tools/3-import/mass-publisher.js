@@ -13,7 +13,7 @@ const https = require('https');
 
 // Configuración
 const API_URL = 'https://blacksheep-api.bstabs.workers.dev';
-const API_KEY = process.env.ADMIN_API_KEY || 'admin123';
+const API_KEY = process.env.ADMIN_API_KEY;
 
 class MassPublisher {
   constructor() {
