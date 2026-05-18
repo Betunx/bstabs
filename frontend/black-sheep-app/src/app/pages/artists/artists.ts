@@ -4,13 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { ArtistGrid, ArtistItem } from '../../shared/components/artist-grid/artist-grid';
 import { SkeletonArtistGrid } from '../../shared/components/skeleton-artist-grid/skeleton-artist-grid';
 import { ArtistsService } from '../../core/services/artists.service';
-import { SongsService } from '../../core/services/songs.service';
 import { MusicGenre, MUSIC_GENRES } from '../../core/constants/genres';
 import { environment } from '../../../environments/environment';
-
-interface ArtistItemWithGenres extends ArtistItem {
-  genres: MusicGenre[];
-}
 
 @Component({
   selector: 'app-artists',
@@ -20,92 +15,53 @@ interface ArtistItemWithGenres extends ArtistItem {
 })
 export class Artists implements OnInit {
   private artistsService = inject(ArtistsService);
-  private songsService = inject(SongsService);
 
-  private allArtists = signal<ArtistItemWithGenres[]>([]);
+  private allArtists = signal<ArtistItem[]>([]);
   selectedGenre = signal<MusicGenre | ''>('');
+  searchQuery   = signal('');
   loading = signal(true);
+  error   = signal(false);
 
-  // Computed: solo géneros que tienen artistas disponibles
   availableGenres = computed(() => {
-    const artists = this.allArtists();
     const genresSet = new Set<MusicGenre>();
-
-    artists.forEach(artist => {
-      artist.genres.forEach(genre => genresSet.add(genre));
-    });
-
-    return MUSIC_GENRES.filter(genre => genresSet.has(genre));
+    this.allArtists().forEach(a => (a.genres ?? []).forEach(g => genresSet.add(g as MusicGenre)));
+    return MUSIC_GENRES.filter(g => genresSet.has(g));
   });
 
   artists = computed(() => {
-    const all = this.allArtists();
+    let results = this.allArtists();
+
+    const q = this.searchQuery().trim().toLowerCase();
+    if (q.length >= 2) results = results.filter(a => a.name.toLowerCase().includes(q));
+
     const genre = this.selectedGenre();
+    if (genre) results = results.filter(a => (a.genres ?? []).includes(genre));
 
-    if (!genre) {
-      return all;
-    }
-
-    return all.filter(artist => artist.genres.includes(genre));
+    return [...results].sort((a, b) => b.songCount - a.songCount);
   });
 
-  ngOnInit() {
-    this.loadArtists();
-  }
-
-  setGenre(genre: MusicGenre | '') {
-    this.selectedGenre.set(genre);
-  }
-
-  private loadArtists() {
-    this.loading.set(true);
-
-    this.songsService.getAllSongs().subscribe({
-      next: (songs) => {
-        const artistGenresMap = new Map<string, Set<MusicGenre>>();
-
-        songs.forEach(song => {
-          const artistSlug = this.slugify(song.artist);
-          if (!artistGenresMap.has(artistSlug)) {
-            artistGenresMap.set(artistSlug, new Set());
-          }
-          if (song.genre) {
-            artistGenresMap.get(artistSlug)!.add(song.genre as MusicGenre);
-          }
-        });
-
-        this.artistsService.getAllArtists().subscribe({
-          next: (artists) => {
-            const artistItems: ArtistItemWithGenres[] = artists.map(artist => ({
-              id: artist.id,
-              name: artist.name,
-              songCount: artist.songCount,
-              imageUrl: artist.imageUrl,
-              routerLink: '/artist/' + artist.id,
-              genres: Array.from(artistGenresMap.get(artist.id) || [])
-            }));
-            this.allArtists.set(artistItems);
-            this.loading.set(false);
-          },
-          error: (err) => {
-            if (environment.enableDebugMode) console.error('Error loading artists:', err);
-            this.loading.set(false);
-          }
-        });
+  ngOnInit(): void {
+    this.artistsService.getAllArtists().subscribe({
+      next: (artists) => {
+        this.allArtists.set(artists.map(a => ({
+          id: a.id,
+          name: a.name,
+          songCount: a.songCount,
+          imageUrl: a.imageUrl,
+          routerLink: '/artist/' + a.id,
+          genres: a.genres,
+        })));
+        this.loading.set(false);
       },
       error: (err) => {
-        if (environment.enableDebugMode) console.error('Error loading songs for genre filtering:', err);
+        if (environment.enableDebugMode) console.error('Error loading artists:', err);
         this.loading.set(false);
+        this.error.set(true);
       }
     });
   }
 
-  private slugify(text: string): string {
-    return text
-      .toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-|-$/g, '');
+  setGenre(genre: MusicGenre | ''): void {
+    this.selectedGenre.set(genre);
   }
 }

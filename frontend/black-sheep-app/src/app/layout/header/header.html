@@ -1,194 +1,212 @@
-<header class="bg-bs-carbon text-white shadow-lg">
-  <div class="container mx-auto px-4 py-4 flex items-center justify-between">
-    <!-- Logo BS -->
-    <a routerLink="/" class="flex items-center space-x-3">
-      <div class="text-3xl font-bold font-sans">BS</div>
-      <span class="text-sm hidden md:block">Black Sheep</span>
-    </a>
+<nav class="border-b border-border bg-background/80 backdrop-blur-xl">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex h-16 items-center justify-between">
 
-    <!-- Navigation -->
-    <nav class="hidden md:flex space-x-6">
-      <a routerLink="/artists" routerLinkActive="text-bs-gold" class="hover:text-bs-gold transition">Artistas</a>
-      <a routerLink="/songs" routerLinkActive="text-bs-gold" class="hover:text-bs-gold transition">Canciones</a>
-      <a routerLink="/contact" routerLinkActive="text-bs-gold" class="hover:text-bs-gold transition">Contacto</a>
-
-      <!-- Admin link - only visible in dev/preview -->
-      @if (isDevMode()) {
-        <a routerLink="/admin" routerLinkActive="text-bs-gold" class="hover:text-bs-gold transition bg-red-600 px-3 py-1 rounded">
-          Admin
-        </a>
-      }
-    </nav>
-
-    <!-- Search, Theme Selector & Donate Button -->
-    <div class="flex items-center space-x-4">
-      <!-- Search Button -->
-      <button
-        (click)="toggleSearch()"
-        class="text-white hover:text-bs-gold transition"
-        title="Buscar">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-        </svg>
-      </button>
-
-      <!-- Theme Switcher Dropdown -->
-      <div class="relative">
-        <!-- Botón actual del tema -->
-        <button
-          (click)="toggleThemeDropdown()"
-          (mouseenter)="isThemeDropdownOpen.set(true)"
-          class="w-10 h-10 rounded-full border-2 border-white hover:scale-110 transition-all duration-200 shadow-lg flex items-center justify-center"
-          [style.background-color]="themeService.themes[themeService.currentTheme()].preview"
-          [title]="themeService.themes[themeService.currentTheme()].name">
-          <span class="text-xs font-bold"
-                [style.color]="themeService.themes[themeService.currentTheme()].textColor">
-            {{ themeService.themes[themeService.currentTheme()].name.charAt(0) }}
+      <!-- Logo -->
+      <a routerLink="/" class="flex items-center gap-2.5 group">
+        <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary group-hover:bg-primary/20 transition-colors">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
+          </svg>
+        </div>
+        <div class="flex flex-col leading-none">
+          <span class="text-xl font-bold tracking-tight text-foreground">
+            BS<span class="text-primary">Tabs</span>
           </span>
-        </button>
+          <span class="hidden sm:block text-[10px] text-muted-foreground font-normal">Black Sheep</span>
+        </div>
+      </a>
 
-        <!-- Dropdown de temas -->
-        @if (isThemeDropdownOpen()) {
-          <div
-            (mouseleave)="closeThemeDropdown()"
-            class="absolute top-12 right-0 bg-gray-800 rounded-lg shadow-xl p-2 space-y-2 min-w-[160px] z-50 animate-fadeIn">
-            @for (themeKey of getThemeKeys(); track themeKey) {
-              <button
-                (click)="setTheme(themeKey)"
-                [class.ring-2]="themeService.currentTheme() === themeKey"
-                [class.ring-bs-gold]="themeService.currentTheme() === themeKey"
-                class="w-full flex items-center space-x-3 px-3 py-2 rounded hover:bg-gray-700 transition">
-                <div
-                  class="w-6 h-6 rounded-full border-2 border-white"
-                  [style.background-color]="themeService.themes[themeKey].preview">
-                </div>
-                <span class="text-white text-sm">{{ themeService.themes[themeKey].name }}</span>
-              </button>
-            }
-          </div>
+      <!-- Desktop Nav -->
+      <div class="hidden md:flex items-center gap-1">
+        @for (link of navLinks; track link.to) {
+          <a
+            [routerLink]="link.to"
+            routerLinkActive="bg-primary/10 text-primary"
+            class="px-4 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-secondary transition-all">
+            {{ link.label }}
+          </a>
+        }
+        @if (isDevMode) {
+          <a
+            routerLink="/admin"
+            routerLinkActive="bg-primary/10 text-primary"
+            class="px-3 py-2 rounded-lg text-sm font-medium bg-red-500/10 text-red-400 hover:bg-red-500/20 transition-all">
+            Admin
+          </a>
         }
       </div>
 
-      <!-- Donate Button -->
-      <a
-        routerLink="/donate"
-        class="bg-bs-gold hover:bg-yellow-600 text-black font-bold w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition">
-        D
-      </a>
+      <!-- Desktop Actions -->
+      <div class="hidden md:flex items-center gap-3">
+        <!-- Search trigger -->
+        <button
+          (click)="openSearch()"
+          class="flex items-center gap-2 rounded-lg border border-border bg-secondary/50 px-3 py-2 text-sm text-muted-foreground hover:bg-secondary transition-colors">
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+          <span>Buscar tabs...</span>
+          <kbd class="ml-3 rounded bg-muted px-1.5 py-0.5 text-xs font-mono text-muted-foreground">⌘K</kbd>
+        </button>
+
+        <!-- Donate -->
+        <a
+          routerLink="/donate"
+          title="Apoyar BSTabs"
+          class="flex h-9 w-9 items-center justify-center rounded-lg bg-amber-500/10 text-amber-400 hover:bg-amber-500/20 transition-colors">
+          <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Mobile Actions -->
+      <div class="flex md:hidden items-center gap-2">
+        <button (click)="openSearch()" class="p-2 text-muted-foreground hover:text-foreground transition-colors">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+        </button>
+        <button (click)="isMobileOpen.set(!isMobileOpen())" class="p-2 text-muted-foreground hover:text-foreground transition-colors">
+          @if (isMobileOpen()) {
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          } @else {
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          }
+        </button>
+      </div>
+
     </div>
   </div>
 
-  <!-- Mobile Navigation -->
-  <nav class="md:hidden flex justify-around py-2 border-t border-gray-700">
-    <a routerLink="/artists" routerLinkActive="text-bs-gold" class="text-xs hover:text-bs-gold">Artistas</a>
-    <a routerLink="/songs" routerLinkActive="text-bs-gold" class="text-xs hover:text-bs-gold">Canciones</a>
-    <a routerLink="/contact" routerLinkActive="text-bs-gold" class="text-xs hover:text-bs-gold">Contacto</a>
-  </nav>
-</header>
+  <!-- Mobile Menu -->
+  @if (isMobileOpen()) {
+    <div class="md:hidden border-t border-border bg-background/95 backdrop-blur-xl animate-fadeIn">
+      <div class="px-4 py-3 space-y-1">
+        @for (link of navLinks; track link.to) {
+          <a
+            [routerLink]="link.to"
+            routerLinkActive="bg-primary/10 text-primary"
+            class="block px-4 py-2.5 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-secondary transition-all">
+            {{ link.label }}
+          </a>
+        }
+        <a routerLink="/donate"
+          class="block px-4 py-2.5 rounded-lg text-sm font-medium text-amber-400 hover:bg-amber-500/10 transition-all">
+          Apoyar BSTabs
+        </a>
+        <a routerLink="/request-song"
+          class="block px-4 py-2.5 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-secondary transition-all">
+          Pedir canción
+        </a>
+        @if (isDevMode) {
+          <a routerLink="/admin"
+            class="block px-4 py-2.5 rounded-lg text-sm font-medium bg-red-500/10 text-red-400 hover:bg-red-500/20 transition-all">
+            Admin
+          </a>
+        }
+      </div>
+    </div>
+  }
+</nav>
 
 <!-- Search Modal -->
 @if (isSearchOpen()) {
-  <div class="fixed inset-0 bg-black bg-opacity-50 z-[100] animate-fadeIn" (click)="closeSearch()">
-    <div class="container mx-auto px-4 py-8" (click)="$event.stopPropagation()">
-      <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-2xl overflow-hidden">
-        <!-- Search Input -->
-        <div class="p-4 border-b border-gray-200">
+  <div
+    class="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm animate-fadeIn"
+    (click)="closeSearch()">
+    <div class="mx-auto max-w-2xl px-4 pt-[15vh]" (click)="$event.stopPropagation()">
+      <div class="rounded-2xl border border-border bg-card shadow-2xl overflow-hidden animate-slideUp">
+
+        <!-- Search input -->
+        <div class="p-4 border-b border-border">
           <div class="relative">
+            <svg class="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground"
+              fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
             <input
               type="text"
-              [(ngModel)]="searchQuery"
+              [ngModel]="searchQuery()"
               (input)="onSearchInput($event)"
-              placeholder="Buscar canciones, artistas, letras..."
-              class="w-full px-4 py-3 pl-12 text-lg border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
-              autofocus>
-            <svg class="w-6 h-6 absolute left-3 top-3.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-            </svg>
+              placeholder="Buscar canciones, artistas..."
+              autofocus
+              class="w-full bg-transparent pl-11 pr-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none text-base"/>
           </div>
         </div>
 
-        <!-- Did You Mean? -->
+        <!-- Did you mean? -->
         @if (didYouMean()) {
-          <div class="p-4 bg-yellow-50 border-b border-yellow-200">
-            <p class="text-sm text-gray-700">
-              ¿Quisiste decir:
-              <button
-                (click)="applyDidYouMean(didYouMean()!)"
-                class="text-blue-600 hover:underline font-semibold ml-1">
-                {{ didYouMean() }}
-              </button>
-              ?
-            </p>
+          <div class="px-4 py-2.5 bg-primary/5 border-b border-border text-sm text-muted-foreground">
+            ¿Quisiste decir:
+            <button (click)="applyDidYouMean(didYouMean()!)"
+              class="ml-1 text-primary font-medium hover:underline">
+              {{ didYouMean() }}
+            </button>?
           </div>
         }
 
-        <!-- Search Results -->
-        <div class="max-h-96 overflow-y-auto">
+        <!-- Results -->
+        <div class="max-h-80 overflow-y-auto">
           @if (searchResults().length > 0) {
             @for (result of searchResults(); track result.url) {
               <button
                 (click)="selectResult(result)"
-                class="w-full p-4 hover:bg-gray-50 border-b border-gray-100 text-left transition">
-                <div class="flex items-start space-x-3">
-                  <!-- Icon based on type -->
+                class="w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-secondary/50 border-b border-border/50 transition-colors">
+                <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg"
+                  [class]="result.type === 'artist' ? 'bg-indigo-500/10 text-indigo-400' : 'bg-primary/10 text-primary'">
                   @if (result.type === 'artist') {
-                    <svg class="w-5 h-5 text-blue-500 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                    </svg>
-                  } @else if (result.type === 'song') {
-                    <svg class="w-5 h-5 text-green-500 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path>
+                    <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                     </svg>
                   } @else {
-                    <svg class="w-5 h-5 text-purple-500 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path>
+                    <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
                     </svg>
                   }
-
-                  <!-- Result Content -->
-                  <div class="flex-1 min-w-0">
-                    <p class="text-sm font-medium text-gray-900 truncate">
-                      {{ result.match }}
-                    </p>
-                    @if (result.type === 'lyric' && result.artist) {
-                      <p class="text-xs text-gray-500 mt-1">
-                        {{ result.artist }}
-                      </p>
-                    }
-                  </div>
-
-                  <!-- Type Badge -->
-                  <span class="text-xs px-2 py-1 rounded-full" [ngClass]="{
-                    'bg-blue-100 text-blue-700': result.type === 'artist',
-                    'bg-green-100 text-green-700': result.type === 'song',
-                    'bg-purple-100 text-purple-700': result.type === 'lyric'
-                  }">
-                    {{ result.type === 'artist' ? 'Artista' : result.type === 'song' ? 'Canción' : 'Letra' }}
-                  </span>
                 </div>
+                <div class="min-w-0 flex-1">
+                  <p class="text-sm font-medium text-foreground truncate">{{ result.match }}</p>
+                  @if (result.type === 'song' && result.artist) {
+                    <p class="text-xs text-muted-foreground">{{ result.artist }}</p>
+                  }
+                </div>
+                <span class="shrink-0 text-xs px-2 py-0.5 rounded-full font-medium"
+                  [class]="result.type === 'artist' ? 'bg-indigo-500/10 text-indigo-400' : 'bg-primary/10 text-primary'">
+                  {{ result.type === 'artist' ? 'Artista' : 'Canción' }}
+                </span>
               </button>
             }
           } @else if (searchQuery().length >= 2) {
-            <div class="p-8 text-center text-gray-500">
-              <svg class="w-16 h-16 mx-auto mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            <div class="p-8 text-center text-muted-foreground">
+              <svg class="h-12 w-12 mx-auto mb-3 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
               </svg>
-              <p>No se encontraron resultados</p>
+              <p class="mb-2">No se encontraron resultados</p>
+              <a routerLink="/request-song" (click)="closeSearch()"
+                class="text-sm text-primary hover:underline">Pide la canción aquí</a>
             </div>
           } @else {
-            <div class="p-8 text-center text-gray-400">
-              <svg class="w-16 h-16 mx-auto mb-4 text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            <div class="p-8 text-center text-muted-foreground/60">
+              <svg class="h-12 w-12 mx-auto mb-3 opacity-20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
               </svg>
-              <p>Escribe al menos 2 caracteres para buscar</p>
+              <p class="text-sm">Escribe al menos 2 caracteres para buscar</p>
             </div>
           }
         </div>
 
-        <!-- Footer -->
-        <div class="p-3 bg-gray-50 border-t border-gray-200 text-xs text-gray-500 text-center">
-          Busca por canción, artista o fragmento de letra
+        <!-- Footer hint -->
+        <div class="p-3 bg-secondary/30 border-t border-border text-xs text-muted-foreground text-center">
+          Busca por canción o artista · <kbd class="font-mono">Esc</kbd> para cerrar
         </div>
+
       </div>
     </div>
   </div>

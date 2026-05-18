@@ -1,40 +1,49 @@
-<div class="container mx-auto px-4 py-12">
-  @if (title) {
-    <h1 class="text-4xl font-bold mb-8">{{ title }}</h1>
-  }
+@if (title) {
+  <h2 class="text-xl font-bold text-foreground mb-4">{{ title }}</h2>
+}
 
-  @if (items.length > 0) {
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      @for (item of items; track item.id) {
-        <a
-          [routerLink]="item.routerLink"
-          class="group bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition-all overflow-hidden border-2 border-transparent hover:border-bs-gold">
+@if (items.length > 0) {
+  <div class="space-y-1">
+    @for (item of items; track item.id) {
+      <a
+        [routerLink]="item.routerLink"
+        class="group flex items-center gap-4 rounded-xl border border-border bg-card/30 px-4 py-3 hover:bg-card hover:border-primary/20 transition-all">
 
-          @if (item.imageUrl) {
-            <div class="aspect-square overflow-hidden bg-gray-200 dark:bg-gray-700">
-              <img
-                [src]="item.imageUrl"
-                [alt]="item.title"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-            </div>
-          } @else {
-            <div class="aspect-square bg-gradient-to-br from-bs-gold to-yellow-600 flex items-center justify-center">
-              <span class="text-6xl text-white">{{ item.title.charAt(0).toUpperCase() }}</span>
-            </div>
-          }
-
-          <div class="p-4">
-            <h3 class="font-bold text-lg mb-1 truncate">{{ item.title }}</h3>
-            @if (item.subtitle) {
-              <p class="text-sm opacity-75 truncate">{{ item.subtitle }}</p>
-            }
+        @if (item.imageUrl) {
+          <div class="h-10 w-10 shrink-0 rounded-lg overflow-hidden bg-secondary">
+            <img [src]="item.imageUrl" [alt]="item.title" class="w-full h-full object-cover"/>
           </div>
-        </a>
-      }
-    </div>
-  } @else {
-    <div class="text-center py-12">
-      <p class="text-xl opacity-75">{{ emptyMessage }}</p>
-    </div>
-  }
-</div>
+        } @else {
+          <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
+            </svg>
+          </div>
+        }
+
+        <div class="flex-1 min-w-0">
+          <h3 class="text-sm font-semibold text-foreground truncate group-hover:text-primary transition-colors">
+            {{ item.title }}
+          </h3>
+          @if (item.subtitle) {
+            <p class="text-xs text-muted-foreground truncate">{{ item.subtitle }}</p>
+          }
+        </div>
+
+        <svg class="h-4 w-4 shrink-0 text-muted-foreground/50 group-hover:text-primary transition-colors"
+          fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+      </a>
+    }
+  </div>
+} @else {
+  <div class="text-center py-16">
+    <svg class="h-16 w-16 mx-auto text-muted-foreground/30 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
+    </svg>
+    <p class="text-muted-foreground">{{ emptyMessage }}</p>
+  </div>
+}

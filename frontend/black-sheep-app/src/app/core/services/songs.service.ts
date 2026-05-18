@@ -1,7 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, map, of, catchError, throwError } from 'rxjs';
-import { Song } from '../models/song.model';
+import { Song, SongSection } from '../models/song.model';
+import { MUSIC_GENRES } from '../constants/genres';
 import { environment } from '../../../environments/environment';
 
 interface SongDto {
@@ -14,7 +15,7 @@ interface SongDto {
   tuning: string | null;
   genre: string | null;
   story: string | null;
-  sections: any[];
+  sections: SongSection[];
   source_url: string | null;
   status: string;
   created_at: string;
@@ -31,7 +32,6 @@ export class SongsService {
 
   // In-memory cache for performance
   private songsCache: Song[] | null = null;
-  private searchCache = new Map<string, Song[]>();
   private cacheTTL = 5 * 60 * 1000; // 5 minutes
   private cacheTimestamp: number | null = null;
 
@@ -57,15 +57,10 @@ export class SongsService {
       }),
       catchError((error: HttpErrorResponse) => {
         if (environment.enableDebugMode) console.error('Error fetching songs:', error);
-        // Return stale cache if available
+        // Return stale cache if available (production-safe fallback)
         if (this.songsCache) {
           if (environment.enableDebugMode) console.warn('⚠️ Using stale cache due to API error');
           return of(this.songsCache);
-        }
-        // Fallback to mock data if API fails
-        if (environment.enableDebugMode) {
-          console.warn('🔄 Falling back to mock data due to API error');
-          return of(this.getMockSongs());
         }
         return throwError(() => error);
       })
@@ -75,64 +70,21 @@ export class SongsService {
   getSongById(id: string): Observable<Song> {
     if (this.useMockData) {
       const song = this.getMockSongs().find(s => s.id === id);
-      if (song) return of(song);
-      throw new Error('Song not found');
+      return song ? of(song) : throwError(() => new Error(`Song not found: ${id}`));
     }
 
     return this.http.get<SongDto>(`${this.apiUrl}/songs/${id}`).pipe(
       map(dto => this.mapDtoToSong(dto)),
       catchError((error: HttpErrorResponse) => {
         if (environment.enableDebugMode) console.error(`Error fetching song ${id}:`, error);
-        // Try to fallback to mock data
-        if (environment.enableDebugMode) {
-          const song = this.getMockSongs().find(s => s.id === id);
-          if (song) {
-            console.warn('🔄 Falling back to mock data');
-            return of(song);
-          }
-        }
         return throwError(() => error);
       })
     );
   }
 
-  searchSongs(query: string): Observable<Song[]> {
-    if (this.useMockData) {
-      const filtered = this.getMockSongs().filter(s =>
-        s.title.toLowerCase().includes(query.toLowerCase()) ||
-        s.artist.toLowerCase().includes(query.toLowerCase())
-      );
-      return of(filtered);
-    }
-
-    // Check search cache
-    const cacheKey = query.toLowerCase();
-    if (this.searchCache.has(cacheKey)) {
-      if (environment.enableDebugMode) console.log('📦 Returning cached search results for:', query);
-      return of(this.searchCache.get(cacheKey)!);
-    }
-
-    const encodedQuery = encodeURIComponent(query);
-    return this.http.get<SongDto[]>(`${this.apiUrl}/songs/search?q=${encodedQuery}`).pipe(
-      map(songs => songs.map(dto => this.mapDtoToSong(dto))),
-      map(songs => {
-        // Cache search results
-        this.searchCache.set(cacheKey, songs);
-        // Limit cache size to 50 entries
-        if (this.searchCache.size > 50) {
-          const firstKey = this.searchCache.keys().next().value;
-          if (firstKey) {
-            this.searchCache.delete(firstKey);
-          }
-        }
-        return songs;
-      }),
-      catchError((error: HttpErrorResponse) => {
-        if (environment.enableDebugMode) console.error('Error searching songs:', error);
-        // Return empty array on error instead of breaking the UI
-        return of([]);
-      })
-    );
+  /** Returns cached songs synchronously (empty array if cache not yet populated). */
+  getCachedSongs(): Song[] {
+    return this.songsCache ?? [];
   }
 
   /**
@@ -141,7 +93,6 @@ export class SongsService {
   clearCache(): void {
     this.songsCache = null;
     this.cacheTimestamp = null;
-    this.searchCache.clear();
     if (environment.enableDebugMode) console.log('🗑️ Cache cleared');
   }
 
@@ -154,7 +105,7 @@ export class SongsService {
       tempo: dto.tempo || 120,
       timeSignature: dto.time_signature || '4/4',
       tuning: dto.tuning || 'Standard',
-      genre: (dto.genre as any) || undefined,
+      genre: MUSIC_GENRES.includes(dto.genre as any) ? (dto.genre as any) : undefined,
       story: dto.story || undefined,
       sections: dto.sections || [],
       sourceUrl: dto.source_url || undefined,

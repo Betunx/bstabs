@@ -204,9 +204,22 @@ cd backend-workers
 npx wrangler dev            # Dev local
 npx wrangler deploy         # Producción
 
-# Scraper
+# Scraper (Nueva Estructura Organizada)
 cd scripts/scraper
-node tab-scraper-v2.js "URL"
+
+# Extracción HTML/PDF
+node tools/1-extraction/html-scraper.js "URL"
+
+# Extracción de Imágenes
+node tools/1-extraction/image-scraper.js "URL"
+node tools/1-extraction/image-scraper.js --batch config/urls/espirituguitarrista-urls.txt
+
+# Procesamiento OCR
+npm install tesseract.js
+node tools/2-processing/ocr-processor.js "./output/images/nombre-cancion"
+
+# Importación a DB
+node tools/3-import/batch-importer.js
 ```
 
 ## Notas para Claude Code
@@ -227,9 +240,122 @@ node tab-scraper-v2.js "URL"
 - `backend-workers/src/index.ts` - API endpoints
 - `PLAN-MEJORAS-UI.md` - Plan completo de mejoras
 
+## Sistema de Imágenes de Artistas
+
+**Arquitectura:** Cloudflare R2 + CDN Worker
+
+### Configuración
+- **Bucket R2:** bstabs-artist-images
+- **CDN URL:** https://blacksheep-api.bstabs.workers.dev/artists/images/{slug}.jpg
+- **Cache:** 1 año (max-age=31536000)
+- **Fallback:** Placeholder con iniciales del artista
+
+### Cómo agregar/actualizar imágenes
+
+**PowerShell (Windows):**
+```powershell
+.\scripts\upload-artist-image.ps1 .\photos\peso-pluma.jpg peso-pluma
+```
+
+**Bash (Linux/Mac):**
+```bash
+./scripts/upload-artist-image.sh ./photos/peso-pluma.jpg peso-pluma
+```
+
+**curl directo:**
+```bash
+curl -X POST \
+  -H "x-api-key: YOUR_API_KEY" \
+  -H "Content-Type: image/jpeg" \
+  --data-binary "@peso-pluma.jpg" \
+  https://blacksheep-api.bstabs.workers.dev/admin/artists/images/peso-pluma.jpg
+```
+
+### Requisitos de imágenes
+- **Formato:** JPG, PNG, o WebP
+- **Tamaño recomendado:** 500x500px (cuadrada)
+- **Peso máximo:** 200KB
+- **Nombre:** {artist-slug}.{ext} (ej: peso-pluma.jpg)
+
+**NOTA:** El slug debe coincidir con el generado por `ArtistsService.slugify()`
+
+## Sistema de Scraping de Tablaturas
+
+**Estructura modular organizada:**
+
+```
+scripts/scraper/
+├── tools/
+│   ├── 1-extraction/     # Scrapers (HTML, imágenes)
+│   ├── 2-processing/     # OCR, transformaciones
+│   ├── 3-import/         # Importación a DB
+│   └── 4-integrations/   # APIs externas
+├── docs/                 # Documentación completa
+├── config/               # URLs y configuraciones
+├── output/               # Resultados organizados
+└── examples/             # Scripts de ejemplo
+```
+
+### Flujo Completo
+
+```
+1. Extracción → tools/1-extraction/
+2. Procesamiento → tools/2-processing/
+3. Importación → tools/3-import/
+```
+
+### 1️⃣ Extracción HTML/PDF
+
+**Sitios:** AcordesWeb, CifraClub, etc.
+
+```bash
+node tools/1-extraction/html-scraper.js "URL"
+```
+
+**Salida:** `output/extracted/*.json`
+
+### 2️⃣ Extracción de Imágenes
+
+**Sitios:** Espíritu Guitarrista
+
+```bash
+# Una canción
+node tools/1-extraction/image-scraper.js "URL"
+
+# Múltiples (batch)
+node tools/1-extraction/image-scraper.js --batch config/urls/espirituguitarrista-urls.txt
+```
+
+**Salida:** `output/images/cancion/*.png`
+
+### 3️⃣ Procesamiento OCR
+
+```bash
+npm install tesseract.js
+node tools/2-processing/ocr-processor.js "./output/images/cancion"
+```
+
+**Salida:** `output/ocr-results/*.json` + `*.txt`
+
+### 4️⃣ Importación a Base de Datos
+
+```bash
+node tools/3-import/batch-importer.js
+node tools/3-import/extracted-importer.js
+```
+
+### 📖 Documentación Detallada
+
+- [README.md](scripts/scraper/README.md) - Índice principal
+- [docs/00-QUICKSTART.md](scripts/scraper/docs/00-QUICKSTART.md) - Inicio rápido
+- [docs/01-EXTRACTION.md](scripts/scraper/docs/01-EXTRACTION.md) - Guía de extracción
+- [docs/02-PROCESSING.md](scripts/scraper/docs/02-PROCESSING.md) - Guía de procesamiento
+- [docs/03-IMPORTING.md](scripts/scraper/docs/03-IMPORTING.md) - Guía de importación
+
 ## Documentación Completa
 
 Para información detallada del proyecto, consultar:
 - **Claude Projects Memory** - Base de datos completa del proyecto
 - `PLAN-MEJORAS-UI.md` - Plan de 3 fases con cronograma
-- `scripts/scraper/README.md` - Guía del scraper
+- `scripts/scraper/README.md` - Sistema completo de scraping
+- `scripts/scraper/MIGRATION-GUIDE.md` - Guía de migración a nueva estructura

@@ -6,20 +6,39 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
+      // Design system colors via CSS variables (RGB channels for opacity modifier support)
+      // Usage: bg-primary/10, text-foreground, border-border, etc.
       colors: {
-        'bs-carbon': '#0A0A0A',
-        'bs-warm-white': '#FAF9F6',
-        'bs-text': '#1A1A1A',
-        'bs-gold': '#D4AF37',
-        'bs-dark-bg': '#1A1A1A',
-        'bs-night-bg': '#2D1B1B',
-        'bs-night-text': '#E8D4C4',
-        'bs-night-gold': '#C9A86A',
-        'bs-oled': '#000000',
+        background:  'rgb(var(--color-background) / <alpha-value>)',
+        foreground:  'rgb(var(--color-foreground) / <alpha-value>)',
+        card: {
+          DEFAULT:    'rgb(var(--color-card) / <alpha-value>)',
+          foreground: 'rgb(var(--color-card-foreground) / <alpha-value>)',
+        },
+        primary: {
+          DEFAULT:    'rgb(var(--color-primary) / <alpha-value>)',
+          foreground: 'rgb(var(--color-primary-foreground) / <alpha-value>)',
+        },
+        secondary: {
+          DEFAULT:    'rgb(var(--color-secondary) / <alpha-value>)',
+          foreground: 'rgb(var(--color-secondary-foreground) / <alpha-value>)',
+        },
+        muted: {
+          DEFAULT:    'rgb(var(--color-muted) / <alpha-value>)',
+          foreground: 'rgb(var(--color-muted-foreground) / <alpha-value>)',
+        },
+        border:      'rgb(var(--color-border) / <alpha-value>)',
+        input:       'rgb(var(--color-input) / <alpha-value>)',
+
       },
       fontFamily: {
-        'mono': ['Courier Prime', 'Courier New', 'monospace'],
-        'sans': ['Inter', 'system-ui', 'sans-serif'],
+        sans:  ['Inter', 'system-ui', 'sans-serif'],
+        mono:  ['JetBrains Mono', 'Courier Prime', 'Courier New', 'monospace'],
+      },
+      borderRadius: {
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 2px)',
+        sm: 'calc(var(--radius) - 4px)',
       },
     },
   },

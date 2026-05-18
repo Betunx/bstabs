@@ -1,51 +1,61 @@
-<div class="sources-page">
-  <div class="container mx-auto px-4 py-12 max-w-4xl">
+<div class="min-h-screen">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-8">
+
     <!-- Header -->
-    <div class="mb-12 text-center">
-      <h1 class="text-4xl font-bold mb-4">Fuentes y Atribuciones</h1>
-      <p class="text-gray-400 text-lg">
-        BlackSheep Tabs agradece a las siguientes plataformas por proporcionar contenido musical accesible
-      </p>
+    <div class="mb-10 animate-slideUp">
+      <div class="flex items-center gap-3 mb-2">
+        <div class="rounded-xl bg-primary/10 p-2.5">
+          <svg class="h-6 w-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+          </svg>
+        </div>
+        <h1 class="text-3xl font-extrabold text-foreground">Fuentes y atribuciones</h1>
+      </div>
+      <p class="text-muted-foreground ml-[52px]">BS Tabs agradece a las siguientes plataformas por el contenido musical accesible</p>
     </div>
 
-    <!-- Legal Notice -->
-    <div class="legal-notice mb-12 p-6 bg-gray-800 rounded-lg border border-gray-700">
-      <h2 class="text-xl font-semibold mb-3">Aviso Legal</h2>
-      <p class="text-gray-300 mb-3">
-        Todo el contenido de acordes, tablaturas y letras disponible en BlackSheep Tabs proviene de fuentes públicas
-        en internet y se presenta únicamente con fines educativos y de práctica musical.
-      </p>
-      <p class="text-gray-300 mb-3">
-        Respetamos plenamente los derechos de autor y la propiedad intelectual. Cada tablatura y letra incluye
-        atribución clara a su fuente original.
-      </p>
-      <p class="text-gray-300">
-        Si eres titular de derechos de autor y consideras que algún contenido debe ser eliminado, por favor
-        <a routerLink="/contact" class="text-bs-gold hover:underline">contáctanos</a> y lo retiraremos inmediatamente.
-      </p>
+    <!-- Aviso legal -->
+    <div class="rounded-xl border border-border bg-card/80 p-6 mb-8">
+      <h2 class="text-sm font-semibold text-foreground mb-3">Aviso legal</h2>
+      <div class="space-y-2 text-sm text-muted-foreground leading-relaxed">
+        <p>
+          Todo el contenido de acordes, tablaturas y letras disponible en BS Tabs proviene de fuentes públicas
+          en internet y se presenta únicamente con fines educativos y de práctica musical.
+        </p>
+        <p>
+          Respetamos plenamente los derechos de autor. Cada tablatura incluye atribución clara a su fuente original.
+        </p>
+        <p>
+          Si eres titular de derechos y consideras que algún contenido debe ser eliminado, por favor
+          <a routerLink="/contact" class="text-primary hover:underline font-medium">contáctanos</a>
+          y lo retiraremos inmediatamente.
+        </p>
+      </div>
     </div>
 
-    <!-- Tabs Sources -->
-    <div class="source-section mb-10">
-      <h2 class="text-2xl font-bold mb-6 flex items-center">
-        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path>
+    <!-- Acordes y tablaturas -->
+    <div class="mb-8">
+      <div class="flex items-center gap-2 mb-4">
+        <svg class="h-5 w-5 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
         </svg>
-        Acordes y Tablaturas
-      </h2>
-
-      <div class="grid gap-4">
+        <h2 class="text-base font-bold text-foreground">Acordes y tablaturas</h2>
+      </div>
+      <div class="space-y-3">
         @for (source of getSourcesByType('tabs'); track source.name) {
-          <div class="source-card p-6 bg-gray-800 rounded-lg border border-gray-700 hover:border-bs-gold transition">
-            <div class="flex items-start justify-between">
-              <div class="flex-1">
-                <h3 class="text-xl font-semibold mb-2">{{ source.name }}</h3>
-                <p class="text-gray-400 mb-3">{{ source.description }}</p>
+          <div class="rounded-xl border border-border bg-card/80 p-5 hover:border-primary/30 transition-all">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <h3 class="text-sm font-semibold text-foreground mb-1">{{ source.name }}</h3>
+                <p class="text-xs text-muted-foreground mb-3">{{ source.description }}</p>
                 <a [href]="source.url" target="_blank" rel="noopener noreferrer"
-                   class="text-bs-gold hover:underline inline-flex items-center">
+                  class="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:underline">
                   Visitar sitio
-                  <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                  <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                   </svg>
                 </a>
               </div>
@@ -55,46 +65,46 @@
       </div>
     </div>
 
-    <!-- Lyrics Sources -->
-    <div class="source-section mb-10">
-      <h2 class="text-2xl font-bold mb-6 flex items-center">
-        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+    <!-- Letras -->
+    <div class="mb-8">
+      <div class="flex items-center gap-2 mb-4">
+        <svg class="h-5 w-5 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
         </svg>
-        Letras de Canciones
-      </h2>
-
-      <div class="grid gap-4">
+        <h2 class="text-base font-bold text-foreground">Letras de canciones</h2>
+      </div>
+      <div class="space-y-3">
         @for (source of getSourcesByType('lyrics'); track source.name) {
-          <div class="source-card p-6 bg-gray-800 rounded-lg border border-gray-700 hover:border-bs-gold transition">
-            <div class="flex items-start justify-between">
-              <div class="flex-1">
-                <h3 class="text-xl font-semibold mb-2">{{ source.name }}</h3>
-                <p class="text-gray-400 mb-3">{{ source.description }}</p>
-                <a [href]="source.url" target="_blank" rel="noopener noreferrer"
-                   class="text-bs-gold hover:underline inline-flex items-center">
-                  Visitar sitio
-                  <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                  </svg>
-                </a>
-              </div>
+          <div class="rounded-xl border border-border bg-card/80 p-5 hover:border-primary/30 transition-all">
+            <div>
+              <h3 class="text-sm font-semibold text-foreground mb-1">{{ source.name }}</h3>
+              <p class="text-xs text-muted-foreground mb-3">{{ source.description }}</p>
+              <a [href]="source.url" target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:underline">
+                Visitar sitio
+                <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                </svg>
+              </a>
             </div>
           </div>
         }
       </div>
     </div>
 
-    <!-- Contribution -->
-    <div class="contribution-section p-6 bg-gradient-to-r from-bs-gold/10 to-bs-gold/5 rounded-lg border border-bs-gold/30">
-      <h2 class="text-2xl font-bold mb-3">Colabora con Nosotros</h2>
-      <p class="text-gray-300 mb-4">
-        Si conoces fuentes de calidad de tablaturas o letras que deberíamos incluir, o si encuentras algún error
-        en las atribuciones, por favor háznoslo saber.
+    <!-- CTA colabora -->
+    <div class="rounded-xl border border-primary/20 bg-primary/5 p-6">
+      <h2 class="text-sm font-bold text-foreground mb-2">Colabora con nosotros</h2>
+      <p class="text-sm text-muted-foreground mb-4 leading-relaxed">
+        Si conoces fuentes de calidad que deberíamos incluir, o encuentras algún error en las atribuciones, háznoslo saber.
       </p>
-      <a routerLink="/contact" class="inline-block px-6 py-3 bg-bs-gold text-black font-semibold rounded-lg hover:bg-yellow-500 transition">
+      <a routerLink="/contact"
+        class="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-all hover:bg-primary/90">
         Contáctanos
       </a>
     </div>
+
   </div>
 </div>

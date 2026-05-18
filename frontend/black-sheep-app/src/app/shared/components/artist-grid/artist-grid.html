@@ -1,51 +1,60 @@
-<div class="container mx-auto px-4 py-8">
-  @if (artists.length > 0) {
-    <!-- Grid más compacto: 2-3-4-6 columnas según viewport -->
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+@if (artists.length > 0) {
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
       @for (artist of artists; track artist.id) {
         <a
           [routerLink]="artist.routerLink"
-          class="artist-card group bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border-2 border-gray-100 dark:border-gray-700 hover:border-bs-gold">
+          class="group block rounded-xl border border-border bg-card/50 overflow-hidden hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5 transition-all">
 
-          <!-- Tarjeta cuadrada con padding interno (marco) -->
-          <div class="aspect-square p-3">
-            <!-- Imagen/placeholder con marco interno -->
-            <div class="w-full h-full rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-700 border-2 border-gray-200 dark:border-gray-600">
-              @if (artist.imageUrl) {
-                <img
-                  [src]="artist.imageUrl"
-                  [alt]="artist.name"
-                  loading="lazy"
-                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-              } @else {
-                <!-- Placeholder gradient con iniciales -->
-                <div class="w-full h-full bg-gradient-to-br from-bs-gold via-yellow-500 to-yellow-600 flex items-center justify-center">
-                  <span class="text-4xl font-bold text-white drop-shadow-lg">
-                    {{ getInitials(artist.name) }}
-                  </span>
-                </div>
-              }
+          <!-- Imagen cuadrada -->
+          <div class="aspect-square relative overflow-hidden bg-secondary">
+            @if (artist.imageUrl) {
+              <img
+                [src]="artist.imageUrl"
+                [alt]="artist.name"
+                loading="lazy"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"/>
+            } @else {
+              <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary/20 to-primary/5">
+                <span class="text-3xl font-extrabold text-primary/60">{{ getInitials(artist.name) }}</span>
+              </div>
+            }
+            <!-- Gradiente inferior -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+            <!-- Badge conteo de canciones -->
+            <div class="absolute bottom-2 right-2 flex items-center gap-1 rounded-full bg-black/60 backdrop-blur-sm px-2 py-0.5 text-xs text-white">
+              <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
+              </svg>
+              {{ artist.songCount }}
             </div>
           </div>
 
-          <!-- Información del artista -->
-          <div class="px-3 pb-3">
-            <h3 class="font-bold text-sm truncate mb-1 group-hover:text-bs-gold transition-colors">
+          <!-- Info -->
+          <div class="p-3">
+            <h3 class="text-sm font-semibold text-foreground truncate group-hover:text-primary transition-colors mb-1">
               {{ artist.name }}
             </h3>
-            <p class="text-xs text-gray-500 dark:text-gray-400">
-              {{ artist.songCount }} {{ artist.songCount === 1 ? 'canción' : 'canciones' }}
-            </p>
+            @if (artist.genres?.length) {
+              <div class="flex flex-wrap gap-1">
+                @for (genre of artist.genres!.slice(0, 2); track genre) {
+                  <app-genre-badge [genre]="genre" [compact]="true"/>
+                }
+              </div>
+            }
           </div>
+
         </a>
       }
     </div>
-  } @else {
-    <div class="text-center py-16">
-      <svg class="w-16 h-16 mx-auto text-gray-300 dark:text-gray-700 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
-      </svg>
-      <p class="text-xl text-gray-500 dark:text-gray-400">{{ emptyMessage }}</p>
-    </div>
-  }
-</div>
+  </div>
+} @else {
+  <div class="text-center py-16">
+    <svg class="h-16 w-16 mx-auto text-muted-foreground/30 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+    </svg>
+    <p class="text-muted-foreground">{{ emptyMessage }}</p>
+  </div>
+}

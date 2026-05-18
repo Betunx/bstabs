@@ -73,9 +73,16 @@ const ALLOWED_ORIGINS = [
   'http://localhost:4200', // Development only
 ];
 
+function isAllowedOrigin(origin: string): boolean {
+  if (ALLOWED_ORIGINS.includes(origin)) return true;
+  // Allow all Cloudflare Pages preview deployments (*.bstabs.pages.dev)
+  if (/^https:\/\/[a-z0-9]+\.bstabs\.pages\.dev$/.test(origin)) return true;
+  return false;
+}
+
 function getCorsHeaders(request: Request) {
   const origin = request.headers.get('Origin') || '';
-  const allowedOrigin = ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
+  const allowedOrigin = isAllowedOrigin(origin) ? origin : ALLOWED_ORIGINS[0];
 
   return {
     'Access-Control-Allow-Origin': allowedOrigin,
@@ -84,21 +91,16 @@ function getCorsHeaders(request: Request) {
   };
 }
 
-// Legacy - kept for jsonResponse compatibility
-const corsHeaders = {
-  'Access-Control-Allow-Origin': ALLOWED_ORIGINS[0],
-  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type, x-api-key',
-}
-
-// Helper para respuestas JSON
-function jsonResponse(data: any, status = 200) {
+// Helper para respuestas JSON con CORS correcto por origen
+function jsonResponse(data: any, status = 200, request?: Request) {
+  const cors = request ? getCorsHeaders(request) : {
+    'Access-Control-Allow-Origin': ALLOWED_ORIGINS[0],
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type, x-api-key',
+  }
   return new Response(JSON.stringify(data), {
     status,
-    headers: {
-      'Content-Type': 'application/json',
-      ...corsHeaders,
-    },
+    headers: { 'Content-Type': 'application/json', ...cors },
   })
 }
 
@@ -149,13 +151,16 @@ export default {
     const url = new URL(request.url)
     const path = url.pathname
 
+    // Helper local que captura el request para CORS correcto en todas las respuestas
+    const json = (data: any, status = 200) => jsonResponse(data, status, request)
+
     // Inicializar cliente Supabase
     const supabase = createClient(env.SUPABASE_URL, env.SUPABASE_SERVICE_KEY)
 
     try {
       // GET / - Health check
       if (path === '/' && request.method === 'GET') {
-        return jsonResponse({
+        return json({
           status: 'ok',
           message: 'Black Sheep Tabs API - Cloudflare Workers',
           version: '1.0.0'
@@ -172,19 +177,19 @@ export default {
         if (genre) {
           const validation = validateGenre(genre)
           if (!validation.valid) {
-            return jsonResponse({ error: validation.error }, 400)
+            return json({ error: validation.error }, 400)
           }
         }
 
         if (search) {
           const validation = validateSearchQuery(search)
           if (!validation.valid) {
-            return jsonResponse({ error: validation.error }, 400)
+            return json({ error: validation.error }, 400)
           }
         }
 
         if (artist && artist.length > 100) {
-          return jsonResponse({ error: 'Artist name too long (max 100 chars)' }, 400)
+          return json({ error: 'Artist name too long (max 100 chars)' }, 400)
         }
 
         let query = supabase
@@ -203,7 +208,7 @@ export default {
         const { data, error } = await query
 
         if (error) throw error
-        return jsonResponse(data)
+        return json(data)
       }
 
       // GET /songs/:id - Obtener cancion por ID
@@ -218,15 +223,15 @@ export default {
           .single()
 
         if (error) throw error
-        if (!data) return jsonResponse({ error: 'Song not found' }, 404)
+        if (!data) return json({ error: 'Song not found' }, 404)
 
-        return jsonResponse(data)
+        return json(data)
       }
 
       // POST /songs - Crear cancion (requiere API key)
       if (path === '/songs' && request.method === 'POST') {
         if (!verifyApiKey(request, env)) {
-          return jsonResponse({ error: 'Unauthorized' }, 401)
+          return json({ error: 'Unauthorized' }, 401)
         }
 
         const song: Song = await request.json()
@@ -238,13 +243,13 @@ export default {
           .single()
 
         if (error) throw error
-        return jsonResponse(data, 201)
+        return json(data, 201)
       }
 
       // PUT /songs/:id - Actualizar cancion (requiere API key)
       if (path.match(/^\/songs\/[a-f0-9-]+$/) && request.method === 'PUT') {
         if (!verifyApiKey(request, env)) {
-          return jsonResponse({ error: 'Unauthorized' }, 401)
+          return json({ error: 'Unauthorized' }, 401)
         }
 
         const id = path.split('/')[2]
@@ -258,13 +263,13 @@ export default {
           .single()
 
         if (error) throw error
-        return jsonResponse(data)
+        return json(data)
       }
 
       // DELETE /songs/:id - Eliminar cancion (requiere API key)
       if (path.match(/^\/songs\/[a-f0-9-]+$/) && request.method === 'DELETE') {
         if (!verifyApiKey(request, env)) {
-          return jsonResponse({ error: 'Unauthorized' }, 401)
+          return json({ error: 'Unauthorized' }, 401)
         }
 
         const id = path.split('/')[2]
@@ -275,18 +280,18 @@ export default {
           .eq('id', id)
 
         if (error) throw error
-        return jsonResponse({ message: 'Song deleted' })
+        return json({ message: 'Song deleted' })
       }
 
       // POST /songs/:id/publish - Publicar cancion (requiere API key)
       if (path.match(/^\/songs\/[a-f0-9-]+\/publish$/) && request.method === 'POST') {
         if (!verifyApiKey(request, env)) {
-          return jsonResponse({ error: 'Unauthorized' }, 401)
+          return json({ error: 'Unauthorized' }, 401)
         }
 
         const id = path.split('/')[2]
 
-        const { data, error } = await supabase
+        const { data, error} = await supabase
           .from('songs')
           .update({ status: 'published' })
           .eq('id', id)
@@ -294,13 +299,69 @@ export default {
           .single()
 
         if (error) throw error
-        return jsonResponse(data)
+        return json(data)
+      }
+
+      // GET /admin/tabs - Listar todas las canciones (incluye drafts) (requiere API key)
+      if (path === '/admin/tabs' && request.method === 'GET') {
+        if (!verifyApiKey(request, env)) {
+          return json({ error: 'Unauthorized' }, 401)
+        }
+
+        const status = url.searchParams.get('status') // draft, published, etc.
+        const limit = parseInt(url.searchParams.get('limit') || '100')
+        const offset = parseInt(url.searchParams.get('offset') || '0')
+
+        let query = supabase
+          .from('songs')
+          .select('*', { count: 'exact' })
+          .order('created_at', { ascending: false })
+          .range(offset, offset + limit - 1)
+
+        if (status) {
+          query = query.eq('status', status)
+        }
+
+        const { data, error, count } = await query
+
+        if (error) throw error
+        return json({
+          songs: data,
+          total: count,
+          limit,
+          offset
+        })
+      }
+
+      // POST /admin/tabs/publish-batch - Publicar múltiples canciones (requiere API key)
+      if (path === '/admin/tabs/publish-batch' && request.method === 'POST') {
+        if (!verifyApiKey(request, env)) {
+          return json({ error: 'Unauthorized' }, 401)
+        }
+
+        const { ids }: { ids: string[] } = await request.json()
+
+        if (!ids || !Array.isArray(ids) || ids.length === 0) {
+          return json({ error: 'ids array is required' }, 400)
+        }
+
+        const { data, error } = await supabase
+          .from('songs')
+          .update({ status: 'published' })
+          .in('id', ids)
+          .select()
+
+        if (error) throw error
+        return json({
+          message: `${data.length} songs published`,
+          songs: data
+        })
       }
 
       // POST /songs/:id/reject - Rechazar cancion (vuelve a pending)
       if (path.match(/^\/songs\/[a-f0-9-]+\/reject$/) && request.method === 'POST') {
         if (!verifyApiKey(request, env)) {
-          return jsonResponse({ error: 'Unauthorized' }, 401)
+          return json({ error: 'Unauthorized' }, 401)
         }
 
         const id = path.split('/')[2]
@@ -313,7 +374,7 @@ export default {
           .single()
 
         if (error) throw error
-        return jsonResponse(data)
+        return json(data)
       }
 
       // ===== BÚSQUEDA PÚBLICA =====
@@ -324,7 +385,7 @@ export default {
         const limit = parseInt(url.searchParams.get('limit') || '10')
 
         if (q.length < 2) {
-          return jsonResponse([])
+          return json([])
         }
 
         const { data, error } = await supabase
@@ -335,7 +396,7 @@ export default {
           .limit(limit)
 
         if (error) throw error
-        return jsonResponse(data)
+        return json(data)
       }
 
       // ===== SOLICITUDES DE USUARIOS (PÚBLICAS) =====
@@ -347,20 +408,20 @@ export default {
         // Validar campos requeridos para nueva canción
         if (requestData.type === 'new_song') {
           if (!requestData.song_title || !requestData.artist_name || !requestData.lyrics || !requestData.chords || requestData.chords.length === 0) {
-            return jsonResponse({ error: 'Para solicitar una canción necesitas: título, artista, letra y al menos un acorde' }, 400)
+            return json({ error: 'Para solicitar una canción necesitas: título, artista, letra y al menos un acorde' }, 400)
           }
         }
 
         // Validar campos requeridos para edición
         if (requestData.type === 'edit') {
           if (!requestData.song_id || !requestData.song_title) {
-            return jsonResponse({ error: 'song_id and song_title are required for edit requests' }, 400)
+            return json({ error: 'song_id and song_title are required for edit requests' }, 400)
           }
         }
 
         // Validar tipo
         if (!requestData.type || !['new_song', 'edit'].includes(requestData.type)) {
-          return jsonResponse({ error: 'type must be new_song or edit' }, 400)
+          return json({ error: 'type must be new_song or edit' }, 400)
         }
 
         const { data, error } = await supabase
@@ -385,7 +446,7 @@ export default {
           .single()
 
         if (error) throw error
-        return jsonResponse({ message: 'Solicitud enviada correctamente', id: data.id }, 201)
+        return json({ message: 'Solicitud enviada correctamente', id: data.id }, 201)
       }
 
       // ===== ADMIN: GESTIÓN DE SOLICITUDES =====
@@ -393,7 +454,7 @@ export default {
       // GET /admin/requests - Listar solicitudes (requiere API key)
       if (path === '/admin/requests' && request.method === 'GET') {
         if (!verifyApiKey(request, env)) {
-          return jsonResponse({ error: 'Unauthorized' }, 401)
+          return json({ error: 'Unauthorized' }, 401)
         }
 
         const status = url.searchParams.get('status')
@@ -410,13 +471,13 @@ export default {
         const { data, error } = await query
 
         if (error) throw error
-        return jsonResponse(data)
+        return json(data)
       }
 
       // PUT /admin/requests/:id - Actualizar solicitud (requiere API key)
       if (path.match(/^\/admin\/requests\/[a-f0-9-]+$/) && request.method === 'PUT') {
         if (!verifyApiKey(request, env)) {
-          return jsonResponse({ error: 'Unauthorized' }, 401)
+          return json({ error: 'Unauthorized' }, 401)
         }
 
         const id = path.split('/')[3]
@@ -430,13 +491,13 @@ export default {
           .single()
 
         if (error) throw error
-        return jsonResponse(data)
+        return json(data)
       }
 
       // DELETE /admin/requests/:id - Eliminar solicitud (requiere API key)
       if (path.match(/^\/admin\/requests\/[a-f0-9-]+$/) && request.method === 'DELETE') {
         if (!verifyApiKey(request, env)) {
-          return jsonResponse({ error: 'Unauthorized' }, 401)
+          return json({ error: 'Unauthorized' }, 401)
         }
 
         const id = path.split('/')[3]
@@ -447,7 +508,7 @@ export default {
           .eq('id', id)
 
         if (error) throw error
-        return jsonResponse({ message: 'Request deleted' })
+        return json({ message: 'Request deleted' })
       }
 
       // ===== ADMIN: GESTIÓN DE CANCIONES (todas las canciones) =====
@@ -455,7 +516,7 @@ export default {
       // GET /admin/songs - Listar TODAS las canciones (requiere API key)
       if (path === '/admin/songs' && request.method === 'GET') {
         if (!verifyApiKey(request, env)) {
-          return jsonResponse({ error: 'Unauthorized' }, 401)
+          return json({ error: 'Unauthorized' }, 401)
         }
 
         const status = url.searchParams.get('status')
@@ -472,13 +533,13 @@ export default {
         const { data, error } = await query
 
         if (error) throw error
-        return jsonResponse(data)
+        return json(data)
       }
 
       // GET /admin/stats - Estadísticas (requiere API key)
       if (path === '/admin/stats' && request.method === 'GET') {
         if (!verifyApiKey(request, env)) {
-          return jsonResponse({ error: 'Unauthorized' }, 401)
+          return json({ error: 'Unauthorized' }, 401)
         }
 
         const [publishedRes, pendingRes, requestsRes] = await Promise.all([
@@ -487,7 +548,7 @@ export default {
           supabase.from('song_requests').select('id', { count: 'exact', head: true }).eq('status', 'pending')
         ])
 
-        return jsonResponse({
+        return json({
           publishedCount: publishedRes.count || 0,
           pendingCount: pendingRes.count || 0,
           pendingRequestsCount: requestsRes.count || 0
@@ -527,7 +588,7 @@ export default {
       // POST /admin/artists/images/:slug - Subir imagen de artista (requiere API key)
       if (path.match(/^\/admin\/artists\/images\/[a-z0-9-]+\.(jpg|jpeg|png|webp)$/) && request.method === 'POST') {
         if (!verifyApiKey(request, env)) {
-          return jsonResponse({ error: 'Unauthorized' }, 401)
+          return json({ error: 'Unauthorized' }, 401)
         }
 
         const filename = path.split('/').pop() || ''
@@ -542,38 +603,38 @@ export default {
             },
           })
 
-          return jsonResponse({
+          return json({
             message: 'Image uploaded successfully',
             filename,
             url: `/artists/images/${filename}`
           })
         } catch (error: any) {
           console.error('Error uploading image:', error)
-          return jsonResponse({ error: error.message || 'Error uploading image' }, 500)
+          return json({ error: error.message || 'Error uploading image' }, 500)
         }
       }
 
       // DELETE /admin/artists/images/:slug - Eliminar imagen de artista (requiere API key)
       if (path.match(/^\/admin\/artists\/images\/[a-z0-9-]+\.(jpg|jpeg|png|webp)$/) && request.method === 'DELETE') {
         if (!verifyApiKey(request, env)) {
-          return jsonResponse({ error: 'Unauthorized' }, 401)
+          return json({ error: 'Unauthorized' }, 401)
         }
 
         const filename = path.split('/').pop() || ''
 
         try {
           await env.ARTIST_IMAGES.delete(filename)
-          return jsonResponse({ message: 'Image deleted successfully' })
+          return json({ message: 'Image deleted successfully' })
         } catch (error: any) {
           console.error('Error deleting image:', error)
-          return jsonResponse({ error: error.message || 'Error deleting image' }, 500)
+          return json({ error: error.message || 'Error deleting image' }, 500)
         }
       }
 
       // GET /admin/artists/images - Listar todas las imágenes (requiere API key)
       if (path === '/admin/artists/images' && request.method === 'GET') {
         if (!verifyApiKey(request, env)) {
-          return jsonResponse({ error: 'Unauthorized' }, 401)
+          return json({ error: 'Unauthorized' }, 401)
         }
 
         try {
@@ -585,19 +646,19 @@ export default {
             url: `/artists/images/${obj.key}`
           }))
 
-          return jsonResponse({ images, count: images.length })
+          return json({ images, count: images.length })
         } catch (error: any) {
           console.error('Error listing images:', error)
-          return jsonResponse({ error: error.message || 'Error listing images' }, 500)
+          return json({ error: error.message || 'Error listing images' }, 500)
         }
       }
 
       // Ruta no encontrada
-      return jsonResponse({ error: 'Not found' }, 404)
+      return json({ error: 'Not found' }, 404)
 
     } catch (error: any) {
       console.error('Error:', error)
-      return jsonResponse({ error: error.message || 'Internal server error' }, 500)
+      return json({ error: error.message || 'Internal server error' }, 500)
     }
   },
 }

@@ -25,8 +25,7 @@ export const routes: Routes = [
   },
   {
     path: 'tab/:id',
-    loadComponent: () => import('./pages/tab-reader/tab-reader').then(m => m.TabReader),
-    data: { hideHeaderOnScroll: true }
+    loadComponent: () => import('./pages/tab-reader/tab-reader').then(m => m.TabReader)
   },
 
   // Lazy: Secondary pages

@@ -1,93 +1,124 @@
-<div class="songs-page">
-  <!-- Controles de filtros -->
-  <div class="filters-container">
-    <div class="container mx-auto px-4 py-4">
-      <div class="flex flex-wrap items-center gap-4 justify-between">
-        <!-- Búsqueda en tiempo real con autocomplete -->
-        <div class="flex-1 max-w-md relative">
+<div class="min-h-screen">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- Header -->
+    <div class="mb-8 animate-slideUp">
+      <h1 class="text-3xl font-extrabold text-foreground mb-2">Canciones</h1>
+      <p class="text-muted-foreground">Explora todas las tablaturas disponibles en BSTabs</p>
+    </div>
+
+    <!-- Filtros -->
+    <div class="rounded-xl border border-border bg-card/50 p-4 mb-6">
+      <div class="flex flex-col sm:flex-row gap-4">
+
+        <!-- Search -->
+        <div class="flex-1 relative">
+          <svg class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground"
+            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
           <input
             type="text"
-            [ngModel]="searchQuery()"
-            (ngModelChange)="setSearchQuery($event)"
-            (focus)="onSearchFocus()"
-            (blur)="hideSuggestions()"
             placeholder="Buscar por canción o artista..."
-            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-bs-gold focus:border-transparent"
-            autocomplete="off">
-
-          <!-- Autocomplete dropdown -->
-          @if (showSuggestions() && suggestions().length > 0) {
-            <div class="absolute z-10 w-full mt-1 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg shadow-lg max-h-64 overflow-y-auto">
-              @for (suggestion of suggestions(); track suggestion.id) {
-                <button
-                  type="button"
-                  (click)="selectSuggestion(suggestion)"
-                  class="w-full px-4 py-3 text-left hover:bg-gray-100 dark:hover:bg-gray-700 transition border-b border-gray-200 dark:border-gray-700 last:border-b-0">
-                  <div class="font-semibold" [innerHTML]="highlightMatch(suggestion.title, searchQuery())"></div>
-                  <div class="text-sm text-gray-600 dark:text-gray-400" [innerHTML]="highlightMatch(suggestion.artist, searchQuery())"></div>
-                </button>
-              }
-            </div>
-          }
+            [ngModel]="searchQuery()"
+            (ngModelChange)="searchQuery.set($event)"
+            autocomplete="off"
+            class="w-full pl-10 pr-4 py-2.5 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all text-sm"/>
         </div>
 
-        <!-- Filtro por género -->
+        <!-- Género -->
         <div class="flex items-center gap-2">
-          <label class="text-sm font-semibold">Género:</label>
+          <svg class="h-4 w-4 text-muted-foreground shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707L13 13.414V19a1 1 0 01-.553.894l-4 2A1 1 0 017 21v-7.586L3.293 6.707A1 1 0 013 6V4z"/>
+          </svg>
           <select
             [ngModel]="selectedGenre()"
             (ngModelChange)="setGenre($event)"
-            class="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-bs-gold">
-            <option value="">Todos</option>
+            class="rounded-lg border border-border bg-background px-3 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 cursor-pointer">
+            <option value="">Todos los géneros</option>
             @for (genre of genres; track genre) {
               <option [value]="genre">{{ genre }}</option>
             }
           </select>
         </div>
 
-        <!-- Ordenamiento -->
+        <!-- Ordenar -->
         <div class="flex items-center gap-2">
-          <label class="text-sm font-semibold">Ordenar:</label>
+          <svg class="h-4 w-4 text-muted-foreground shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12"/>
+          </svg>
           <select
-            [(ngModel)]="sortBy"
-            (ngModelChange)="setSortBy($event)"
-            class="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-bs-gold">
+            [ngModel]="sortBy()"
+            (ngModelChange)="sortBy.set($event)"
+            class="rounded-lg border border-border bg-background px-3 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 cursor-pointer">
             <option value="recent">Más recientes</option>
             <option value="a-z">A-Z</option>
           </select>
         </div>
+
       </div>
 
-      <!-- Contador de resultados -->
-      @if (searchQuery()) {
-        <div class="mt-3 text-sm text-gray-600">
-          {{ songs().length }} resultado{{ songs().length !== 1 ? 's' : '' }} encontrado{{ songs().length !== 1 ? 's' : '' }}
-        </div>
+      <!-- Contador -->
+      <div class="mt-3 text-sm text-muted-foreground">
+        {{ songs().length }} canción{{ songs().length !== 1 ? 'es' : '' }} encontrada{{ songs().length !== 1 ? 's' : '' }}
+        @if (selectedGenre()) {
+          <span> en <span class="text-primary font-medium">{{ selectedGenre() }}</span></span>
+        }
+      </div>
+    </div>
+
+    <!-- Genre pills (acceso rápido) -->
+    <div class="flex flex-wrap gap-2 mb-6">
+      <button
+        (click)="setGenre('')"
+        class="rounded-full px-3 py-1 text-xs font-medium border transition-all cursor-pointer"
+        [class]="!selectedGenre()
+          ? 'bg-primary/10 text-primary border-primary/30'
+          : 'bg-secondary/50 text-muted-foreground border-border hover:text-foreground'">
+        Todos
+      </button>
+      @for (genre of quickGenres; track genre) {
+        <button
+          (click)="toggleQuickGenre(genre)"
+          class="rounded-full px-3 py-1 text-xs font-medium border transition-all cursor-pointer"
+          [class]="selectedGenre() === genre
+            ? 'bg-primary/10 text-primary border-primary/30'
+            : 'bg-secondary/50 text-muted-foreground border-border hover:text-foreground'">
+          {{ genre }}
+        </button>
       }
     </div>
-  </div>
 
-  <!-- Lista de canciones (componente compacto) -->
-  @if (loading()) {
-    <div class="container mx-auto px-4 py-8">
-      <app-skeleton-song-list [count]="10"></app-skeleton-song-list>
-    </div>
-  } @else {
-    <app-song-list-compact
-      [songs]="songs()"
-      emptyMessage="No hay canciones disponibles">
-    </app-song-list-compact>
-  }
-
-  <!-- CTA para pedir canciones (si lista vacía por búsqueda) -->
-  @if (songs().length === 0 && searchQuery()) {
-    <div class="empty-state">
-      <div class="container mx-auto px-4 py-8 text-center">
-        <p class="text-gray-600 mb-4">¿No encuentras lo que buscas?</p>
-        <a routerLink="/request-song" class="btn-primary inline-block px-6 py-3 bg-bs-gold text-black font-semibold rounded-lg hover:bg-yellow-500 transition">
+    <!-- Lista -->
+    @if (loading()) {
+      <app-skeleton-song-list [count]="10"/>
+    } @else if (error()) {
+      <div class="rounded-xl border border-red-500/20 bg-red-500/10 p-8 text-center">
+        <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-red-500/20">
+          <svg class="h-7 w-7 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+        </div>
+        <p class="font-semibold text-foreground mb-1">Error al cargar canciones</p>
+        <p class="text-sm text-muted-foreground">Verifica tu conexión e intenta de nuevo.</p>
+      </div>
+    } @else if (songs().length > 0) {
+      <app-song-list-compact [songs]="songs()"/>
+    } @else {
+      <!-- Empty state -->
+      <div class="text-center py-16">
+        <svg class="h-16 w-16 mx-auto text-muted-foreground/30 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
+        </svg>
+        <p class="text-muted-foreground mb-4">No se encontraron canciones</p>
+        <a routerLink="/request-song"
+          class="inline-flex items-center gap-2 rounded-lg bg-primary text-primary-foreground px-6 py-3 text-sm font-medium transition-all hover:bg-primary/90">
           Solicitar una canción
         </a>
       </div>
-    </div>
-  }
+    }
+
+  </div>
 </div>

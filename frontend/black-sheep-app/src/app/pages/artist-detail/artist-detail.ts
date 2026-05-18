@@ -1,12 +1,17 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ItemList, ListItem } from '../../shared/components/item-list/item-list';
-import { ArtistsService } from '../../core/services/artists.service';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { forkJoin } from 'rxjs';
+import { SongListCompact, CompactSongItem } from '../../shared/components/song-list-compact/song-list-compact';
+import { SkeletonSongList } from '../../shared/components/skeleton-song-list/skeleton-song-list';
+import { GenreBadge } from '../../shared/components/genre-badge/genre-badge';
+import { ArtistsService, Artist } from '../../core/services/artists.service';
 import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-artist-detail',
-  imports: [ItemList],
+  standalone: true,
+  imports: [CommonModule, RouterLink, SongListCompact, SkeletonSongList, GenreBadge],
   templateUrl: './artist-detail.html',
   styleUrl: './artist-detail.scss',
 })
@@ -14,50 +19,45 @@ export class ArtistDetail implements OnInit {
   private route = inject(ActivatedRoute);
   private artistsService = inject(ArtistsService);
 
-  artistName = signal<string>('');
-  songs = signal<ListItem[]>([]);
+  artist  = signal<Artist | null>(null);
+  songs   = signal<CompactSongItem[]>([]);
   loading = signal(true);
+  error   = signal(false);
+
+  getInitials(name: string): string {
+    return name.split(' ').slice(0, 2).map(w => w.charAt(0)).join('').toUpperCase();
+  }
 
   ngOnInit(): void {
     const artistId = this.route.snapshot.paramMap.get('id');
-    if (artistId) {
-      this.loadArtistSongs(artistId);
+    if (!artistId) {
+      this.loading.set(false);
+      this.error.set(true);
+      return;
     }
-  }
 
-  private loadArtistSongs(artistId: string): void {
-    this.loading.set(true);
-    
-    this.artistsService.getArtistById(artistId).subscribe({
-      next: (artist) => {
-        this.artistName.set(artist.name);
-        this.loadSongs(artistId);
-      },
-      error: (err) => {
-        if (environment.enableDebugMode) console.error('Error loading artist:', err);
-        this.artistName.set('Artista no encontrado');
-        this.loading.set(false);
-      }
-    });
-  }
-
-  private loadSongs(artistId: string): void {
-    this.artistsService.getSongsByArtist(artistId).subscribe({
-      next: (songs) => {
-        const songItems: ListItem[] = songs.map(song => ({
-          id: song.id,
-          title: song.title,
-          subtitle: song.difficulty || 'Beginner',
-          routerLink: '/tab/' + song.id
-        }));
-        this.songs.set(songItems);
+    forkJoin({
+      artist: this.artistsService.getArtistById(artistId),
+      songs:  this.artistsService.getSongsByArtist(artistId),
+    }).subscribe({
+      next: ({ artist, songs }) => {
+        this.artist.set(artist);
+        this.songs.set(songs.map(song => ({
+          id:         song.id,
+          title:      song.title,
+          artist:     song.artist,
+          genre:      song.genre,
+          key:        song.key,
+          tempo:      song.tempo,
+          routerLink: '/tab/' + song.id,
+        })));
         this.loading.set(false);
       },
       error: (err) => {
-        if (environment.enableDebugMode) console.error('Error loading songs:', err);
-        this.songs.set([]);
+        if (environment.enableDebugMode) console.error('Error loading artist detail:', err);
         this.loading.set(false);
-      }
+        this.error.set(true);
+      },
     });
   }
 }

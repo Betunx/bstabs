@@ -1,75 +1,53 @@
 /**
- * Lista de géneros musicales permitidos en la plataforma
- * Máximo 20 géneros para evitar abrumar al usuario
+ * Géneros musicales de la plataforma. Máximo 20.
+ * GENRE_COLORS usa clases Tailwind para badges (text + bg + border).
+ * getGenreColor() es el helper central — importar desde aquí en toda la app.
  */
 
 export type MusicGenre =
-  | 'Rock'
-  | 'Pop'
-  | 'Balada'
-  | 'Corrido'
-  | 'Norteño'
-  | 'Banda'
-  | 'Regional Mexicano'
-  | 'Ranchera'
-  | 'Metal'
-  | 'Punk'
-  | 'Indie'
-  | 'Folk'
-  | 'Blues'
-  | 'Jazz'
-  | 'Gospel/Cristiana'
-  | 'Cumbia'
-  | 'Salsa'
-  | 'Reggae'
-  | 'Country'
-  | 'Alternativo';
+  | 'Rock' | 'Pop' | 'Balada' | 'Corrido' | 'Norteño'
+  | 'Banda' | 'Regional Mexicano' | 'Ranchera' | 'Metal' | 'Punk'
+  | 'Indie' | 'Folk' | 'Blues' | 'Jazz' | 'Gospel/Cristiana'
+  | 'Cumbia' | 'Salsa' | 'Reggae' | 'Country' | 'Alternativo';
 
 export const MUSIC_GENRES: MusicGenre[] = [
-  'Rock',
-  'Pop',
-  'Balada',
-  'Corrido',
-  'Norteño',
-  'Banda',
-  'Regional Mexicano',
-  'Ranchera',
-  'Metal',
-  'Punk',
-  'Indie',
-  'Folk',
-  'Blues',
-  'Jazz',
-  'Gospel/Cristiana',
-  'Cumbia',
-  'Salsa',
-  'Reggae',
-  'Country',
-  'Alternativo',
+  'Rock', 'Pop', 'Balada', 'Corrido', 'Norteño',
+  'Banda', 'Regional Mexicano', 'Ranchera', 'Metal', 'Punk',
+  'Indie', 'Folk', 'Blues', 'Jazz', 'Gospel/Cristiana',
+  'Cumbia', 'Salsa', 'Reggae', 'Country', 'Alternativo',
 ];
 
-/**
- * Colores para badges de géneros (opcional para UI)
- */
+/** Tailwind classes para badges de género: text-color + bg/10 + border */
 export const GENRE_COLORS: Record<MusicGenre, string> = {
-  'Rock': 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200',
-  'Pop': 'bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200',
-  'Balada': 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200',
-  'Corrido': 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200',
-  'Norteño': 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200',
-  'Banda': 'bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200',
-  'Regional Mexicano': 'bg-lime-100 text-lime-800 dark:bg-lime-900 dark:text-lime-200',
-  'Ranchera': 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
-  'Metal': 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200',
-  'Punk': 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200',
-  'Indie': 'bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-200',
-  'Folk': 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200',
-  'Blues': 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
-  'Jazz': 'bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200',
-  'Gospel/Cristiana': 'bg-sky-100 text-sky-800 dark:bg-sky-900 dark:text-sky-200',
-  'Cumbia': 'bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200',
-  'Salsa': 'bg-rose-100 text-rose-800 dark:bg-rose-900 dark:text-rose-200',
-  'Reggae': 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
-  'Country': 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200',
-  'Alternativo': 'bg-violet-100 text-violet-800 dark:bg-violet-900 dark:text-violet-200',
+  'Rock':              'text-red-400 bg-red-400/10 border-red-400/20',
+  'Pop':               'text-pink-400 bg-pink-400/10 border-pink-400/20',
+  'Balada':            'text-purple-400 bg-purple-400/10 border-purple-400/20',
+  'Corrido':           'text-yellow-400 bg-yellow-400/10 border-yellow-400/20',
+  'Norteño':           'text-orange-400 bg-orange-400/10 border-orange-400/20',
+  'Banda':             'text-amber-400 bg-amber-400/10 border-amber-400/20',
+  'Regional Mexicano': 'text-lime-400 bg-lime-400/10 border-lime-400/20',
+  'Ranchera':          'text-green-400 bg-green-400/10 border-green-400/20',
+  'Metal':             'text-slate-400 bg-slate-400/10 border-slate-400/20',
+  'Punk':              'text-rose-400 bg-rose-400/10 border-rose-400/20',
+  'Indie':             'text-teal-400 bg-teal-400/10 border-teal-400/20',
+  'Folk':              'text-emerald-400 bg-emerald-400/10 border-emerald-400/20',
+  'Blues':             'text-blue-400 bg-blue-400/10 border-blue-400/20',
+  'Jazz':              'text-indigo-400 bg-indigo-400/10 border-indigo-400/20',
+  'Gospel/Cristiana':  'text-sky-400 bg-sky-400/10 border-sky-400/20',
+  'Cumbia':            'text-cyan-400 bg-cyan-400/10 border-cyan-400/20',
+  'Salsa':             'text-rose-400 bg-rose-400/10 border-rose-400/20',
+  'Reggae':            'text-green-400 bg-green-400/10 border-green-400/20',
+  'Country':           'text-yellow-400 bg-yellow-400/10 border-yellow-400/20',
+  'Alternativo':       'text-violet-400 bg-violet-400/10 border-violet-400/20',
 };
+
+/** Helper central — devuelve clases de color para un género dado */
+export function getGenreColor(genre: MusicGenre | string | undefined): string {
+  if (!genre) return 'text-muted-foreground bg-muted border-border';
+  return GENRE_COLORS[genre as MusicGenre] ?? 'text-muted-foreground bg-muted border-border';
+}
+
+/** Quick-access genres para pills de filtro rápido en Songs/Home */
+export const QUICK_GENRES: MusicGenre[] = [
+  'Rock', 'Pop', 'Metal', 'Balada', 'Alternativo', 'Folk', 'Blues', 'Corrido',
+];

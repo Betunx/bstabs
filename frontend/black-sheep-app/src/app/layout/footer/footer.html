@@ -1,25 +1,44 @@
-<footer class="bg-bs-carbon text-white py-8 mt-auto">
-  <div class="container mx-auto px-4">
-    <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+<footer class="border-t border-border bg-card/30 mt-auto">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
+    <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+
       <!-- Branding -->
       <div class="text-center md:text-left">
-        <div class="text-2xl font-bold">Black Sheep</div>
-        <p class="text-sm text-gray-400 italic">"Knowing for love, fun and free!"</p>
+        <a routerLink="/" class="inline-flex items-center gap-2 mb-2">
+          <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary">
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
+            </svg>
+          </div>
+          <span class="text-lg font-bold text-foreground">BS<span class="text-primary">Tabs</span></span>
+        </a>
+        <p class="text-sm text-muted-foreground italic">"Knowing for love, fun and free!"</p>
       </div>
 
       <!-- Links -->
-      <nav class="flex space-x-6 text-sm">
-        <a routerLink="/contact" class="hover:text-bs-gold transition">Contacto</a>
-        <a routerLink="/donate" class="hover:text-bs-gold transition">Apoyar</a>
-        <a routerLink="/sources" class="hover:text-bs-gold transition">Fuentes</a>
-        <a href="mailto:bstabscontact@gmail.com" class="hover:text-bs-gold transition">Email</a>
+      <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
+        <a routerLink="/artists"       class="text-muted-foreground hover:text-primary transition-colors font-medium">Artistas</a>
+        <a routerLink="/songs"         class="text-muted-foreground hover:text-primary transition-colors font-medium">Canciones</a>
+        <a routerLink="/contact"       class="text-muted-foreground hover:text-primary transition-colors font-medium">Contacto</a>
+        <a routerLink="/donate"        class="text-muted-foreground hover:text-primary transition-colors font-medium">Apoyar</a>
+        <a routerLink="/request-song"  class="text-muted-foreground hover:text-primary transition-colors font-medium">Pedir canción</a>
+        <a routerLink="/sources"       class="text-muted-foreground hover:text-primary transition-colors font-medium">Fuentes</a>
+        <a href="mailto:bstabscontact@gmail.com"
+          class="inline-flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors font-medium">
+          <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
+          Email
+        </a>
       </nav>
 
       <!-- Copyright -->
-      <div class="text-xs text-gray-500 text-center md:text-right">
-        <p>&copy; 2024-{{ currentYear }} BS Tabs</p>
-        <p>Hecho con ❤️ por músicos, para músicos</p>
+      <div class="text-xs text-muted-foreground/60 text-center md:text-right">
+        <p>&copy; 2024–{{ currentYear }} BS Tabs</p>
+        <p class="mt-1">Hecho con ❤️ por músicos, para músicos</p>
       </div>
+
     </div>
   </div>
 </footer>

@@ -1,75 +1,60 @@
-/* Black Sheep - Global Styles */
+/* Black Sheep Tabs - Global Styles */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Inter:wght@400;600;700;800&display=swap');
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
 
-/* Base Styles */
-* {
-  margin: 0;
-  padding: 0;
+/* ─── Design System: CSS Variables (RGB channels for Tailwind opacity support) ─── */
+:root {
+  /* Core palette */
+  --color-background:          10 10 15;     /* #0a0a0f */
+  --color-foreground:          232 232 237;  /* #e8e8ed */
+  --color-card:                19 19 26;     /* #13131a */
+  --color-card-foreground:     232 232 237;
+  --color-primary:             99 102 241;   /* #6366f1 indigo */
+  --color-primary-foreground:  255 255 255;
+  --color-secondary:           30 30 42;     /* #1e1e2a */
+  --color-secondary-foreground: 232 232 237;
+  --color-muted:               26 26 36;     /* #1a1a24 */
+  --color-muted-foreground:    136 136 160;  /* #8888a0 */
+  --color-border:              40 40 58;     /* ~rgba(255,255,255,0.08) on dark bg */
+  --color-input:               26 26 36;
+
+  /* Radius */
+  --radius: 0.75rem;
+}
+
+/* ─── Base ─── */
+*, *::before, *::after {
   box-sizing: border-box;
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: rgb(var(--color-background));
+  color: rgb(var(--color-foreground));
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Theme Classes */
-.theme-light {
-  --bg-primary: #FFFFFF;
-  --bg-header: #0A0A0A;
-  --text-primary: #1A1A1A;
-  --accent: #D4AF37;
-}
-
-.theme-dark {
-  --bg-primary: #1A1A1A;
-  --bg-header: #000000;
-  --text-primary: #E5E5E5;
-  --accent: #D4AF37;
-}
-
-.theme-night {
-  --bg-primary: #2D1B1B;
-  --bg-header: #1A0F0F;
-  --text-primary: #E8D4C4;
-  --accent: #C9A86A;
-}
-
-.theme-oled {
-  --bg-primary: #000000;
-  --bg-header: #000000;
-  --text-primary: #CCCCCC;
-  --accent: #FFD700;
-}
-
-/* Tablature Monospace Text */
-.tab-content {
-  font-family: 'Courier Prime', 'Courier New', monospace;
-  line-height: 1.5;
-  letter-spacing: 0.05em;
-}
-
-/* Animations */
+/* ─── Animations ─── */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-.animate-fadeIn {
-  animation: fadeIn 0.2s ease-out;
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
+
+.animate-fadeIn  { animation: fadeIn  0.2s ease-out; }
+.animate-slideUp { animation: slideUp 0.3s ease-out; }
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar       { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: rgb(var(--color-background)); }
+::-webkit-scrollbar-thumb { background: rgb(var(--color-border)); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgb(var(--color-muted-foreground)); }

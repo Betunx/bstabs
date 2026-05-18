@@ -1,37 +1,78 @@
-<div class="artists-page">
-  <div class="container mx-auto px-4 py-8">
-    <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
-      <h1 class="text-4xl font-bold">Artistas</h1>
+<div class="min-h-screen">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
 
-      <!-- Filtro por género -->
-      <div class="flex items-center gap-2">
-        <label class="text-sm font-semibold">Género:</label>
-        <select
-          [ngModel]="selectedGenre()"
-          (ngModelChange)="setGenre($event)"
-          class="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-bs-gold bg-white dark:bg-gray-800">
-          <option value="">Todos</option>
-          @for (genre of availableGenres(); track genre) {
-            <option [value]="genre">{{ genre }}</option>
-          }
-        </select>
+    <!-- Header -->
+    <div class="mb-8 animate-slideUp">
+      <div class="flex items-center gap-3 mb-2">
+        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+        </div>
+        <h1 class="text-3xl font-extrabold text-foreground">Artistas</h1>
       </div>
+      <p class="text-muted-foreground">Explora músicos y encuentra sus tablaturas</p>
     </div>
 
-    <!-- Contador de resultados -->
-    @if (selectedGenre()) {
-      <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-        {{ artists().length }} artista{{ artists().length !== 1 ? 's' : '' }} en {{ selectedGenre() }}
+    <!-- Filtros -->
+    <div class="flex flex-col sm:flex-row gap-4 mb-8">
+      <!-- Search por nombre -->
+      <div class="flex-1 relative">
+        <svg class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground"
+          fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        <input
+          type="text"
+          placeholder="Buscar artista..."
+          [ngModel]="searchQuery()"
+          (ngModelChange)="searchQuery.set($event)"
+          class="w-full pl-10 pr-4 py-2.5 rounded-lg border border-border bg-card/50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all text-sm"/>
+      </div>
+
+      <!-- Filtro género -->
+      <select
+        [ngModel]="selectedGenre()"
+        (ngModelChange)="setGenre($event)"
+        class="rounded-lg border border-border bg-card/50 px-3 py-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 cursor-pointer">
+        <option value="">Todos los géneros</option>
+        @for (genre of availableGenres(); track genre) {
+          <option [value]="genre">{{ genre }}</option>
+        }
+      </select>
+    </div>
+
+    <!-- Contador -->
+    @if (selectedGenre() || searchQuery()) {
+      <div class="mb-4 text-sm text-muted-foreground">
+        {{ artists().length }} artista{{ artists().length !== 1 ? 's' : '' }} encontrado{{ artists().length !== 1 ? 's' : '' }}
+        @if (selectedGenre()) {
+          <span> en <span class="text-primary font-medium">{{ selectedGenre() }}</span></span>
+        }
       </div>
     }
+
   </div>
 
+  <!-- Grid -->
   @if (loading()) {
-    <app-skeleton-artist-grid [count]="12"></app-skeleton-artist-grid>
+    <app-skeleton-artist-grid [count]="12"/>
+  } @else if (error()) {
+    <div class="mx-auto max-w-xl px-4 py-16 text-center">
+      <div class="rounded-xl border border-red-500/20 bg-red-500/10 p-8">
+        <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-red-500/20">
+          <svg class="h-7 w-7 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+        </div>
+        <p class="font-semibold text-foreground mb-1">Error al cargar artistas</p>
+        <p class="text-sm text-muted-foreground">Verifica tu conexión e intenta de nuevo.</p>
+      </div>
+    </div>
   } @else {
-    <app-artist-grid
-      [artists]="artists()"
-      emptyMessage="No hay artistas disponibles">
-    </app-artist-grid>
+    <app-artist-grid [artists]="artists()" emptyMessage="No se encontraron artistas"/>
   }
+
 </div>

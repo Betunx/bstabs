@@ -1,6 +1,6 @@
 import { HttpInterceptorFn, HttpErrorResponse } from '@angular/common/http';
-import { inject } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 /**
  * Global error handler interceptor
@@ -16,12 +16,12 @@ export const errorHandlerInterceptor: HttpInterceptorFn = (req, next) => {
         // Client-side or network error
         errorMessage = `Error de red: ${error.error.message}`;
         // Only log errors in development
-        if (typeof window !== 'undefined' && (window as any).__DEBUG_MODE__) {
+        if (environment.enableDebugMode) {
           console.error('🔴 Client error:', error.error.message);
         }
       } else {
         // Backend returned an unsuccessful response code
-        if (typeof window !== 'undefined' && (window as any).__DEBUG_MODE__) {
+        if (environment.enableDebugMode) {
           console.error(`🔴 Backend error ${error.status}:`, error.message);
         }
 

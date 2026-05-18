@@ -1,82 +1,238 @@
-<div class="tab-viewer-container">
-  <!-- Song Header -->
-  <div class="song-header">
-    <h1 class="song-title">{{ song.title }}</h1>
-    <p class="song-artist">{{ song.artist }}</p>
+<div class="min-h-screen">
+  <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-6">
 
-    <div class="song-metadata">
-      <span class="metadata-item">Tono: <strong>{{ song.key }}</strong></span>
-      <span class="metadata-item">Tempo: <strong>{{ song.tempo }} BPM</strong></span>
-      <span class="metadata-item">Compás: <strong>{{ song.timeSignature }}</strong></span>
-      <span class="metadata-item">Afinación: <strong>{{ song.tuning }}</strong></span>
-      @if (song.genre) {
-        <span class="metadata-item">Género: <strong>{{ song.genre }}</strong></span>
-      }
-    </div>
+    <!-- Back -->
+    <a routerLink="/songs"
+      class="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors mb-6">
+      <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+      </svg>
+      Volver a canciones
+    </a>
 
-    @if (song.story) {
-      <div class="song-story">
-        <p>{{ song.story }}</p>
-      </div>
-    }
-
-    <!-- Lyrics-Only Mode Toggle -->
-    <div class="mode-toggle">
-      <button 
-        (click)="toggleLyricsMode()" 
-        class="toggle-button"
-        [class.active]="lyricsOnlyMode()">
-        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-        </svg>
-        {{ lyricsOnlyMode() ? 'Mostrar Acordes' : 'Solo Letra' }}
-      </button>
-    </div>
-
-    <!-- Source Attribution -->
-    @if (song.sourceUrl) {
-      <div class="source-attribution">
-        <span class="attribution-label">Fuente:</span>
-        <a [href]="song.sourceUrl" target="_blank" rel="noopener noreferrer" class="attribution-link">
-          {{ getSourceName(song.sourceUrl) }}
-          <svg class="external-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+    <!-- Song Header -->
+    <div class="mb-6 animate-slideUp">
+      <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+        <div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-foreground">{{ song.title }}</h1>
+          <p class="text-lg font-medium text-muted-foreground">{{ song.artist }}</p>
+        </div>
+        <button
+          (click)="isFavorite.set(!isFavorite())"
+          class="self-start flex items-center gap-1.5 rounded-xl border px-4 py-2.5 text-sm font-medium transition-all"
+          [class]="isFavorite()
+            ? 'border-red-500/30 bg-red-500/10 text-red-400'
+            : 'border-border bg-card text-muted-foreground hover:text-foreground'">
+          <svg class="h-4 w-4" [attr.fill]="isFavorite() ? 'currentColor' : 'none'" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
           </svg>
-        </a>
+        </button>
+      </div>
+    </div>
+
+    <!-- Metadata pills -->
+    <div class="flex flex-wrap gap-3 mb-6">
+      @for (meta of [
+        { label: 'Tono',     value: song.key },
+        { label: 'Tempo',    value: song.tempo + ' BPM' },
+        { label: 'Compás',   value: song.timeSignature },
+        { label: 'Afinación', value: song.tuning }
+      ]; track meta.label) {
+        <div class="rounded-lg border border-border bg-card/50 px-3 py-2 text-sm">
+          <span class="text-muted-foreground">{{ meta.label }}: </span>
+          <span class="font-semibold text-foreground">{{ meta.value }}</span>
+        </div>
+      }
+      <app-genre-badge [genre]="song.genre" class="self-center"/>
+    </div>
+
+    <!-- Story -->
+    @if (song.story) {
+      <div class="rounded-xl border border-border bg-card/30 p-4 mb-6">
+        <p class="text-sm text-muted-foreground italic">{{ song.story }}</p>
       </div>
     }
-  </div>
 
-  <!-- Tablature Sections -->
-  <div class="tab-sections">
-    @for (section of song.sections; track section.name) {
-      <div class="tab-section">
-        <h3 class="section-name">{{ section.name }}</h3>
+    <!-- ── Sticky Controls Bar ───────────────────────────────────────────── -->
+    <div class="sticky top-16 z-40 rounded-xl border border-border bg-card/95 backdrop-blur-xl p-3 mb-4">
+      <div class="flex items-center justify-between gap-4 flex-wrap">
 
-        <div class="section-content">
-          @for (line of section.lines; track $index) {
-            <div class="chord-line-wrapper">
-              <!-- Línea de acordes (oculta en modo Solo Letra) -->
-              @if (!lyricsOnlyMode() && line.chords.length > 0) {
-                <div class="chord-line">
-                  @for (chordPos of line.chords; track $index) {
-                    <span
-                      class="chord-symbol"
-                      [style.left.ch]="chordPos.position">
-                      {{ chordPos.chord }}
-                    </span>
-                  }
-                </div>
-              }
+        <!-- Izquierda: Auto-scroll + Modo letra -->
+        <div class="flex items-center gap-3">
 
-              <!-- Línea de letra -->
-              <div class="lyrics-line" [class.lyrics-only]="lyricsOnlyMode()">
-                {{ line.lyrics }}
-              </div>
+          <!-- Auto-scroll toggle -->
+          <button
+            (click)="toggleAutoScroll()"
+            class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-all"
+            [class]="isAutoScroll()
+              ? 'bg-primary text-primary-foreground'
+              : 'bg-secondary text-muted-foreground hover:text-foreground'">
+            @if (isAutoScroll()) {
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6"/>
+              </svg>
+              <span class="hidden sm:inline">Pausar</span>
+            } @else {
+              <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+              <span class="hidden sm:inline">Auto-scroll</span>
+            }
+          </button>
+
+          <!-- Velocidad (solo cuando está activo) -->
+          @if (isAutoScroll()) {
+            <div class="flex items-center gap-1.5">
+              <button (click)="decreaseSpeed()"
+                class="rounded-lg bg-secondary p-1.5 text-muted-foreground hover:text-foreground transition-colors">
+                <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </button>
+              <span class="text-xs font-medium text-muted-foreground w-8 text-center">{{ scrollSpeed() }}x</span>
+              <button (click)="increaseSpeed()"
+                class="rounded-lg bg-secondary p-1.5 text-muted-foreground hover:text-foreground transition-colors">
+                <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
+                </svg>
+              </button>
             </div>
           }
+
+          <!-- Solo Letra -->
+          <button
+            (click)="lyricsOnly.set(!lyricsOnly())"
+            class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-all"
+            [class]="lyricsOnly()
+              ? 'bg-amber-500/20 text-amber-400'
+              : 'bg-secondary text-muted-foreground hover:text-foreground'">
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+            <span class="hidden sm:inline">{{ lyricsOnly() ? 'Mostrar acordes' : 'Solo letra' }}</span>
+          </button>
+        </div>
+
+        <!-- Derecha: Tamaño fuente + Ir al inicio -->
+        <div class="flex items-center gap-3">
+          <div class="flex items-center gap-2">
+            <svg class="h-4 w-4 text-muted-foreground hidden sm:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
+            </svg>
+            <button (click)="decreaseFontSize()"
+              class="rounded-lg bg-secondary px-2 py-1 text-xs font-mono text-muted-foreground hover:text-foreground transition-colors">
+              A-
+            </button>
+            <span class="text-xs text-muted-foreground font-medium w-6 text-center">{{ fontSize() }}</span>
+            <button (click)="increaseFontSize()"
+              class="rounded-lg bg-secondary px-2 py-1 text-xs font-mono text-muted-foreground hover:text-foreground transition-colors">
+              A+
+            </button>
+          </div>
+
+          <!-- Ir al inicio -->
+          <button (click)="scrollToTop()" title="Ir al inicio"
+            class="rounded-lg bg-secondary p-1.5 text-muted-foreground hover:text-foreground transition-colors">
+            <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11l7-7 7 7M5 19l7-7 7 7"/>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Tab Content ────────────────────────────────────────────────────── -->
+    <div
+      #tabContent
+      class="rounded-xl border border-border bg-card/80 p-6 sm:p-8 overflow-x-auto max-h-[70vh] overflow-y-auto"
+      style="scroll-behavior: smooth;">
+
+      <div class="min-w-fit">
+        @for (section of song.sections; track section.name) {
+          <div class="mb-8">
+            <!-- Nombre de sección -->
+            <div class="mb-3">
+              <span class="inline-block rounded-lg bg-primary/10 border border-primary/20 px-3 py-1 text-xs font-semibold text-primary">
+                {{ section.name }}
+              </span>
+            </div>
+
+            <!-- Líneas de la sección -->
+            <div class="pl-1">
+              @for (line of section.lines; track $index) {
+                @if (line.chords.length > 0 || line.lyrics.trim().length > 0) {
+                  <div class="mb-1">
+                    <!-- Línea de acordes -->
+                    @if (line.chords.length > 0 && !lyricsOnly()) {
+                      <div class="relative whitespace-pre leading-relaxed"
+                        [style.font-family]="'JetBrains Mono, monospace'"
+                        [style.font-size.px]="fontSize()"
+                        [style.height.px]="fontSize() + 8">
+                        @for (cp of line.chords; track $index) {
+                          <span class="text-cyan-400 absolute font-semibold"
+                            [style.left]="cp.position + 'ch'"
+                            [style.font-size.px]="fontSize()">
+                            {{ cp.chord }}
+                          </span>
+                        }
+                      </div>
+                    }
+                    <!-- Línea de letra -->
+                    @if (line.lyrics.trim().length > 0) {
+                      <div
+                        class="whitespace-pre-wrap"
+                        [class]="lyricsOnly() ? 'text-foreground/90' : 'text-foreground/70'"
+                        [style.font-family]="'JetBrains Mono, monospace'"
+                        [style.font-size.px]="lyricsOnly() ? fontSize() : fontSize() - 1"
+                        [style.line-height]="1.6">
+                        {{ line.lyrics }}
+                      </div>
+                    }
+                  </div>
+                }
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Atribución de fuente -->
+    @if (song.sourceUrl) {
+      <div class="mt-4 rounded-xl border border-border bg-card/30 p-4 flex items-center justify-between">
+        <div class="flex items-center gap-2 text-sm text-muted-foreground">
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
+          </svg>
+          <span>Fuente:</span>
+          <a [href]="song.sourceUrl" target="_blank" rel="noopener noreferrer"
+            class="font-medium text-primary hover:underline inline-flex items-center gap-1">
+            {{ getSourceName(song.sourceUrl) }}
+            <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+            </svg>
+          </a>
         </div>
       </div>
     }
+
+    <!-- Leyenda de acordes -->
+    <div class="mt-4 rounded-xl border border-border bg-card/30 p-4">
+      <h4 class="text-xs font-semibold text-muted-foreground mb-2">Leyenda de acordes</h4>
+      <div class="flex flex-wrap gap-4 text-xs font-mono">
+        <span><span class="text-cyan-400 font-semibold">Am</span> <span class="text-muted-foreground">= Acorde menor</span></span>
+        <span><span class="text-cyan-400 font-semibold">7</span> <span class="text-muted-foreground">= Séptima</span></span>
+        <span><span class="text-cyan-400 font-semibold">sus4</span> <span class="text-muted-foreground">= Suspendido</span></span>
+        <span><span class="text-cyan-400 font-semibold">/</span> <span class="text-muted-foreground">= Bajo alternativo</span></span>
+        <span><span class="text-cyan-400 font-semibold">add9</span> <span class="text-muted-foreground">= Add novena</span></span>
+      </div>
+    </div>
+
   </div>
 </div>

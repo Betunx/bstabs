@@ -1,11 +1,11 @@
 import { Component, signal, computed, inject, OnInit, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { RouterLink, ActivatedRoute, Router } from '@angular/router';
 import { SongListCompact, CompactSongItem } from '../../shared/components/song-list-compact/song-list-compact';
 import { SkeletonSongList } from '../../shared/components/skeleton-song-list/skeleton-song-list';
 import { SongsService } from '../../core/services/songs.service';
-import { MusicGenre, MUSIC_GENRES } from '../../core/constants/genres';
+import { MusicGenre, MUSIC_GENRES, QUICK_GENRES } from '../../core/constants/genres';
 import { environment } from '../../../environments/environment';
 
 interface SongItemWithMeta extends CompactSongItem {
@@ -16,177 +16,104 @@ type SortOption = 'recent' | 'a-z';
 
 @Component({
   selector: 'app-songs',
+  standalone: true,
   imports: [SongListCompact, SkeletonSongList, CommonModule, FormsModule, RouterLink],
   templateUrl: './songs.html',
   styleUrl: './songs.scss',
 })
 export class Songs implements OnInit {
   private songsService = inject(SongsService);
+  private route         = inject(ActivatedRoute);
+  private router        = inject(Router);
 
-  sortBy = signal<SortOption>('recent');
-  searchQuery = signal<string>('');
-  debouncedQuery = signal<string>(''); // Query después del debounce
-  selectedGenre = signal<MusicGenre | ''>(''); // Filtro de género
-  loading = signal(true);
-  suggestions = signal<SongItemWithMeta[]>([]); // Sugerencias autocomplete
-  showSuggestions = signal(false);
+  sortBy        = signal<SortOption>('recent');
+  searchQuery   = signal('');
+  selectedGenre = signal<MusicGenre | ''>('');
+  loading       = signal(true);
+  error         = signal(false);
 
-  // Lista de géneros disponibles
-  readonly genres = MUSIC_GENRES;
+  readonly genres      = MUSIC_GENRES;
+  readonly quickGenres = QUICK_GENRES;
 
-  private allSongs = signal<SongItemWithMeta[]>([]);
-  private debounceTimer: any = null;
+  private allSongs    = signal<SongItemWithMeta[]>([]);
+  private debounceTimer: ReturnType<typeof setTimeout> | null = null;
+  debouncedQuery = signal('');
 
-  ngOnInit() {
-    this.loadSongs();
-
-    // Efecto para debounce: espera 300ms después de que el usuario deje de escribir
+  constructor() {
     effect(() => {
       const query = this.searchQuery();
-
-      // Limpiar timer anterior
-      if (this.debounceTimer) {
-        clearTimeout(this.debounceTimer);
-      }
-
-      // Esperar 300ms antes de actualizar
-      this.debounceTimer = setTimeout(() => {
-        this.debouncedQuery.set(query);
-        this.updateSuggestions(query);
-      }, 300);
+      if (this.debounceTimer) clearTimeout(this.debounceTimer);
+      this.debounceTimer = setTimeout(() => this.debouncedQuery.set(query), 300);
     });
   }
 
-  private loadSongs() {
+  ngOnInit(): void {
+    this.route.queryParamMap.subscribe(params => {
+      const genre = params.get('genre') as MusicGenre | null;
+      if (genre && this.genres.includes(genre)) {
+        this.selectedGenre.set(genre);
+      }
+    });
+
+    this.loadSongs();
+  }
+
+  private loadSongs(): void {
     this.loading.set(true);
     this.songsService.getAllSongs().subscribe({
       next: (songs) => {
-        const songItems: SongItemWithMeta[] = songs.map(song => ({
-          id: song.id,
-          title: song.title,
-          artist: song.artist,
-          genre: song.genre,
-          key: song.key,
-          routerLink: `/tab/${song.id}`,
-          createdAt: song.createdAt
-        }));
-        this.allSongs.set(songItems);
+        this.allSongs.set(songs.map(s => ({
+          id: s.id,
+          title: s.title,
+          artist: s.artist,
+          genre: s.genre,
+          key: s.key,
+          tempo: s.tempo,
+          routerLink: `/tab/${s.id}`,
+          createdAt: s.createdAt,
+        })));
         this.loading.set(false);
       },
       error: (err) => {
         if (environment.enableDebugMode) console.error('Error loading songs:', err);
         this.loading.set(false);
-      }
+        this.error.set(true);
+      },
     });
   }
 
   songs = computed(() => {
-    let filtered = this.allSongs();
+    let list = this.allSongs();
 
-    // Filtrar por búsqueda (usa debouncedQuery para evitar lag)
-    const query = this.debouncedQuery().toLowerCase().trim();
-    if (query) {
-      filtered = filtered.filter(song =>
-        song.title.toLowerCase().includes(query) ||
-        song.artist.toLowerCase().includes(query)
+    const q = this.debouncedQuery().toLowerCase().trim();
+    if (q) {
+      list = list.filter(s =>
+        s.title.toLowerCase().includes(q) || s.artist.toLowerCase().includes(q)
       );
     }
 
-    // Filtrar por género
     const genre = this.selectedGenre();
     if (genre) {
-      filtered = filtered.filter(song => song.genre === genre);
+      list = list.filter(s => s.genre === genre);
     }
 
-    // Ordenar
-    const sorted = [...filtered];
-    switch (this.sortBy()) {
-      case 'recent':
-        sorted.sort((a, b) => (b.createdAt?.getTime() || 0) - (a.createdAt?.getTime() || 0));
-        break;
-      case 'a-z':
-        sorted.sort((a, b) => a.title.localeCompare(b.title));
-        break;
-    }
-
-    return sorted;
+    return [...list].sort((a, b) =>
+      this.sortBy() === 'a-z'
+        ? a.title.localeCompare(b.title)
+        : (b.createdAt?.getTime() ?? 0) - (a.createdAt?.getTime() ?? 0)
+    );
   });
 
-  /**
-   * Actualiza sugerencias de autocomplete
-   */
-  private updateSuggestions(query: string) {
-    const q = query.toLowerCase().trim();
-
-    if (!q || q.length < 2) {
-      this.suggestions.set([]);
-      this.showSuggestions.set(false);
-      return;
-    }
-
-    // Buscar las primeras 5 coincidencias
-    const matches = this.allSongs()
-      .filter(song =>
-        song.title.toLowerCase().includes(q) ||
-        song.artist.toLowerCase().includes(q)
-      )
-      .slice(0, 5);
-
-    this.suggestions.set(matches);
-    this.showSuggestions.set(matches.length > 0);
-  }
-
-  /**
-   * Resaltar texto que coincide con la búsqueda
-   */
-  highlightMatch(text: string, query: string): string {
-    if (!query) return text;
-
-    const regex = new RegExp(`(${this.escapeRegex(query)})`, 'gi');
-    return text.replace(regex, '<mark class="bg-yellow-200 dark:bg-yellow-600 px-1 rounded">$1</mark>');
-  }
-
-  private escapeRegex(str: string): string {
-    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  }
-
-  setSortBy(option: SortOption) {
-    this.sortBy.set(option);
-  }
-
-  setSearchQuery(query: string) {
-    this.searchQuery.set(query);
-  }
-
-  setGenre(genre: MusicGenre | '') {
+  setGenre(genre: MusicGenre | ''): void {
     this.selectedGenre.set(genre);
+    // Reflejar selección en URL sin navegación
+    this.router.navigate([], {
+      queryParams: genre ? { genre } : {},
+      replaceUrl: true,
+    });
   }
 
-  /**
-   * Seleccionar una sugerencia
-   */
-  selectSuggestion(song: SongItemWithMeta) {
-    this.searchQuery.set(song.title);
-    this.debouncedQuery.set(song.title);
-    this.showSuggestions.set(false);
-  }
-
-  /**
-   * Ocultar sugerencias
-   */
-  hideSuggestions() {
-    // Delay para permitir click en sugerencia
-    setTimeout(() => {
-      this.showSuggestions.set(false);
-    }, 200);
-  }
-
-  /**
-   * Mostrar sugerencias al hacer focus
-   */
-  onSearchFocus() {
-    if (this.suggestions().length > 0) {
-      this.showSuggestions.set(true);
-    }
+  toggleQuickGenre(genre: MusicGenre): void {
+    this.setGenre(this.selectedGenre() === genre ? '' : genre);
   }
 }

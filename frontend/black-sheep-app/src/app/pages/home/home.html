@@ -1,53 +1,270 @@
-<div class="container mx-auto px-4 py-12">
-    <!-- Hero Section -->
-    <div class="text-center mb-12">
-      <h1 class="text-5xl md:text-6xl font-bold mb-4">Black Sheep</h1>
-      <p class="text-2xl md:text-3xl text-bs-gold italic">"Knowing for love, fun and free!"</p>
-      <p class="mt-4 text-lg opacity-75">Aprende música sin distracciones, sin anuncios, con amor.</p>
+<div class="min-h-screen">
+
+  <!-- ── Hero ────────────────────────────────────────────────────────────── -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0">
+      <img
+        src="https://images.unsplash.com/photo-1591537546854-3dd2b3cf5419?w=1080&q=80"
+        alt="" aria-hidden="true"
+        class="w-full h-full object-cover opacity-15" loading="eager"/>
+      <div class="absolute inset-0 bg-gradient-to-b from-background/40 via-background/85 to-background"></div>
     </div>
 
-    <!-- 4 Cuadros de Navegación - Estilo Ventana -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+    <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 pb-24 sm:pt-28 sm:pb-32">
+      <div class="text-center max-w-3xl mx-auto animate-slideUp">
 
-      <!-- Artistas -->
-      <a routerLink="/artists"
-         class="group bg-white dark:bg-gray-800 rounded-lg shadow-lg hover:shadow-2xl transition-all p-8 text-center border-4 border-transparent hover:border-bs-gold">
-        <div class="text-6xl mb-4">🎸</div>
-        <h2 class="text-2xl font-bold mb-2">Artistas</h2>
-        <p class="opacity-75">Explora músicos y sus canciones</p>
+        <div class="inline-flex items-center gap-2 rounded-full bg-primary/10 border border-primary/20 px-4 py-1.5 text-sm text-primary mb-6">
+          <svg class="h-3.5 w-3.5 fill-current" viewBox="0 0 24 24">
+            <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+          </svg>
+          <span class="font-medium">{{ stats()[0].value }} canciones · Sin anuncios · 100% gratis</span>
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground mb-4 leading-tight">
+          Black Sheep
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-indigo-400 to-cyan-400">
+            Tabs
+          </span>
+        </h1>
+
+        <p class="text-lg text-amber-400/80 italic font-medium mb-3">"Knowing for love, fun and free!"</p>
+        <p class="text-muted-foreground mb-10 max-w-xl mx-auto">
+          Aprende música sin distracciones. Tablaturas con acordes perfectamente alineados sobre la letra.
+        </p>
+
+        <!-- Search Bar -->
+        <div class="relative max-w-xl mx-auto">
+          <div class="relative">
+            <svg class="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground"
+              fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+            <input
+              type="text"
+              placeholder="Buscar por canción o artista..."
+              [ngModel]="searchQuery()"
+              (ngModelChange)="searchQuery.set($event)"
+              class="w-full rounded-2xl border border-border bg-card/80 backdrop-blur-sm pl-12 pr-4 py-4 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all text-base"/>
+          </div>
+
+          <!-- Live results -->
+          @if (heroResults().length > 0) {
+            <div class="absolute top-full mt-2 w-full rounded-xl border border-border bg-card shadow-2xl overflow-hidden z-50 animate-fadeIn">
+              @for (song of heroResults(); track song.id) {
+                <a [routerLink]="['/tab', song.id]"
+                  class="flex items-center gap-3 px-4 py-3 hover:bg-secondary/50 border-b border-border/50 transition-colors last:border-0">
+                  <svg class="h-4 w-4 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
+                  </svg>
+                  <div class="min-w-0 flex-1">
+                    <p class="text-sm font-medium text-foreground truncate">{{ song.title }}</p>
+                    <p class="text-xs text-muted-foreground">{{ song.artist }}</p>
+                  </div>
+                  <app-genre-badge [genre]="song.genre" [compact]="true"/>
+                </a>
+              }
+            </div>
+          }
+
+          <!-- Quick genre pills -->
+          <div class="flex flex-wrap justify-center gap-2 mt-4">
+            @for (genre of quickGenres; track genre) {
+              <a [routerLink]="['/songs']" [queryParams]="{ genre }"
+                class="rounded-full bg-secondary/80 border border-border px-3 py-1 text-xs font-medium text-muted-foreground hover:text-primary hover:border-primary/30 hover:bg-primary/5 transition-all">
+                {{ genre }}
+              </a>
+            }
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Navigation Cards ──────────────────────────────────────────────── -->
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      @for (card of navCards; track card.label) {
+        <a [routerLink]="card.to"
+          class="group block rounded-xl border border-border bg-card/50 p-6 hover:bg-card hover:border-primary/20 transition-all hover:shadow-lg text-center">
+          <div class="inline-flex h-14 w-14 items-center justify-center rounded-2xl mb-4 group-hover:scale-110 transition-transform"
+            [class]="card.iconClass">
+            <span class="text-2xl">{{ card.icon }}</span>
+          </div>
+          <h3 class="font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">{{ card.label }}</h3>
+          <p class="text-sm text-muted-foreground">{{ card.desc }}</p>
+        </a>
+      }
+    </div>
+  </section>
+
+  <!-- ── Error state ───────────────────────────────────────────────────── -->
+  @if (error()) {
+    <section class="mx-auto max-w-xl px-4 py-12 text-center">
+      <div class="rounded-xl border border-red-500/20 bg-red-500/10 p-8">
+        <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-red-500/20">
+          <svg class="h-7 w-7 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+        </div>
+        <p class="font-semibold text-foreground mb-1">No se pudieron cargar las canciones</p>
+        <p class="text-sm text-muted-foreground mb-5">Verifica tu conexión e intenta de nuevo.</p>
+        <button (click)="retry()"
+          class="rounded-lg bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-all">
+          Reintentar
+        </button>
+      </div>
+    </section>
+  }
+
+  <!-- ── Populares ────────────────────────────────────────────────────── -->
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+    <div class="flex items-center justify-between mb-8">
+      <div class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+          </svg>
+        </div>
+        <div>
+          <h2 class="text-xl font-bold text-foreground">Populares</h2>
+          <p class="text-sm text-muted-foreground">Las tabs más buscadas</p>
+        </div>
+      </div>
+      <a routerLink="/songs" class="flex items-center gap-1 text-sm font-medium text-primary hover:text-primary/80 transition-colors">
+        Ver todas
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
       </a>
-
-      <!-- Canciones -->
-      <a routerLink="/songs"
-         class="group bg-white dark:bg-gray-800 rounded-lg shadow-lg hover:shadow-2xl transition-all p-8 text-center border-4 border-transparent hover:border-bs-gold">
-        <div class="text-6xl mb-4">🎵</div>
-        <h2 class="text-2xl font-bold mb-2">Canciones</h2>
-        <p class="opacity-75">Busca tablaturas por nombre</p>
-      </a>
-
-      <!-- Últimos Tutoriales -->
-      <a routerLink="/tutorials"
-         class="group bg-white dark:bg-gray-800 rounded-lg shadow-lg hover:shadow-2xl transition-all p-8 text-center border-4 border-transparent hover:border-bs-gold">
-        <div class="text-6xl mb-4">📚</div>
-        <h2 class="text-2xl font-bold mb-2">Últimos Tutoriales</h2>
-        <p class="opacity-75">Aprende las canciones más recientes</p>
-      </a>
-
-      <!-- Contacto -->
-      <a routerLink="/contact"
-         class="group bg-white dark:bg-gray-800 rounded-lg shadow-lg hover:shadow-2xl transition-all p-8 text-center border-4 border-transparent hover:border-bs-gold">
-        <div class="text-6xl mb-4">✉️</div>
-        <h2 class="text-2xl font-bold mb-2">Contacto</h2>
-        <p class="opacity-75">Envíanos tus comentarios</p>
-      </a>
-
     </div>
 
-    <!-- Pedir Canción CTA -->
-    <div class="mt-12 text-center">
-      <a routerLink="/request-song"
-         class="inline-block bg-bs-gold hover:bg-yellow-600 text-black font-bold px-8 py-4 rounded-lg shadow-lg hover:scale-105 transition">
-        🎼 ¿No encuentras una canción? Pídela aquí
+    @if (loading()) {
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        @for (i of [1,2,3,4,5,6]; track i) {
+          <div class="rounded-xl border border-border bg-card/50 p-5 space-y-3">
+            <div class="flex justify-between gap-3">
+              <div class="space-y-2 flex-1">
+                <div class="h-4 bg-secondary animate-pulse rounded-lg w-3/4"></div>
+                <div class="h-3 bg-secondary animate-pulse rounded-lg w-1/2"></div>
+              </div>
+              <div class="h-5 w-14 bg-secondary animate-pulse rounded-full shrink-0"></div>
+            </div>
+            <div class="h-3 bg-secondary animate-pulse rounded-lg w-2/3"></div>
+          </div>
+        }
+      </div>
+    } @else if (popularSongs().length > 0) {
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        @for (song of popularSongs(); track song.id) {
+          <a [routerLink]="['/tab', song.id]"
+            class="group block rounded-xl border border-border bg-card/50 p-5 hover:bg-card hover:border-primary/20 transition-all hover:shadow-lg">
+            <div class="flex items-start justify-between mb-3">
+              <div class="flex-1 min-w-0">
+                <h3 class="font-semibold text-foreground truncate group-hover:text-primary transition-colors">{{ song.title }}</h3>
+                <p class="text-sm text-muted-foreground">{{ song.artist }}</p>
+              </div>
+              <app-genre-badge [genre]="song.genre" class="ml-3 shrink-0"/>
+            </div>
+            <div class="flex items-center gap-3 text-xs text-muted-foreground">
+              <span>Tono: {{ song.key }}</span>
+              <span>{{ song.tempo }} BPM</span>
+              <span>{{ song.tuning.split(' ')[0] }}</span>
+            </div>
+          </a>
+        }
+      </div>
+    }
+  </section>
+
+  <!-- ── Recientes ────────────────────────────────────────────────────── -->
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+    <div class="flex items-center justify-between mb-8">
+      <div class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-500/10 text-cyan-400">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3l14 9-14 9V3z"/>
+          </svg>
+        </div>
+        <div>
+          <h2 class="text-xl font-bold text-foreground">Recientes</h2>
+          <p class="text-sm text-muted-foreground">Últimas tabs actualizadas</p>
+        </div>
+      </div>
+      <a routerLink="/songs" class="flex items-center gap-1 text-sm font-medium text-primary hover:text-primary/80 transition-colors">
+        Ver todas
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
       </a>
     </div>
+
+    @if (loading()) {
+      <app-skeleton-song-list [count]="6"/>
+    } @else if (recentSongs().length > 0) {
+      <div class="space-y-2">
+        @for (song of recentSongs(); track song.id) {
+          <a [routerLink]="['/tab', song.id]"
+            class="group flex items-center justify-between rounded-xl border border-border bg-card/30 p-4 hover:bg-card hover:border-primary/20 transition-all">
+            <div class="flex items-center gap-4 min-w-0">
+              <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
+                </svg>
+              </div>
+              <div class="min-w-0">
+                <h3 class="text-sm font-semibold text-foreground truncate group-hover:text-primary transition-colors">{{ song.title }}</h3>
+                <p class="text-xs text-muted-foreground">{{ song.artist }} · {{ song.genre || 'Sin género' }}</p>
+              </div>
+            </div>
+            <div class="hidden sm:flex items-center gap-4 text-xs text-muted-foreground shrink-0 ml-4">
+              <span>Tono: {{ song.key }}</span>
+              <span>{{ song.tempo }} BPM</span>
+              <svg class="h-4 w-4 text-muted-foreground/50 group-hover:text-primary transition-colors"
+                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </div>
+          </a>
+        }
+      </div>
+    }
+  </section>
+
+  <!-- ── Stats ────────────────────────────────────────────────────────── -->
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+    <div class="rounded-2xl border border-border bg-gradient-to-br from-card via-card to-primary/5 p-8 sm:p-12">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
+        @for (stat of stats(); track stat.label) {
+          <div>
+            <div class="text-2xl sm:text-3xl font-extrabold text-foreground mb-1">
+              @if (loading()) {
+                <div class="h-8 w-16 bg-secondary animate-pulse rounded-lg mx-auto"></div>
+              } @else {
+                {{ stat.value }}
+              }
+            </div>
+            <div class="text-sm font-medium text-muted-foreground">{{ stat.label }}</div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ──────────────────────────────────────────────────────────── -->
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-20 text-center">
+    <a routerLink="/request-song"
+      class="inline-flex items-center gap-2 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 font-semibold transition-all hover:shadow-lg hover:shadow-primary/20">
+      <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
+      </svg>
+      ¿No encuentras una canción? Pídela aquí
+    </a>
+  </section>
+
 </div>

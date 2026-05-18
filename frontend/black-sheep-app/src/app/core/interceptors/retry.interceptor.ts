@@ -1,6 +1,6 @@
 import { HttpInterceptorFn, HttpErrorResponse } from '@angular/common/http';
-import { inject } from '@angular/core';
 import { retry, timer, throwError } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 /**
  * HTTP Interceptor with automatic retry logic
@@ -28,7 +28,7 @@ export const retryInterceptor: HttpInterceptorFn = (req, next) => {
         if (error.status === 0 || (error.status >= 500 && error.status < 600)) {
           const delayMs = Math.pow(2, retryCount - 1) * 1000; // 1s, 2s, 4s
           // Only log retries in development
-          if (typeof window !== 'undefined' && (window as any).__DEBUG_MODE__) {
+          if (environment.enableDebugMode) {
             console.log(`🔄 Retry ${retryCount}/${maxRetries} after ${delayMs}ms`);
           }
           return timer(delayMs);

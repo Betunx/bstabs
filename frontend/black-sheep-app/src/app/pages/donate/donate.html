@@ -1,169 +1,124 @@
-<div class="min-h-screen py-12 px-4">
-  <div class="max-w-4xl mx-auto">
+<div class="min-h-screen">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-8">
+
     <!-- Header -->
-    <div class="text-center mb-12">
-      <h1 class="text-4xl font-bold mb-4">Apoya Black Sheep Tabs</h1>
-      <p class="text-xl text-gray-600">Ayúdanos a mantener la plataforma gratuita para todos</p>
+    <div class="mb-10 text-center animate-slideUp">
+      <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-red-500/10">
+        <svg class="h-8 w-8 text-red-400" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+      </div>
+      <h1 class="text-3xl font-extrabold text-foreground mb-2">Apoya Black Sheep Tabs</h1>
+      <p class="text-muted-foreground">Ayúdanos a mantener la plataforma gratuita para todos</p>
     </div>
 
-    <!-- Why Donate Section -->
-    <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
-      <h2 class="text-2xl font-bold mb-6">¿Por qué donaciones?</h2>
-
-      <p class="text-lg text-gray-700 mb-6">
-        Black Sheep Tabs es <strong>100% gratuito</strong> para todos los músicos.
-        No hay anuncios molestos, no hay muros de pago, solo tablaturas confiables verificadas por músicos reales.
+    <!-- Why donate -->
+    <div class="rounded-xl border border-border bg-card/80 p-6 mb-6">
+      <h2 class="text-lg font-bold text-foreground mb-4">¿Por qué donaciones?</h2>
+      <p class="text-sm text-muted-foreground leading-relaxed mb-5">
+        Black Sheep Tabs es <span class="text-foreground font-semibold">100% gratuito</span> para todos los músicos.
+        Sin anuncios, sin muros de pago, solo tablaturas verificadas por músicos reales.
       </p>
 
-      <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
-        <p class="text-blue-900">
-          <strong>Tu donación ayuda a:</strong>
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-6 mb-8">
-        <!-- Server Costs -->
-        <div class="text-center p-6 bg-gray-50 rounded-lg">
-          <div class="text-4xl mb-3">💻</div>
-          <div class="text-3xl font-bold text-blue-600 mb-2">50%</div>
-          <h3 class="font-semibold mb-2">Mantenimiento</h3>
-          <p class="text-sm text-gray-600">Servidor y base de datos para que el sitio esté siempre disponible</p>
+      <!-- Breakdown -->
+      <div class="grid sm:grid-cols-3 gap-4">
+        <div class="rounded-lg border border-border bg-background/50 p-4 text-center">
+          <div class="text-2xl font-extrabold text-primary mb-1">50%</div>
+          <div class="text-sm font-semibold text-foreground mb-1">Mantenimiento</div>
+          <p class="text-xs text-muted-foreground">Servidor y base de datos siempre disponibles</p>
         </div>
-
-        <!-- New Tabs -->
-        <div class="text-center p-6 bg-gray-50 rounded-lg">
-          <div class="text-4xl mb-3">🎸</div>
-          <div class="text-3xl font-bold text-green-600 mb-2">30%</div>
-          <h3 class="font-semibold mb-2">Nuevas Tablaturas</h3>
-          <p class="text-sm text-gray-600">Crear y verificar tablaturas confiables tocadas con instrumentos reales</p>
+        <div class="rounded-lg border border-border bg-background/50 p-4 text-center">
+          <div class="text-2xl font-extrabold text-green-400 mb-1">30%</div>
+          <div class="text-sm font-semibold text-foreground mb-1">Nuevas tablaturas</div>
+          <p class="text-xs text-muted-foreground">Crear y verificar tablaturas con instrumentos reales</p>
         </div>
-
-        <!-- Platform -->
-        <div class="text-center p-6 bg-gray-50 rounded-lg">
-          <div class="text-4xl mb-3">🚀</div>
-          <div class="text-3xl font-bold text-purple-600 mb-2">20%</div>
-          <h3 class="font-semibold mb-2">Mejoras</h3>
-          <p class="text-sm text-gray-600">Nuevas funciones, diagramas de acordes, tutoriales en video</p>
+        <div class="rounded-lg border border-border bg-background/50 p-4 text-center">
+          <div class="text-2xl font-extrabold text-amber-400 mb-1">20%</div>
+          <div class="text-sm font-semibold text-foreground mb-1">Mejoras</div>
+          <p class="text-xs text-muted-foreground">Nuevas funciones y diagramas de acordes</p>
         </div>
       </div>
     </div>
 
-    <!-- Costs Transparency -->
-    <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
-      <h2 class="text-2xl font-bold mb-6">Transparencia Total</h2>
-
-      <div class="space-y-4">
-        <div class="flex justify-between items-center border-b pb-3">
-          <span class="text-gray-700">Hosting del servidor</span>
-          <span class="font-semibold">$0/mes (gratis actual) → Meta: $5/mes</span>
+    <!-- Transparency -->
+    <div class="rounded-xl border border-border bg-card/80 p-6 mb-6">
+      <h2 class="text-lg font-bold text-foreground mb-4">Transparencia total</h2>
+      <div class="space-y-3">
+        <div class="flex items-center justify-between py-2 border-b border-border">
+          <span class="text-sm text-muted-foreground">Hosting del servidor</span>
+          <span class="text-sm font-medium text-foreground">$0/mes → Meta: $5/mes</span>
         </div>
-        <div class="flex justify-between items-center border-b pb-3">
-          <span class="text-gray-700">Base de datos</span>
-          <span class="font-semibold">$0/mes (límite 500MB)</span>
+        <div class="flex items-center justify-between py-2 border-b border-border">
+          <span class="text-sm text-muted-foreground">Base de datos</span>
+          <span class="text-sm font-medium text-foreground">$0/mes (500MB límite)</span>
         </div>
-        <div class="flex justify-between items-center border-b pb-3">
-          <span class="text-gray-700">Dominio bstabs.com</span>
-          <span class="font-semibold">$12/año</span>
+        <div class="flex items-center justify-between py-2 border-b border-border">
+          <span class="text-sm text-muted-foreground">Dominio bstabs.com</span>
+          <span class="text-sm font-medium text-foreground">$12/año</span>
         </div>
-        <div class="flex justify-between items-center font-bold text-lg pt-3">
-          <span>Meta mensual para servidor rápido:</span>
-          <span class="text-green-600">$5/mes</span>
+        <div class="flex items-center justify-between py-2">
+          <span class="text-sm font-semibold text-foreground">Meta mensual</span>
+          <span class="text-sm font-bold text-green-400">$5/mes</span>
         </div>
       </div>
 
-      <div class="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded">
-        <p class="text-sm text-yellow-900">
-          <strong>Actualmente:</strong> El sitio corre en servidores gratuitos que se "duermen" después de 15 minutos sin uso.
-          Con tu ayuda, podemos migrar a un servidor más rápido sin esperas.
+      <div class="mt-4 rounded-lg border border-amber-500/20 bg-amber-500/10 px-4 py-3">
+        <p class="text-xs text-amber-300 leading-relaxed">
+          Actualmente el sitio corre en servidores gratuitos. Con tu ayuda podemos migrar a un servidor más rápido sin tiempos de espera.
         </p>
       </div>
     </div>
 
     <!-- Benefits -->
-    <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
-      <h2 class="text-2xl font-bold mb-6">¿Qué obtienes al donar?</h2>
-
-      <div class="grid md:grid-cols-2 gap-4">
-        <div class="flex items-start space-x-3">
-          <span class="text-2xl">❤️</span>
-          <div>
-            <h3 class="font-semibold">Nuestro Agradecimiento</h3>
-            <p class="text-sm text-gray-600">Eterno agradecimiento de toda la comunidad</p>
-          </div>
-        </div>
-
-        <div class="flex items-start space-x-3">
-          <span class="text-2xl">🎵</span>
-          <div>
-            <h3 class="font-semibold">Acceso Prioritario</h3>
-            <p class="text-sm text-gray-600">Ve las nuevas tablaturas antes que nadie</p>
-          </div>
-        </div>
-
-        <div class="flex items-start space-x-3">
-          <span class="text-2xl">🏆</span>
-          <div>
-            <h3 class="font-semibold">Hall of Fame</h3>
-            <p class="text-sm text-gray-600">Tu nombre en la página de "Supporters" (opcional)</p>
-          </div>
-        </div>
-
-        <div class="flex items-start space-x-3">
-          <span class="text-2xl">🎸</span>
-          <div>
-            <h3 class="font-semibold">Solicitud Prioritaria</h3>
-            <p class="text-sm text-gray-600">Pide cualquier canción y la procesamos primero</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Donation Options -->
-    <div class="bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg shadow-xl p-8 text-white text-center">
-      <h2 class="text-3xl font-bold mb-4">Cualquier monto ayuda</h2>
-      <p class="text-xl mb-8">Desde $1 USD hace la diferencia</p>
-
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-        <button class="bg-white text-blue-600 font-bold py-4 px-6 rounded-lg hover:bg-gray-100 transition shadow-lg">
-          $1
-        </button>
-        <button class="bg-white text-blue-600 font-bold py-4 px-6 rounded-lg hover:bg-gray-100 transition shadow-lg">
-          $3
-        </button>
-        <button class="bg-white text-blue-600 font-bold py-4 px-6 rounded-lg hover:bg-gray-100 transition shadow-lg">
-          $5
-        </button>
-        <button class="bg-white text-blue-600 font-bold py-4 px-6 rounded-lg hover:bg-gray-100 transition shadow-lg">
-          Otro
-        </button>
-      </div>
-
-      <div class="space-y-4">
-        <a
-          href="https://paypal.me/Betunx?locale.x=es_XC&country.x=MX"
-          target="_blank"
-          class="block w-full max-w-md mx-auto bg-blue-700 hover:bg-blue-800 text-white font-bold py-4 px-8 rounded-lg transition shadow-lg">
-          Donar con PayPal
-        </a>
-
-        <div class="text-center">
-          <p class="text-sm opacity-90">O escanea el código QR:</p>
-          <div class="bg-white p-4 rounded-lg inline-block mt-3">
-            <div class="w-48 h-48 bg-gray-200 flex items-center justify-center text-gray-500">
-              [QR Code]
+    <div class="rounded-xl border border-border bg-card/80 p-6 mb-8">
+      <h2 class="text-lg font-bold text-foreground mb-4">¿Qué obtienes al donar?</h2>
+      <div class="grid sm:grid-cols-2 gap-4">
+        @for (benefit of benefits; track benefit.title) {
+          <div class="flex items-start gap-3">
+            <div class="rounded-lg bg-primary/10 p-2 shrink-0">
+              <svg class="h-4 w-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" [attr.d]="benefit.icon"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-sm font-semibold text-foreground">{{ benefit.title }}</h3>
+              <p class="text-xs text-muted-foreground mt-0.5">{{ benefit.desc }}</p>
             </div>
           </div>
-        </div>
+        }
       </div>
     </div>
 
-    <!-- Thank You Message -->
-    <div class="mt-12 text-center">
-      <p class="text-2xl font-semibold mb-4">¡Gracias por tu apoyo!</p>
-      <p class="text-gray-600">
-        Cada donación nos acerca más a tener un servidor rápido y confiable.<br />
-        Juntos estamos construyendo la mejor comunidad de tablaturas en español.
+    <!-- CTA -->
+    <div class="rounded-xl border border-red-500/20 bg-gradient-to-br from-red-500/10 to-primary/5 p-8 text-center">
+      <h2 class="text-2xl font-bold text-foreground mb-2">Cualquier monto ayuda</h2>
+      <p class="text-muted-foreground mb-8">Desde $1 USD hace la diferencia</p>
+
+      <div class="grid grid-cols-4 gap-3 max-w-sm mx-auto mb-8">
+        @for (amount of [1, 3, 5, 10]; track amount) {
+          <a
+            href="https://paypal.me/Betunx?locale.x=es_XC&country.x=MX"
+            target="_blank" rel="noopener noreferrer"
+            class="rounded-lg border border-border bg-card py-3 text-center text-sm font-bold text-foreground hover:border-primary/40 hover:bg-primary/5 transition-all">
+            ${{ amount }}
+          </a>
+        }
+      </div>
+
+      <a
+        href="https://paypal.me/Betunx?locale.x=es_XC&country.x=MX"
+        target="_blank" rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 rounded-xl bg-primary px-8 py-3.5 font-semibold text-primary-foreground transition-all hover:bg-primary/90 shadow-lg shadow-primary/20">
+        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+        Donar con PayPal
+      </a>
+
+      <p class="mt-6 text-xs text-muted-foreground">
+        ¡Gracias por apoyar a la mejor comunidad de tablaturas en español!
       </p>
     </div>
+
   </div>
 </div>

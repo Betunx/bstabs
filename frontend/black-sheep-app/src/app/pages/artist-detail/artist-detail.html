@@ -1,16 +1,83 @@
-<div class="artist-detail-container">
-  @if (loading()) {
-    <div class="loading">Cargando...</div>
-  } @else {
-    <div class="artist-header">
-      <h1 class="artist-name">{{ artistName() }}</h1>
-      <p class="song-count">{{ songs().length }} {{ songs().length === 1 ? 'canción' : 'canciones' }}</p>
-    </div>
+<div class="min-h-screen">
+  <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-8">
 
-    <app-item-list
-      [items]="songs()"
-      [title]="'Canciones de ' + artistName()"
-      [emptyMessage]="'No hay canciones disponibles para este artista'"
-    />
-  }
+    <!-- Back -->
+    <a routerLink="/artists"
+      class="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors mb-6">
+      <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+      </svg>
+      Volver a artistas
+    </a>
+
+    @if (loading()) {
+      <!-- Skeleton header -->
+      <div class="mb-8">
+        <div class="flex items-center gap-5 mb-6">
+          <div class="h-20 w-20 rounded-2xl bg-secondary animate-pulse shrink-0"></div>
+          <div class="space-y-3 flex-1">
+            <div class="h-8 bg-secondary animate-pulse rounded-lg w-48"></div>
+            <div class="h-4 bg-secondary animate-pulse rounded-lg w-24"></div>
+          </div>
+        </div>
+      </div>
+      <app-skeleton-song-list [count]="8"/>
+
+    } @else if (artist()) {
+      <!-- Artist header -->
+      <div class="mb-8 animate-slideUp">
+        <div class="flex flex-col sm:flex-row sm:items-center gap-5">
+
+          <!-- Image / initials -->
+          <div class="h-20 w-20 rounded-2xl overflow-hidden bg-secondary shrink-0">
+            @if (artist()!.imageUrl) {
+              <img [src]="artist()!.imageUrl" [alt]="artist()!.name"
+                class="w-full h-full object-cover"/>
+            } @else {
+              <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary/20 to-primary/5">
+                <span class="text-2xl font-extrabold text-primary/60">
+                  {{ getInitials(artist()!.name) }}
+                </span>
+              </div>
+            }
+          </div>
+
+          <div class="flex-1 min-w-0">
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-foreground truncate">{{ artist()!.name }}</h1>
+            <p class="text-muted-foreground mt-1">
+              {{ songs().length }} {{ songs().length === 1 ? 'canción' : 'canciones' }}
+            </p>
+            @if (artist()!.genres.length) {
+              <div class="flex flex-wrap gap-1.5 mt-2">
+                @for (genre of artist()!.genres; track genre) {
+                  <app-genre-badge [genre]="genre"/>
+                }
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- Songs -->
+      <app-song-list-compact [songs]="songs()" emptyMessage="No hay canciones disponibles para este artista"/>
+
+    } @else if (error()) {
+      <!-- Error state -->
+      <div class="text-center py-16">
+        <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-red-500/10">
+          <svg class="h-8 w-8 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+        </div>
+        <p class="text-foreground font-semibold mb-1">Artista no encontrado</p>
+        <p class="text-muted-foreground text-sm mb-6">No pudimos cargar este artista. Puede que no exista o haya un error de conexión.</p>
+        <a routerLink="/artists"
+          class="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-all">
+          Ver todos los artistas
+        </a>
+      </div>
+    }
+
+  </div>
 </div>

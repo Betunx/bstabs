@@ -5,8 +5,10 @@ node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-package-lock.json
+# NOTA: package-lock.json SÍ se versiona (instalación reproducible entre PCs).
+# Usar SIEMPRE npm en este proyecto (los deploy scripts usan `npm run`).
 yarn.lock
+pnpm-lock.yaml
 
 # Environment Variables
 .env
@@ -54,6 +56,16 @@ temp/
 
 # Scraper extracted tabs
 scripts/scraper/extracted-tabs/
+
+# Scraper generated output (datos generados, no fuente)
+scripts/scraper/catalog-output/
+scripts/scraper/mass-import-output/
+scripts/scraper/queue-results/
+scripts/scraper/queue-state.json
+scripts/scraper/output/
+
+# Scraper: modelo OCR binario (3.3 MB, se descarga aparte, no es fuente)
+scripts/scraper/spa.traineddata
 
 # Archivos obsoletos del proyecto (no commitear)
 scripts/archive-obsolete/
