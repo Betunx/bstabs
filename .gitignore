@@ -5,16 +5,21 @@ node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-# NOTA: package-lock.json SÍ se versiona (instalación reproducible entre PCs).
-# Usar SIEMPRE npm en este proyecto (los deploy scripts usan `npm run`).
+# Gestor de paquetes: pnpm (monorepo). pnpm-lock.yaml SÍ se versiona
+# (instalación reproducible entre PCs). NO usar npm/yarn aquí.
+package-lock.json
 yarn.lock
-pnpm-lock.yaml
 
 # Environment Variables
 .env
 .env.local
 .env.*.local
 !.env.example
+
+# Angular environment files — contienen Supabase URL/keys y adminEmail
+# Copiar de environment.example.ts y rellenar valores reales
+frontend/black-sheep-app/src/environments/environment.ts
+frontend/black-sheep-app/src/environments/environment.prod.ts
 
 # IDE
 .vscode/

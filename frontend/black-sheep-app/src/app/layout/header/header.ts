@@ -5,7 +5,7 @@ import { Router, RouterLink, RouterLinkActive, NavigationEnd } from '@angular/ro
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SearchService, SearchResult } from '../../core/services/search.service';
-import { environment } from '../../../environments/environment';
+import { AuthService } from '../../core/services/auth.service';
 import { filter } from 'rxjs';
 
 @Component({
@@ -23,18 +23,17 @@ export class Header implements OnInit, OnDestroy {
   private searchService = inject(SearchService);
   private router = inject(Router);
   private el = inject(ElementRef);
+  authService = inject(AuthService);
 
   // UI state
-  isMobileOpen  = signal(false);
-  isSearchOpen  = signal(false);
-  searchQuery   = signal('');
-  searchResults = signal<SearchResult[]>([]);
-  didYouMean    = signal<string | null>(null);
+  isMobileOpen   = signal(false);
+  isSearchOpen   = signal(false);
+  isUserMenuOpen = signal(false);
+  searchQuery    = signal('');
+  searchResults  = signal<SearchResult[]>([]);
+  didYouMean     = signal<string | null>(null);
 
   private searchDebounce: ReturnType<typeof setTimeout> | null = null;
-
-  // Admin link — solo visible en desarrollo
-  readonly isDevMode = !environment.production;
 
   // Tab-reader scroll behavior
   isHeaderVisible  = signal(true);
@@ -133,5 +132,20 @@ export class Header implements OnInit, OnDestroy {
     this.searchQuery.set(suggestion);
     this.searchResults.set(this.searchService.search(suggestion));
     this.didYouMean.set(null);
+  }
+
+  // ── User menu / auth (de la rama login) ───────────────────────────────────
+  toggleUserMenu(): void {
+    this.isUserMenuOpen.update(v => !v);
+  }
+
+  closeUserMenu(): void {
+    this.isUserMenuOpen.set(false);
+  }
+
+  async signOut(): Promise<void> {
+    await this.authService.signOut();
+    this.closeUserMenu();
+    this.router.navigate(['/']);
   }
 }

@@ -1,0 +1,16 @@
+{
+  "name": "bstabs-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "pnpm --filter black-sheep-app start",
+    "build": "pnpm --filter black-sheep-app build",
+    "deploy": "pnpm --filter black-sheep-app run deploy",
+    "api:dev": "pnpm --filter blacksheep-api-workers dev",
+    "api:deploy": "pnpm --filter blacksheep-api-workers run deploy"
+  },
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=9"
+  }
+}

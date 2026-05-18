@@ -1,62 +1,109 @@
 # Black Sheep Tabs
 
-> "Knowing for love, fun and free!"
+> *"Knowing for love, fun and free!"*
 
-Plataforma moderna de tablaturas musicales. Sin anuncios, sin distracciones, solo musica pura.
+Plataforma de tablaturas de guitarra para hispanohablantes. Sin anuncios, sin distracciones — solo música. Aquí encontrarás acordes, letras y estructura de canciones en un formato limpio y enfocado en la experiencia del músico.
 
-## Caracteristicas
+**Géneros:** Rock · Pop · Corrido · Norteño · Banda · Regional Mexicano · Ranchera · Metal · Indie · Folk · Blues · Jazz · Cumbia · Salsa · Reggae · Country · Alternativo y más.
 
-- Mobile-First PWA - Instalalo como app nativa
-- 4 Modos de Visualizacion - Light, Dark, Night Red, OLED
-- Formato Profesional - Acordes, letra, metadata completa
-- Export a PDF - Descarga tablaturas limpias
-- Enlaces Musicales - Botones a Spotify y YouTube
-- Libre de Anuncios - Financiado por donaciones
-- Ultra Rapido - Optimizado para performance
-- Busqueda Avanzada - Por artista, tono, genero musical
+## Características
 
-## Stack Tecnologico
+- **Sin anuncios** — financiado por donaciones de la comunidad
+- **4 temas visuales** — Light, Dark, Night Red, OLED (persisten entre sesiones)
+- **Búsqueda avanzada** — por artista, canción, género y fragmento de letra
+- **Formato profesional** — acordes posicionados sobre letra, metadata completa (tonalidad, tempo, afinación)
+- **Cuentas de usuario** — login con Google o email para pedir canciones y ver tu historial
+- **Responsive / Mobile-first** — funciona en cualquier dispositivo
+- **Ultra rápido** — cache en memoria + Cloudflare Edge
 
-- **Frontend:** Angular 20 (Signals, Standalone Components) + Tailwind CSS + PWA
-- **Backend:** Cloudflare Workers + Supabase (PostgreSQL)
-- **Deploy:** Cloudflare Pages (frontend) + Cloudflare Workers (API)
+## Links
+
+| Recurso | URL |
+|---------|-----|
+| Producción | https://www.bstabs.com |
+| Admin (dev) | https://bstabs.pages.dev |
+| API | https://blacksheep-api.bstabs.workers.dev |
+
+## Stack Tecnológico
+
+| Capa | Tecnología |
+|------|------------|
+| Frontend | Angular 20 (Signals, Standalone Components) |
+| Styling | Tailwind CSS + SCSS |
+| Auth | Supabase Auth (Google OAuth + Email) |
+| Backend | Cloudflare Workers |
+| Database | Supabase PostgreSQL |
+| Storage | Cloudflare R2 (imágenes de artistas) |
+| Deploy | Cloudflare Pages |
+| Package manager | **pnpm** (monorepo workspace) |
 
 ## Estructura del Proyecto
 
 ```
-blackSheep/
-├── frontend/black-sheep-app/   # Angular PWA
-├── backend-workers/            # Cloudflare Workers API
-└── scripts/scraper/            # Scrapers de tablaturas
+bstabs/                          ← raíz del monorepo (pnpm workspace)
+├── pnpm-workspace.yaml
+├── .npmrc
+├── frontend/black-sheep-app/    ← Angular 20 SPA
+├── backend-workers/             ← Cloudflare Workers API
+└── scripts/scraper/             ← Scrapers de tablaturas
 ```
 
-## Inicio Rapido
+## Inicio Rápido
 
 ### Prerrequisitos
-- Node.js 18+
-- npm 10+
 
-### Frontend
+- Node.js 20+
+- pnpm 9+ — instalar con: `npm install -g pnpm` o `winget install pnpm.pnpm`
 
-```bash
-cd frontend/black-sheep-app
-npm install
-npm start
-# http://localhost:4200
-```
-
-### Backend (Workers)
+### Instalar todo el monorepo
 
 ```bash
-cd backend-workers
-npm install
-npx wrangler dev
-# http://localhost:8787
+# Desde la raíz del proyecto
+pnpm install
 ```
+
+### Desarrollo
+
+```bash
+# Frontend → http://localhost:4200
+pnpm --filter black-sheep-app start
+
+# Backend Workers → http://localhost:8787
+pnpm --filter blacksheep-api-workers dev
+```
+
+### Deploy
+
+```bash
+# Frontend producción → bstabs.com
+pnpm --filter black-sheep-app run deploy
+
+# Frontend admin → bstabs.pages.dev
+pnpm --filter black-sheep-app run deploy:admin
+
+# Backend API
+pnpm --filter blacksheep-api-workers run deploy
+```
+
+## Configuración de Auth (Supabase)
+
+Para que el sistema de login funcione necesitas:
+
+1. Crear un proyecto en [supabase.com](https://supabase.com)
+2. En **Settings → API**, copiar:
+   - `Project URL` → `supabaseUrl` en `environment.ts`
+   - `anon / public key` → `supabaseAnonKey` en `environment.ts`
+3. En **Authentication → Providers → Google**, habilitar Google OAuth
+4. Agregar redirect URLs:
+   ```
+   http://localhost:4200/auth/callback
+   https://www.bstabs.com/auth/callback
+   https://bstabs.pages.dev/auth/callback
+   ```
 
 ## Formato de Tablaturas
 
-Las tablaturas usan JSON estructurado:
+Las tablaturas se almacenan en JSON estructurado:
 
 ```json
 {
@@ -74,7 +121,7 @@ Las tablaturas usan JSON estructurado:
             { "chord": "Am", "position": 0 },
             { "chord": "G", "position": 15 }
           ],
-          "lyrics": "En la sierra naci..."
+          "lyrics": "En la sierra nací..."
         }
       ]
     }
@@ -84,26 +131,18 @@ Las tablaturas usan JSON estructurado:
 
 ## Apoya el Proyecto
 
-Black Sheep es gratuito y sin anuncios. Si te resulta util, considera donar:
+Black Sheep es gratuito y sin anuncios. Si te resulta útil:
 
 - PayPal: [paypal.me/betunx](https://paypal.me/betunx)
 - Email: bstabscontact@gmail.com
 
-## Enlaces
-
-- Produccion: [bstabs.com](https://bstabs.com)
-- API: blacksheep-api.bstabs.workers.dev
-
-## Licencia
-
-MIT License
-
 ## Autor
 
-**Humberto López** - Músico & Full Stack Developer
-- LinkedIn: [linkedin.com/in/humberto-lópez-435b77216](https://www.linkedin.com/in/humberto-lópez-435b77216)
+**Humberto López** — Músico & Full Stack Developer
+
+- LinkedIn: [linkedin.com/in/humberto-lopez-fs-dev](https://linkedin.com/in/humberto-lopez-fs-dev)
 - Email: bstabscontact@gmail.com
 
 ---
 
-Hecho con amor por musicos, para musicos
+*Hecho con amor por músicos, para músicos.*

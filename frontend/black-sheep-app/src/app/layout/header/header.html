@@ -28,7 +28,7 @@
             {{ link.label }}
           </a>
         }
-        @if (isDevMode) {
+        @if (authService.isAdmin()) {
           <a
             routerLink="/admin"
             routerLinkActive="bg-primary/10 text-primary"
@@ -60,6 +60,58 @@
             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
           </svg>
         </a>
+
+        <!-- User Menu / Login -->
+        @if (authService.isLoading()) {
+          <div class="h-9 w-9 rounded-full bg-secondary animate-pulse"></div>
+        } @else if (authService.isAuthenticated()) {
+          <div class="relative">
+            <button
+              (click)="toggleUserMenu()"
+              class="flex items-center hover:opacity-80 transition-opacity"
+              [title]="authService.displayName()">
+              @if (authService.avatarUrl()) {
+                <img [src]="authService.avatarUrl()!" alt="Avatar"
+                  class="h-9 w-9 rounded-full object-cover border-2 border-primary/40"/>
+              } @else {
+                <div class="flex h-9 w-9 items-center justify-center rounded-full bg-primary/10 text-primary font-bold text-sm">
+                  {{ (authService.displayName() || 'U').charAt(0).toUpperCase() }}
+                </div>
+              }
+            </button>
+
+            @if (isUserMenuOpen()) {
+              <div
+                (mouseleave)="closeUserMenu()"
+                class="absolute right-0 top-12 min-w-[200px] rounded-xl border border-border bg-card shadow-2xl overflow-hidden animate-slideUp z-50">
+                <div class="px-4 py-3 border-b border-border">
+                  <p class="text-sm font-semibold text-foreground truncate">{{ authService.displayName() }}</p>
+                  <p class="text-xs text-muted-foreground truncate">{{ authService.user()?.email }}</p>
+                </div>
+                <a routerLink="/request-song" (click)="closeUserMenu()"
+                  class="flex items-center gap-2 px-4 py-3 text-sm text-foreground hover:bg-secondary transition-colors">
+                  <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
+                  </svg>
+                  Pedir canción
+                </a>
+                <button
+                  (click)="signOut()"
+                  class="flex w-full items-center gap-2 px-4 py-3 text-sm text-red-400 hover:bg-secondary transition-colors">
+                  <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                  </svg>
+                  Cerrar sesión
+                </button>
+              </div>
+            }
+          </div>
+        } @else {
+          <a routerLink="/auth/login"
+            class="rounded-lg border border-primary/40 px-4 py-2 text-sm font-semibold text-primary hover:bg-primary/10 transition-colors">
+            Iniciar sesión
+          </a>
+        }
       </div>
 
       <!-- Mobile Actions -->
@@ -101,11 +153,22 @@
           class="block px-4 py-2.5 rounded-lg text-sm font-medium text-amber-400 hover:bg-amber-500/10 transition-all">
           Apoyar BSTabs
         </a>
-        <a routerLink="/request-song"
-          class="block px-4 py-2.5 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-secondary transition-all">
-          Pedir canción
-        </a>
-        @if (isDevMode) {
+        @if (authService.isAuthenticated()) {
+          <a routerLink="/request-song"
+            class="block px-4 py-2.5 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-secondary transition-all">
+            Pedir canción
+          </a>
+          <button (click)="signOut()"
+            class="block w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium text-red-400 hover:bg-red-500/10 transition-all">
+            Cerrar sesión
+          </button>
+        } @else {
+          <a routerLink="/auth/login"
+            class="block px-4 py-2.5 rounded-lg text-sm font-semibold text-primary hover:bg-primary/10 transition-all">
+            Iniciar sesión
+          </a>
+        }
+        @if (authService.isAdmin()) {
           <a routerLink="/admin"
             class="block px-4 py-2.5 rounded-lg text-sm font-medium bg-red-500/10 text-red-400 hover:bg-red-500/20 transition-all">
             Admin

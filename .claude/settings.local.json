@@ -50,7 +50,22 @@
       "Bash(rm -f package.json package-lock.json)",
       "Bash(ls *.json)",
       "Bash(git reset *)",
-      "Bash(npm -v)"
+      "Bash(npm -v)",
+      "Bash(git ls-remote *)",
+      "Bash(git merge *)",
+      "Bash(awk '/ *)",
+      "Bash(awk '/=======/{f=1} *)",
+      "Bash(pnpm -v)",
+      "Bash(corepack --version)",
+      "Bash(git ls-tree *)",
+      "Bash(rm -f frontend/black-sheep-app/package-lock.json)",
+      "Bash(corepack enable *)",
+      "Bash(corepack prepare *)",
+      "PowerShell(corepack prepare pnpm@9 --activate 2>&1)",
+      "PowerShell(& corepack pnpm@9 --version 2>&1)",
+      "PowerShell(npm config get prefix 2>&1)",
+      "PowerShell(& corepack pnpm@9 install 2>&1)",
+      "PowerShell(& corepack pnpm@9 --filter black-sheep-app build 2>&1)"
     ],
     "deny": [],
     "ask": []
