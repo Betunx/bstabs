@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { AuthService } from './auth.service';
 
 export interface AdminStats {
   publishedCount: number;
@@ -39,38 +40,21 @@ export interface SongRequest {
 })
 export class AdminService {
   private http = inject(HttpClient);
+  private auth = inject(AuthService);
   private apiUrl = environment.apiUrl;
 
-  // Store API key in memory (session-only, not persisted)
-  private _apiKey: string | null = null;
-
   /**
-   * Set the admin API key for the current session
-   * Call this method when admin logs in or from the dashboard
+   * Headers de admin: el backend valida el JWT de Supabase y que el email
+   * sea el del admin. Sin prompt() ni API key en el frontend.
    */
-  setApiKey(key: string): void {
-    this._apiKey = key;
-  }
-
-  /**
-   * Get the current API key, prompting if not set
-   */
-  private getApiKey(): string {
-    if (!this._apiKey) {
-      const key = prompt('Ingresa tu API Key de administrador:');
-      if (key) {
-        this._apiKey = key;
-      } else {
-        throw new Error('API Key es requerida para operaciones de administrador');
-      }
-    }
-    return this._apiKey;
-  }
-
   private getHeaders(): HttpHeaders {
+    const token = this.auth.getAccessToken();
+    if (!token) {
+      throw new Error('Sesión de administrador requerida. Inicia sesión de nuevo.');
+    }
     return new HttpHeaders({
       'Content-Type': 'application/json',
-      'x-api-key': this.getApiKey()
+      'Authorization': `Bearer ${token}`
     });
   }
 

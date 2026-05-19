@@ -5,6 +5,7 @@ compatibility_date = "2024-01-01"
 # Variables de entorno (no secretas)
 [vars]
 SUPABASE_URL = "https://alqpufucjekmonetoaih.supabase.co"
+ADMIN_EMAIL = "humbertolpzc.work@gmail.com"
 
 # R2 Bucket Binding para imágenes de artistas
 [[r2_buckets]]

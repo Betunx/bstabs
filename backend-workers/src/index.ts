@@ -5,6 +5,7 @@ interface Env {
   SUPABASE_URL: string
   SUPABASE_SERVICE_KEY: string
   ADMIN_API_KEY: string
+  ADMIN_EMAIL: string      // Email del admin (auth vía JWT de Supabase)
   ARTIST_IMAGES: R2Bucket  // R2 bucket binding
 }
 
@@ -87,7 +88,7 @@ function getCorsHeaders(request: Request) {
   return {
     'Access-Control-Allow-Origin': allowedOrigin,
     'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type, x-api-key',
+    'Access-Control-Allow-Headers': 'Content-Type, x-api-key, Authorization',
   };
 }
 
@@ -96,7 +97,7 @@ function jsonResponse(data: any, status = 200, request?: Request) {
   const cors = request ? getCorsHeaders(request) : {
     'Access-Control-Allow-Origin': ALLOWED_ORIGINS[0],
     'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type, x-api-key',
+    'Access-Control-Allow-Headers': 'Content-Type, x-api-key, Authorization',
   }
   return new Response(JSON.stringify(data), {
     status,
@@ -108,6 +109,31 @@ function jsonResponse(data: any, status = 200, request?: Request) {
 function verifyApiKey(request: Request, env: Env): boolean {
   const apiKey = request.headers.get('x-api-key')
   return apiKey === env.ADMIN_API_KEY
+}
+
+// Verificar acceso admin: API Key (legacy/scripts) O JWT de Supabase del admin.
+// El JWT lo manda el frontend como `Authorization: Bearer <access_token>`.
+async function verifyAdmin(
+  request: Request,
+  env: Env,
+  supabase: any
+): Promise<boolean> {
+  // 1. API Key estática (scripts, uploads de imágenes, compatibilidad)
+  if (verifyApiKey(request, env)) return true
+
+  // 2. JWT de Supabase: validar token y que el email sea el del admin
+  const authHeader = request.headers.get('Authorization') || ''
+  const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7).trim() : ''
+  if (!token) return false
+
+  try {
+    const { data, error } = await supabase.auth.getUser(token)
+    if (error || !data.user) return false
+    const email = data.user.email?.toLowerCase()
+    return !!email && email === env.ADMIN_EMAIL?.toLowerCase()
+  } catch {
+    return false
+  }
 }
 
 // SECURITY: Validación y sanitización de inputs
@@ -230,7 +256,7 @@ export default {
 
       // POST /songs - Crear cancion (requiere API key)
       if (path === '/songs' && request.method === 'POST') {
-        if (!verifyApiKey(request, env)) {
+        if (!(await verifyAdmin(request, env, supabase))) {
           return json({ error: 'Unauthorized' }, 401)
         }
 
@@ -248,7 +274,7 @@ export default {
 
       // PUT /songs/:id - Actualizar cancion (requiere API key)
       if (path.match(/^\/songs\/[a-f0-9-]+$/) && request.method === 'PUT') {
-        if (!verifyApiKey(request, env)) {
+        if (!(await verifyAdmin(request, env, supabase))) {
           return json({ error: 'Unauthorized' }, 401)
         }
 
@@ -268,7 +294,7 @@ export default {
 
       // DELETE /songs/:id - Eliminar cancion (requiere API key)
       if (path.match(/^\/songs\/[a-f0-9-]+$/) && request.method === 'DELETE') {
-        if (!verifyApiKey(request, env)) {
+        if (!(await verifyAdmin(request, env, supabase))) {
           return json({ error: 'Unauthorized' }, 401)
         }
 
@@ -285,7 +311,7 @@ export default {
 
       // POST /songs/:id/publish - Publicar cancion (requiere API key)
       if (path.match(/^\/songs\/[a-f0-9-]+\/publish$/) && request.method === 'POST') {
-        if (!verifyApiKey(request, env)) {
+        if (!(await verifyAdmin(request, env, supabase))) {
           return json({ error: 'Unauthorized' }, 401)
         }
 
@@ -304,7 +330,7 @@ export default {
 
       // GET /admin/tabs - Listar todas las canciones (incluye drafts) (requiere API key)
       if (path === '/admin/tabs' && request.method === 'GET') {
-        if (!verifyApiKey(request, env)) {
+        if (!(await verifyAdmin(request, env, supabase))) {
           return json({ error: 'Unauthorized' }, 401)
         }
 
@@ -335,7 +361,7 @@ export default {
 
       // POST /admin/tabs/publish-batch - Publicar múltiples canciones (requiere API key)
       if (path === '/admin/tabs/publish-batch' && request.method === 'POST') {
-        if (!verifyApiKey(request, env)) {
+        if (!(await verifyAdmin(request, env, supabase))) {
           return json({ error: 'Unauthorized' }, 401)
         }
 
@@ -360,7 +386,7 @@ export default {
 
       // POST /songs/:id/reject - Rechazar cancion (vuelve a pending)
       if (path.match(/^\/songs\/[a-f0-9-]+\/reject$/) && request.method === 'POST') {
-        if (!verifyApiKey(request, env)) {
+        if (!(await verifyAdmin(request, env, supabase))) {
           return json({ error: 'Unauthorized' }, 401)
         }
 
@@ -453,7 +479,7 @@ export default {
 
       // GET /admin/requests - Listar solicitudes (requiere API key)
       if (path === '/admin/requests' && request.method === 'GET') {
-        if (!verifyApiKey(request, env)) {
+        if (!(await verifyAdmin(request, env, supabase))) {
           return json({ error: 'Unauthorized' }, 401)
         }
 
@@ -476,7 +502,7 @@ export default {
 
       // PUT /admin/requests/:id - Actualizar solicitud (requiere API key)
       if (path.match(/^\/admin\/requests\/[a-f0-9-]+$/) && request.method === 'PUT') {
-        if (!verifyApiKey(request, env)) {
+        if (!(await verifyAdmin(request, env, supabase))) {
           return json({ error: 'Unauthorized' }, 401)
         }
 
@@ -496,7 +522,7 @@ export default {
 
       // DELETE /admin/requests/:id - Eliminar solicitud (requiere API key)
       if (path.match(/^\/admin\/requests\/[a-f0-9-]+$/) && request.method === 'DELETE') {
-        if (!verifyApiKey(request, env)) {
+        if (!(await verifyAdmin(request, env, supabase))) {
           return json({ error: 'Unauthorized' }, 401)
         }
 
@@ -515,7 +541,7 @@ export default {
 
       // GET /admin/songs - Listar TODAS las canciones (requiere API key)
       if (path === '/admin/songs' && request.method === 'GET') {
-        if (!verifyApiKey(request, env)) {
+        if (!(await verifyAdmin(request, env, supabase))) {
           return json({ error: 'Unauthorized' }, 401)
         }
 
@@ -538,7 +564,7 @@ export default {
 
       // GET /admin/stats - Estadísticas (requiere API key)
       if (path === '/admin/stats' && request.method === 'GET') {
-        if (!verifyApiKey(request, env)) {
+        if (!(await verifyAdmin(request, env, supabase))) {
           return json({ error: 'Unauthorized' }, 401)
         }
 
@@ -587,7 +613,7 @@ export default {
 
       // POST /admin/artists/images/:slug - Subir imagen de artista (requiere API key)
       if (path.match(/^\/admin\/artists\/images\/[a-z0-9-]+\.(jpg|jpeg|png|webp)$/) && request.method === 'POST') {
-        if (!verifyApiKey(request, env)) {
+        if (!(await verifyAdmin(request, env, supabase))) {
           return json({ error: 'Unauthorized' }, 401)
         }
 
@@ -616,7 +642,7 @@ export default {
 
       // DELETE /admin/artists/images/:slug - Eliminar imagen de artista (requiere API key)
       if (path.match(/^\/admin\/artists\/images\/[a-z0-9-]+\.(jpg|jpeg|png|webp)$/) && request.method === 'DELETE') {
-        if (!verifyApiKey(request, env)) {
+        if (!(await verifyAdmin(request, env, supabase))) {
           return json({ error: 'Unauthorized' }, 401)
         }
 
@@ -633,7 +659,7 @@ export default {
 
       // GET /admin/artists/images - Listar todas las imágenes (requiere API key)
       if (path === '/admin/artists/images' && request.method === 'GET') {
-        if (!verifyApiKey(request, env)) {
+        if (!(await verifyAdmin(request, env, supabase))) {
           return json({ error: 'Unauthorized' }, 401)
         }
 

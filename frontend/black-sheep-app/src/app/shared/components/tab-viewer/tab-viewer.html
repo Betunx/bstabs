@@ -17,17 +17,30 @@
           <h1 class="text-2xl sm:text-3xl font-extrabold text-foreground">{{ song.title }}</h1>
           <p class="text-lg font-medium text-muted-foreground">{{ song.artist }}</p>
         </div>
-        <button
-          (click)="isFavorite.set(!isFavorite())"
-          class="self-start flex items-center gap-1.5 rounded-xl border px-4 py-2.5 text-sm font-medium transition-all"
-          [class]="isFavorite()
-            ? 'border-red-500/30 bg-red-500/10 text-red-400'
-            : 'border-border bg-card text-muted-foreground hover:text-foreground'">
-          <svg class="h-4 w-4" [attr.fill]="isFavorite() ? 'currentColor' : 'none'" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-          </svg>
-        </button>
+        <div class="flex items-center gap-2 self-start">
+          <button
+            (click)="isFavorite.set(!isFavorite())"
+            class="flex items-center gap-1.5 rounded-xl border px-4 py-2.5 text-sm font-medium transition-all"
+            [class]="isFavorite()
+              ? 'border-red-500/30 bg-red-500/10 text-red-400'
+              : 'border-border bg-card text-muted-foreground hover:text-foreground'">
+            <svg class="h-4 w-4" [attr.fill]="isFavorite() ? 'currentColor' : 'none'" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+            </svg>
+          </button>
+
+          <button
+            (click)="openReport()"
+            title="Reportar un error en esta canción"
+            class="flex items-center gap-1.5 rounded-xl border border-border bg-card px-4 py-2.5 text-sm font-medium text-muted-foreground hover:text-amber-400 hover:border-amber-500/30 transition-all">
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 2H21l-3 6 3 6h-8.5l-1-2H5a2 2 0 00-2 2z"/>
+            </svg>
+            <span class="hidden sm:inline">Reportar</span>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -235,4 +248,82 @@
     </div>
 
   </div>
+
+  <!-- ── Modal: Reportar canción ─────────────────────────────────────────── -->
+  @if (showReportModal()) {
+    <div class="fixed inset-0 z-50 flex items-center justify-center p-4">
+      <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" (click)="closeReport()"></div>
+
+      <div class="relative w-full max-w-md rounded-2xl border border-border bg-card p-6 shadow-2xl animate-slideUp">
+        <button (click)="closeReport()"
+          class="absolute right-4 top-4 text-muted-foreground hover:text-foreground transition-colors">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+
+        <h3 class="text-lg font-bold text-foreground mb-1">Reportar un error</h3>
+        <p class="text-sm text-muted-foreground mb-5">
+          {{ song.title }} — {{ song.artist }}
+        </p>
+
+        @if (!auth.isAuthenticated()) {
+          <!-- Requiere cuenta -->
+          <p class="text-sm text-muted-foreground mb-5">
+            Necesitas una cuenta para reportar errores. Así podemos seguir tu reporte
+            y avisarte cuando se corrija.
+          </p>
+          <a routerLink="/auth/login" [queryParams]="{ returnUrl: '/tab/' + song.id }"
+            class="block w-full rounded-xl bg-primary px-4 py-2.5 text-center text-sm font-semibold text-primary-foreground hover:opacity-90 transition-opacity">
+            Iniciar sesión
+          </a>
+        } @else if (reportSuccess()) {
+          <!-- Éxito -->
+          <div class="rounded-xl border border-green-500/30 bg-green-500/10 p-4 text-sm text-green-400 mb-4">
+            ¡Gracias! Tu reporte se envió. Lo revisaremos pronto.
+          </div>
+          <button (click)="closeReport()"
+            class="w-full rounded-xl bg-secondary px-4 py-2.5 text-sm font-semibold text-foreground hover:opacity-90 transition-opacity">
+            Cerrar
+          </button>
+        } @else {
+          <!-- Formulario -->
+          <label class="block text-sm font-medium text-foreground mb-2">¿Qué está mal?</label>
+          <select
+            [ngModel]="reportReason()"
+            (ngModelChange)="reportReason.set($event)"
+            class="w-full rounded-xl border border-border bg-background px-3 py-2.5 text-sm text-foreground mb-4 focus:outline-none focus:ring-2 focus:ring-primary">
+            @for (r of reportReasons; track r.value) {
+              <option [value]="r.value">{{ r.label }}</option>
+            }
+          </select>
+
+          <label class="block text-sm font-medium text-foreground mb-2">
+            Detalles <span class="text-muted-foreground font-normal">(opcional)</span>
+          </label>
+          <textarea
+            [ngModel]="reportDescription()"
+            (ngModelChange)="reportDescription.set($event)"
+            rows="3"
+            placeholder="Ej: el acorde del coro debería ser Sol, no Mi…"
+            class="w-full rounded-xl border border-border bg-background px-3 py-2.5 text-sm text-foreground mb-4 resize-none focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+
+          @if (reportError()) {
+            <p class="text-sm text-red-400 mb-3">{{ reportError() }}</p>
+          }
+
+          <div class="flex gap-2">
+            <button (click)="closeReport()"
+              class="flex-1 rounded-xl bg-secondary px-4 py-2.5 text-sm font-semibold text-foreground hover:opacity-90 transition-opacity">
+              Cancelar
+            </button>
+            <button (click)="submitReport()" [disabled]="reportSubmitting()"
+              class="flex-1 rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground hover:opacity-90 transition-opacity disabled:opacity-50">
+              {{ reportSubmitting() ? 'Enviando…' : 'Enviar reporte' }}
+            </button>
+          </div>
+        }
+      </div>
+    </div>
+  }
 </div>
