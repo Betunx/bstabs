@@ -159,8 +159,8 @@ Navegación horizontal: C D E F G A B
 
 | Rama | URL | Propósito | Deploy Command |
 |------|-----|-----------|----------------|
-| `main` | https://www.bstabs.com/ | **Producción pública** (sin rutas /admin) | `npm run deploy` |
-| `admin` | https://bstabs.pages.dev/ | **Versión admin** (con panel /admin y /admin/editor) | `npm run deploy:admin` |
+| `main` | https://www.bstabs.com/ | **Producción pública** (sin rutas /admin) | `pnpm --filter black-sheep-app run deploy` |
+| `admin` | https://bstabs.pages.dev/ | **Versión admin** (con panel /admin y /admin/editor) | `pnpm --filter black-sheep-app run deploy:admin` |
 
 ### Configuración Cloudflare Pages
 
@@ -172,39 +172,43 @@ Navegación horizontal: C D E F G A B
 ### Workflow de Deployment
 
 ```bash
+# Gestor: pnpm via corepack. La versión la fija "packageManager" en package.json
+# (corepack la auto-selecciona). Comandos desde la RAÍZ del monorepo.
+
 # 1. Deploy versión pública (sin admin)
 git checkout main
-cd frontend/black-sheep-app
-npm run deploy              # → bstabs.com
+pnpm --filter black-sheep-app run deploy        # → bstabs.com
 
 # 2. Deploy versión admin (con panel)
 git checkout admin
-cd frontend/black-sheep-app
-npm run deploy:admin        # → bstabs.pages.dev
+pnpm --filter black-sheep-app run deploy:admin  # → bstabs.pages.dev
 
 # 3. Backend API (siempre mismo endpoint)
-cd backend-workers
-npx wrangler deploy         # → blacksheep-api.bstabs.workers.dev
+pnpm --filter blacksheep-api-workers run deploy # → blacksheep-api.bstabs.workers.dev
 ```
+
+> ⚠️ Antes de cualquier build/deploy, `environment.ts` y `environment.prod.ts`
+> deben existir localmente (gitignored). Si faltan: copiarlos de los `*.example.ts`.
+> Si no tienes el comando `pnpm`, usa `corepack pnpm@9 ...` (no requiere admin).
 
 ## Package Manager: pnpm
 
 El proyecto usa **pnpm** como gestor de paquetes (monorepo workspace).
+La versión está fijada en `package.json` → `"packageManager": "pnpm@9.15.9"`,
+y la versión de Node en `.nvmrc` (22.20.0). corepack auto-selecciona pnpm.
 
-### Instalar pnpm (primera vez)
+### Tener el comando `pnpm` (primera vez, sin admin)
 ```powershell
-npm install -g pnpm   # o: winget install pnpm.pnpm
+# Opción A (recomendada, permanente): deja el shim en la carpeta npm (ya en PATH)
+corepack enable --install-directory "$env:APPDATA\npm" pnpm
+# Opción B (siempre funciona, sin instalar nada): usar corepack en modo run
+corepack pnpm@9 <comando>
+# Con admin: `corepack enable` basta. Verifica: `pnpm -v` → 9.15.9
 ```
 
-### Migrar de npm a pnpm (si hay node_modules con npm)
+### Instalar dependencias del workspace
 ```bash
-# Borrar node_modules existentes en cada package
-Remove-Item -Recurse -Force frontend/black-sheep-app/node_modules
-Remove-Item -Recurse -Force backend-workers/node_modules
-Remove-Item -Recurse -Force scripts/scraper/node_modules
-
-# Instalar todo desde la raíz del workspace
-pnpm install
+pnpm install            # desde la raíz; instala los 3 paquetes del workspace
 ```
 
 ## Comandos Rápidos

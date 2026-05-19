@@ -21,6 +21,9 @@ yarn.lock
 frontend/black-sheep-app/src/environments/environment.ts
 frontend/black-sheep-app/src/environments/environment.prod.ts
 
+# Claude Code: config local por máquina (rutas absolutas, no sincronizar)
+.claude/settings.local.json
+
 # IDE
 .vscode/
 .idea/

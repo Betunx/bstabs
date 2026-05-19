@@ -34,13 +34,39 @@
 
 ## ⚠️ Pendientes / decisiones abiertas
 
-- **Selector de tema**: el rediseño quitó el switch de tema del header. Si quieres
-  reubicarlo en el diseño nuevo, es trabajo aparte (no se perdió el `ThemeService`
-  en `origin/main`, pero el diseño nuevo no lo usa).
-- **`environment.ts` real**: tiene placeholders de Supabase. Para que el **login
-  funcione** rellena `supabaseUrl` y `supabaseAnonKey` (Supabase → Settings → API).
-- `.claude/settings.local.json` es específico de máquina (rutas absolutas). Mejor
-  NO commitearlo: `git rm --cached .claude/settings.local.json` y gitignorearlo.
+### 🔴 Bloqueante para funcionalidad
+
+- **Login no autentica aún**: `environment.ts` / `environment.prod.ts` tienen
+  placeholders. Rellena `supabaseUrl` + `supabaseAnonKey` reales
+  (Supabase → Settings → API). El sitio público funciona; solo el login espera esto.
+
+### 🟡 Decisiones de diseño
+
+- **Selector de tema**: el rediseño lo quitó del header y se borró `theme.ts`
+  en `redesign-local`. Si quieres conservar dark/light/night-red/oled hay que
+  reintroducir un servicio de tema alineado al diseño nuevo, o decidir quitarlo.
+- **Higiene git**: `.claude/settings.local.json` es específico de máquina (rutas
+  absolutas). Recomendado: `git rm --cached .claude/settings.local.json` + gitignore.
+
+### 🟢 Reproducibilidad entre máquinas — HECHO
+
+- `"packageManager": "pnpm@9.15.9"` en `package.json` → corepack auto-selecciona.
+- `.nvmrc` = `22.20.0` → misma versión de Node (usar `nvm use`).
+- `pnpm-lock.yaml` versionado → mismo árbol de dependencias.
+- Resultado: en cualquier PC, `corepack pnpm install` da entorno idéntico.
+
+## Pendientes — Optimizar / Analizar (no urgentes)
+
+| Tema | Acción sugerida |
+|---|---|
+| Backend CORS | Probar `pnpm --filter blacksheep-api-workers run deploy` y verificar que el frontend nuevo llama bien a la API (se cambió el CORS por-origen) |
+| Login E2E | Con keys reales, probar flujo `/auth/login` → callback → sesión → admin |
+| Guard de pre-deploy | Script que aborte deploy si el working tree está sucio / sin pushear (evita "deployé viejo") |
+| SCSS budget | `admin/tab-editor.scss` excede presupuesto (warning). Subir budget o adelgazar SCSS |
+| **URLs amigables** | Las tabs usan UUID: `/tab/e80ec5c2-...`. Cambiar a slug legible/SEO tipo `/tab/adele-when-we-were-young` (o `/tab/<slug>-<idCorto>`). Requiere: campo `slug` o `slugify(artista+título)`, ruta `/tab/:slug`, redirect de UUID viejo → slug, y actualizar `routerLink` en listas/cards |
+| Roadmap original | Quedaban: paginación, toast notifications, skeletons en más vistas, editor sin `prompt()` |
+| Limpieza datos | 4 canciones con HTML corrupto, ~28 grupos de duplicados (ver CLAUDE.md) |
+| Doc | `ORCHESTRATOR.md` (vino de la laptop) — revisar/consolidar con esta sesión |
 
 ## Cómo CERRAR esto (lo haces tú — commits manuales)
 
@@ -77,16 +103,24 @@ corepack pnpm@9 --filter black-sheep-app run deploy   # → bstabs.com
 
 ## Setup en OTRA PC (laptop) al bajar el repo
 
+> 🔴 **GOTCHA #1**: `environment.ts` y `environment.prod.ts` NO están en git
+> (gitignored, llevan claves). Si faltan, **el deploy/build truena** con:
+> `The ...environment.prod.ts path in file replacements does not exist`.
+> El build de **producción** reemplaza `environment.ts` → `environment.prod.ts`,
+> así que **AMBOS deben existir localmente**.
+
 ```bash
 git pull
 corepack pnpm@9 install                 # instala el workspace completo
 
-# Crear los environment locales (NO vienen en git, llevan claves):
+# OBLIGATORIO: crear los DOS environment locales desde las plantillas
 cp frontend/black-sheep-app/src/environments/environment.example.ts \
    frontend/black-sheep-app/src/environments/environment.ts
 cp frontend/black-sheep-app/src/environments/environment.prod.example.ts \
    frontend/black-sheep-app/src/environments/environment.prod.ts
-# → editar ambos y poner supabaseUrl / supabaseAnonKey / adminEmail reales
+# → editar AMBOS: supabaseUrl / supabaseAnonKey / adminEmail reales
+#   (sin claves reales el build pasa y el sitio público funciona,
+#    pero el LOGIN no autenticará hasta poner las keys de Supabase)
 
 corepack pnpm@9 --filter black-sheep-app build   # verificar
 ```
