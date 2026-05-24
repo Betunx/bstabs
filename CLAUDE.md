@@ -1,7 +1,7 @@
 # CLAUDE.md - Black Sheep Tabs
 
 > Contexto del proyecto para Claude Code. Colocar en la raíz del repositorio.
-> Última actualización: 31 Diciembre 2024
+> Última actualización: 2026-05-24
 
 ## Proyecto
 
@@ -81,8 +81,8 @@ blackSheep/
 
 ### Fase 2 (En Progreso)
 - [ ] **Agregar filtro de género a página Artists**
-- [ ] Persistencia de tema en localStorage
-- [ ] Skeleton loaders
+- [x] Persistencia de tema en localStorage
+- [x] Skeleton loaders
 - [ ] Toast notifications
 - [ ] Editor mejorado (reemplazar prompt)
 - [ ] Formulario contacto con backend
@@ -91,9 +91,17 @@ blackSheep/
 
 ### Fase 3 (Futuro)
 - [ ] PDF upload real
-- [ ] Chord diagrams
+- [x] **Biblioteca de Acordes v1** (teoría + nav) — `/acordes`
+- [ ] Chord diagrams (guitarra/piano/bajo) — extensión de v1
 - [ ] Transposición de acordes
 - [ ] PWA capabilities
+
+### Fase 4 (Aprendizaje + Social — ver ORCHESTRATOR.md)
+- [ ] Diagramas SVG para acordes (guitarra, piano, bajo)
+- [ ] Sección `/teoria` — solfeo, intervalos, círculo de quintas
+- [ ] Sección `/ejercicios` — práctica para guitarra/bajo con metrónomo
+- [ ] **Capa social** (requiere Auth activa): likes, ratings 1-5, comentarios moderados
+- [ ] Tracker de progreso por usuario (post-auth)
 
 ## Sistema de Géneros ✅ Implementado
 
@@ -139,13 +147,28 @@ blackSheep/
 - [ ] Badge visual del género en cards
 - [ ] Analytics para ver géneros más populares
 
-## Feature Planeada: Sección Acordes
+## Feature: Sección Acordes ✅ v1 Implementada (2026-05-24)
 
-Navegación horizontal: C D E F G A B
-- Rutas individuales: /acordes/C, /acordes/G, etc.
-- Dropdown con variantes: C#, C7, Cm, etc.
-- Chord builder interactivo (estilo oolimo.com)
-- Versiones: Guitarra (fretboard) + Piano (keyboard)
+**Estado:** Funcional y enrutada. Falta capa de diagramas visuales por instrumento.
+
+**Implementado:**
+- Rutas: `/acordes` y `/acordes/:root` (ej: `/acordes/C`, `/acordes/G`)
+- Variante seleccionable vía query param: `/acordes/C?v=m7`
+- Nav horizontal C-D-E-F-G-A-B + acceso a sostenidos (C#, D#, F#, G#, A#)
+- 16 variantes en 4 familias (basic, seventh, suspended, extended)
+- Cálculo teórico runtime de notas — instrumento-agnóstico
+- Link en header desktop + mobile · card en home
+
+**Archivos:**
+- [pages/chords/chords.ts](frontend/black-sheep-app/src/app/pages/chords/chords.ts)
+- [core/services/chord.service.ts](frontend/black-sheep-app/src/app/core/services/chord.service.ts)
+- [core/constants/chords.ts](frontend/black-sheep-app/src/app/core/constants/chords.ts)
+
+**Pendiente (ver ORCHESTRATOR.md → Roadmap Aprendizaje):**
+- Diagramas SVG: guitarra (fretboard), piano (teclas), bajo (4 cuerdas)
+- Upload de imágenes propias por admin (reusar pipeline R2)
+- Audio sample del acorde (Web Audio API)
+- Sección `/teoria` complementaria (solfeo, círculo de quintas)
 
 ## Datos Pendientes de Limpiar
 

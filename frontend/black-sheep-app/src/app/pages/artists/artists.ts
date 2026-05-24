@@ -1,4 +1,4 @@
-import { Component, signal, inject, OnInit, computed } from '@angular/core';
+import { Component, signal, inject, OnInit, computed, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ArtistGrid, ArtistItem } from '../../shared/components/artist-grid/artist-grid';
@@ -12,6 +12,7 @@ import { environment } from '../../../environments/environment';
   imports: [ArtistGrid, SkeletonArtistGrid, CommonModule, FormsModule],
   templateUrl: './artists.html',
   styleUrl: './artists.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Artists implements OnInit {
   private artistsService = inject(ArtistsService);

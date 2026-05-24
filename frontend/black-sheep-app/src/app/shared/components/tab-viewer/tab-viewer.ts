@@ -1,5 +1,6 @@
 import {
-  Component, Input, signal, OnDestroy, ElementRef, ViewChild, effect, inject
+  Component, Input, signal, OnDestroy, ElementRef, ViewChild, effect, inject,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -27,6 +28,7 @@ function loadSetting(key: string, fallback: number): number {
   imports: [CommonModule, FormsModule, RouterLink, GenreBadge],
   templateUrl: './tab-viewer.html',
   styleUrl: './tab-viewer.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TabViewer implements OnDestroy {
   @Input({ required: true }) song!: Song;

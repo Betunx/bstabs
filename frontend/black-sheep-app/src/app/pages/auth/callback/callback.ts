@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { filter, take } from 'rxjs';
@@ -7,6 +7,7 @@ import { AuthService } from '../../../core/services/auth.service';
 @Component({
   selector: 'app-auth-callback',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="min-h-screen flex flex-col items-center justify-center gap-4" style="background: var(--bs-bg)">
       <div class="w-8 h-8 border-4 rounded-full animate-spin"

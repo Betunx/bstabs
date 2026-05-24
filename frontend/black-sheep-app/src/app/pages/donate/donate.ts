@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   templateUrl: './donate.html',
   styleUrl: './donate.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Donate {
   readonly benefits = [

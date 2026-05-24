@@ -60,16 +60,17 @@ export class SearchService {
     const songs = this.songsService.getCachedSongs();
     if (songs.length === 0) return null;
 
+    const qLen = query.length;
     let bestText = '';
     let bestScore = 0;
 
     for (const song of songs) {
-      const titleScore = this.similarity(query, song.title);
+      const titleScore = this.similarity(query, song.title, qLen);
       if (titleScore > 0.6 && titleScore > bestScore) {
         bestText = song.title;
         bestScore = titleScore;
       }
-      const artistScore = this.similarity(query, song.artist);
+      const artistScore = this.similarity(query, song.artist, qLen);
       if (artistScore > 0.6 && artistScore > bestScore) {
         bestText = song.artist;
         bestScore = artistScore;
@@ -79,7 +80,18 @@ export class SearchService {
     return bestText && query.toLowerCase() !== bestText.toLowerCase() ? bestText : null;
   }
 
-  private similarity(str1: string, str2: string): number {
+  /**
+   * Levenshtein normalizado [0..1]. `srcLen` permite descartar candidatos
+   * con diferencia de longitud > 50% sin computar la matriz (O(N*M)).
+   */
+  private similarity(str1: string, str2: string, srcLen?: number): number {
+    const len1 = srcLen ?? str1.length;
+    const len2 = str2.length;
+    // Early exit: si la diferencia de tamaño ya excede el umbral (0.6 → max diff 40%)
+    const maxLen = Math.max(len1, len2);
+    if (maxLen === 0) return 1;
+    if (Math.abs(len1 - len2) / maxLen > 0.4) return 0;
+
     const s1 = str1.toLowerCase();
     const s2 = str2.toLowerCase();
     const costs: number[] = [];
@@ -99,7 +111,6 @@ export class SearchService {
       }
       if (i > 0) costs[s2.length] = lastValue;
     }
-    const maxLen = Math.max(s1.length, s2.length);
-    return maxLen === 0 ? 1 : 1 - costs[s2.length] / maxLen;
+    return 1 - costs[s2.length] / maxLen;
   }
 }

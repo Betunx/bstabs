@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TabViewer } from '../../shared/components/tab-viewer/tab-viewer';
 import { Song } from '../../core/models/song.model';
@@ -10,6 +10,7 @@ import { environment } from '../../../environments/environment';
   imports: [TabViewer],
   templateUrl: './tab-reader.html',
   styleUrl: './tab-reader.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TabReader implements OnInit {
   private route = inject(ActivatedRoute);

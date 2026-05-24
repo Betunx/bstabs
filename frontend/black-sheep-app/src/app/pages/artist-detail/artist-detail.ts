@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { forkJoin } from 'rxjs';
@@ -14,6 +14,7 @@ import { environment } from '../../../environments/environment';
   imports: [CommonModule, RouterLink, SongListCompact, SkeletonSongList, GenreBadge],
   templateUrl: './artist-detail.html',
   styleUrl: './artist-detail.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ArtistDetail implements OnInit {
   private route = inject(ActivatedRoute);

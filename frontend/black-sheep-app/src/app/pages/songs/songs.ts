@@ -1,7 +1,8 @@
-import { Component, signal, computed, inject, OnInit, effect } from '@angular/core';
+import { Component, signal, computed, inject, OnInit, effect, DestroyRef, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink, ActivatedRoute, Router } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { SongListCompact, CompactSongItem } from '../../shared/components/song-list-compact/song-list-compact';
 import { SkeletonSongList } from '../../shared/components/skeleton-song-list/skeleton-song-list';
 import { SongsService } from '../../core/services/songs.service';
@@ -20,11 +21,13 @@ type SortOption = 'recent' | 'a-z';
   imports: [SongListCompact, SkeletonSongList, CommonModule, FormsModule, RouterLink],
   templateUrl: './songs.html',
   styleUrl: './songs.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Songs implements OnInit {
   private songsService = inject(SongsService);
   private route         = inject(ActivatedRoute);
   private router        = inject(Router);
+  private destroyRef    = inject(DestroyRef);
 
   sortBy        = signal<SortOption>('recent');
   searchQuery   = signal('');
@@ -48,12 +51,14 @@ export class Songs implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.queryParamMap.subscribe(params => {
-      const genre = params.get('genre') as MusicGenre | null;
-      if (genre && this.genres.includes(genre)) {
-        this.selectedGenre.set(genre);
-      }
-    });
+    this.route.queryParamMap
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(params => {
+        const genre = params.get('genre') as MusicGenre | null;
+        if (genre && this.genres.includes(genre)) {
+          this.selectedGenre.set(genre);
+        }
+      });
 
     this.loadSongs();
   }

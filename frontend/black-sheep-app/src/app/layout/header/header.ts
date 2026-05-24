@@ -1,9 +1,11 @@
 import {
-  Component, inject, signal, OnInit, OnDestroy, HostListener, ElementRef
+  Component, inject, signal, OnInit, OnDestroy, HostListener, ElementRef, DestroyRef,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive, NavigationEnd } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { SearchService, SearchResult } from '../../core/services/search.service';
 import { AuthService } from '../../core/services/auth.service';
 import { filter } from 'rxjs';
@@ -14,6 +16,7 @@ import { filter } from 'rxjs';
   imports: [RouterLink, RouterLinkActive, CommonModule, FormsModule],
   templateUrl: './header.html',
   styleUrl: './header.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[class.header-hidden]': 'isTabReaderRoute() && !isHeaderVisible()',
     'class': 'block sticky top-0 z-50 transition-transform duration-300',
@@ -23,6 +26,7 @@ export class Header implements OnInit, OnDestroy {
   private searchService = inject(SearchService);
   private router = inject(Router);
   private el = inject(ElementRef);
+  private destroyRef = inject(DestroyRef);
   authService = inject(AuthService);
 
   // UI state
@@ -43,6 +47,7 @@ export class Header implements OnInit, OnDestroy {
   readonly navLinks = [
     { to: '/artists', label: 'Artistas' },
     { to: '/songs',   label: 'Canciones' },
+    { to: '/acordes', label: 'Acordes' },
     { to: '/contact', label: 'Contacto' },
   ];
 
@@ -62,8 +67,11 @@ export class Header implements OnInit, OnDestroy {
   // ── Lifecycle ────────────────────────────────────────────────────────────
   ngOnInit(): void {
     this.router.events
-      .pipe(filter(e => e instanceof NavigationEnd))
-      .subscribe((e: any) => {
+      .pipe(
+        filter((e): e is NavigationEnd => e instanceof NavigationEnd),
+        takeUntilDestroyed(this.destroyRef),
+      )
+      .subscribe(e => {
         this.checkTabReaderRoute(e.urlAfterRedirects);
         this.isMobileOpen.set(false);
         this.closeSearch();

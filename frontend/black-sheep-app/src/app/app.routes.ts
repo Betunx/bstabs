@@ -24,6 +24,16 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/tab-reader/tab-reader').then(m => m.TabReader)
   },
 
+  // Chord library (instrumento-agnóstico, teoría)
+  {
+    path: 'acordes',
+    loadComponent: () => import('./pages/chords/chords').then(m => m.Chords)
+  },
+  {
+    path: 'acordes/:root',
+    loadComponent: () => import('./pages/chords/chords').then(m => m.Chords)
+  },
+
   // Auth
   {
     path: 'auth/login',

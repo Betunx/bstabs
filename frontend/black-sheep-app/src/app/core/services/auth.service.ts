@@ -22,7 +22,10 @@ export class AuthService {
     return user.user_metadata?.['full_name'] || user.email?.split('@')[0] || 'Usuario';
   });
 
-  readonly avatarUrl = computed(() => this._user()?.user_metadata?.['avatar_url'] as string | null ?? null);
+  readonly avatarUrl = computed(() => {
+    const url = this._user()?.user_metadata?.['avatar_url'];
+    return typeof url === 'string' ? url : null;
+  });
 
   constructor() {
     this.supabase = createClient(environment.supabaseUrl, environment.supabaseAnonKey);

@@ -136,7 +136,12 @@ async function verifyAdmin(
   }
 }
 
-// SECURITY: Validación y sanitización de inputs
+// SECURITY: Validación y sanitización de inputs.
+// El sanitizer ataca dos vectores:
+// 1. XSS si el query se refleja en HTML: strip < > " '
+// 2. Inyección en `.or()` de Supabase: strip , ( ) y * (operadores de PostgREST)
+//    PostgREST parsea .or('col.op.val,col.op.val'), si val contiene comas o
+//    paréntesis puede inyectar filtros adicionales o subconsultas.
 function validateSearchQuery(query: string): { valid: boolean; sanitized: string; error?: string } {
   if (!query || query.trim().length === 0) {
     return { valid: false, sanitized: '', error: 'Search query cannot be empty' }
@@ -146,8 +151,8 @@ function validateSearchQuery(query: string): { valid: boolean; sanitized: string
     return { valid: false, sanitized: '', error: 'Search query too long (max 100 chars)' }
   }
 
-  // Sanitizar: remover caracteres potencialmente peligrosos
-  const sanitized = query.trim().replace(/[<>\"']/g, '')
+  // XSS + PostgREST operators + LIKE wildcards
+  const sanitized = query.trim().replace(/[<>"',()*\\%]/g, '')
 
   return { valid: true, sanitized }
 }
@@ -408,17 +413,23 @@ export default {
       // GET /songs/search - Buscar canciones (para sugerencias)
       if (path === '/songs/search' && request.method === 'GET') {
         const q = url.searchParams.get('q') || ''
-        const limit = parseInt(url.searchParams.get('limit') || '10')
+        const limit = Math.min(50, Math.max(1, parseInt(url.searchParams.get('limit') || '10')))
 
         if (q.length < 2) {
           return json([])
         }
 
+        const validation = validateSearchQuery(q)
+        if (!validation.valid) {
+          return json({ error: validation.error }, 400)
+        }
+        const { sanitized } = validation
+
         const { data, error } = await supabase
           .from('songs')
           .select('id, title, artist')
           .eq('status', 'published')
-          .or(`title.ilike.%${q}%,artist.ilike.%${q}%`)
+          .or(`title.ilike.%${sanitized}%,artist.ilike.%${sanitized}%`)
           .limit(limit)
 
         if (error) throw error
@@ -554,7 +565,14 @@ export default {
           .order('created_at', { ascending: false })
 
         if (status) query = query.eq('status', status)
-        if (search) query = query.or(`title.ilike.%${search}%,artist.ilike.%${search}%`)
+        if (search) {
+          const validation = validateSearchQuery(search)
+          if (!validation.valid) {
+            return json({ error: validation.error }, 400)
+          }
+          const { sanitized } = validation
+          query = query.or(`title.ilike.%${sanitized}%,artist.ilike.%${sanitized}%`)
+        }
 
         const { data, error } = await query
 

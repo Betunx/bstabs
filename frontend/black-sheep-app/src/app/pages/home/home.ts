@@ -1,10 +1,10 @@
-import { Component, inject, signal, computed, OnInit } from '@angular/core';
+import { Component, inject, signal, computed, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { SongsService } from '../../core/services/songs.service';
 import { Song } from '../../core/models/song.model';
-import { QUICK_GENRES, MUSIC_GENRES, getGenreColor } from '../../core/constants/genres';
+import { QUICK_GENRES, getGenreColor } from '../../core/constants/genres';
 import { GenreBadge } from '../../shared/components/genre-badge/genre-badge';
 import { SkeletonSongList } from '../../shared/components/skeleton-song-list/skeleton-song-list';
 import { environment } from '../../../environments/environment';
@@ -15,6 +15,7 @@ import { environment } from '../../../environments/environment';
   imports: [CommonModule, RouterLink, FormsModule, GenreBadge, SkeletonSongList],
   templateUrl: './home.html',
   styleUrl: './home.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Home implements OnInit {
   private songsService = inject(SongsService);
@@ -27,23 +28,9 @@ export class Home implements OnInit {
 
   readonly quickGenres = QUICK_GENRES;
 
-  readonly navCards = [
-    { to: '/artists',      label: 'Artistas',      desc: 'Explora músicos y sus canciones',      icon: '🎸', iconClass: 'text-indigo-400 bg-indigo-400/10' },
-    { to: '/songs',        label: 'Canciones',      desc: 'Busca tablaturas por nombre',          icon: '🎵', iconClass: 'text-emerald-400 bg-emerald-400/10' },
-    { to: '/request-song', label: 'Pedir canción',  desc: 'Solicita una tablatura nueva',         icon: '📝', iconClass: 'text-amber-400 bg-amber-400/10' },
-    { to: '/contact',      label: 'Contacto',       desc: 'Envíanos tus comentarios',             icon: '✉️', iconClass: 'text-cyan-400 bg-cyan-400/10' },
-  ];
-
-  // Stats calculados desde los datos reales
-  stats = computed(() => {
-    const songs   = this.allSongs();
-    const artists = new Set(songs.map(s => s.artist)).size;
-    return [
-      { label: 'Canciones',    value: songs.length ? songs.length.toString() : '500+' },
-      { label: 'Artistas',     value: artists ? artists.toString() : '100+' },
-      { label: 'Géneros',      value: MUSIC_GENRES.length.toString() },
-      { label: 'Sin anuncios', value: '0 ads' },
-    ];
+  songCount = computed(() => {
+    const n = this.allSongs().length;
+    return n > 0 ? n.toString() : '500+';
   });
 
   // 6 más recientes (por updatedAt desc)

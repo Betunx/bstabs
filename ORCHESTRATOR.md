@@ -1,7 +1,7 @@
 # ORCHESTRATOR — Black Sheep Tabs
 
 > Documento central de coordinación. Fuente de verdad para arquitectura, estado de features y roadmap.
-> Última actualización: Mayo 2026
+> Última actualización: 2026-05-24
 
 ---
 
@@ -62,6 +62,13 @@ bstabs/                              ← raíz del workspace
 - CORS seguro con lista de origenes permitidos
 - API key admin removida del código fuente
 - **pnpm workspace monorepo** (migrado desde npm — Mayo 2026)
+- **Sección "Recientes"** en home (`recentSongs`, top 6 por `updatedAt`)
+- **Biblioteca de Acordes** v1 — `/acordes` y `/acordes/:root`:
+  - Nav horizontal C-D-E-F-G-A-B + acceso rápido a sostenidos
+  - 16 variantes (mayor/menor/dim/aug, 7/maj7/m7/m7b5/dim7, sus2/sus4, 6/m6/add9/9/maj9)
+  - Notas calculadas en runtime desde intervalos (instrumento-agnóstico)
+  - Variante seleccionada vía query param `?v=<suffix>`
+  - Placeholder reservado para diagramas (guitarra/piano/bajo)
 - **Sistema de Auth** (Supabase Auth — Google + Email/Password):
   - `AuthService` con Signals (`isAuthenticated`, `isAdmin`, `user`, `displayName`)
   - Guard `authGuard` protege `/request-song`
@@ -94,6 +101,116 @@ bstabs/                              ← raíz del workspace
 - [ ] Transposición de acordes
 - [ ] Error boundaries / fallback pages
 - [ ] PWA / Service Worker
+
+---
+
+## Roadmap: Aprendizaje & Social (Fase 4)
+
+> Ideas nuevas (2026-05-24) que extienden BSTabs de "biblioteca de tabs" a
+> "plataforma de aprendizaje + comunidad". Pensado para CV: demuestra producto
+> end-to-end + features sociales reales.
+
+### A) Biblioteca de Acordes (✅ v1 entregada · ❌ extensiones pendientes)
+
+| Sub-feature | Estado | Notas |
+|---|---|---|
+| Ruta `/acordes` + nav C-D-E-F-G-A-B | ✅ Hecho | `pages/chords/` |
+| Cálculo teórico de notas por acorde | ✅ Hecho | `core/services/chord.service.ts` |
+| 16 variantes (basic/seventh/sus/extended) | ✅ Hecho | `core/constants/chords.ts` |
+| Diagramas SVG para guitarra (digitaciones) | ❌ Pendiente | Define data shape: `{ frets: number[], fingers: number[], barre? }` |
+| Diagramas SVG para piano (teclas marcadas) | ❌ Pendiente | Reusar `notes[]` que ya devuelve `ChordService` |
+| Diagramas para bajo (4 cuerdas) | ❌ Pendiente | Variante del componente de guitarra |
+| Upload de imágenes propias de acordes por admin | ❌ Pendiente | Reutilizar pipeline R2 de artist-images |
+| Audio sample (mp3 corto del acorde) | ❌ Idea | Web Audio API generativa o samples grabados |
+
+### B) Solfeo & Teoría Musical Básica
+
+| Sub-feature | Estado | Notas |
+|---|---|---|
+| Ruta `/teoria` | ❌ Pendiente | Hub: solfeo, intervalos, escalas, círculo de quintas |
+| Lecciones de solfeo (lectura de notas en pentagrama) | ❌ Pendiente | Considerar VexFlow para renderizar pentagrama |
+| Tabla interactiva de intervalos | ❌ Pendiente | Reutiliza `ChordService.resolve` |
+| Círculo de quintas interactivo | ❌ Pendiente | SVG estático con highlight al hacer click |
+| Quiz "¿qué acorde es?" (notas → nombre) | ❌ Pendiente | Reverso del `ChordService` — match por intervalos |
+
+### C) Ejercicios de Práctica (Guitarra / Bajo)
+
+| Sub-feature | Estado | Notas |
+|---|---|---|
+| Ruta `/ejercicios` | ❌ Pendiente | Filtros por instrumento + nivel |
+| Modelo `Exercise` en backend | ❌ Pendiente | `{ id, instrument, level, title, tab, bpm, focus, videoUrl? }` |
+| Metrónomo integrado | ❌ Pendiente | Web Audio API — click sintético |
+| Tracker de progreso por usuario (post-auth) | ❌ Pendiente | Tabla `user_exercise_progress` en Supabase |
+| Plan de práctica semanal | ❌ Idea | "Genera mi rutina" según nivel/instrumento |
+
+### D) Capa Social (Likes / Comments / Ratings)
+
+> **Bloqueado por:** Sistema de Auth de usuarios (ya implementado pero requiere
+> credenciales Supabase configuradas — ver "Pendiente de configurar para activar Auth").
+
+| Sub-feature | Estado | Prioridad | Notas |
+|---|---|---|---|
+| Likes en canciones (tabs) | ❌ Pendiente | 🔴 Alta | Tabla `song_likes (user_id, song_id, created_at)` + RLS |
+| Rating 1-5 estrellas en canciones | ❌ Pendiente | 🟡 Media | Mejor que likes solos para feedback de calidad |
+| Comentarios en canciones | ❌ Pendiente | 🔴 Alta | Tabla `song_comments` con moderación admin |
+| Likes/comments en ejercicios | ❌ Pendiente | 🟡 Media | Mismo modelo, distinto recurso |
+| Reportar contenido (HTML corrupto, errores) | ⚠️ Parcial | 🟡 Media | `report.service.ts` ya existe — extender |
+| Perfil público del usuario (avatar + likes) | ❌ Pendiente | 🟢 Baja | Bonito para CV pero opcional |
+| Feed "actividad reciente de la comunidad" | ❌ Idea | 🟢 Baja | Last X likes/comments en home |
+| Anti-spam (rate limit por user_id en backend) | ❌ Pendiente | 🔴 Alta | Indispensable antes de abrir comentarios |
+
+### Esquema de DB propuesto (Supabase)
+
+```sql
+-- Likes (uno por usuario por recurso)
+create table public.likes (
+  user_id     uuid not null references auth.users(id) on delete cascade,
+  resource_type text not null check (resource_type in ('song','exercise','chord')),
+  resource_id text not null,
+  created_at  timestamptz default now(),
+  primary key (user_id, resource_type, resource_id)
+);
+
+-- Comentarios (con moderación)
+create table public.comments (
+  id           uuid primary key default gen_random_uuid(),
+  user_id      uuid not null references auth.users(id) on delete cascade,
+  resource_type text not null,
+  resource_id  text not null,
+  body         text not null check (length(body) between 1 and 1000),
+  status       text not null default 'visible' check (status in ('visible','hidden','flagged')),
+  created_at   timestamptz default now(),
+  updated_at   timestamptz default now()
+);
+
+-- Ratings 1-5
+create table public.ratings (
+  user_id     uuid not null references auth.users(id) on delete cascade,
+  resource_type text not null,
+  resource_id text not null,
+  stars       smallint not null check (stars between 1 and 5),
+  created_at  timestamptz default now(),
+  primary key (user_id, resource_type, resource_id)
+);
+```
+
+### Orden sugerido de implementación
+
+1. **Acordes v2 — Diagramas de guitarra** (1-2 semanas) — completa la feature ya entregada.
+2. **Activar Auth** (1 día) — desbloquea toda la sección social.
+3. **Likes en canciones** (3 días) — feature social más simple, prueba el patrón.
+4. **Comentarios en canciones** (1 semana) — con moderación admin y rate limit.
+5. **Ratings** (2 días) — extensión natural de likes.
+6. **Ejercicios v1** (1-2 semanas) — modelo + listado + viewer básico.
+7. **Solfeo v1** (1-2 semanas) — pentagrama + intervalos (VexFlow).
+8. **Diagramas piano/bajo** (1 semana) — completa Acordes.
+
+### Decisiones abiertas
+
+- ¿Likes públicos (anyone can see counts) o privados al usuario?
+- ¿Comentarios anidados (threads) o flat?
+- ¿Moderación pre-publicación o post-publicación con reportes?
+- ¿VexFlow vs SVG manual para pentagramas? (VexFlow = 200KB, SVG = más trabajo pero ligero)
 
 ---
 
