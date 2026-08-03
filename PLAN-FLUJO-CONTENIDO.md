@@ -6,65 +6,76 @@
 
 ## Resumen de fases
 
-| Fase  | Qué                                                                | Depende de | Esfuerzo          |
-| ----- | ------------------------------------------------------------------ | ---------- | ----------------- |
-| 0     | Housekeeping: commit pendiente, bugs del editor, verificar RLS     | —          | horas             |
-| **A** | **Modo "pegar" en el editor admin (parser + ChordPro + drafts)**   | 0          | 1-2 sesiones      |
-| B     | Import por URL (cerrar circuito scraper → API draft)               | A          | 1 sesión          |
-| C     | Import asistido por LLM (texto sucio/OCR → JSON draft)             | A          | 1-2 sesiones      |
-| D     | Agente auditor: barrido batch de anomalías en canciones existentes | C          | 1 sesión          |
-| M     | Mantenimiento de versiones (Angular 22, Tailwind 4, etc.)          | —          | aparte, ver abajo |
+| Fase  | Qué                                                                 | Depende de | Esfuerzo          |
+| ----- | ------------------------------------------------------------------- | ---------- | ----------------- |
+| 0     | ✅ Housekeeping: commit, bugs del editor · ⏳ falta verificar RLS   | —          | horas             |
+| **A** | ✅ **Modo "pegar" en el editor admin (parser + ChordPro + drafts)** | 0          | 1-2 sesiones      |
+| B     | Import por URL (cerrar circuito scraper → API draft)                | A          | 1 sesión          |
+| C     | Import asistido por LLM (texto sucio/OCR → JSON draft)              | A          | 1-2 sesiones      |
+| D     | Agente auditor: barrido batch de anomalías en canciones existentes  | C          | 1 sesión          |
+| M     | Mantenimiento de versiones (Angular 22, Tailwind 4, etc.)           | —          | aparte, ver abajo |
 
 ---
 
-## Fase 0 — Housekeeping (antes de escribir features)
+## Fase 0 — Housekeeping ✅ (2026-08-03, salvo RLS)
 
-1. **Commit del changeset actual.** Hay ~23 archivos sin commitear (todo el
-   trabajo de testing/CI: workflows, husky, eslint configs, specs, `src/lib/`).
-   El CI no existe en GitHub hasta que se pushee. Un solo commit "testing + CI".
-2. **Bugs del tab-editor** ([tab-editor.ts:273-292](frontend/black-sheep-app/src/app/admin/tab-editor/tab-editor.ts#L273-L292), `onSubmit`):
-   - manda `difficulty: 'intermediate'` (campo eliminado de la DB);
-   - **no manda `genre`** aunque el form lo captura → las canciones se guardan sin género.
-3. **Verificar RLS en Supabase** (`songs`, `song_requests`) — pendiente crítico
-   del CLAUDE.md. Antes de aumentar el flujo de escritura, confirmar que la anon
-   key no puede escribir/leer drafts directo.
+1. ✅ **Commit del changeset de testing/CI** — hecho por el usuario (`cb724a0`).
+2. ✅ **Bugs del tab-editor corregidos**: el payload mandaba `difficulty`
+   (campo eliminado de la DB) y **omitía `genre`** → las canciones se guardaban
+   sin género. Cubierto por spec para que no vuelva a pasar.
+3. ⏳ **Verificar RLS en Supabase** (`songs`, `song_requests`) — sigue pendiente,
+   requiere entrar al panel de Supabase. Antes de aumentar el flujo de escritura,
+   confirmar que la anon key no puede escribir ni leer borradores directo.
 
-## Fase A — Modo "pegar" en el editor admin ⭐
+## Fase A — Modo "pegar" en el editor admin ✅ (2026-08-03)
 
-**Meta:** capturar una canción pegando texto plano; las posiciones de acordes se
-derivan del texto, nunca se teclean.
+**Meta cumplida:** se captura una canción pegando texto plano; las posiciones de
+acordes se derivan del texto, nunca se teclean.
 
-### A.1 Parser (lógica pura, sin UI)
+### A.1 Parser ✅ — [core/utils/tab-parser.ts](frontend/black-sheep-app/src/app/core/utils/tab-parser.ts)
 
-- Nuevo `core/utils/tab-parser.ts` (+ spec). Funciones puras:
-  - `parsePastedTab(text): SongSection[]` — detecta:
-    - **Formato dos-líneas**: línea cuyos tokens son todos acordes válidos
-      (regex `^[A-G][#b]?(m|maj|min|dim|aug|sus|add)?\d*...`) seguida de línea
-      de letra → `{chord, position}` por columna del carácter.
-    - **Formato ChordPro inline**: `[Am]Quisiera ser [F]un pez` → posición =
-      índice del bracket en el texto limpio.
-    - **Encabezados de sección**: `[Verso]`, `Coro:`, `INTRO`, etc.
-    - Solo letra (sin acordes) → líneas con `chords: []` (draft válido).
-  - `sectionsToChordPro(sections): string` y `chordProToSections(text)` —
-    round-trip para editar.
-- Testear con 3-4 canciones reales del catálogo (copiar de la DB).
+Lógica pura, sin UI, 18 specs verdes:
 
-### A.2 UI del editor
+- `parsePastedTab(text)` acepta en la misma pasada:
+  - **dos líneas** (acordes encima de la letra) → posición = columna del carácter;
+  - **ChordPro inline** `[Am]Quisiera ser` → posición = índice del corchete;
+  - **solo letra** → `chords: []`, borrador válido;
+  - encabezados `[Verso 1]`, `Coro:`, `INTRO` (con y sin acentos). `[Am]` a solas
+    NO es encabezado: es un pasaje instrumental.
+- `sectionsToChordPro` / `lineToChordPro` / `parseChordProLine` cierran el
+  round-trip modelo ↔ texto (hay un spec que lo verifica).
+- Decodifica entidades HTML del texto pegado y normaliza tabs a espacios.
+- **Regla de posición:** se respeta la columna exacta del original, sin "empujar"
+  el acorde a la palabra siguiente aunque caiga en un espacio. Así el render
+  coincide con la fuente y el round-trip es estable.
 
-- Panel "Importar desde texto": textarea grande + botón Parsear → llena el form
-  actual + preview en vivo con el `TabViewer` existente.
-- Edición por línea en ChordPro inline (reemplaza el click + `prompt()`).
-- Botón explícito **"Guardar borrador"** (status `draft`) — letra sola es válido.
+### A.2 UI del editor ✅
 
-### A.3 Dashboard de borradores
+- Panel **"Importar pegando texto"** con textarea + "Parsear y cargar", y un
+  resumen del resultado (secciones / líneas / acordes detectados).
+- **Cada sección es ahora un textarea ChordPro** en vez de un formulario por
+  línea con lista de acordes. Se eliminó el `prompt()` y toda la maquinaria de
+  posiciones a mano (`addChordManual`, `onLyricsClick`, `getChordsArray`…).
+- **Preview en vivo** (debounce 350 ms) con el `TabViewer` existente.
+- Botón **"Guardar borrador"**; crear una canción SIEMPRE entra como `draft`
+  (publicar es un paso aparte y explícito).
+- Reordenar secciones con ↑/↓.
 
-- Pestaña "Borradores" en admin-dashboard usando `GET /admin/tabs?status=draft`
-  (ya existe en el Worker) → abrir en editor → completar → publicar.
+### A.3 Borradores ✅
+
+El dashboard ya tenía la pestaña "Borradores" y el link `/admin/editor/:id`,
+pero faltaban dos piezas que lo hacían no funcionar:
+
+- El editor no leía el parámetro `:id` → abría vacío. Ahora carga la canción.
+- `GET /songs/:id` filtra por `status='published'`, así que un borrador no se
+  podía leer. Nuevo **`GET /admin/songs/:id`** (cualquier estado, requiere admin)
+  - `AdminService.getSong(id)`.
 
 ### Criterio de éxito
 
-Pegar una canción de cualquier sitio en formato dos-líneas y tenerla como draft
-con acordes posicionados en < 2 minutos, sin tocar un solo `prompt()`.
+Pegar una canción en formato dos-líneas y tenerla como borrador con acordes
+posicionados en < 2 minutos, sin un solo `prompt()`. **Falta validarlo a mano
+con una canción real en el navegador.**
 
 ## Fase B — Import por URL (script local, gratis)
 

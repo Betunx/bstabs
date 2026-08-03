@@ -492,6 +492,23 @@ export default {
         return json(data)
       }
 
+      // GET /admin/songs/:id - Obtener cancion en cualquier estado (requiere admin).
+      // GET /songs/:id solo devuelve publicadas, por eso el editor usa esta.
+      if (path.match(/^\/admin\/songs\/[a-f0-9-]+$/) && request.method === 'GET') {
+        if (!(await verifyAdmin(request, env, supabase))) {
+          return json({ error: 'Unauthorized' }, 401)
+        }
+
+        const id = path.split('/')[3]
+
+        const { data, error } = await supabase.from('songs').select('*').eq('id', id).single()
+
+        if (error) throw error
+        if (!data) return json({ error: 'Song not found' }, 404)
+
+        return json(data)
+      }
+
       // GET /admin/stats - Estadísticas (requiere API key)
       if (path === '/admin/stats' && request.method === 'GET') {
         if (!(await verifyAdmin(request, env, supabase))) {

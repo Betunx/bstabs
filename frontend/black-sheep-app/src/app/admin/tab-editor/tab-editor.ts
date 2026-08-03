@@ -1,10 +1,14 @@
-import { Component, OnInit, signal, inject } from '@angular/core';
+import { Component, OnInit, signal, inject, DestroyRef } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, FormArray, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Song, SongSection, ChordLine, ChordPosition } from '../../core/models/song.model';
+import { Song, SongSection } from '../../core/models/song.model';
 import { TabViewer } from '../../shared/components/tab-viewer/tab-viewer';
 import { AdminService } from '../../core/services/admin.service';
-import { MUSIC_GENRES, MusicGenre } from '../../core/constants/genres';
+import { MUSIC_GENRES } from '../../core/constants/genres';
+import { environment } from '../../../environments/environment';
+import { lineToChordPro, parseChordProLine, parsePastedTab } from '../../core/utils/tab-parser';
 import { debounceTime, Subject } from 'rxjs';
 
 @Component({
@@ -12,15 +16,16 @@ import { debounceTime, Subject } from 'rxjs';
   imports: [CommonModule, ReactiveFormsModule, TabViewer],
   templateUrl: './tab-editor.html',
   styleUrl: './tab-editor.scss',
-  standalone: true
+  standalone: true,
 })
 export class TabEditor implements OnInit {
   private adminService = inject(AdminService);
+  private route = inject(ActivatedRoute);
+  private destroyRef = inject(DestroyRef);
 
   songForm!: FormGroup;
-  previewSong: Song | null = null;
+  previewSong = signal<Song | null>(null);
 
-  // Lista de géneros disponibles
   readonly genres = MUSIC_GENRES;
 
   // Búsqueda de canciones existentes
@@ -31,6 +36,11 @@ export class TabEditor implements OnInit {
   isEditing = signal(false);
   isSaving = signal(false);
   saveMessage = signal('');
+  isError = signal(false);
+
+  // Importación desde texto pegado
+  pastedText = signal('');
+  importSummary = signal('');
 
   private searchSubject = new Subject<string>();
 
@@ -39,29 +49,43 @@ export class TabEditor implements OnInit {
   ngOnInit(): void {
     this.initForm();
     this.setupSearch();
+    this.setupLivePreview();
+
+    // /admin/editor/:id — abrir un borrador directo desde el dashboard
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) this.loadSongById(id);
   }
 
-  private setupSearch(): void {
-    this.searchSubject.pipe(
-      debounceTime(300)
-    ).subscribe(query => {
-      if (query.length < 2) {
-        this.searchResults.set([]);
-        return;
-      }
+  // ===== Carga de canciones =====
 
-      this.isSearching.set(true);
-      this.adminService.getSongs(query).subscribe({
-        next: (songs) => {
-          this.searchResults.set(songs);
-          this.isSearching.set(false);
-        },
-        error: () => {
+  private setupSearch(): void {
+    this.searchSubject
+      .pipe(debounceTime(300), takeUntilDestroyed(this.destroyRef))
+      .subscribe((query) => {
+        if (query.length < 2) {
           this.searchResults.set([]);
-          this.isSearching.set(false);
+          return;
         }
+
+        this.isSearching.set(true);
+        this.adminService.getSongs(query).subscribe({
+          next: (songs) => {
+            this.searchResults.set(songs);
+            this.isSearching.set(false);
+          },
+          error: () => {
+            this.searchResults.set([]);
+            this.isSearching.set(false);
+          },
+        });
       });
-    });
+  }
+
+  /** Regenera la vista previa mientras se escribe: el preview es el feedback. */
+  private setupLivePreview(): void {
+    this.songForm.valueChanges
+      .pipe(debounceTime(350), takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => this.generatePreview());
   }
 
   onSearchInput(event: Event): void {
@@ -71,20 +95,27 @@ export class TabEditor implements OnInit {
   }
 
   selectSong(song: any): void {
-    this.selectedSongId.set(song.id);
-    this.isEditing.set(true);
     this.searchResults.set([]);
     this.searchQuery.set('');
     this.loadSongToForm(song);
   }
 
+  private loadSongById(id: string): void {
+    this.adminService.getSong(id).subscribe({
+      next: (song) => this.loadSongToForm(song),
+      error: (err) =>
+        this.showMessage('No se pudo cargar la canción: ' + this.errorText(err), true),
+    });
+  }
+
   loadSongToForm(song: any): void {
-    // Limpiar secciones existentes
+    this.selectedSongId.set(song.id);
+    this.isEditing.set(true);
+
     while (this.sections.length) {
       this.sections.removeAt(0);
     }
 
-    // Cargar datos básicos
     this.songForm.patchValue({
       title: song.title,
       artist: song.artist,
@@ -96,53 +127,55 @@ export class TabEditor implements OnInit {
       story: song.story || '',
       sourceUrl: song.source_url || '',
       spotifyUrl: song.spotify_url || '',
-      youtubeUrl: song.youtube_url || ''
+      youtubeUrl: song.youtube_url || '',
     });
 
-    // Cargar secciones
-    if (song.sections && Array.isArray(song.sections)) {
+    // Las líneas guardadas ({chords, lyrics}) se muestran como texto ChordPro
+    // editable; al guardar se vuelven a convertir. Ver core/utils/tab-parser.
+    if (Array.isArray(song.sections)) {
       song.sections.forEach((section: any) => {
-        const sectionGroup = this.fb.group({
-          name: [section.name || '', Validators.required],
-          lines: this.fb.array([])
-        });
-
-        const linesArray = sectionGroup.get('lines') as FormArray;
-
-        if (section.lines && Array.isArray(section.lines)) {
-          section.lines.forEach((line: any) => {
-            const lineGroup = this.fb.group({
-              lyrics: [line.lyrics || ''],
-              chords: this.fb.array([])
-            });
-
-            const chordsArray = lineGroup.get('chords') as FormArray;
-
-            if (line.chords && Array.isArray(line.chords)) {
-              line.chords.forEach((chord: any) => {
-                chordsArray.push(this.fb.group({
-                  chord: [chord.chord || '', Validators.required],
-                  position: [chord.position || 0, [Validators.required, Validators.min(0)]]
-                }));
-              });
-            }
-
-            linesArray.push(lineGroup);
-          });
-        }
-
-        this.sections.push(sectionGroup);
+        const lines = Array.isArray(section.lines) ? section.lines : [];
+        const body = lines
+          .map((line: any) =>
+            lineToChordPro({ chords: line.chords || [], lyrics: line.lyrics || '' }),
+          )
+          .join('\n');
+        this.sections.push(this.buildSectionGroup(section.name || '', body, section.timeSignature));
       });
     }
+
+    this.generatePreview();
   }
 
   createNew(): void {
     this.selectedSongId.set(null);
     this.isEditing.set(false);
-    this.previewSong = null;
+    this.previewSong.set(null);
     this.saveMessage.set('');
-    this.initForm();
+    this.pastedText.set('');
+    this.importSummary.set('');
+
+    // Se resetea el form existente (no se recrea) para no duplicar la
+    // suscripción del preview en vivo.
+    while (this.sections.length) {
+      this.sections.removeAt(0);
+    }
+    this.songForm.reset({
+      title: '',
+      artist: '',
+      key: '',
+      tempo: 120,
+      timeSignature: '4/4',
+      tuning: 'Standard (EADGBE)',
+      genre: '',
+      story: '',
+      sourceUrl: '',
+      spotifyUrl: '',
+      youtubeUrl: '',
+    });
   }
+
+  // ===== Formulario =====
 
   private initForm(): void {
     this.songForm = this.fb.group({
@@ -157,7 +190,15 @@ export class TabEditor implements OnInit {
       sourceUrl: [''],
       spotifyUrl: [''],
       youtubeUrl: [''],
-      sections: this.fb.array([])
+      sections: this.fb.array([]),
+    });
+  }
+
+  private buildSectionGroup(name: string, body: string, timeSignature?: string): FormGroup {
+    return this.fb.group({
+      name: [name, Validators.required],
+      timeSignature: [timeSignature || ''],
+      body: [body],
     });
   }
 
@@ -165,171 +206,195 @@ export class TabEditor implements OnInit {
     return this.songForm.get('sections') as FormArray;
   }
 
-  getLinesArray(sectionIndex: number): FormArray {
-    return this.sections.at(sectionIndex).get('lines') as FormArray;
-  }
-
-  getChordsArray(sectionIndex: number, lineIndex: number): FormArray {
-    return this.getLinesArray(sectionIndex).at(lineIndex).get('chords') as FormArray;
-  }
-
   addSection(): void {
-    const section = this.fb.group({
-      name: ['', Validators.required],
-      lines: this.fb.array([])
-    });
-    this.sections.push(section);
+    this.sections.push(this.buildSectionGroup('', ''));
   }
 
   removeSection(index: number): void {
     this.sections.removeAt(index);
   }
 
-  addLine(sectionIndex: number): void {
-    const line = this.fb.group({
-      lyrics: [''],
-      chords: this.fb.array([])
+  moveSection(index: number, delta: number): void {
+    const target = index + delta;
+    if (target < 0 || target >= this.sections.length) return;
+    const control = this.sections.at(index);
+    this.sections.removeAt(index);
+    this.sections.insert(target, control);
+  }
+
+  // ===== Importación desde texto =====
+
+  onPastedTextInput(event: Event): void {
+    this.pastedText.set((event.target as HTMLTextAreaElement).value);
+  }
+
+  /**
+   * Convierte el texto pegado en secciones. Acepta el formato de dos líneas
+   * (acordes encima de la letra) y ChordPro inline; las posiciones salen del
+   * texto, nunca se teclean.
+   */
+  importFromText(): void {
+    const text = this.pastedText();
+    if (!text.trim()) {
+      this.showMessage('Pega el texto de la canción primero', true);
+      return;
+    }
+
+    if (
+      this.sections.length > 0 &&
+      !confirm('Esto reemplaza las secciones actuales. ¿Continuar?')
+    ) {
+      return;
+    }
+
+    const parsed = parsePastedTab(text);
+    if (parsed.length === 0) {
+      this.showMessage('No se encontró contenido para importar', true);
+      return;
+    }
+
+    while (this.sections.length) {
+      this.sections.removeAt(0);
+    }
+
+    let chordCount = 0;
+    let lineCount = 0;
+    parsed.forEach((section) => {
+      chordCount += section.lines.reduce((sum, line) => sum + line.chords.length, 0);
+      lineCount += section.lines.length;
+      const body = section.lines.map(lineToChordPro).join('\n');
+      this.sections.push(this.buildSectionGroup(section.name, body, section.timeSignature));
     });
-    this.getLinesArray(sectionIndex).push(line);
+
+    this.importSummary.set(
+      `${parsed.length} sección(es) · ${lineCount} línea(s) · ${chordCount} acorde(s) detectados` +
+        (chordCount === 0
+          ? ' — solo letra, puedes guardar el borrador y agregar acordes después.'
+          : ''),
+    );
+    this.generatePreview();
   }
 
-  removeLine(sectionIndex: number, lineIndex: number): void {
-    this.getLinesArray(sectionIndex).removeAt(lineIndex);
+  clearPastedText(): void {
+    this.pastedText.set('');
+    this.importSummary.set('');
   }
 
-  addChordManual(sectionIndex: number, lineIndex: number): void {
-    const chord = this.fb.group({
-      chord: ['', Validators.required],
-      position: [0, [Validators.required, Validators.min(0)]]
-    });
-    this.getChordsArray(sectionIndex, lineIndex).push(chord);
-  }
+  // ===== Preview y guardado =====
 
-  removeChord(sectionIndex: number, lineIndex: number, chordIndex: number): void {
-    this.getChordsArray(sectionIndex, lineIndex).removeAt(chordIndex);
-  }
-
-  onLyricsClick(event: MouseEvent, sectionIndex: number, lineIndex: number): void {
-    const input = event.target as HTMLInputElement;
-    const clickPosition = input.selectionStart || 0;
-
-    const chordName = prompt(`Acorde en posición ${clickPosition}:`);
-    if (!chordName) return;
-
-    const chord = this.fb.group({
-      chord: [chordName.trim(), Validators.required],
-      position: [clickPosition, [Validators.required, Validators.min(0)]]
-    });
-
-    this.getChordsArray(sectionIndex, lineIndex).push(chord);
-
-    const chordsArray = this.getChordsArray(sectionIndex, lineIndex);
-    const sortedChords = chordsArray.value.sort((a: any, b: any) => a.position - b.position);
-    chordsArray.clear();
-    sortedChords.forEach((c: any) => {
-      chordsArray.push(this.fb.group(c));
+  /** Convierte el texto ChordPro de cada sección al modelo con posiciones. */
+  private buildSections(): SongSection[] {
+    return this.sections.controls.map((control) => {
+      const value = control.value;
+      const body: string = value.body || '';
+      const section: SongSection = {
+        name: value.name || '',
+        lines: body.split('\n').map(parseChordProLine),
+      };
+      if (value.timeSignature) section.timeSignature = value.timeSignature;
+      return section;
     });
   }
 
   generatePreview(): void {
     const formValue = this.songForm.value;
 
-    const sections: SongSection[] = formValue.sections.map((s: any) => ({
-      name: s.name,
-      lines: s.lines.map((l: any) => ({
-        chords: l.chords as ChordPosition[],
-        lyrics: l.lyrics
-      } as ChordLine))
-    }));
-
-    this.previewSong = {
-      id: this.selectedSongId() || 'preview-' + Date.now(),
-      title: formValue.title,
-      artist: formValue.artist,
+    this.previewSong.set({
+      id: this.selectedSongId() || 'preview',
+      title: formValue.title || 'Sin título',
+      artist: formValue.artist || 'Sin artista',
       key: formValue.key || 'C',
       tempo: formValue.tempo || 120,
       timeSignature: formValue.timeSignature || '4/4',
       tuning: formValue.tuning || 'Standard (EADGBE)',
       genre: formValue.genre || undefined,
       story: formValue.story || undefined,
-      sections,
+      sections: this.buildSections(),
       sourceUrl: formValue.sourceUrl || undefined,
       createdAt: new Date(),
-      updatedAt: new Date()
-    };
+      updatedAt: new Date(),
+    });
   }
 
-  onSubmit(): void {
-    if (!this.songForm.value.title || !this.songForm.value.artist) {
-      this.saveMessage.set('Título y artista son requeridos');
-      return;
-    }
-
-    this.isSaving.set(true);
-    this.saveMessage.set('');
-
+  private buildPayload(): any {
     const formValue = this.songForm.value;
-
-    const songData = {
+    return {
       title: formValue.title,
       artist: formValue.artist,
       key: formValue.key || null,
       tempo: formValue.tempo || null,
       time_signature: formValue.timeSignature || '4/4',
       tuning: formValue.tuning || 'Standard (EADGBE)',
-      difficulty: formValue.difficulty || 'intermediate',
+      genre: formValue.genre || null,
       story: formValue.story || null,
       source_url: formValue.sourceUrl || null,
       spotify_url: formValue.spotifyUrl || null,
       youtube_url: formValue.youtubeUrl || null,
-      sections: formValue.sections.map((s: any) => ({
-        name: s.name,
-        lines: s.lines.map((l: any) => ({
-          chords: l.chords,
-          lyrics: l.lyrics
-        }))
-      }))
+      sections: this.buildSections(),
     };
+  }
 
-    if (this.isEditing() && this.selectedSongId()) {
-      // Actualizar canción existente
-      this.adminService.updateSong(this.selectedSongId()!, songData).subscribe({
-        next: () => {
-          this.saveMessage.set('Canción actualizada correctamente');
-          this.isSaving.set(false);
-        },
-        error: (err) => {
-          this.saveMessage.set('Error al actualizar: ' + (err.error?.error || err.message));
-          this.isSaving.set(false);
-        }
-      });
-    } else {
-      // Crear nueva canción
-      this.adminService.createSong(songData).subscribe({
-        next: (response: any) => {
-          this.saveMessage.set('Canción creada correctamente');
+  /** Guarda sin publicar. Una canción con solo letra es un borrador válido. */
+  saveDraft(): void {
+    this.save({ ...this.buildPayload(), status: 'draft' }, 'Borrador guardado');
+  }
+
+  onSubmit(): void {
+    // Al crear siempre entra como borrador; publicar es un paso aparte y explícito.
+    const payload = this.isEditing()
+      ? this.buildPayload()
+      : { ...this.buildPayload(), status: 'draft' };
+    this.save(payload, this.isEditing() ? 'Canción actualizada' : 'Canción creada como borrador');
+  }
+
+  private save(payload: any, successMessage: string): void {
+    if (!payload.title || !payload.artist) {
+      this.showMessage('Título y artista son requeridos', true);
+      return;
+    }
+
+    this.isSaving.set(true);
+    this.saveMessage.set('');
+
+    const id = this.selectedSongId();
+    const request$ =
+      this.isEditing() && id
+        ? this.adminService.updateSong(id, payload)
+        : this.adminService.createSong(payload);
+
+    request$.subscribe({
+      next: (response: any) => {
+        if (!this.isEditing() && response?.id) {
           this.selectedSongId.set(response.id);
           this.isEditing.set(true);
-          this.isSaving.set(false);
-        },
-        error: (err) => {
-          this.saveMessage.set('Error al crear: ' + (err.error?.error || err.message));
-          this.isSaving.set(false);
         }
-      });
-    }
+        this.showMessage(successMessage, false);
+        this.isSaving.set(false);
+      },
+      error: (err) => {
+        this.showMessage('Error al guardar: ' + this.errorText(err), true);
+        this.isSaving.set(false);
+      },
+    });
   }
 
   publishSong(): void {
-    if (!this.selectedSongId()) return;
+    const id = this.selectedSongId();
+    if (!id) return;
 
-    this.adminService.publishSong(this.selectedSongId()!).subscribe({
-      next: () => {
-        this.saveMessage.set('Canción publicada');
-      },
-      error: (err) => {
-        this.saveMessage.set('Error al publicar: ' + (err.error?.error || err.message));
-      }
+    this.adminService.publishSong(id).subscribe({
+      next: () => this.showMessage('Canción publicada', false),
+      error: (err) => this.showMessage('Error al publicar: ' + this.errorText(err), true),
     });
+  }
+
+  private showMessage(message: string, isError: boolean): void {
+    this.saveMessage.set(message);
+    this.isError.set(isError);
+  }
+
+  private errorText(err: any): string {
+    if (environment.enableDebugMode) console.error(err);
+    return err?.error?.error || err?.message || 'error desconocido';
   }
 }

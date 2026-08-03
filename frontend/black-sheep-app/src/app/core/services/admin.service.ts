@@ -36,7 +36,7 @@ export interface SongRequest {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AdminService {
   private http = inject(HttpClient);
@@ -54,13 +54,13 @@ export class AdminService {
     }
     return new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
+      Authorization: `Bearer ${token}`,
     });
   }
 
   getStats(): Observable<AdminStats> {
     return this.http.get<AdminStats>(`${this.apiUrl}/admin/stats`, {
-      headers: this.getHeaders()
+      headers: this.getHeaders(),
     });
   }
 
@@ -75,62 +75,81 @@ export class AdminService {
       }
     }
     return this.http.get<AdminSong[]>(`${this.apiUrl}/admin/songs${params}`, {
-      headers: this.getHeaders()
+      headers: this.getHeaders(),
+    });
+  }
+
+  /** Trae una canción en cualquier estado (los borradores no salen por /songs/:id). */
+  getSong(id: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/admin/songs/${id}`, {
+      headers: this.getHeaders(),
     });
   }
 
   updateSong(id: string, data: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/songs/${id}`, data, {
-      headers: this.getHeaders()
+      headers: this.getHeaders(),
     });
   }
 
   createSong(data: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/songs`, data, {
-      headers: this.getHeaders()
+      headers: this.getHeaders(),
     });
   }
 
   getRequests(status?: string): Observable<SongRequest[]> {
     const params = status ? `?status=${status}` : '';
     return this.http.get<SongRequest[]>(`${this.apiUrl}/admin/requests${params}`, {
-      headers: this.getHeaders()
+      headers: this.getHeaders(),
     });
   }
 
   publishSong(id: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/songs/${id}/publish`, {}, {
-      headers: this.getHeaders()
-    });
+    return this.http.post(
+      `${this.apiUrl}/songs/${id}/publish`,
+      {},
+      {
+        headers: this.getHeaders(),
+      },
+    );
   }
 
   publishBatch(ids: string[]): Observable<any> {
-    return this.http.post(`${this.apiUrl}/admin/tabs/publish-batch`, { ids }, {
-      headers: this.getHeaders()
-    });
+    return this.http.post(
+      `${this.apiUrl}/admin/tabs/publish-batch`,
+      { ids },
+      {
+        headers: this.getHeaders(),
+      },
+    );
   }
 
   rejectSong(id: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/songs/${id}/reject`, {}, {
-      headers: this.getHeaders()
-    });
+    return this.http.post(
+      `${this.apiUrl}/songs/${id}/reject`,
+      {},
+      {
+        headers: this.getHeaders(),
+      },
+    );
   }
 
   deleteSong(id: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/songs/${id}`, {
-      headers: this.getHeaders()
+      headers: this.getHeaders(),
     });
   }
 
   updateRequest(id: string, updates: Partial<SongRequest>): Observable<SongRequest> {
     return this.http.put<SongRequest>(`${this.apiUrl}/admin/requests/${id}`, updates, {
-      headers: this.getHeaders()
+      headers: this.getHeaders(),
     });
   }
 
   deleteRequest(id: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/admin/requests/${id}`, {
-      headers: this.getHeaders()
+      headers: this.getHeaders(),
     });
   }
 }

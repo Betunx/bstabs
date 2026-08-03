@@ -75,6 +75,8 @@ blackSheep/
 - **Sistema de géneros completo (Songs page)**
 - **Auth real con Supabase** (JWT validado server-side, admin por email) — ver `auth-model`
 - **Editor admin con JWT** (sin `prompt()` ni API key en el frontend)
+- **Captura por "pegar texto"** — pegas la tab (acordes encima de la letra o
+  ChordPro) y las posiciones se calculan solas. Ver `PLAN-FLUJO-CONTENIDO.md`
 - **Pruebas unitarias + CI** (Vitest backend, Karma/Jasmine frontend, GitHub Actions)
 
 ## Plan de Desarrollo Actual
@@ -348,6 +350,9 @@ node tools/3-import/batch-importer.js
   pública + adminEmail; **sin API keys secretas**. Copiar de `*.example.ts`.
 - `src/app/core/services/auth.service.ts` - Auth Supabase (login/JWT/guards)
 - `src/app/core/services/songs.service.ts` - Servicio principal
+- `src/app/core/utils/tab-parser.ts` - Parser de tabs pegadas (dos líneas / ChordPro).
+  Las posiciones de acordes SIEMPRE se derivan del texto, nunca se teclean
+- `src/app/admin/tab-editor/` - Editor: importar pegando + secciones ChordPro + borradores
 - `src/app/shared/components/tab-viewer/` - Visualizador
 - `backend-workers/src/index.ts` - API endpoints (helpers puros en `src/lib/`)
 - `.github/workflows/ci.yml` - Pipeline de CI
