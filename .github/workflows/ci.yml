@@ -1,0 +1,82 @@
+name: CI
+
+# Capa 2/3 de la pirámide de calidad: corre en cada push y en cada PR a las
+# ramas de deploy. Activa branch protection en GitHub (Settings → Branches)
+# exigiendo estos checks para hacer cumplir la capa 3.
+on:
+  push:
+  pull_request:
+    branches: [main, admin]
+
+# Cancela ejecuciones viejas del mismo ref si llega un push nuevo.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm -r --if-present lint
+
+  test-backend:
+    name: Test backend (Workers)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter blacksheep-api-workers test
+
+  test-frontend:
+    name: Test frontend (Angular)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      # Los environment*.ts son gitignored (no llevan secretos: anon key pública).
+      # Los generamos desde los .example para que el build/test compile.
+      - name: Generar environments desde ejemplos
+        working-directory: frontend/black-sheep-app/src/environments
+        run: |
+          cp environment.example.ts environment.ts
+          cp environment.prod.example.ts environment.prod.ts
+      - run: pnpm --filter black-sheep-app test:ci
+
+  build:
+    name: Build (validación)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Generar environments desde ejemplos
+        working-directory: frontend/black-sheep-app/src/environments
+        run: |
+          cp environment.example.ts environment.ts
+          cp environment.prod.example.ts environment.prod.ts
+      - name: Build frontend
+        run: pnpm --filter black-sheep-app build
+      - name: Validar Worker (dry-run, no despliega)
+        run: pnpm --filter blacksheep-api-workers exec wrangler deploy --dry-run

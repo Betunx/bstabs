@@ -21,13 +21,15 @@ Black Sheep Tabs es una aplicación de visualización de tablaturas de guitarra 
 ## 🚨 FALLAS CRÍTICAS IDENTIFICADAS
 
 ### **SEGURIDAD**
-1. **API Key expuesta en código fuente**
-   - Archivo: `frontend/black-sheep-app/src/environments/environment.ts`
-   - Valor: `adminApiKey: 'admin123'`
-   - **Riesgo:** Acceso no autorizado al panel de administración
-   - **Solución:** Mover a Cloudflare secrets o variables de entorno
+
+1. ~~**API Key expuesta en código fuente**~~ ✅ **RESUELTO**
+   - Ya no hay `adminApiKey` en `environment.ts` (solo anon key pública + adminEmail).
+   - El admin se autentica con **Supabase Auth (JWT)**, validado server-side en el
+     Worker (`verifyAdmin`). Ver memoria `auth-model`.
+   - Pendiente real: verificar que **RLS esté activado** en Supabase.
 
 ### **FUNCIONALIDAD INCOMPLETA**
+
 2. **Carga de PDFs no implementada**
    - Ubicación: `admin-dashboard.ts:187-223`
    - Estado: Solo UI simulada, backend pendiente
@@ -44,6 +46,7 @@ Black Sheep Tabs es una aplicación de visualización de tablaturas de guitarra 
 ## 🎯 FALLAS DE UI/UX (ALTA PRIORIDAD)
 
 ### **Feedback Visual Ausente**
+
 4. **Sin indicadores de carga**
    - Búsqueda autocomplete sin spinner
    - Listas sin skeleton screens
@@ -55,6 +58,7 @@ Black Sheep Tabs es una aplicación de visualización de tablaturas de guitarra 
    - Falta error boundaries
 
 ### **Persistencia y Estado**
+
 6. **Tema no persiste**
    - Preferencia de tema se resetea al recargar
    - Debe usar `localStorage`
@@ -64,10 +68,10 @@ Black Sheep Tabs es una aplicación de visualización de tablaturas de guitarra 
    - Errores/éxitos no comunicados claramente
 
 ### **UX del Editor**
-8. **Editor de tabs usa `prompt()`**
+
+8. **Editor de tabs** — el acceso ya NO usa `prompt()` de API key (ahora JWT de
+   sesión). Mejora pendiente: modal personalizado con preview para agregar acordes.
    - Archivo: `tab-editor.ts`
-   - Problema: UX básica para agregar acordes
-   - **Solución:** Modal personalizado con preview
 
 9. **Modo "Solo Letras" incompleto**
    - Acordes aún ocupan espacio visual
@@ -75,6 +79,7 @@ Black Sheep Tabs es una aplicación de visualización de tablaturas de guitarra 
    - Archivo: `tab-viewer.html`
 
 ### **Features Incompletas**
+
 10. **Página de contacto sin formulario**
     - Solo muestra email y redes sociales
     - Título dice "formulario" pero no hay
@@ -88,9 +93,11 @@ Black Sheep Tabs es una aplicación de visualización de tablaturas de guitarra 
 ## 🛠️ PLAN DE IMPLEMENTACIÓN
 
 ### **FASE 1: Pulir lo Existente (1-2 semanas)**
-*Mejoras rápidas con alto impacto visual*
+
+_Mejoras rápidas con alto impacto visual_
 
 #### 1.1 Persistencia de Tema
+
 - **Archivo:** `core/services/theme.service.ts`
 - **Implementación:**
   ```typescript
@@ -107,6 +114,7 @@ Black Sheep Tabs es una aplicación de visualización de tablaturas de guitarra 
 - **Llamar en:** `app.component.ts` → `ngOnInit()`
 
 #### 1.2 Loading Indicators & Skeleton Screens
+
 - **Crear componente:** `shared/components/skeleton-loader/`
 - **Variantes:**
   - Lista de canciones
@@ -118,6 +126,7 @@ Black Sheep Tabs es una aplicación de visualización de tablaturas de guitarra 
   - `tab-viewer.component.html`
 
 #### 1.3 Toast Notification System
+
 - **Crear servicio:** `core/services/toast.service.ts`
 - **Crear componente:** `shared/components/toast/`
 - **Métodos:**
@@ -130,6 +139,7 @@ Black Sheep Tabs es una aplicación de visualización de tablaturas de guitarra 
   - Error interceptor
 
 #### 1.4 Conectar Búsqueda a API Real
+
 - **Archivo:** `core/services/search.service.ts`
 - **Cambios:**
   - Eliminar datos mock hardcodeados
@@ -138,6 +148,7 @@ Black Sheep Tabs es una aplicación de visualización de tablaturas de guitarra 
   - Agregar debounce (300ms ya existe)
 
 #### 1.5 Arreglar Modo "Solo Letras"
+
 - **Archivo:** `shared/components/tab-viewer/tab-viewer.html`
 - **Cambios:**
   - Usar `*ngIf="!lyricsOnlyMode()"` en lugar de ocultar con CSS
@@ -147,9 +158,11 @@ Black Sheep Tabs es una aplicación de visualización de tablaturas de guitarra 
 ---
 
 ### **FASE 2: Mejorar Experiencia (2-3 semanas)**
-*Features que mejoran significativamente la UX*
+
+_Features que mejoran significativamente la UX_
 
 #### 2.1 Editor de Tabs Mejorado
+
 - **Archivos:** `admin/tab-editor/tab-editor.{ts,html,scss}`
 - **Cambios:**
   - Crear modal personalizado para agregar acordes
@@ -159,6 +172,7 @@ Black Sheep Tabs es una aplicación de visualización de tablaturas de guitarra 
 - **Eliminar:** Llamadas a `window.prompt()`
 
 #### 2.2 Formulario de Contacto Funcional
+
 - **Crear componente:** `pages/contact/contact-form/`
 - **Features:**
   - Validación en tiempo real
@@ -168,6 +182,7 @@ Black Sheep Tabs es una aplicación de visualización de tablaturas de guitarra 
 - **Backend:** Crear endpoint `POST /contact` en workers
 
 #### 2.3 Paginación / Infinite Scroll
+
 - **Archivo:** `pages/songs/songs.component.ts`
 - **Opciones:**
   1. Paginación tradicional (20-50 por página)
@@ -176,6 +191,7 @@ Black Sheep Tabs es una aplicación de visualización de tablaturas de guitarra 
 - **Recomendado:** Infinite scroll (mejor UX móvil)
 
 #### 2.4 Error Boundaries
+
 - **Crear componente:** `shared/components/error-fallback/`
 - **Props:**
   - `message: string`
@@ -185,6 +201,7 @@ Black Sheep Tabs es una aplicación de visualización de tablaturas de guitarra 
   - Componentes que llaman API
 
 #### 2.5 Mejoras de Accesibilidad
+
 - **Quick wins:**
   - `aria-label` en botones de solo icono
   - Focus visible en elementos interactivos
@@ -196,9 +213,11 @@ Black Sheep Tabs es una aplicación de visualización de tablaturas de guitarra 
 ---
 
 ### **FASE 3: Features Avanzados (3-4 semanas)**
-*Nuevas funcionalidades y refinamiento*
+
+_Nuevas funcionalidades y refinamiento_
 
 #### 3.1 Implementar Carga de PDFs
+
 - **Backend:**
   - Crear endpoint `POST /admin/songs/upload-pdf`
   - Integración con Cloudflare R2 para almacenamiento
@@ -209,12 +228,14 @@ Black Sheep Tabs es una aplicación de visualización de tablaturas de guitarra 
   - Manejo de errores de parsing
 
 #### 3.2 Diagramas de Acordes Visuales
+
 - **Crear componente:** `shared/components/chord-diagram/`
 - **Tecnología:** Canvas API o SVG
 - **Datos:** Posiciones de dedos para acordes comunes
 - **Integrar en:** `tab-viewer.component.html`
 
 #### 3.3 Transposición de Tonalidad
+
 - **Archivo:** `shared/components/tab-viewer/tab-viewer.ts`
 - **Features:**
   - Botones +/- para subir/bajar tonalidad
@@ -223,6 +244,7 @@ Black Sheep Tabs es una aplicación de visualización de tablaturas de guitarra 
   - Mostrar tonalidad actual vs original
 
 #### 3.4 Sistema de Favoritos
+
 - **Fase 1:** localStorage (sin backend)
   - Servicio: `core/services/favorites.service.ts`
   - Botón de estrella en cada canción
@@ -230,6 +252,7 @@ Black Sheep Tabs es una aplicación de visualización de tablaturas de guitarra 
 - **Fase 2:** Backend con usuario autenticado (futuro)
 
 #### 3.5 PWA Offline Support
+
 - **Archivos:**
   - Implementar service worker (ya existe `ngsw-config.json`)
   - Estrategia de cache para canciones vistas
@@ -240,6 +263,7 @@ Black Sheep Tabs es una aplicación de visualización de tablaturas de guitarra 
 ## 📊 PROBLEMAS DE DATOS
 
 ### **Calidad de Datos del Scraper**
+
 - **Archivo de análisis:** `SCRAPER-ANALYSIS.md`
 - **Problemas identificados:**
   - 4 canciones con HTML corrupto
@@ -248,6 +272,7 @@ Black Sheep Tabs es una aplicación de visualización de tablaturas de guitarra 
   - Metadata incompleta o incorrecta
 
 ### **Acciones Requeridas:**
+
 1. Limpiar duplicados en base de datos
 2. Corregir entidades HTML
 3. Validar metadata (key, tempo, time signature)
@@ -258,6 +283,7 @@ Black Sheep Tabs es una aplicación de visualización de tablaturas de guitarra 
 ## 🏗️ ARQUITECTURA ACTUAL
 
 ### **Stack Tecnológico**
+
 - **Frontend:** Angular 20 (Standalone Components + Signals)
 - **Styling:** Tailwind CSS + SCSS
 - **Backend:** Cloudflare Workers
@@ -265,6 +291,7 @@ Black Sheep Tabs es una aplicación de visualización de tablaturas de guitarra 
 - **Deployment:** Cloudflare Pages
 
 ### **Flujo de Datos**
+
 ```
 Usuario → Angular App
     ↓
@@ -278,6 +305,7 @@ Supabase PostgreSQL
 ```
 
 ### **Caché Strategy**
+
 - **SongsService:** 5 minutos TTL + stale cache fallback
 - **SearchService:** LRU cache (50 entradas max)
 - **Mock data fallback:** Habilitado en dev
@@ -320,14 +348,15 @@ Supabase PostgreSQL
    - Sin toast notifications
    - Sin error boundaries
 
-3. **Seguridad**
-   - API key hardcodeada
-   - Admin check basado en hostname (bypasseable)
+3. **Seguridad** ✅ (mayormente resuelto)
+   - ~~API key hardcodeada~~ → Supabase Auth (JWT) validado server-side
+   - ~~Admin check basado en hostname~~ → `adminGuard` + email del JWT en el Worker
+   - Pendiente: verificar RLS, rate-limit en `/requests`
 
-4. **Testing**
-   - Sin tests unitarios visibles
-   - Sin E2E tests
-   - Sin coverage reports
+4. **Testing** ✅ (base implementada)
+   - Tests unitarios: Vitest (backend `src/lib/`) + Karma/Jasmine (frontend)
+   - CI en GitHub Actions (`.github/workflows/ci.yml`): lint + tests + build
+   - Pendiente: E2E (Playwright) y gate de coverage
 
 5. **Performance**
    - Sin paginación
@@ -338,11 +367,11 @@ Supabase PostgreSQL
 
 ## 📅 CRONOGRAMA ESTIMADO
 
-| Fase | Duración | Items | Prioridad |
-|------|----------|-------|-----------|
-| **Fase 1** | 1-2 semanas | Persistencia tema, loading states, toasts, búsqueda API, modo letras | 🔴 Alta |
-| **Fase 2** | 2-3 semanas | Editor mejorado, contacto, paginación, error boundaries, a11y | 🟡 Media |
-| **Fase 3** | 3-4 semanas | PDF upload, chord diagrams, transposición, favoritos, PWA | 🟢 Baja |
+| Fase       | Duración    | Items                                                                | Prioridad |
+| ---------- | ----------- | -------------------------------------------------------------------- | --------- |
+| **Fase 1** | 1-2 semanas | Persistencia tema, loading states, toasts, búsqueda API, modo letras | 🔴 Alta   |
+| **Fase 2** | 2-3 semanas | Editor mejorado, contacto, paginación, error boundaries, a11y        | 🟡 Media  |
+| **Fase 3** | 3-4 semanas | PDF upload, chord diagrams, transposición, favoritos, PWA            | 🟢 Baja   |
 
 **Total estimado:** 6-9 semanas para implementación completa
 
@@ -351,6 +380,7 @@ Supabase PostgreSQL
 ## 🎯 MÉTRICAS DE ÉXITO
 
 ### **KPIs de UI/UX**
+
 - [ ] Tiempo de carga percibido < 1s (skeleton screens)
 - [ ] Tasa de rebote en búsqueda < 20%
 - [ ] Retención de tema en 100% de recargas
@@ -358,6 +388,7 @@ Supabase PostgreSQL
 - [ ] Score de Lighthouse > 90 en Performance y Accessibility
 
 ### **KPIs de Funcionalidad**
+
 - [ ] 0 features marcadas como "incompletas"
 - [ ] 100% de endpoints API conectados
 - [ ] 0 datos duplicados en producción
@@ -368,17 +399,20 @@ Supabase PostgreSQL
 ## 📝 NOTAS ADICIONALES
 
 ### **Decisiones Pendientes**
+
 - [ ] ¿Implementar autenticación de usuarios?
 - [ ] ¿Sistema de comentarios/ratings?
 - [ ] ¿Analytics con Cloudflare Analytics o Google Analytics?
 - [ ] ¿Monetización con donaciones o ads?
 
 ### **Dependencias Externas**
+
 - Cloudflare R2 para almacenamiento de PDFs
 - Servicio de email (SendGrid, Resend, o Cloudflare Email Workers)
 - reCAPTCHA para formulario de contacto
 
 ### **Riesgos Identificados**
+
 - OCR de PDFs puede ser costoso (usar Tesseract.js?)
 - Transposición de acordes compleja con notación variada
 - Offline support requiere estrategia de cache cuidadosa
@@ -388,20 +422,25 @@ Supabase PostgreSQL
 ## 🔗 ARCHIVOS CLAVE
 
 ### **Frontend**
+
 - `src/app/admin/tab-editor/` - Editor de tabs
 - `src/app/shared/components/tab-viewer/` - Visualizador
 - `src/app/core/services/songs.service.ts` - Servicio principal
-- `src/app/core/services/search.service.ts` - Búsqueda (NECESITA ARREGLO)
-- `src/environments/environment.ts` - Config (API KEY EXPUESTA)
+- `src/app/core/services/search.service.ts` - Búsqueda (con tests)
+- `src/app/core/services/auth.service.ts` - Auth Supabase (login/JWT/guards)
+- `src/environments/environment.ts` - Config local (solo anon key pública + adminEmail)
 
 ### **Backend**
+
 - `backend-workers/src/index.ts` - API Cloudflare Workers
 
 ### **Scripts**
+
 - `scripts/scraper/tab-scraper-v2.js` - Scraper de tabs
 - `scripts/scraper/batch-import-api.js` - Importación batch
 
 ### **Documentación**
+
 - `SCRAPER-ANALYSIS.md` - Análisis de calidad de datos
 - `scripts/scraper/README.md` - Guía del scraper
 

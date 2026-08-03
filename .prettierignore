@@ -1,0 +1,9 @@
+node_modules
+dist
+coverage
+.angular
+.wrangler
+pnpm-lock.yaml
+**/*.min.js
+frontend/black-sheep-app/src/environments/environment.ts
+frontend/black-sheep-app/src/environments/environment.prod.ts

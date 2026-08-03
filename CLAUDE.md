@@ -6,17 +6,17 @@
 ## Proyecto
 
 **Black Sheep Tabs** (bstabs.com) - Plataforma de tablaturas de guitarra enfocada en hispanohablantes.
-Tagline: *"Knowing for love, fun and free!"*
+Tagline: _"Knowing for love, fun and free!"_
 Diferenciador: Experiencia ad-free, priorizando UX sobre monetización.
 
 ## Links
 
-| Recurso | URL | Descripción |
-|---------|-----|-------------|
-| **Producción** | https://www.bstabs.com/ | Sitio público (sin admin) - rama `main` |
-| **Admin Dev** | https://bstabs.pages.dev/ | Versión con panel admin - rama `admin` |
-| **API** | https://blacksheep-api.bstabs.workers.dev | Cloudflare Workers API |
-| **GitHub** | https://github.com/Betunx/bstabs | Repositorio del proyecto |
+| Recurso        | URL                                       | Descripción                             |
+| -------------- | ----------------------------------------- | --------------------------------------- |
+| **Producción** | https://www.bstabs.com/                   | Sitio público (sin admin) - rama `main` |
+| **Admin Dev**  | https://bstabs.pages.dev/                 | Versión con panel admin - rama `admin`  |
+| **API**        | https://blacksheep-api.bstabs.workers.dev | Cloudflare Workers API                  |
+| **GitHub**     | https://github.com/Betunx/bstabs          | Repositorio del proyecto                |
 
 ## Contacto
 
@@ -26,13 +26,13 @@ Diferenciador: Experiencia ad-free, priorizando UX sobre monetización.
 
 ## Stack Tecnológico
 
-| Capa | Tecnología |
-|------|------------|
+| Capa     | Tecnología                                  |
+| -------- | ------------------------------------------- |
 | Frontend | Angular 20 (Signals, Standalone Components) |
-| Styling | Tailwind CSS + Custom SCSS |
-| Backend | Cloudflare Workers |
-| Database | Supabase PostgreSQL |
-| Deploy | Cloudflare Pages |
+| Styling  | Tailwind CSS + Custom SCSS                  |
+| Backend  | Cloudflare Workers                          |
+| Database | Supabase PostgreSQL                         |
+| Deploy   | Cloudflare Pages                            |
 
 ## Estructura del Proyecto
 
@@ -45,51 +45,62 @@ blackSheep/
     └── scraper/            # Scripts de scraping
 ```
 
-## Estado Actual (7.5/10)
+## Estado Actual (8/10)
 
 ### 🔴 Crítico - Resolver primero
-- API key expuesta en `environment.ts`
-- Admin access débil (sin auth real)
+
+- Verificar que **RLS esté activado** en Supabase (`songs`, `song_requests`). El
+  Worker usa la service key (bypassa RLS); si las tablas no tienen RLS, la anon
+  key pública permitiría saltarse el Worker. Ver memoria `auth-model`.
 
 ### ⚠️ Incompleto
+
 - PDF upload es mock (no funcional)
-- Formulario contacto sin backend
+- Sin flujo "¿Olvidaste tu contraseña?" ni página de verificación de email
+- `/requests` público sin rate-limit/captcha
 
 ### 🟡 UX Pendiente
-- Tema no persiste entre sesiones
-- Sin loading indicators/skeletons
+
 - Sin toast notifications
-- Editor usa `prompt()` básico
 - **Filtro de género falta en página Artists**
 
 ### 🟢 Funcionando bien
+
 - Arquitectura moderna Angular
 - Responsive design
-- Sistema de temas (dark/light/night-red/oled)
+- Sistema de temas (dark/light/night-red/oled) — **persiste en localStorage**
 - Cache strategy (5min TTL)
 - Error handling con retry interceptor
 - **Búsqueda conectada a API real con autocomplete**
 - **Sistema de géneros completo (Songs page)**
+- **Auth real con Supabase** (JWT validado server-side, admin por email) — ver `auth-model`
+- **Editor admin con JWT** (sin `prompt()` ni API key en el frontend)
+- **Pruebas unitarias + CI** (Vitest backend, Karma/Jasmine frontend, GitHub Actions)
 
 ## Plan de Desarrollo Actual
 
 ### Fase 1 - Completado ✅
+
 - [x] Conectar búsqueda a API real
 - [x] **Eliminar campo "difficulty"** (beginner/intermediate/advanced)
 - [x] **Agregar campo "genre"** con filtro/ordenamiento
 - [x] Migración de base de datos (518 canciones migradas)
 
 ### Fase 2 (En Progreso)
+
 - [ ] **Agregar filtro de género a página Artists**
 - [x] Persistencia de tema en localStorage
 - [x] Skeleton loaders
+- [x] Auth real con Supabase (login email/Google + guards + JWT server-side)
+- [x] Editor admin con JWT (reemplazado `prompt()`)
+- [x] **Pruebas unitarias + CI con GitHub Actions** (ver sección "Testing & CI")
 - [ ] Toast notifications
-- [ ] Editor mejorado (reemplazar prompt)
 - [ ] Formulario contacto con backend
 - [ ] Paginación
 - [ ] Error boundaries
 
 ### Fase 3 (Futuro)
+
 - [ ] PDF upload real
 - [x] **Biblioteca de Acordes v1** (teoría + nav) — `/acordes`
 - [ ] Chord diagrams (guitarra/piano/bajo) — extensión de v1
@@ -97,6 +108,7 @@ blackSheep/
 - [ ] PWA capabilities
 
 ### Fase 4 (Aprendizaje + Social — ver ORCHESTRATOR.md)
+
 - [ ] Diagramas SVG para acordes (guitarra, piano, bajo)
 - [ ] Sección `/teoria` — solfeo, intervalos, círculo de quintas
 - [ ] Sección `/ejercicios` — práctica para guitarra/bajo con metrónomo
@@ -108,6 +120,7 @@ blackSheep/
 **Estado:** Completamente implementado en Songs page (31 Diciembre 2024)
 
 **Géneros permitidos (max 20):**
+
 1. Rock
 2. Pop
 3. Balada
@@ -130,6 +143,7 @@ blackSheep/
 20. Alternativo
 
 **Implementación completada:**
+
 - ✅ Dropdown/Select en filtros de Songs
 - ✅ Migración de base de datos (difficulty → genre)
 - ✅ Backend API actualizado con query parameter `?genre=`
@@ -138,11 +152,13 @@ blackSheep/
 - ✅ Editor admin actualizado
 
 **Datos actuales:**
+
 - 279 canciones Pop
 - 197 canciones Rock
 - 42 canciones Metal
 
 **Pendiente:**
+
 - [ ] Filtro de género en Artists page
 - [ ] Badge visual del género en cards
 - [ ] Analytics para ver géneros más populares
@@ -152,6 +168,7 @@ blackSheep/
 **Estado:** Funcional y enrutada. Falta capa de diagramas visuales por instrumento.
 
 **Implementado:**
+
 - Rutas: `/acordes` y `/acordes/:root` (ej: `/acordes/C`, `/acordes/G`)
 - Variante seleccionable vía query param: `/acordes/C?v=m7`
 - Nav horizontal C-D-E-F-G-A-B + acceso a sostenidos (C#, D#, F#, G#, A#)
@@ -160,11 +177,13 @@ blackSheep/
 - Link en header desktop + mobile · card en home
 
 **Archivos:**
+
 - [pages/chords/chords.ts](frontend/black-sheep-app/src/app/pages/chords/chords.ts)
 - [core/services/chord.service.ts](frontend/black-sheep-app/src/app/core/services/chord.service.ts)
 - [core/constants/chords.ts](frontend/black-sheep-app/src/app/core/constants/chords.ts)
 
 **Pendiente (ver ORCHESTRATOR.md → Roadmap Aprendizaje):**
+
 - Diagramas SVG: guitarra (fretboard), piano (teclas), bajo (4 cuerdas)
 - Upload de imágenes propias por admin (reusar pipeline R2)
 - Audio sample del acorde (Web Audio API)
@@ -180,10 +199,14 @@ blackSheep/
 
 ### Branches y URLs Permanentes
 
-| Rama | URL | Propósito | Deploy Command |
-|------|-----|-----------|----------------|
-| `main` | https://www.bstabs.com/ | **Producción pública** (sin rutas /admin) | `pnpm --filter black-sheep-app run deploy` |
-| `admin` | https://bstabs.pages.dev/ | **Versión admin** (con panel /admin y /admin/editor) | `pnpm --filter black-sheep-app run deploy:admin` |
+| Rama    | URL                       | Propósito              | Deploy Command                                   |
+| ------- | ------------------------- | ---------------------- | ------------------------------------------------ |
+| `main`  | https://www.bstabs.com/   | **Producción pública** | `pnpm --filter black-sheep-app run deploy`       |
+| `admin` | https://bstabs.pages.dev/ | **Preview**            | `pnpm --filter black-sheep-app run deploy:admin` |
+
+> Nota: las rutas `/admin` y `/admin/editor` existen en **ambos** deploys y están
+> protegidas por `adminGuard` + verificación de JWT en el Worker (solo el email
+> admin entra). El gate de seguridad es la auth, no el branch. Ver `auth-model`.
 
 ### Configuración Cloudflare Pages
 
@@ -214,22 +237,57 @@ pnpm --filter blacksheep-api-workers run deploy # → blacksheep-api.bstabs.work
 > deben existir localmente (gitignored). Si faltan: copiarlos de los `*.example.ts`.
 > Si no tienes el comando `pnpm`, usa `corepack pnpm@9 ...` (no requiere admin).
 
+## Testing & CI
+
+Pirámide de calidad en capas (ver `aplica-automatizacion-de-pruebas` en plans):
+
+| Capa       | Qué corre                          | Dónde                                       |
+| ---------- | ---------------------------------- | ------------------------------------------- |
+| Pre-commit | Prettier sobre archivos staged     | Local (Husky + lint-staged)                 |
+| CI push/PR | lint + tests + build de validación | GitHub Actions (`.github/workflows/ci.yml`) |
+
+**Runners:** backend → **Vitest** (`backend-workers`, helpers puros en `src/lib/`);
+frontend → **Karma + Jasmine** (Angular, `*.spec.ts`).
+
+```bash
+# Desde la RAÍZ del monorepo
+pnpm test            # backend (vitest) + frontend (karma headless)
+pnpm run test:be     # solo backend
+pnpm run test:fe     # solo frontend (ChromeHeadless, con coverage)
+pnpm run lint        # eslint en los paquetes (frontend angular-eslint + backend)
+
+# Por paquete
+pnpm --filter blacksheep-api-workers test            # vitest run
+pnpm --filter blacksheep-api-workers test:coverage   # con cobertura
+pnpm --filter black-sheep-app test                   # ng test (watch, dev)
+pnpm --filter black-sheep-app test:ci                # headless, para CI
+```
+
+- **ESLint frontend:** baseline en `warn` para reglas que el código existente ya
+  viola (any, accesibilidad de templates…). Apretar a `error` al limpiarlas.
+- **Branch protection (manual):** GitHub → Settings → Branches → exigir los checks
+  `Lint`, `Test backend`, `Test frontend`, `Build` para mergear a `main`/`admin`.
+- **Pendiente (futuro):** gate de cobertura, E2E (Playwright), CD con `wrangler
+deploy` y secrets, `@cloudflare/vitest-pool-workers` para rutas end-to-end.
+
 ## Package Manager: pnpm
 
 El proyecto usa **pnpm** como gestor de paquetes (monorepo workspace).
-La versión está fijada en `package.json` → `"packageManager": "pnpm@9.15.9"`,
+La versión está fijada en `package.json` → `"packageManager": "pnpm@11.9.0"`,
 y la versión de Node en `.nvmrc` (22.20.0). corepack auto-selecciona pnpm.
 
 ### Tener el comando `pnpm` (primera vez, sin admin)
+
 ```powershell
 # Opción A (recomendada, permanente): deja el shim en la carpeta npm (ya en PATH)
 corepack enable --install-directory "$env:APPDATA\npm" pnpm
 # Opción B (siempre funciona, sin instalar nada): usar corepack en modo run
-corepack pnpm@9 <comando>
+corepack pnpm <comando>    # corepack lee la versión pinneada en package.json
 # Con admin: `corepack enable` basta. Verifica: `pnpm -v` → 9.15.9
 ```
 
 ### Instalar dependencias del workspace
+
 ```bash
 pnpm install            # desde la raíz; instala los 3 paquetes del workspace
 ```
@@ -286,10 +344,13 @@ node tools/3-import/batch-importer.js
 
 ## Archivos Críticos
 
-- `src/environments/environment.ts` - ⚠️ API key expuesta
+- `src/environments/environment.ts` - config local (gitignored). Solo anon key
+  pública + adminEmail; **sin API keys secretas**. Copiar de `*.example.ts`.
+- `src/app/core/services/auth.service.ts` - Auth Supabase (login/JWT/guards)
 - `src/app/core/services/songs.service.ts` - Servicio principal
 - `src/app/shared/components/tab-viewer/` - Visualizador
-- `backend-workers/src/index.ts` - API endpoints
+- `backend-workers/src/index.ts` - API endpoints (helpers puros en `src/lib/`)
+- `.github/workflows/ci.yml` - Pipeline de CI
 - `PLAN-MEJORAS-UI.md` - Plan completo de mejoras
 
 ## Sistema de Imágenes de Artistas
@@ -297,6 +358,7 @@ node tools/3-import/batch-importer.js
 **Arquitectura:** Cloudflare R2 + CDN Worker
 
 ### Configuración
+
 - **Bucket R2:** bstabs-artist-images
 - **CDN URL:** https://blacksheep-api.bstabs.workers.dev/artists/images/{slug}.jpg
 - **Cache:** 1 año (max-age=31536000)
@@ -305,16 +367,19 @@ node tools/3-import/batch-importer.js
 ### Cómo agregar/actualizar imágenes
 
 **PowerShell (Windows):**
+
 ```powershell
 .\scripts\upload-artist-image.ps1 .\photos\peso-pluma.jpg peso-pluma
 ```
 
 **Bash (Linux/Mac):**
+
 ```bash
 ./scripts/upload-artist-image.sh ./photos/peso-pluma.jpg peso-pluma
 ```
 
 **curl directo:**
+
 ```bash
 curl -X POST \
   -H "x-api-key: YOUR_API_KEY" \
@@ -324,6 +389,7 @@ curl -X POST \
 ```
 
 ### Requisitos de imágenes
+
 - **Formato:** JPG, PNG, o WebP
 - **Tamaño recomendado:** 500x500px (cuadrada)
 - **Peso máximo:** 200KB
@@ -407,7 +473,9 @@ node tools/3-import/extracted-importer.js
 ## Documentación Completa
 
 Para información detallada del proyecto, consultar:
+
 - **`ORCHESTRATOR.md`** - Estado completo, deuda técnica, roadmap y comandos del workspace
+- **`PLAN-FLUJO-CONTENIDO.md`** - Roadmap de captura/curación de canciones (Fases 0, A-D, M) + auditoría de versiones 2026-08-03
 - **Claude Projects Memory** - Base de datos completa del proyecto
 - `PLAN-MEJORAS-UI.md` - Plan de 3 fases con cronograma detallado
 - `scripts/scraper/README.md` - Sistema completo de scraping

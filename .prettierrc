@@ -1,0 +1,20 @@
+{
+  "printWidth": 100,
+  "singleQuote": true,
+  "semi": false,
+  "overrides": [
+    {
+      "files": "frontend/**/*.{ts,html}",
+      "options": {
+        "semi": true,
+        "parser": "angular"
+      }
+    },
+    {
+      "files": "frontend/**/*.ts",
+      "options": {
+        "parser": "typescript"
+      }
+    }
+  ]
+}

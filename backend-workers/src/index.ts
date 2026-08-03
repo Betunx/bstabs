@@ -1,35 +1,16 @@
 import { createClient } from '@supabase/supabase-js'
+import { ALLOWED_ORIGINS, getCorsHeaders } from './lib/cors'
+import { validateSearchQuery, validateGenre, MusicGenre } from './lib/validation'
+import { verifyApiKey } from './lib/auth'
 
 // Tipos
 interface Env {
   SUPABASE_URL: string
   SUPABASE_SERVICE_KEY: string
   ADMIN_API_KEY: string
-  ADMIN_EMAIL: string      // Email del admin (auth vía JWT de Supabase)
-  ARTIST_IMAGES: R2Bucket  // R2 bucket binding
+  ADMIN_EMAIL: string // Email del admin (auth vía JWT de Supabase)
+  ARTIST_IMAGES: R2Bucket // R2 bucket binding
 }
-
-type MusicGenre =
-  | 'Rock'
-  | 'Pop'
-  | 'Balada'
-  | 'Corrido'
-  | 'Norteño'
-  | 'Banda'
-  | 'Regional Mexicano'
-  | 'Ranchera'
-  | 'Metal'
-  | 'Punk'
-  | 'Indie'
-  | 'Folk'
-  | 'Blues'
-  | 'Jazz'
-  | 'Gospel/Cristiana'
-  | 'Cumbia'
-  | 'Salsa'
-  | 'Reggae'
-  | 'Country'
-  | 'Alternativo'
 
 interface Song {
   id?: string
@@ -66,58 +47,24 @@ interface SongRequest {
   status?: 'pending' | 'completed' | 'rejected'
 }
 
-// CORS headers - SECURITY: Only allow specific origins
-const ALLOWED_ORIGINS = [
-  'https://www.bstabs.com',
-  'https://bstabs.com',
-  'https://bstabs.pages.dev',
-  'http://localhost:4200', // Development only
-];
-
-function isAllowedOrigin(origin: string): boolean {
-  if (ALLOWED_ORIGINS.includes(origin)) return true;
-  // Allow all Cloudflare Pages preview deployments (*.bstabs.pages.dev)
-  if (/^https:\/\/[a-z0-9]+\.bstabs\.pages\.dev$/.test(origin)) return true;
-  return false;
-}
-
-function getCorsHeaders(request: Request) {
-  const origin = request.headers.get('Origin') || '';
-  const allowedOrigin = isAllowedOrigin(origin) ? origin : ALLOWED_ORIGINS[0];
-
-  return {
-    'Access-Control-Allow-Origin': allowedOrigin,
-    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type, x-api-key, Authorization',
-  };
-}
-
 // Helper para respuestas JSON con CORS correcto por origen
 function jsonResponse(data: any, status = 200, request?: Request) {
-  const cors = request ? getCorsHeaders(request) : {
-    'Access-Control-Allow-Origin': ALLOWED_ORIGINS[0],
-    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type, x-api-key, Authorization',
-  }
+  const cors = request
+    ? getCorsHeaders(request)
+    : {
+        'Access-Control-Allow-Origin': ALLOWED_ORIGINS[0],
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, x-api-key, Authorization',
+      }
   return new Response(JSON.stringify(data), {
     status,
     headers: { 'Content-Type': 'application/json', ...cors },
   })
 }
 
-// Verificar API Key
-function verifyApiKey(request: Request, env: Env): boolean {
-  const apiKey = request.headers.get('x-api-key')
-  return apiKey === env.ADMIN_API_KEY
-}
-
 // Verificar acceso admin: API Key (legacy/scripts) O JWT de Supabase del admin.
 // El JWT lo manda el frontend como `Authorization: Bearer <access_token>`.
-async function verifyAdmin(
-  request: Request,
-  env: Env,
-  supabase: any
-): Promise<boolean> {
+async function verifyAdmin(request: Request, env: Env, supabase: any): Promise<boolean> {
   // 1. API Key estática (scripts, uploads de imágenes, compatibilidad)
   if (verifyApiKey(request, env)) return true
 
@@ -134,42 +81,6 @@ async function verifyAdmin(
   } catch {
     return false
   }
-}
-
-// SECURITY: Validación y sanitización de inputs.
-// El sanitizer ataca dos vectores:
-// 1. XSS si el query se refleja en HTML: strip < > " '
-// 2. Inyección en `.or()` de Supabase: strip , ( ) y * (operadores de PostgREST)
-//    PostgREST parsea .or('col.op.val,col.op.val'), si val contiene comas o
-//    paréntesis puede inyectar filtros adicionales o subconsultas.
-function validateSearchQuery(query: string): { valid: boolean; sanitized: string; error?: string } {
-  if (!query || query.trim().length === 0) {
-    return { valid: false, sanitized: '', error: 'Search query cannot be empty' }
-  }
-
-  if (query.length > 100) {
-    return { valid: false, sanitized: '', error: 'Search query too long (max 100 chars)' }
-  }
-
-  // XSS + PostgREST operators + LIKE wildcards
-  const sanitized = query.trim().replace(/[<>"',()*\\%]/g, '')
-
-  return { valid: true, sanitized }
-}
-
-function validateGenre(genre: string): { valid: boolean; error?: string } {
-  const validGenres: MusicGenre[] = [
-    'Rock', 'Pop', 'Balada', 'Corrido', 'Norteño', 'Banda',
-    'Regional Mexicano', 'Ranchera', 'Metal', 'Punk', 'Indie',
-    'Folk', 'Blues', 'Jazz', 'Gospel/Cristiana', 'Cumbia',
-    'Salsa', 'Reggae', 'Country', 'Alternativo'
-  ]
-
-  if (!validGenres.includes(genre as MusicGenre)) {
-    return { valid: false, error: `Invalid genre. Must be one of: ${validGenres.join(', ')}` }
-  }
-
-  return { valid: true }
 }
 
 export default {
@@ -194,7 +105,7 @@ export default {
         return json({
           status: 'ok',
           message: 'Black Sheep Tabs API - Cloudflare Workers',
-          version: '1.0.0'
+          version: '1.0.0',
         })
       }
 
@@ -267,11 +178,7 @@ export default {
 
         const song: Song = await request.json()
 
-        const { data, error } = await supabase
-          .from('songs')
-          .insert([song])
-          .select()
-          .single()
+        const { data, error } = await supabase.from('songs').insert([song]).select().single()
 
         if (error) throw error
         return json(data, 201)
@@ -305,10 +212,7 @@ export default {
 
         const id = path.split('/')[2]
 
-        const { error } = await supabase
-          .from('songs')
-          .delete()
-          .eq('id', id)
+        const { error } = await supabase.from('songs').delete().eq('id', id)
 
         if (error) throw error
         return json({ message: 'Song deleted' })
@@ -322,7 +226,7 @@ export default {
 
         const id = path.split('/')[2]
 
-        const { data, error} = await supabase
+        const { data, error } = await supabase
           .from('songs')
           .update({ status: 'published' })
           .eq('id', id)
@@ -360,7 +264,7 @@ export default {
           songs: data,
           total: count,
           limit,
-          offset
+          offset,
         })
       }
 
@@ -385,7 +289,7 @@ export default {
         if (error) throw error
         return json({
           message: `${data.length} songs published`,
-          songs: data
+          songs: data,
         })
       }
 
@@ -444,8 +348,20 @@ export default {
 
         // Validar campos requeridos para nueva canción
         if (requestData.type === 'new_song') {
-          if (!requestData.song_title || !requestData.artist_name || !requestData.lyrics || !requestData.chords || requestData.chords.length === 0) {
-            return json({ error: 'Para solicitar una canción necesitas: título, artista, letra y al menos un acorde' }, 400)
+          if (
+            !requestData.song_title ||
+            !requestData.artist_name ||
+            !requestData.lyrics ||
+            !requestData.chords ||
+            requestData.chords.length === 0
+          ) {
+            return json(
+              {
+                error:
+                  'Para solicitar una canción necesitas: título, artista, letra y al menos un acorde',
+              },
+              400,
+            )
           }
         }
 
@@ -463,22 +379,24 @@ export default {
 
         const { data, error } = await supabase
           .from('song_requests')
-          .insert([{
-            type: requestData.type,
-            song_id: requestData.song_id || null,
-            song_title: requestData.song_title,
-            artist_name: requestData.artist_name || null,
-            lyrics: requestData.lyrics || null,
-            chords: requestData.chords || null,
-            song_key: requestData.song_key || null,
-            tempo: requestData.tempo || null,
-            spotify_url: requestData.spotify_url || null,
-            youtube_url: requestData.youtube_url || null,
-            edit_reason: requestData.edit_reason || null,
-            description: requestData.description || null,
-            user_email: requestData.user_email || null,
-            status: 'pending'
-          }])
+          .insert([
+            {
+              type: requestData.type,
+              song_id: requestData.song_id || null,
+              song_title: requestData.song_title,
+              artist_name: requestData.artist_name || null,
+              lyrics: requestData.lyrics || null,
+              chords: requestData.chords || null,
+              song_key: requestData.song_key || null,
+              tempo: requestData.tempo || null,
+              spotify_url: requestData.spotify_url || null,
+              youtube_url: requestData.youtube_url || null,
+              edit_reason: requestData.edit_reason || null,
+              description: requestData.description || null,
+              user_email: requestData.user_email || null,
+              status: 'pending',
+            },
+          ])
           .select()
           .single()
 
@@ -539,10 +457,7 @@ export default {
 
         const id = path.split('/')[3]
 
-        const { error } = await supabase
-          .from('song_requests')
-          .delete()
-          .eq('id', id)
+        const { error } = await supabase.from('song_requests').delete().eq('id', id)
 
         if (error) throw error
         return json({ message: 'Request deleted' })
@@ -559,10 +474,7 @@ export default {
         const status = url.searchParams.get('status')
         const search = url.searchParams.get('q')
 
-        let query = supabase
-          .from('songs')
-          .select('*')
-          .order('created_at', { ascending: false })
+        let query = supabase.from('songs').select('*').order('created_at', { ascending: false })
 
         if (status) query = query.eq('status', status)
         if (search) {
@@ -587,22 +499,34 @@ export default {
         }
 
         const [publishedRes, pendingRes, requestsRes] = await Promise.all([
-          supabase.from('songs').select('id', { count: 'exact', head: true }).eq('status', 'published'),
-          supabase.from('songs').select('id', { count: 'exact', head: true }).eq('status', 'pending'),
-          supabase.from('song_requests').select('id', { count: 'exact', head: true }).eq('status', 'pending')
+          supabase
+            .from('songs')
+            .select('id', { count: 'exact', head: true })
+            .eq('status', 'published'),
+          supabase
+            .from('songs')
+            .select('id', { count: 'exact', head: true })
+            .eq('status', 'pending'),
+          supabase
+            .from('song_requests')
+            .select('id', { count: 'exact', head: true })
+            .eq('status', 'pending'),
         ])
 
         return json({
           publishedCount: publishedRes.count || 0,
           pendingCount: pendingRes.count || 0,
-          pendingRequestsCount: requestsRes.count || 0
+          pendingRequestsCount: requestsRes.count || 0,
         })
       }
 
       // ===== ARTIST IMAGES (R2) =====
 
       // GET /artists/images/:slug - Servir imagen de artista
-      if (path.match(/^\/artists\/images\/[a-z0-9-]+\.(jpg|jpeg|png|webp)$/) && request.method === 'GET') {
+      if (
+        path.match(/^\/artists\/images\/[a-z0-9-]+\.(jpg|jpeg|png|webp)$/) &&
+        request.method === 'GET'
+      ) {
         const filename = path.split('/').pop() || ''
 
         try {
@@ -630,7 +554,10 @@ export default {
       }
 
       // POST /admin/artists/images/:slug - Subir imagen de artista (requiere API key)
-      if (path.match(/^\/admin\/artists\/images\/[a-z0-9-]+\.(jpg|jpeg|png|webp)$/) && request.method === 'POST') {
+      if (
+        path.match(/^\/admin\/artists\/images\/[a-z0-9-]+\.(jpg|jpeg|png|webp)$/) &&
+        request.method === 'POST'
+      ) {
         if (!(await verifyAdmin(request, env, supabase))) {
           return json({ error: 'Unauthorized' }, 401)
         }
@@ -650,7 +577,7 @@ export default {
           return json({
             message: 'Image uploaded successfully',
             filename,
-            url: `/artists/images/${filename}`
+            url: `/artists/images/${filename}`,
           })
         } catch (error: any) {
           console.error('Error uploading image:', error)
@@ -659,7 +586,10 @@ export default {
       }
 
       // DELETE /admin/artists/images/:slug - Eliminar imagen de artista (requiere API key)
-      if (path.match(/^\/admin\/artists\/images\/[a-z0-9-]+\.(jpg|jpeg|png|webp)$/) && request.method === 'DELETE') {
+      if (
+        path.match(/^\/admin\/artists\/images\/[a-z0-9-]+\.(jpg|jpeg|png|webp)$/) &&
+        request.method === 'DELETE'
+      ) {
         if (!(await verifyAdmin(request, env, supabase))) {
           return json({ error: 'Unauthorized' }, 401)
         }
@@ -683,11 +613,11 @@ export default {
 
         try {
           const objects = await env.ARTIST_IMAGES.list()
-          const images = objects.objects.map(obj => ({
+          const images = objects.objects.map((obj) => ({
             key: obj.key,
             size: obj.size,
             uploaded: obj.uploaded,
-            url: `/artists/images/${obj.key}`
+            url: `/artists/images/${obj.key}`,
           }))
 
           return json({ images, count: images.length })
@@ -699,7 +629,6 @@ export default {
 
       // Ruta no encontrada
       return json({ error: 'Not found' }, 404)
-
     } catch (error: any) {
       console.error('Error:', error)
       return json({ error: error.message || 'Internal server error' }, 500)
