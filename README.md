@@ -1,6 +1,6 @@
 # Black Sheep Tabs
 
-> *"Knowing for love, fun and free!"*
+> _"Knowing for love, fun and free!"_
 
 Plataforma de tablaturas de guitarra para hispanohablantes. Sin anuncios, sin distracciones — solo música. Aquí encontrarás acordes, letras y estructura de canciones en un formato limpio y enfocado en la experiencia del músico.
 
@@ -18,24 +18,24 @@ Plataforma de tablaturas de guitarra para hispanohablantes. Sin anuncios, sin di
 
 ## Links
 
-| Recurso | URL |
-|---------|-----|
-| Producción | https://www.bstabs.com |
-| Admin (dev) | https://bstabs.pages.dev |
-| API | https://blacksheep-api.bstabs.workers.dev |
+| Recurso     | URL                                       |
+| ----------- | ----------------------------------------- |
+| Producción  | https://www.bstabs.com                    |
+| Admin (dev) | https://bstabs.pages.dev                  |
+| API         | https://blacksheep-api.bstabs.workers.dev |
 
 ## Stack Tecnológico
 
-| Capa | Tecnología |
-|------|------------|
-| Frontend | Angular 20 (Signals, Standalone Components) |
-| Styling | Tailwind CSS + SCSS |
-| Auth | Supabase Auth (Google OAuth + Email) |
-| Backend | Cloudflare Workers |
-| Database | Supabase PostgreSQL |
-| Storage | Cloudflare R2 (imágenes de artistas) |
-| Deploy | Cloudflare Pages |
-| Package manager | **pnpm** (monorepo workspace) |
+| Capa            | Tecnología                                  |
+| --------------- | ------------------------------------------- |
+| Frontend        | Angular 20 (Signals, Standalone Components) |
+| Styling         | Tailwind CSS + SCSS                         |
+| Auth            | Supabase Auth (Google OAuth + Email)        |
+| Backend         | Cloudflare Workers                          |
+| Database        | Supabase PostgreSQL                         |
+| Storage         | Cloudflare R2 (imágenes de artistas)        |
+| Deploy          | Cloudflare Pages                            |
+| Package manager | **pnpm** (monorepo workspace)               |
 
 ## Estructura del Proyecto
 
@@ -52,8 +52,8 @@ bstabs/                          ← raíz del monorepo (pnpm workspace)
 
 ### Prerrequisitos
 
-- Node.js 20+
-- pnpm 9+ — instalar con: `npm install -g pnpm` o `winget install pnpm.pnpm`
+- Node.js 22 (ver `.nvmrc`)
+- pnpm vía corepack (`corepack enable`); la versión está pinneada en `package.json`
 
 ### Instalar todo el monorepo
 
@@ -145,4 +145,4 @@ Black Sheep es gratuito y sin anuncios. Si te resulta útil:
 
 ---
 
-*Hecho con amor por músicos, para músicos.*
+_Hecho con amor por músicos, para músicos._

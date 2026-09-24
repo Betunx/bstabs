@@ -1,7 +1,46 @@
 # ORCHESTRATOR — Black Sheep Tabs
 
-> Documento central de coordinación. Fuente de verdad para arquitectura, estado de features y roadmap.
-> Última actualización: 2026-05-24
+> Fuente de verdad para arquitectura, estado de features y roadmap.
+> Última auditoría completa: **2026-09-24** (código, tests, CI y versiones verificados).
+>
+> - **Bitácora de sesiones:** [ESTADO-SESION.md](ESTADO-SESION.md)
+> - **Captura de canciones:** [PLAN-FLUJO-CONTENIDO.md](PLAN-FLUJO-CONTENIDO.md)
+> - **Cómo revisar un PR:** [REVIEW.md](REVIEW.md)
+> - **Históricos cumplidos:** [docs/archive/](docs/archive/README.md)
+
+---
+
+## Rutina diaria
+
+Proyecto formalizado: **nada entra a `main` sin PR**. Un PR por tema, aunque sea pequeño.
+
+```bash
+# 1. Arrancar
+git checkout main && git pull
+# Leer la entrada más reciente de ESTADO-SESION.md
+
+# 2. Rama por tema (prefijos)
+git checkout -b content/2026-09-24-corridos   # canciones nuevas o limpieza de datos
+git checkout -b feat/toasts                   # feature
+git checkout -b fix/editor-genre              # bug
+git checkout -b docs/...  |  chore/...        # docs, tooling
+
+# 3. Trabajar
+pnpm --filter black-sheep-app start           # editor admin: /admin/editor → "Importar pegando texto"
+
+# 4. Antes de push (lo mismo que corre CI)
+pnpm run lint && pnpm test
+
+# 5. Push + PR en GitHub → revisar "Files changed" con REVIEW.md → merge
+git push -u origin <rama>
+
+# 6. Cerrar el día: agregar entrada en ESTADO-SESION.md (qué hice, qué sigue)
+```
+
+**Contenido (canciones y limpieza de DB):** agregar canciones pasa por el editor admin
+y no genera diff de código. Por eso no requiere PR. Sí lleva PR todo script o migración
+SQL de limpieza (`scripts/`), y se anota en la bitácora cuántas canciones se
+agregaron o corrigieron.
 
 ---
 
@@ -9,102 +48,145 @@
 
 ```
 bstabs/                              ← raíz del workspace
-├── pnpm-workspace.yaml              ← define los packages del monorepo
-├── .npmrc                           ← config pnpm (hoisting para Angular)
-├── ORCHESTRATOR.md                  ← este archivo
-├── CLAUDE.md                        ← guía para Claude Code
-├── PLAN-MEJORAS-UI.md               ← plan detallado de UI/UX
+├── ORCHESTRATOR.md                  ← este archivo (roadmap)
+├── ESTADO-SESION.md                 ← bitácora por sesión
+├── CLAUDE.md                        ← reglas para Claude Code
+├── REVIEW.md                        ← checklist de code review
+├── PLAN-FLUJO-CONTENIDO.md          ← captura/curación de canciones
+├── .github/                         ← CI + plantilla de PR
 │
-├── frontend/black-sheep-app/        ← Angular 20 SPA
-│   ├── src/app/
-│   │   ├── core/services/           ← songs, artists, admin, search, theme
-│   │   ├── pages/                   ← home, songs, artists, tab-reader, contact...
-│   │   ├── admin/                   ← dashboard + tab-editor (branch admin only)
-│   │   └── shared/components/       ← tab-viewer, skeleton-loader, song-list...
-│   └── src/environments/            ← config API URL
+├── frontend/black-sheep-app/        ← Angular 20 SPA (+ PWA)
+│   ├── public/                      ← favicon, manifest.webmanifest, icons/, _redirects
+│   ├── ngsw-config.json             ← caché del service worker
+│   └── src/app/
+│       ├── core/services/           ← songs, artists, admin, auth, search, chord, report
+│       ├── core/utils/tab-parser.ts ← parser de tabs pegadas (dos líneas / ChordPro)
+│       ├── pages/                   ← home, songs, artists, tab-reader, chords, auth…
+│       ├── admin/                   ← admin-dashboard + tab-editor (protegidos por adminGuard)
+│       └── shared/components/       ← tab-viewer, skeleton-loader, song-list…
 │
-├── backend-workers/src/index.ts     ← Cloudflare Workers API (603 líneas → refactor pendiente)
+├── backend-workers/
+│   ├── src/index.ts                 ← router + endpoints (654 líneas → refactor pendiente)
+│   └── src/lib/                     ← helpers puros con tests: auth, cors, validation
 │
 └── scripts/
-    ├── scraper/                     ← Node.js scraper de acordes
-    └── migrations/                  ← SQL migrations de Supabase
+    ├── scraper/                     ← extracción → procesamiento → importación
+    ├── migrations/                  ← SQL de Supabase
+    └── predeploy-guard.mjs          ← bloquea deploy si faltan environments
 ```
 
 ---
 
-## Stack Tecnológico
+## Stack y versiones (auditado 2026-09-24)
 
-| Capa            | Tecnología          | Versión    | Estado                 |
-| --------------- | ------------------- | ---------- | ---------------------- |
-| Frontend        | Angular             | 20.3       | ✅ Producción          |
-| Styling         | Tailwind CSS        | 3.x + SCSS | ✅                     |
-| Package Manager | **pnpm**            | 9+         | 🔄 Migrando desde npm  |
-| Backend         | Cloudflare Workers  | -          | ✅ Producción          |
-| Database        | Supabase PostgreSQL | -          | ✅                     |
-| Storage         | Cloudflare R2       | -          | ✅ (imágenes artistas) |
-| Deploy          | Cloudflare Pages    | -          | ✅                     |
-| Runtime         | Node.js             | 24.x       | ✅                     |
+| Capa            | Tecnología                    | Versión actual | Latest publicado |
+| --------------- | ----------------------------- | -------------- | ---------------- |
+| Frontend        | Angular (Signals, zone.js)    | 20.3           | 22.2             |
+| Styling         | Tailwind CSS + SCSS           | 3.4            | 4.3              |
+| Lenguaje        | TypeScript                    | 5.9            | 7.0              |
+| Lint            | ESLint / angular-eslint       | 9.39 / 21.0    | 10.11 / 22.5     |
+| Tests frontend  | Karma + Jasmine               | 6.4 / 5.9      | (deprecado v21+) |
+| Tests backend   | Vitest                        | 3.2            | 5.0              |
+| Backend         | Cloudflare Workers (wrangler) | 4.54           | 4.139            |
+| Auth + DB       | Supabase (supabase-js)        | 2.89           | 2.117            |
+| Storage         | Cloudflare R2                 | —              | —                |
+| Deploy          | Cloudflare Pages              | —              | —                |
+| Package manager | pnpm (corepack)               | 11.9.0         | —                |
+| Runtime         | Node (`.nvmrc`)               | 22.20          | 24 LTS           |
+
+### Decisión: ¿actualizar ya?
+
+**No en este momento.** Nada está roto ni inseguro, CI está verde, y los majors cambian
+el modo de trabajar (Angular 21+ es zoneless y usa Vitest por defecto; Tailwind 4 cambia
+la config a CSS-first). Mezclarlos con el trabajo diario de contenido sería arriesgado.
+
+Se hará como **Fase M**, una sesión dedicada por paso, cada uno en su PR con CI verde:
+
+1. Minors seguros: supabase-js, wrangler, workers-types, typescript-eslint, prettier.
+2. Vitest 3 → 5 (backend, bajo riesgo).
+3. Angular 20 → 21 (`ng update @angular/core@21 @angular/cli@21`), revisar zoneless.
+4. Angular 21 → 22 + angular-eslint 22 + ESLint 10. Migrar specs Karma → Vitest.
+5. Tailwind 3 → 4 (sola, sin features en el mismo PR).
+
+Hacerla **antes** de empaquetar la app para Play Store (TWA), para publicar sobre base nueva.
 
 ---
 
 ## Estado de Features
 
-### ✅ Completado
+### ✅ Funcionando
 
-- Angular 20 con Signals + Standalone Components
-- Sistema de géneros musicales (20 géneros) en Songs page
-- Búsqueda con autocomplete conectada a API real
-- 4 temas (light / dark / night-red / oled) **con persistencia en localStorage**
-- Cache strategy (5 min TTL + stale fallback)
-- Retry interceptor con exponential backoff
-- Skeleton loaders (song-list, artist-grid)
-- Imágenes de artistas en Cloudflare R2
-- CORS seguro con lista de origenes permitidos
-- API key admin removida del código fuente
-- **pnpm workspace monorepo** (migrado desde npm — Mayo 2026)
-- **Sección "Recientes"** en home (`recentSongs`, top 6 por `updatedAt`)
-- **Biblioteca de Acordes** v1 — `/acordes` y `/acordes/:root`:
-  - Nav horizontal C-D-E-F-G-A-B + acceso rápido a sostenidos
-  - 16 variantes (mayor/menor/dim/aug, 7/maj7/m7/m7b5/dim7, sus2/sus4, 6/m6/add9/9/maj9)
-  - Notas calculadas en runtime desde intervalos (instrumento-agnóstico)
-  - Variante seleccionada vía query param `?v=<suffix>`
-  - Placeholder reservado para diagramas (guitarra/piano/bajo)
-- **Sistema de Auth** (Supabase Auth — Google + Email/Password):
-  - `AuthService` con Signals (`isAuthenticated`, `isAdmin`, `user`, `displayName`)
-  - Guard `authGuard` protege `/request-song`
-  - Página `/auth/login` — Google OAuth + Email/Password + Registro
-  - Página `/auth/callback` — maneja redirect OAuth
-  - Header con botón Login / Avatar dropdown / Logout
-  - Admin link en header solo visible para `adminEmail`
-  - Mobile nav con botón Login / Pedir
+- Angular 20 con Signals + Standalone Components, rutas lazy con preloading
+- Búsqueda con autocomplete conectada a la API (`/songs/search`)
+- **Filtro de género en Songs y en Artists** (Artists desde `8f57107`, ene 2026)
+- 4 temas (light / dark / night-red / oled) con persistencia en localStorage
+- Cache 5 min TTL + retry interceptor con backoff exponencial + skeleton loaders
+- Imágenes de artistas en Cloudflare R2 con fallback de iniciales
+- CORS con lista de orígenes permitidos, validación de inputs en backend
+- **Auth Supabase** (email + Google): `authGuard`, `adminGuard`, JWT validado en el Worker
+- **Editor admin**: importar pegando texto (dos líneas o ChordPro), secciones ChordPro,
+  preview en vivo, borradores, `GET /admin/songs/:id`
+- Dashboard admin: pestañas pendientes / borradores / requests + contadores (`/admin/stats`)
+- Reportar canción (reusa `POST /requests` con `type: 'edit'`)
+- Biblioteca de acordes v1 (`/acordes`, 16 variantes)
+- Tests: 20 backend (Vitest) + 48 frontend (Karma); CI con lint, tests, build y dry-run
+- **PWA instalable** (manifest + service worker) — 2026-09-24, pendiente de deploy
 
-### ⚠️ Pendiente de configurar para activar Auth
+### ⚠️ Parcial / requiere acción fuera del código
 
-- [ ] Llenar `supabaseUrl` y `supabaseAnonKey` en `environment.ts` y `environment.prod.ts`
-- [ ] Configurar Google OAuth en Supabase dashboard (Authentication → Providers)
-- [ ] Agregar redirect URLs en Supabase: `localhost:4200/auth/callback`, `bstabs.com/auth/callback`, `bstabs.pages.dev/auth/callback`
+- **RLS en Supabase sin verificar** (`songs`, `song_requests`) — 🔴 crítico, ver bitácora
+- Google OAuth: cliente en Google Cloud + provider en Supabase sin confirmar
+- `scripts/migrations/user-library.sql` (favoritos/playlists con RLS) escrito, **no ejecutado**
+- Corazón de favorito en `tab-viewer` es cosmético (signal sin persistir)
+- Upload de PDF en admin es **mock** (`admin-dashboard.ts`, `setTimeout` simulado)
+- Página `pages/tutorials/` existe pero **no tiene ruta** → decidir: enrutar o borrar
 
-### 🔄 En Progreso / Próximo Sprint
+### ❌ Pendiente
 
-- [ ] Filtro de género en **Artists page** (Songs ya lo tiene)
-- [ ] Toast notification system
-- [ ] Paginación / Infinite scroll en Songs y Artists
+| Item                                                  | Área     | Prioridad |
+| ----------------------------------------------------- | -------- | --------- |
+| Rate-limit / captcha en `POST /requests`              | Backend  | 🔴 Alta   |
+| Auditor de catálogo (duplicados, HTML roto) — Fase D  | Datos    | 🔴 Alta   |
+| Import por URL (`import-url.js`) — Fase B             | Datos    | 🟡 Media  |
+| Dashboard de usuario `/dashboard` (favoritos, listas) | Frontend | 🟡 Media  |
+| Toast notifications                                   | Frontend | 🟡 Media  |
+| Paginación en `/songs` (API + UI)                     | Ambos    | 🟡 Media  |
+| "¿Olvidaste tu contraseña?" + verificación de email   | Auth     | 🟡 Media  |
+| Formulario de contacto con backend                    | Ambos    | 🟢 Baja   |
+| Error boundaries / página de error                    | Frontend | 🟢 Baja   |
+| Modo "solo letras" (acordes aún ocupan espacio)       | Frontend | 🟢 Baja   |
+| Transposición de acordes                              | Frontend | 🟢 Baja   |
+| PDF upload real (R2 + parsing)                        | Ambos    | 🟢 Baja   |
+| Lighthouse > 90 en Performance y Accessibility        | Frontend | 🟢 Baja   |
 
-### ✅ Completado recientemente
+---
 
-- [x] **Auth real con Supabase** (login email/Google, guards, JWT server-side) — sustituye `prompt()`
-- [x] **Editor admin sin `prompt()`** (usa JWT de la sesión)
-- [x] **Pruebas unitarias + CI** (Vitest backend, Karma/Jasmine frontend, GitHub Actions)
+## Roadmap Android
 
-### ❌ Pendiente (Fase 2-3)
+Camino elegido: **PWA → TWA (Trusted Web Activity) en Play Store**. Una sola base de
+código Angular; la app de Android es un contenedor de Chrome que abre bstabs.com a
+pantalla completa, sin barra de URL. No requiere Java/Kotlin.
 
-- [ ] Formulario de contacto con backend (Cloudflare Email Workers)
-- [ ] PDF upload real (Cloudflare R2 + parsing)
-- [ ] "¿Olvidaste tu contraseña?" + página de verificación de email
-- [ ] Chord diagrams (Canvas/SVG)
-- [ ] Transposición de acordes
-- [ ] Error boundaries / fallback pages
-- [ ] PWA / Service Worker
+| Paso | Qué                                                                               | Estado       |
+| ---- | --------------------------------------------------------------------------------- | ------------ |
+| 1    | PWA: manifest, service worker, íconos, instalable desde Chrome                    | ✅ En PR     |
+| 1b   | Reemplazar íconos provisionales "BS" por el logo real (192, 512 y maskable)       | ❌ Pendiente |
+| 1c   | Deploy a bstabs.com y validar con Lighthouse (sección PWA "Installable")          | ❌ Pendiente |
+| 2    | Fase M (actualizar stack) antes de publicar                                       | ❌ Pendiente |
+| 3    | Cuenta Google Play Console (pago único USD 25)                                    | ❌ Pendiente |
+| 4    | `npx @bubblewrap/cli init --manifest=https://www.bstabs.com/manifest.webmanifest` | ❌ Pendiente |
+| 5    | Guardar el keystore y su contraseña fuera del repo (si se pierde, no hay updates) | ❌ Pendiente |
+| 6    | Publicar `public/.well-known/assetlinks.json` con el SHA-256 del keystore         | ❌ Pendiente |
+| 7    | `bubblewrap build` → subir `.aab` a Play Console, prueba interna → producción     | ❌ Pendiente |
+
+**Cuándo pasar a Capacitor en vez de TWA:** solo si hace falta algo nativo que la web no
+da (notificaciones push nativas complejas, acceso a archivos del teléfono, audio de baja
+latencia para metrónomo/afinador). Hoy nada del roadmap lo exige.
+
+**Notas de la PWA:** el service worker solo corre en build de producción. Cachea la app
+shell y, con estrategia _freshness_ (red primero), las respuestas de `/songs` por 1 día,
+así que las canciones ya vistas se leen sin conexión. Al publicar una versión nueva, el
+SW la descarga en segundo plano y se activa en la siguiente visita.
 
 ---
 
@@ -220,94 +302,77 @@ create table public.ratings (
 
 ## Sistema de Auth
 
-### Estado Actual ✅ (implementado)
+| Actor    | Método                                                                                 | Estado                                            |
+| -------- | -------------------------------------------------------------------------------------- | ------------------------------------------------- |
+| Admin    | Login Supabase (email/Google) → JWT; `adminGuard` + verificación server-side del email | ✅ Implementado                                   |
+| Usuarios | Login Supabase opcional (prefill, reportar canción)                                    | ✅ Implementado; el sitio es navegable sin cuenta |
+| Scripts  | `x-api-key` (`ADMIN_API_KEY` secret del Worker)                                        | ✅ Para scraper y uploads                         |
 
-| Actor    | Método                                                                                 | Estado                                                   |
-| -------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------- |
-| Admin    | Login Supabase (email/Google) → JWT; `adminGuard` + verificación server-side del email | Implementado. Ver memoria `auth-model`                   |
-| Usuarios | Login Supabase opcional (mejora UX: prefill, historial)                                | Implementado; el sitio sigue siendo navegable sin cuenta |
-| Backend  | `verifyAdmin()`: JWT de Supabase (`getUser`) **o** `x-api-key` (scripts)               | Sólido. Pendiente: rate-limit en `/requests`             |
-
-> Pendiente de auth: verificar RLS en Supabase, "olvidé contraseña", página de
-> verificación de email, rate-limit. El antiguo `prompt()` + API key ya **no existe**.
-
-### Roadmap de Auth
-
-```
-Fase A — Admin login real (prioridad alta, ~1 semana):
-  ├── Crear página /admin/login con formulario real
-  ├── Guardar API key en sessionStorage (no persiste entre pestañas por seguridad)
-  ├── Guard de Angular que redirige a /admin/login si no autenticado
-  └── Auto-clear al cerrar sesión
-
-Fase B — Auth de usuarios (futuro, si se necesita):
-  ├── Opción recomendada: Supabase Auth (ya tenemos Supabase, es gratis)
-  ├── Features que habilita: favoritos, historial de vistas, requests con cuenta
-  └── Alternativa minimalista: Cloudflare Access (solo para admin)
-```
+Pendientes de auth: verificar RLS, rate-limit en `/requests`, "olvidé contraseña",
+página de verificación de email. Si alguna vez se expuso una `ADMIN_API_KEY` en el
+historial de git (ver `docs/archive/`), rotarla con `wrangler secret put ADMIN_API_KEY`.
 
 ---
 
-## Deuda Técnica Prioritaria
+## Deuda Técnica
 
-| Prioridad | Item                                                   | Ubicación                      | Impacto                   |
-| --------- | ------------------------------------------------------ | ------------------------------ | ------------------------- |
-| 🔴 Alta   | `index.ts` backend > 600 líneas                        | `backend-workers/src/index.ts` | Mantenibilidad            |
-| 🔴 Alta   | Configurar Supabase credentials + Google OAuth         | `environment.ts`               | Auth no funciona sin esto |
-| 🟡 Media  | `corsHeaders` duplicado (legacy vs getCorsHeaders)     | `backend/index.ts:88-93`       | Código muerto             |
-| 🟡 Media  | Sin paginación en `/songs` API                         | `backend/index.ts:166+`        | Performance               |
-| 🟡 Media  | Sin paginación en frontend Songs/Artists               | `pages/songs/songs.ts`         | Performance               |
-| 🟡 Media  | Dashboard de usuario (`/dashboard`) — ver mis requests | Pendiente crear                | UX                        |
-| 🟢 Baja   | 4 canciones con HTML corrupto                          | Supabase DB                    | Calidad datos             |
-| 🟢 Baja   | ~60 canciones duplicadas                               | Supabase DB                    | Calidad datos             |
+| Prioridad | Item                                                          | Ubicación                            |
+| --------- | ------------------------------------------------------------- | ------------------------------------ |
+| 🔴 Alta   | `index.ts` backend de 654 líneas con router `if` encadenado   | `backend-workers/src/index.ts`       |
+| 🟡 Media  | Endpoints del Worker sin tests (solo `lib/` tiene)            | `backend-workers/src/index.ts`       |
+| 🟡 Media  | Services sin spec: songs, admin, auth, report                 | `frontend/.../core/services/`        |
+| 🟡 Media  | Pages y `admin-dashboard` sin spec (cobertura líneas ~57%)    | `frontend/.../pages/`, `admin/`      |
+| 🟡 Media  | 66 warnings de ESLint (a11y en templates, `any`)              | `pnpm run lint`                      |
+| 🟡 Media  | Sin paginación en `/songs` (API regresa todo)                 | backend + `pages/songs/`             |
+| 🟢 Baja   | Fallback de CORS muerto en `jsonResponse()` sin `request`     | `backend-workers/src/index.ts:51-63` |
+| 🟢 Baja   | `mock-songs.ts` en el bundle lazy (solo con `enableMockData`) | `core/services/`                     |
 
 ---
 
 ## Datos de la DB
 
-- **Total canciones publicadas:** ~518
-  - Pop: 279 · Rock: 197 · Metal: 42 · Otros: ~100
-- **Sin paginación:** la API retorna todas las canciones en un solo request
+- **Total canciones publicadas:** ~518 (Pop 279 · Rock 197 · Metal 42 · otros)
+- **Por limpiar:** 4 canciones con HTML corrupto, 28 grupos de duplicados (~60 canciones),
+  entidades HTML sin decodificar. Plan: Fase D en PLAN-FLUJO-CONTENIDO.
 
 ---
 
-## Branching Strategy
+## Branching y Deploy
 
-| Rama    | URL pública              | Contiene                                 |
-| ------- | ------------------------ | ---------------------------------------- |
-| `main`  | https://www.bstabs.com   | Solo rutas públicas. Sin /admin.         |
-| `admin` | https://bstabs.pages.dev | Todo lo de main + /admin + /admin/editor |
+| Rama       | URL                      | Uso                                   |
+| ---------- | ------------------------ | ------------------------------------- |
+| `main`     | https://www.bstabs.com   | Producción. Solo se actualiza por PR. |
+| `admin`    | https://bstabs.pages.dev | Preview.                              |
+| `feat/*` … | —                        | Ramas de trabajo → PR a `main`        |
 
-**Regla:** Features públicas → merge a ambas ramas. Features admin-only → solo a `admin`.
-
----
-
-## Comandos del Workspace (pnpm)
+Las rutas `/admin` existen en ambos deploys; las protege la auth (`adminGuard` + JWT en
+el Worker), no la rama. **Branch protection** en GitHub (Settings → Branches → `main`):
+exigir PR y los checks `Lint`, `Test backend (Workers)`, `Test frontend (Angular)`,
+`Build (validación)`.
 
 ```bash
-# Instalar todas las dependencias del monorepo desde la raíz
-pnpm install
-
-# Desarrollo
-pnpm --filter black-sheep-app start              # ng serve → localhost:4200
-pnpm --filter blacksheep-api-workers dev         # wrangler dev
-
-# Build y Deploy
-pnpm --filter black-sheep-app run deploy          # Build + deploy → bstabs.com
-pnpm --filter black-sheep-app run deploy:admin    # Build + deploy → bstabs.pages.dev
-pnpm --filter blacksheep-api-workers run deploy   # Deploy Workers API
+pnpm install                                      # desde la raíz
+pnpm --filter black-sheep-app start               # dev → localhost:4200
+pnpm --filter blacksheep-api-workers dev          # Worker local → localhost:8787
+pnpm run lint && pnpm test                        # lo mismo que CI
+pnpm --filter black-sheep-app run deploy          # → bstabs.com
+pnpm --filter black-sheep-app run deploy:admin    # → bstabs.pages.dev
+pnpm --filter blacksheep-api-workers run deploy   # → Workers API
 ```
 
 ---
 
-## Próximos Pasos (Próxima sesión)
+## Próximas sesiones (en orden)
 
-1. **Configurar Supabase credentials** en `environment.ts` y `environment.prod.ts`
-2. **Activar Google OAuth** en Supabase dashboard + agregar redirect URLs
-3. **Probar flujo completo** de auth en localhost (`pnpm start`)
-4. **Filtro de género en Artists page** (feature incompleta, código simple)
-5. **Dashboard de usuario** — página `/dashboard` con historial de requests del usuario
+1. **Revisar y mergear el PR de formalización** (primer ejercicio con REVIEW.md) y
+   activar branch protection.
+2. **Verificar RLS** en Supabase y ejecutar `user-library.sql` (dashboards, no código).
+3. **Auditor de catálogo (Fase D) como script local** → reporte de duplicados y HTML
+   roto → limpieza diaria de la DB en PRs `content/…`.
+4. **Rate-limit en `POST /requests`** (Cloudflare Rate Limiting binding o KV).
+5. **Deploy de la PWA** + íconos reales + Lighthouse.
+6. **Fase M** (actualizar stack), luego **TWA** en Play Store.
 
 ---
 
-_Relacionado: [CLAUDE.md](CLAUDE.md) · [PLAN-MEJORAS-UI.md](PLAN-MEJORAS-UI.md)_
+_Relacionado: [CLAUDE.md](CLAUDE.md) · [ESTADO-SESION.md](ESTADO-SESION.md) · [REVIEW.md](REVIEW.md) · [PLAN-FLUJO-CONTENIDO.md](PLAN-FLUJO-CONTENIDO.md)_

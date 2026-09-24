@@ -8,30 +8,36 @@
 ### 1. 🔥 API Keys Removed from Frontend
 
 **What was fixed:**
+
 - Removed hardcoded API keys from `environment.ts` and `environment.prod.ts`
 - The production key `bs_admin_prod_2025_Kj8Nx2Qm9Tz7Wv5Yr4Lp` was exposed and MUST be changed
 
 **Files modified:**
+
 - `frontend/black-sheep-app/src/environments/environment.ts`
 - `frontend/black-sheep-app/src/environments/environment.prod.ts`
 
 ### 2. 🔥 CORS Restricted to Specific Origins
 
 **What was fixed:**
+
 - Changed from `'Access-Control-Allow-Origin': '*'` to whitelist
 - Only allows: bstabs.com, bstabs.pages.dev, localhost:4200
 
 **File modified:**
+
 - `backend-workers/src/index.ts` (lines 68-92)
 
 ### 3. 🔥 Input Validation Added
 
 **What was fixed:**
+
 - Validates search queries (max 100 chars, sanitized)
 - Validates genre against allowed list
 - Sanitizes special characters (<>"')
 
 **File modified:**
+
 - `backend-workers/src/index.ts` (lines 111-140, 166-207)
 
 ---
@@ -53,6 +59,7 @@ openssl rand -base64 32
 ```
 
 **Example new key format:**
+
 ```
 bs_admin_2026_Xy9Kp2Qm3Tz8Wv6Yr5Lp4Nz7Jx1Mp0
 ```
@@ -98,23 +105,28 @@ npm run deploy
 ## 🔐 How Admin Authentication Works Now
 
 ### BEFORE (Insecure):
+
 ```typescript
 // environment.prod.ts
 adminApiKey: 'bs_admin_prod_2025_Kj8Nx2Qm9Tz7Wv5Yr4Lp', // ❌ VISIBLE IN COMPILED JS
 ```
 
 Anyone could:
+
 1. Inspect JavaScript bundle
 2. Find API key
 3. Get full admin access
 
 ### AFTER (More Secure):
+
 - API key NO LONGER in frontend code
 - Admin must enter key manually each session
 - Key stored only in Worker secrets (server-side)
 
 ### Future Improvement (Recommended):
+
 Implement proper authentication:
+
 - **Cloudflare Access** (easiest for Cloudflare setup)
 - **OAuth** (Google/GitHub login)
 - **JWT tokens** with email/password
@@ -123,14 +135,14 @@ Implement proper authentication:
 
 ## 📊 Security Audit Summary
 
-| Issue | Severity | Status |
-|-------|----------|--------|
-| API keys in frontend | 🔴 CRITICAL | ✅ FIXED |
+| Issue                  | Severity    | Status   |
+| ---------------------- | ----------- | -------- |
+| API keys in frontend   | 🔴 CRITICAL | ✅ FIXED |
 | CORS allow all origins | 🔴 CRITICAL | ✅ FIXED |
-| No input validation | 🔴 CRITICAL | ✅ FIXED |
-| Rate limiting | ⚠️ HIGH | ⏳ TODO |
-| Content sanitization | ⚠️ MEDIUM | ⏳ TODO |
-| Console.logs in prod | 🟡 LOW | ⏳ TODO |
+| No input validation    | 🔴 CRITICAL | ✅ FIXED |
+| Rate limiting          | ⚠️ HIGH     | ⏳ TODO  |
+| Content sanitization   | ⚠️ MEDIUM   | ⏳ TODO  |
+| Console.logs in prod   | 🟡 LOW      | ⏳ TODO  |
 
 ---
 
@@ -198,6 +210,7 @@ After deploying these changes, verify:
 ### "Admin panel not working"
 
 If admin panel stops working:
+
 1. Check you're using the NEW API key (Step 1)
 2. Verify secret was updated: `npx wrangler secret list`
 3. Check Worker logs: `npx wrangler tail`
@@ -205,6 +218,7 @@ If admin panel stops working:
 ### "CORS errors in production"
 
 If you see CORS errors:
+
 1. Verify origin is in ALLOWED_ORIGINS list
 2. Check request comes from: bstabs.com, bstabs.pages.dev, or localhost:4200
 3. If using different domain, add it to ALLOWED_ORIGINS in index.ts
@@ -212,6 +226,7 @@ If you see CORS errors:
 ### "Search not working"
 
 If search returns errors:
+
 1. Check query length < 100 chars
 2. Check genre is valid (from the 20 allowed genres)
 3. Check browser console for 400 errors with details
