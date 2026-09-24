@@ -106,21 +106,22 @@ con una canción real en el navegador.**
 
 ## Fase M — Mantenimiento de versiones (separado del flujo de contenido)
 
-Auditoría 2026-08-03: stack coherente, sin incompatibilidades activas. Majors
-pendientes, **ninguno bloquea las fases A-D**:
+Auditoría 2026-08-03, **revisada 2026-09-24** (latest actualizado). Stack coherente, sin
+incompatibilidades activas. Majors pendientes, **ninguno bloquea las fases A-D**.
+Plan detallado paso a paso en ORCHESTRATOR → "Stack y versiones":
 
 | Paquete       | Actual | Latest | Nota                                                                                              |
 | ------------- | ------ | ------ | ------------------------------------------------------------------------------------------------- |
-| Angular       | 20.3   | 22.1   | 2 majors; `ng update` uno por uno (20→21→22). v21+ trae zoneless por defecto y Vitest como runner |
+| Angular       | 20.3   | 22.2   | 2 majors; `ng update` uno por uno (20→21→22). v21+ trae zoneless por defecto y Vitest como runner |
 | Tailwind      | 3.4    | 4.3    | Migración de config CSS-first; hacerla sola, no mezclada con features                             |
-| ESLint        | 9.39   | 10.8   | Con angular-eslint 22 (va amarrado al major de Angular)                                           |
-| Vitest        | 3.2    | 4.1    | Menor riesgo, backend only                                                                        |
+| ESLint        | 9.39   | 10.11  | Con angular-eslint 22 (va amarrado al major de Angular)                                           |
+| Vitest        | 3.2    | 5.0    | Menor riesgo, backend only                                                                        |
 | TypeScript    | 5.9    | 7.0    | Seguir lo que Angular soporte; no adelantarse                                                     |
 | workers-types | 4.x    | 5.x    | Junto con wrangler minor bump                                                                     |
 
 **Estrategia:** minors/patches libres en cualquier momento (`pnpm up -r` de lo
 seguro: supabase-js, wrangler, prettier, typescript-eslint). Majors en una fase
-M dedicada **después de Fase A**, orden sugerido: Vitest 4 → Angular 21 →
+M dedicada **después de Fase A**, orden sugerido: Vitest 5 → Angular 21 →
 Angular 22 + angular-eslint/eslint → Tailwind 4. Cada paso con CI verde antes
 del siguiente.
 
